@@ -1,0 +1,166 @@
+/* User Info */
+div#user-info {
+  width: 840px;
+  margin: auto;
+  font-size: 18px;
+  line-height: 24px;
+  text-align: center;
+}
+
+div#user_img, div#profile_tags, div#profile_info, div#experience-tags, div#experience-info {
+  display: inline-block;
+}
+
+div#profile_tags, div#profile_info, div#experience-tags, div#experience-info {
+  vertical-align: top;
+  padding: 35px;
+  text-align: left;
+}
+
+div#user_img {
+  margin: 5px;
+}
+
+div#profile_tags, div#profile_info {
+  margin-top: 15px;
+}
+
+div#profile_tags {
+  margin-left: 40px;
+}
+
+div#profile_info {
+  padding-left: 20px;
+}
+
+
+/* All sections */
+div#experience, div#earned-badges, div#high-score, div.stats {
+  width: 840px;
+  margin: auto;
+  margin-top: 25px;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+/* All headers */
+div#experience-header, div#badges-header, div#score-header, div.stats-header {
+  text-align: center;
+  font-size: 32px;
+  margin: 20px auto;
+}
+
+
+
+/* Experience */
+div#experience {
+  overflow: auto;
+}
+
+img#experience-badge {
+  float: left;
+  width: 200px;
+  margin: 10px;
+}
+
+div#experience-data {
+  margin-left: 200px;
+  padding-top: 35px;
+  text-align: center;
+}
+
+div#progressbar {
+  height: 32px;
+  margin: 15px 40px;
+}
+.progress-label {
+  position: absolute;
+  left: 50%;
+  top: 4px !important;
+  font-weight: bold;
+}
+div.ui-progressbar-value {
+  background: rgb(83, 135, 197);
+}
+
+div#experience-tags, div#experience-info {
+  padding: 7px 35px;
+}
+
+
+
+/* BadgesContainer */
+span.badge-img {
+  margin: 0px 32px;
+}
+
+img.badge-img {
+  width: 220px;
+}
+
+span.badge-awarded {
+  font-size: 32pt;
+  color: #FF9500;
+  margin-left: -50px;
+}
+
+
+
+/* StatisticsContainer */
+div.stats div.ui-field-contain {
+  margin-left: 25px;
+  margin-bottom: 0px;
+  margin-top: 20px;
+  padding-right: 20px;
+}
+
+div.stats label {
+  margin-right: 20px;
+}
+
+/* GameDesigner */
+div.stats#game-designer, div.stats#admin {
+  display: none;
+}
+
+/* Worst Levels */
+div#player-worst-levels, div#designer-worst-levels, div#player-no-records, div#designer-no-records {
+  padding: 20px;
+  margin-top: 20px;
+  text-align: center;
+  border-top: 1px solid #aaaaaa;
+  border-bottom: 1px solid #aaaaaa;
+}
+div.worst-header {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+div#player-worst-levels ul, div#designer-worst-levels ul {
+  list-style: none;
+  padding: 0px;
+}
+div#player-worst-levels ul li, div#designer-worst-levels ul li {
+  display: inline-block;
+  width: 94px;
+  height: 68px;
+  border: 1px solid black;
+  vertical-align: middle;
+}
+div#player-worst-levels ul li div, div#designer-worst-levels ul li div {
+  padding: 10px 0px;
+  color: #DC3812;
+  font-size: 14px;
+  line-height: 18px;
+}
+div#player-worst-levels ul li img, div#designer-worst-levels ul li img {
+  width: 100%;
+  height: 100%;
+}
+
+
+
+/* HighScoresContainer */
+.ui-table-columntoggle-btn {
+    display: none !important;
+}

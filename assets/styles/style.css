@@ -1,0 +1,97 @@
+.bodywrapper {
+	background-image:	url(../images/cloth_alike.png);
+	font-size: 80%;
+	font-family: 		"Helvetica";
+}
+
+table {
+	font-size: 1em;
+}
+
+body { list-style: none; }
+
+/* #gallery0wrapper { position:absolute; left:8px; top:0px; bottom:0; heigth: 100%; background-color:#ffffff; display: table; } */
+/* #gallery0wrapper { position: absolute; left: 10px; top: 15%; bottom:10%; width: 120px; } */
+#gallery0wrapper { position: absolute; left: 10px; top: 0px; bottom: 0px; vertical-align: middle; display: table-cell; }
+#gallery3wrapper { position:absolute; width:100%; left:0; top:50px; right:0; }
+#gallery2wrapper { position:absolute; right:130px; top:0px; bottom:0; vertical-align: middle; display: table-cell; }
+#gallery1wrapper { position:absolute; width:100%; left:0; bottom:8px; right:0; }
+
+.gallery { background-color:#dddddd; }
+.gallery.custom-state-active { background: #eee; }
+.gallery ul { list-style: none; padding:0; margin:0; }
+.gallery li { float:left; width: 94px; height:68px; padding: 0px; text-align: center; vertical-align: middle; }
+.gallery li img { width: 100%; cursor: move; padding:0; margin:0; }
+.gallery h4 { margin:0 0 2px 0; text-align:center; }
+
+/* #gallery0 { position: absolute; left: 10px; top: 50%; bottom:50%; width: 120px; height: 750px; z-index: 1004 } */
+#gallery0 { position: absolute; top: 15%; width: 120px; z-index: 1004; }
+#gallery0 ul { height: 700px; overflow: hidden }
+#gallery2 { position: absolute; top: 15%; width: 120px; z-index: 1003; }
+#gallery2 ul { height: 700px; overflow: hidden }
+/*#gallery2 { position: absolute; right: 10px; top: 15%; bottom:10%; width: 120px; z-index: 1003; overflow: auto } */
+/* #gallery0 { display: table-cell; vertical-align: middle; width: 120px; overflow:auto; }
+#gallery2 { width: 120px; height:410px; overflow:auto; } */
+#gallery1 { height: 110px; margin:0 140px 0 140px; z-index: 1002 }
+#ulwrap-gallery1 { overflow:hidden; width: 500px; float: left; }
+#gallery1 ul { height: 70px; width: 500px; float: left; overflow:visible }
+/* #gallery3 { height: 110px; margin:0 140px 0 140px; overflow:auto; z-index: 1001 } */
+#gallery3 { height: 110px; margin:0 140px 0 140px; z-index: 1002 }
+#ulwrap-gallery3 { overflow:hidden; width: 500px; float: left; }
+#gallery3 ul { height: 70px; width: 500px; float: left; overflow:visible }
+
+.button-left { float: left; }
+.button-right { float: left; }
+
+#gallery0 li { margin: 2px 0px 2px 0px; }
+#gallery2 li { margin: 2px 0px 2px 0px; }
+#gallery1 li { margin: 0px 2px 0px 2px; }
+#gallery3 li { margin: 0px 2px 0px 2px; }
+
+/* #wrappergameboard {position: absolute; top: 110px; left: 140px; bottom:110px; right:140px; text-align: center; vertical-align: middle;} */
+#wrappergameboard { position: absolute; top: 35%; left: 15%; bottom:25%; right:15%; }
+#gameboard { padding: 1em; float:left; margin-right: 2em; margin-bottom: 2em }
+
+#slots { width: 100%; height: 130px; z-index: 500 }
+.slots { z-index: 500; padding:0; margin:0 }
+.wrapperslot { padding: 0em }
+.slotheader h4 { line-height: 16px; margin: 0; text-align:center; }
+.slot { list-style: none; width: 98px; height: 82px; padding: 0.4em; margin:0; text-align: center; vertical-align: center; }
+.slot li {padding:0; margin:0;}
+
+
+.connection { list-style: none; width: 32px; height: 32px; padding: 0; margin:0; text-align: center; vertical-align: center; }
+
+
+#levelcontrol { float:left; padding: 1em; }
+/*#levelcontrol h2 { float:left; }
+#levelcontrol ul { float:left; }
+#levelcontrol:after { content:"x"; display: block; height:0; clear: both; visibility:hidden;} */
+
+.piece { z-index: 1100 }
+
+.slot-blocked {
+	background-color: #939393;
+	background-image: url(../images/stop2.png);
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.slot-green { background-color: #67d50d; }
+.slot-red { background-color: #d50d17; }
+
+#level-verification-correct { color: #67d50d; display: none; }
+#level-verification-wrong { color: #d50d17; display: none; }
+#level-verification-revealed { color: #e0a821; display: none; }
+
+.ui-progressbar { height: 1.2em; position: relative; }
+.progressbar .ui-progressbar-value { background: none repeat scroll 0% 0% #4c9ed9; }
+.progress-label {
+font-size: 0.8em;
+text-decoration: none;
+text-shadow: none;
+position: absolute;
+left: 50%;
+top: 2px;
+font-weight: bold;
+}
