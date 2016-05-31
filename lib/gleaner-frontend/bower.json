@@ -1,0 +1,23 @@
+{
+    "name": "gleaner-frontend",
+    "version": "0.0.1",
+    "dependencies": {
+        "angular": "1.2.x",
+        "angular-route": "~1.2.x",
+        "angular-resource": "1.2.x",
+        "angular-mocks": "~1.2.x",
+        "angular-xeditable": "*",
+        "angular-gridster": "*",
+        "checklist-model": "*",
+        "angular-bootstrap": "*",
+        "bootstrap": "*",
+        "jquery": "*",
+        "jquery-dateFormat": "*",
+        "jquery-file-upload": "*",
+        "jquery-query": "https://raw.githubusercontent.com/alrusdi/jquery-plugin-query-object/master/jquery.query-object.js",
+        "underscore": "http://underscorejs.org/underscore.js",
+        "d3": "*",
+        "gauss": "*",
+        "hammerjs": "*"
+    }
+}

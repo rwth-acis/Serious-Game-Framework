@@ -1,0 +1,13 @@
+.modal.fade(id="" + dangerModal, tabindex="-1", role="dialog", aria-labeledby="dangerModalLabel", aria-hidden="true")
+	.modal-dialog
+		.modal-content
+			.modal-header
+				button.close(type="button", data-dismiss="modal")
+					span(aria-hidden="true") &times;
+					span.sr-only close
+				h4#dangerModalLabel.modal-title Caution!
+			.modal-body
+				p #{dangerMessage}
+			.modal-footer
+				button.btn.btn-default(type="button", data-dismiss="modal") Cancel
+				button.btn.btn-danger(type="button", data-dismiss="" + (dangerDismiss ? "modal" : ""), ng-click="" + dangerAction) #{dangerOk}

@@ -1,0 +1,197 @@
+@import url(http://fonts.googleapis.com/css?family=Coming+Soon);
+
+html, body {
+	height:100vh;
+}
+
+a.navbar-brand {
+	font-family: 'Coming Soon', cursive;
+}
+
+.title, a.title {
+	font-size: 2em;
+	border-bottom-style: hidden;
+	color: black;
+}
+
+a.title:hover {
+	border-bottom-style: dashed;
+}
+
+.actions {
+	background-color: #f8f8f8;
+	border: 1px solid #e7e7e7;
+}
+
+.no-padding {
+	padding: 0;
+}
+
+.pointer {
+	cursor: pointer;
+}
+
+.actions a {
+	cursor: pointer;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.actions span.nav-span:hover {
+	background-color: #eee;
+}
+
+.actions a, .actions span.nav-span {
+	font-size: 0.9em;
+	color: black;
+	border-right: 1px solid #e7e7e7;
+	display: block;
+}
+
+.actions span.nav-span {
+	padding: 10px 15px;
+	border-right: none;
+}
+
+.left-menu {
+	padding-left: 0px;
+}
+
+.left-menu ul.nav {
+	background-color: #f8f8f8;
+	border-right: 1px solid #e7e7e7;
+	height: 75vh;
+}
+
+.left-menu ul.nav span.left-menu-item {
+	color: #707070;
+	display: block;
+	padding: 15px 10px;
+}
+
+.left-menu ul.nav span.left-menu-item:hover {
+	background-color: #eee;
+}
+
+.left-menu ul.nav li {
+	cursor: pointer;
+	padding-bottom: 10px;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+.left-menu ul.nav li.active {
+	font-weight: bold;
+}
+
+.left-menu ul.nav li.active span.left-menu-item {
+	color: #606060;
+}
+
+li.segments div.btn-group label {
+	font-size: 0.8em;
+	margin: 5px 0px;
+}
+
+li.segment span.nav-span:hover {
+	background: none;
+}
+
+.gridster li {
+	border-radius: 5px;
+	background-color: #FFF;
+	box-shadow: 0px 0px 10px 0px rgba(50, 50, 50, 0.35);
+}
+
+.ui-resizable-autohide .report-tools {
+	display: block;
+	visibility: hidden;
+}
+
+.report-tools {
+	visibility: visible;
+}
+
+.editable {
+	border: none;
+}
+
+.right10 {
+	margin-right: 10px;
+}
+
+.left10 {
+	margin-left: 10px;
+}
+
+.top10 {
+	margin-top: 10px;
+}
+
+.bottom10 {
+	margin-bottom: 10px;
+}
+
+.right20 {
+	margin-right: 20px;
+}
+
+.left20 {
+	margin-left: 20px;
+}
+
+.top20 {
+	margin-top: 20px;
+}
+
+.bottom20 {
+	margin-bottom: 20px;
+}
+
+.right50 {
+	margin-right: 50px;
+}
+
+.left50 {
+	margin-left: 50px;
+}
+
+.top50 {
+	margin-top: 50px;
+}
+
+.bottom50 {
+	margin-bottom: 50px;
+}
+.overflow-hidden {
+	overflow: hidden;
+}
+
+
+.pad15 {
+	padding: 15px;
+}
+
+.loading {
+	display: none;
+}
+
+.uppercase {
+	text-transform: uppercase;
+}
+
+.height100 {
+	height: 100%
+}
+
+#reports li {
+	box-shadow: 1px 1px 1px 0px rgba(50, 50, 50, 0.75);
+}

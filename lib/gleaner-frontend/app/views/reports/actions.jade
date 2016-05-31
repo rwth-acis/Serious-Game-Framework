@@ -1,0 +1,31 @@
+.row
+	.col-md-12
+		ul.actions.nav.nav-pills
+			li
+				a(ng-click="addPanel()") New panel
+					span.glyphicon.glyphicon-plus.left10
+			li
+				- var dangerModal = 'deletePanel'
+				- var dangerMessage = 'You will delete this panel and all its reports. Are you sure?'
+				- var dangerOk = 'Delete'
+				- var dangerAction = 'deleteCurrentPanel()'
+				- var dangerDismiss = true
+				a(data-toggle="modal", data-target="#" + dangerModal) Delete panel
+				include ../modals/dangermodal
+			li
+				a(ng-click="relaunchAnalysis()") Relaunch Analysis
+			li(ng-if="selectedPanelIndex >= 0")
+				- var modalId = 'createReportModal'
+				a(data-toggle="modal",data-target="#" + modalId) New report
+					span.glyphicon.glyphicon-plus.left10
+				include ../modals/createreport
+			li
+				span.nav-span Segments:
+			li.segments
+				.btn-group(data-toggle="buttons")
+					label.btn.btn-primary.active(ng-click="toggleSegment('all')")
+						input(type="checkbox", checked)
+						|  All gameplays
+					label.btn.btn-primary(ng-repeat="segment in selectedVersion.segments", ng-click="toggleSegment(segment.name)")
+						input(type="checkbox")
+						|  {{ segment.name }}

@@ -1,0 +1,33 @@
+doctype html
+html(lang="en", ng-app="gleanerApp")
+    head
+        meta(charset="utf-8")
+        title GLEANER
+        link(rel="stylesheet", href="bower/bootstrap/dist/css/bootstrap.css")
+        link(rel="stylesheet", href="css/app.css")
+    body(ng-controller="GamesCtrl")
+        include navbar
+        ol
+            li(ng-repeat="game in games")
+                | {{game.title}}
+                button.btn.btn-primary(ng-click="remove(game)") Delete
+                input(ng-model="game.title")
+                div(ng-controller="VersionsCtrl")
+                    ol
+                        li(ng-repeat="version in versions")
+                            p {{version.name}}
+                            input(ng-model="version.trackingCode")
+                            button.btn.btn-primary(ng-click="version.$save()") Save
+                            button.btn.btn-primary(ng-click="remove(version)") Remove            
+                    button.btn.btn-primary(ng-click="addVersion()") Add version            
+                button.btn.btn-primary(ng-click="game.$save()") Save
+                button.btn.btn-primary Cancel    
+        div
+            button.btn.btn-primary(ng-click="addEntry()") Add
+        a(href='/logout') Log out
+        script(src="bower/jquery/dist/jquery.min.js")
+        script(src="bower/bootstrap/dist/js/bootstrap.min.js")
+        script(src="bower/angular/angular.js")
+        script(src="bower/angular-resource/angular-resource.js")
+        script(src="js/services.js")
+        script(src="js/controllers.js")

@@ -1,0 +1,33 @@
+.row.bottom10
+	.col-md-12
+		a.left10.title(href="#", editable-text="selectedGame.title" onbeforesave="saveGame()") {{ selectedGame.title }}
+include data/actions
+.row
+	.col-md-12
+		.container-fluid(ng-show="selectedVersion === undefined")
+			.row
+				.col-xs-offset-4.col-xs-4
+					.top50.text-center.alert.alert-info
+						| You have no versions for this game. You can 
+						strong
+							a.pointer(ng-click="addEmptyVersion()") create a new one
+		.container-fluid(ng-show="selectedVersion")
+			.row.top50(ng-show="eadLoading")
+				.col-xs-offset-4.col-xs-4.text-center
+					#analysis-state.alert.alert-info
+			.row(ng-show="!eadLoading")
+				.col-xs-3.col-md-2.left-menu
+					include data/menu
+				.col-xs-9.col-md-10.tab-content
+					#info.tab-pane.active
+						include data/information
+					#realtime.tab-pane
+						include data/realtime
+					#segments.tab-pane
+						include data/segments
+					#vars.tab-pane
+						include data/vars
+					#zones.tab-pane
+						include data/zones
+					#choices.tab-pane
+						include data/choices

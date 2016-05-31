@@ -1,0 +1,8 @@
+.row.top10
+	.col-sm-6
+		span.glyphicon.glyphicon-random
+		|  Choices
+		ul.list-group
+			li.list-group-item(ng-repeat="choice in selectedVersion.choices") {{ choice.id }}
+				ul.list-group
+					li.list-group-item(ng-repeat="option in choice.options") {{ option }}

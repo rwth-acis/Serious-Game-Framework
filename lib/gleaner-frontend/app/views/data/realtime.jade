@@ -1,0 +1,48 @@
+.row.top10
+    .col-sm-12
+        h4 Session information
+.row.top10(ng-if="selectedVersion")
+    .col-sm-12
+        ul
+            li
+                span Alias
+                | =
+                a(href="#", editable-text="selectedVersion.alias" onbeforesave="saveVersion()") {{ selectedVersion.alias || 'Not set.' }}
+            li
+                span Score
+                | =
+                a(href="#", editable-text="selectedVersion.score" onbeforesave="saveVersion()") {{ selectedVersion.score || 'Not set.' }}
+            li
+                span Max Score
+                | =
+                a(href="#", editable-number="selectedVersion.maxScore" e-step="any" onbeforesave="saveVersion()") {{ selectedVersion.maxScore || 'Not set.' }}
+            li
+                span Progress
+                | =
+                a(href="#", editable-text="selectedVersion.progress" onbeforesave="saveVersion()") {{ selectedVersion.progress || 'Not set.' }}
+.row.top10
+    .col-sm-12
+        strong Warnings
+.row.top10(ng-if="selectedVersion && selectedVersion.warnings")
+    .col-sm-12
+        ul
+            li(ng-repeat="warning in selectedVersion.warnings")
+                span.right10.left10  Message:
+                a(href="#",editable-text="warning.message" onbeforesave="saveVersion()") {{ warning.message }}
+                span.right10.left10  Condition:
+                a(href="#",editable-text="warning.cond" onbeforesave="saveVersion()") {{ warning.cond }}
+                button.left10.btn.btn-xs.btn-default(ng-click="deleteFromList('warnings', warning)") Delete
+.row.top10
+    .col-sm-12
+        strong Alerts
+.row.top10(ng-if="selectedVersion && selectedVersion.alerts")
+    .col-sm-12
+        ul
+            li(ng-repeat="alert in selectedVersion.alerts")
+                span.right10.left10  Message:
+                a(href="#",editable-text="alert.message" onbeforesave="saveVersion()") {{ alert.message }}
+                span.right10.left10 Value:
+                a(href="#",editable-text="alert.value" onbeforesave="saveVersion()") {{ alert.value || 'Not set' }}
+                span.right10.left10  Maximum difference:
+                a(href="#",editable-number="alert.maxDiff" e-step="any" onbeforesave="saveVersion()") {{ alert.maxDiff }}
+                button.left10.btn.btn-xs.btn-default(ng-click="deleteFromList('alerts', alert)") Delete

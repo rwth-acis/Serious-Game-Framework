@@ -1,0 +1,10 @@
+.container-fluid.top20
+	.row
+		.col-xs-12
+			a.title(href="#", editable-text="selectedVersion.name" onbeforesave="saveVersion()") {{ selectedVersion.name }}
+			small
+				em.left10 version created {{ selectedVersion._id | prettyDate }}
+	.row.top20
+		.col-xs-12
+			| Tracking code:
+			kbd.left10 {{ selectedVersion.trackingCode }}

@@ -1,0 +1,28 @@
+doctype html
+html
+	head(lang="en")
+		title GLEANER Login
+		meta(http-equiv="content-type", content="text/html; charset=UTF-8")
+		meta(name="description", content="")
+		meta(name="keywords", content="")
+		meta(name="viewport", content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;")
+		link(rel="stylesheet", href="bower/bootstrap/dist/css/bootstrap.min.css", type="text/css")
+		link(rel="stylesheet", href="/css/app.css")
+	body
+		.container
+			.row
+				.col-xs-12.col-sm-6.col-sm-offset-3.col-md-4.col-md-offset-4.top50
+					.panel.panel-default
+						.panel-heading.text-center
+							img(src="/images/eucm-logo.png", width="200")
+						.panel-body
+							form(role='form',method="post",action="/login")
+								.form-group
+									input.form-control(type='text', style='border-radius: 0px;', placeholder='User name', name="name")
+								.form-group
+									input.form-control(type='password', style='border-radius: 0px;', placeholder='Password', name="password")
+								.form-group.text-right
+									button.btn.btn-primary(type='submit') Log in
+							if error
+								.alert.alert-danger(role="alert")
+									p Invalid user name and/or password

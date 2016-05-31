@@ -1,0 +1,41 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:800);
+
+.scatter .axis path {
+	stroke: #000;
+	fill: none;
+}
+
+.regression-line {
+	stroke: blue;
+}
+
+.scatter .point {
+	fill: gray;
+}
+
+.zonegraph-container {
+	overflow: scroll;
+	height: 400px;
+}
+
+.zonegraph line {
+	stroke: black;
+}
+
+.zonegraph .cell {
+	fill: white;
+	stroke: black;
+}
+
+.zonegraph image {
+	opacity: 0.75;
+}
+
+.zone-name {
+	text-anchor: start;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 13px;
+	fill: black;
+	stroke: lightgray;
+	font-weight: bold;
+}

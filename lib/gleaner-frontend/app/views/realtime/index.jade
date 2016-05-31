@@ -1,0 +1,69 @@
+doctype html
+html(lang="en" ng-app="sessionApp" ng-controller="SessionCtrl")
+    include header
+body
+    .container-fluid.height100(role="tabpanel" style="position:relative")
+        .row(ng-show="player")
+            .accept(ng-click="updateLevels(player)")
+                svg(viewBox="0 0 100 100")
+                    circle(cx="50" cy="50" r="50" fill="#4caf50")
+                    path(d="M 25,50 42,65 75,35" style="fill:none;stroke:#ffffff;stroke-width:6")
+            .col-xs-12
+                .row
+                    .col-xs-8 {{ player.name }}
+                    .col-xs-4.text-right(ng-click="player = null" style="min-height: 1cm; color: #777")
+                        span.glyphicon.glyphicon-remove
+                .row.titles
+                    .col-xs-6 Progress
+                    .col-xs-6 Score
+                .row
+                    #progress-player.col-xs-4.col-xs-offset-1
+                    #score-player.col-xs-4.col-xs-offset-2
+                .row
+                    ul.nav.nav-tabs(role="tablist")
+                        li.col-xs-6.active.tab-button
+                            a(href="#alerts" data-toggle="tab")
+                                span.glyphicon.glyphicon-remove-sign.right10(style="color:red")
+                                | Alerts ({{ player.alerts.length }})
+                        li.col-xs-6.tab-button
+                            a(href="#warnings" data-toggle="tab")
+                                span.glyphicon.glyphicon-exclamation-sign.right10(style="color:orange")
+                                | Warnings ({{ player.warnings.length }})
+                .row.tab-content.height100
+                    #alerts.tab-pane.active.col-xs-12
+                        .row(ng-repeat="alert in player.alerts") {{ i }} {{ version.alerts[alert.id].message }}
+                    #warnings.tab-pane.col-xs-12
+                        .row(ng-repeat="i in player.warnings") {{ version.warnings[i].message }}
+
+        .row(ng-show="!player")
+            ul.nav.nav-tabs(role="tablist")
+                li.col-xs-6.active.tab-button
+                    a(href="#all" data-toggle="tab") All
+                li.col-xs-6.tab-button
+                    a(href="#players" data-toggle="tab") Players ({{ results.length }})
+        .row.tab-content.height100(ng-show="!player")
+            #all.tab-pane.active.col-xs-12
+                .row.titles
+                    .col-xs-6 Progress
+                    .col-xs-6 Score
+                .row
+                    #progress.col-xs-4.col-xs-offset-1
+                    #score.col-xs-4.col-xs-offset-2
+                p Warnings
+                ul
+                    li(ng-repeat="warning in agg.warnings") {{ warning.count }} - {{ warning.message }}
+                p Alerts
+                ul
+                    li(ng-repeat="alert in agg.alerts") {{ alert.count }} - {{ alert.message }}
+            #players.tab-pane.col-xs-12.height100(style="overflow-y:scroll")
+                .row.player-result(ng-repeat="result in results | orderBy:alertScore:true" reports)
+                    .col-xs-6.no-padding(ng-click="viewPlayer(result)")
+                        svg(viewBox="0 0 200 100")
+                            text(dominant-baseline="middle" x="15" y="20" style="fill: black") {{ result.name }}
+                            circle(cx="25" cy="60" r="5" fill="red")
+                            text(dominant-baseline="middle" x="35" y="60" style="fill: black") {{ result.alerts.length }}
+                            circle(cx="75" cy="60" r="5" fill="orange")
+                            text(dominant-baseline="middle" x="85" y="60" style="fill: black") {{ result.warnings.length }}
+                    .col-xs-3.progress-marker.no-padding
+                    .col-xs-3.score-marker.no-padding
+    include scripts

@@ -1,0 +1,25 @@
+.row.top10
+	.col-sm-12
+		h4 Derived variables
+.row.top10(ng-if="selectedVersion && selectedVersion.derivedVars")
+	.col-sm-12
+		ul
+			li(ng-repeat="variable in selectedVersion.derivedVars")
+				a(href="#",editable-text="variable.name" onbeforesave="saveVersion()") {{ variable.name }}
+				|  = 
+				a(href="#",editable-text="variable.value" onbeforesave="saveVersion()") {{ variable.value }}
+				button.left10.btn.btn-xs.btn-default(ng-click="deleteFromList('derivedVars', variable)") Delete
+.row.top10
+	.col-sm-12
+		h4 Variables emitted by the game
+.row.top10
+	.col-sm-6
+		span(data-toggle="tooltip" data-placement="left" title="Flags variables emitted by the game").glyphicon.glyphicon-flag
+		|  Flags
+		p
+			span(ng-repeat="flag in selectedVersion.flags")  {{ flag }},
+	.col-sm-6
+		span.glyphicon.glyphicon-stats
+		|  Variables
+		p
+			span(ng-repeat="var in selectedVersion.vars")  {{ var }},

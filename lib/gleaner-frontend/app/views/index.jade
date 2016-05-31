@@ -1,0 +1,7 @@
+doctype html
+html(lang="en", ng-app="gleanerApp", ng-controller="GleanerCtrl")
+        include header
+    body
+        include navbar
+        .container-fluid.no-padding(ng-view, ng-show="loading === 0")
+        include scripts

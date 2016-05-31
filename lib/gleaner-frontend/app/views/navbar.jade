@@ -1,0 +1,38 @@
+nav.navbar.navbar-default(role="navigation")
+	.container-fluid
+		.navbar-header
+			button.navbar-toggle(type="button",data-toggle="collapse", data-target="#main-navbar")
+				span.sr-only Toggle navigation
+				span.icon-bar
+				span.icon-bar
+				span.icon-bar
+			img.navbar-brand(src="/images/logo.png")
+			a.navbar-brand(href="#home?game={{selectedGame._id}}&version={{selectedVersion._id}}") Gleaner
+		.collapse.navbar-collapse#main-navbar
+			ul.nav.navbar-nav
+				li
+					a(href="#home?game={{selectedGame._id}}&version={{selectedVersion._id}}") Home
+				li
+					a(href="#data?game={{selectedGame._id}}&version={{selectedVersion._id}}") Data
+				li
+					a(href="#realtime?game={{selectedGame._id}}&version={{selectedVersion._id}}") Real time
+				li
+					a(href="#reports?game={{selectedGame._id}}&version={{selectedVersion._id}}") Reports
+				li
+					a(href="#activity?game={{selectedGame._id}}&version={{selectedVersion._id}}") Activiy Report
+				li
+					a(href="#admin?game={{selectedGame._id}}&version={{selectedVersion._id}}") Administrator
+			form.navbar-form.navbar-right
+				.form-group
+					select.form-control.right10(ng-model="form.selectedGame" ng-options="game as game.title for game in games")
+					select.form-control.right10(ng-if="selectedVersion" ng-model="form.selectedVersion" ng-options="version.name for version in versions") {{ version.name }}
+					button.form-control.dropdown-toggle(data-toggle="dropdown")
+						span.glyphicon.glyphicon-user
+					ul.dropdown-menu(role="menu")
+						li
+							a(href="/logout") Log out
+.container-fluid(ng-if="loading > 0")
+	.row
+		.col-xs-12.text-center.top50
+			| Loading 
+			img.left10(src="/images/ajax-loader.gif")

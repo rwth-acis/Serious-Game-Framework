@@ -1,0 +1,12 @@
+.row
+    .col-sm-offset-1.col-sm-10 {{ selectedGame.title }} - {{ selectedVersion.name }}
+        br
+        a.btn.btn-primary(ng-show="!running" ng-click="start()") Start session
+            span.glyphicon.glyphicon-play.left10
+        a.btn.btn-primary(ng-show="running" ng-click="end()") End session
+            span.glyphicon.glyphicon-stop.left10
+    .col-sm-offset-1.col-sm-10
+        ul
+            li(ng-repeat="session in sessions")
+                | {{ session._id }} {{ session.start }} {{ session.end || 'Active' }}
+                a.btn.btn-primary(ng-href="/rt?session={{session._id}}") See results
