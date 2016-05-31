@@ -1,0 +1,18 @@
+var CONNECTIONSDATA = {
+	"0": {"description": "Arrow right blue", "src": "1374080611_arrow.png"},
+	"1": {"description": "Arrow right green", "src": "1374080684_arrow_right.png"},
+	"2": {"description": "Plus blue", "src": "1374080834_plus.png"},
+	"3": {"description": "Plus purple", "src": "1374080864_add.png"},
+	"4": {"description": "Plus green", "src": "1374080902_Emulation.png"},
+	"5": {"description": "Plus blue 2", "src": "1374080929_add.png"},
+	"6": {"description": "Minus red", "src": "1374080965_onebit_32.png"},
+	"7": {"description": "Equal", "src": "1374081068_equal.png"},
+	"8": {"description": "Equal 2", "src": "1374081050_stock_equals.png"},
+	"9": {"description": "Equilibrium", "src": "equilibrium2_32.png"},
+	"10": {"description": "rightleftarrows", "src": "rightleftarrows_32.png"},
+	"11": {"description": "rightarrow", "src": "rightarrow_32.png"},
+	"12": {"description": "Equal", "src": "equal_32.png"},
+	"13": {"description": "plus", "src": "plus_32.png"},
+	"14": {"description": "minus", "src": "minus_32.png"},
+	"15": {"description": "leftarrow", "src": "leftarrow_32.png"}	
+};

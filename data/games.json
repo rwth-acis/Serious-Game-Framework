@@ -1,0 +1,14 @@
+var GAMESDATA = {
+	"0": {
+		"name": "Tutorial",
+		"description": "Tutorial game.",
+		"slotnames": ["","","",""],
+		"tutorial": true
+	},
+	"1": {
+		"name": "Hormones",
+		"description": "Testgame about hormones.",
+		"slotnames": ["origin","hormone","target-organ","effect"],
+		"tutorial": false
+	}
+};

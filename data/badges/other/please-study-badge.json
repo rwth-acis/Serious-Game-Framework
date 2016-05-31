@@ -1,0 +1,7 @@
+{
+  "name": "Please Study Badge",
+  "description": "For ending a game with more wrong than right answers.",
+  "image": "http://monet.informatik.rwth-aachen.de/Serious-Game-Framework/data/badges/other/please-study-badge.png",
+  "criteria": "http://monet.informatik.rwth-aachen.de/Serious-Game-Framework/",
+  "issuer": "http://monet.informatik.rwth-aachen.de/Serious-Game-Framework/data/badges/organization.json",
+}

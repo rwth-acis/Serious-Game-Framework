@@ -1,0 +1,78 @@
+var TUTORIALSDATA = {
+	"1": {
+		"game": 0,
+		"difficulty": 3,
+		"tutorials": {
+			"1": {
+				"identifier": "#button-level-tutorial",
+				"text": "Welcome to our serious game framework.",
+				"position": "right"
+			},
+			"2": {
+				"identifier": "#gallery0",
+				"text": "The games consists of images ordered in four of these galleries.",
+				"position": "right"
+			},
+			"3": {
+				"identifier": "img[piece-id=68]",
+				"text": "First select a piece in one of these galleries.",
+				"position": "right"
+			},
+			"4": {
+				"identifier": "#slot0",
+				"text": "Place the piece in the appropriate slot using drag and drop.",
+				"position": "bottom"
+			},
+			"5": {
+				"identifier": "img[piece-id=69]",
+				"text": "Then choose a second piece.",
+				"position": "top"
+			},
+			"6": {
+				"identifier": "#slot1",
+				"text": "Also arrange this piece in the appropriate slot.",
+				"position": "bottom"
+			},
+			"7": {
+				"identifier": "img[piece-id=70]",
+				"text": "Do the same with a third piece.",
+				"position": "left"
+			},
+			"8": {
+				"identifier": "img[piece-id=47]",
+				"text": "And finally a fourth piece.",
+				"position": "bottom"
+			},
+			"9": {
+				"identifier": "#button-showme",
+				"text": "If you don't know the correct solution, hit the 'Show Me'-Button to reveal it.",
+				"position": "right"
+			},
+			"10": {
+				"identifier": "#elearning",
+				"text": "After each level an e-Learning link is shown, where you can get more information about the topic.",
+				"position": "right"
+			},
+			"11": {
+				"identifier": "#game-header-home",
+				"text": "Click here to get back to the main menu.",
+				"position": "right"
+			},
+			"12": {
+				"identifier": ".gametitle",
+				"text": "Here you see the title of the current game you play.",
+				"position": "bottom"
+			},
+			"13": {
+				"identifier": "#game-header-options",
+				"text": "Click here to change the difficulty level of the game.",
+				"position": "left"
+			},
+			"14": {
+				"identifier": "#gameboard",
+				"text": "The game can also be played offline. The game data will be synchronized automatically when you are online again (this could take several seconds and is done in the background). Try to create a shortcut and use the game like a normal app. Now start and enjoy the game!",
+				"position": "bottom"
+			}
+		}
+	}
+};
