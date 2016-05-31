@@ -1,0 +1,530 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Serious Game Framework</title>
+
+  <!-- include jQuery and jQuery UI -->
+	<script src="assets/scripts/jquery-1.10.2.min.js"></script>
+
+  <script>
+    $(document).bind('mobileinit',function() {
+      $.mobile.pushStateEnabled = false;
+    });
+  </script>
+
+	<!-- <script src="js/jquery-2.0.2.min.js"></script> -->
+	<!-- <script src="jqueryui/ui/jquery.ui.position.min.js"></script> -->
+	<script src="assets/scripts/jqueryui/ui/jquery.ui.core.min.js"></script>
+	<script src="assets/scripts/jqueryui/ui/jquery.ui.widget.min.js"></script>
+	<script src="assets/scripts/jqueryui/ui/jquery.ui.mouse.min.js"></script>
+	<script src="assets/scripts/jqueryui/ui/jquery.ui.draggable.min.js"></script>
+	<script src="assets/scripts/jqueryui/ui/jquery.ui.droppable.min.js"></script>
+	<script src="assets/scripts/jqueryui/ui/jquery.ui.progressbar.min.js"></script>
+	<!-- <script src="jqueryui/ui/jquery.ui.resizable.min.js"></script> -->
+	<!-- <script src="jqueryui/ui/jquery.ui.dialog.min.js"></script> -->
+
+	<!-- Styles for intro,js Site Tour -->
+	<!-- <link href="styles/bootstrap.min.css" rel="stylesheet"> -->
+    <!-- <link href="styles/intro.css" rel="stylesheet"> -->
+	<link href="assets/styles/introjs.min.css" rel="stylesheet">
+	<!-- <link href="styles/bootstrap-responsive.min.css" rel="stylesheet"> -->
+
+	<!-- include jQuery UI stylesheet -->
+	<link rel="stylesheet" href="assets/scripts/jqueryui/themes/jquery.ui.all.css">
+	<!-- <link rel="stylesheet" href="styles/demos.css"> -->
+
+	<!-- include jQuery Mobile stylesheet -->
+	<link rel="stylesheet" href="assets/scripts/jquerymobile/jquery.mobile-1.3.1.min.css">
+
+	<!-- blueimp Gallery styles -->
+	<!-- <link rel="stylesheet" href="css/blueimp-gallery.min.css"> -->
+
+	<!-- include own stylesheet -->
+	<link rel="stylesheet" href="assets/styles/profile.css">
+	<link rel="stylesheet" href="assets/styles/style.css">
+
+	<!-- include jQuery Storage API by Julien Maurel -->
+	<!-- <script src="js/jquery.storageapi.min.js"></script> -->
+
+	<!-- include blueimp Gallery plugin by Sebastian Tschan -->
+	<!-- <script src="js/jquery.blueimp-gallery.min.js"></script> -->
+
+	<!-- include jQuery Mobile -->
+	<script src="assets/scripts/jquerymobile/jquery.mobile-1.3.1.min.js"></script>
+
+	<!-- include jQuery UI Touch Punch © 2011 David Furfero  -->
+	<script src="assets/scripts/jquery.ui.touch-punch.min.js"></script>
+
+	<!-- include intro.js -->
+	<script type="text/javascript" src="assets/scripts/intro.min.js"></script>
+
+	<!-- import JWS and JSRSASIGN (OpenID Connect) -->
+	<script type="text/javascript" src="assets/scripts/oidc/jsjws/jws-2.0.js"></script>
+	<script type="text/javascript" src="assets/scripts/oidc/jsrsasign/ext/base64.js"></script>
+	<script type="text/javascript" src="assets/scripts/oidc/jsrsasign/base64x-1.1.js"></script>
+	<script type="text/javascript" src="assets/scripts/oidc/jsrsasign/ext/jsbn.js"></script>
+	<script type="text/javascript" src="assets/scripts/oidc/jsrsasign/ext/jsbn2.js"></script>
+	<script type="text/javascript" src="assets/scripts/oidc/jsrsasign/asn1hex-1.1.js"></script>
+	<script type="text/javascript" src="assets/scripts/oidc/jsrsasign/crypto-1.1.js"></script>
+	<script type="text/javascript" src="assets/scripts/oidc/jsrsasign/ext/rsa.js"></script>
+	<script type="text/javascript" src="assets/scripts/oidc/jsrsasign/ext/rsa2.js"></script>
+	<script type="text/javascript" src="assets/scripts/oidc/jsrsasign/rsapem-1.1.js"></script>
+	<script type="text/javascript" src="assets/scripts/oidc/jsrsasign/rsasign-1.2.min.js"></script>
+	<script type="text/javascript" src="assets/scripts/oidc/jsrsasign/x509-1.1.js"></script>
+	<script type="text/javascript" src="assets/scripts/oidc/jsrsasign/crypto-1.1.js"></script>
+
+	<!-- import libraries for OpenBadges, Gleaner database and Google Charts -->
+	<script type="text/javascript" src="https://backpack.openbadges.org/issuer.js"></script>
+	<script type="text/javascript" src="lib/badge-asserter.js"></script>
+	<script type="text/javascript" src="lib/gleaner-tracker.js"></script>
+	<script type="text/javascript" src="lib/chart-creator.js"></script>
+	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+	<script>
+			// Insert Statistics and Charts
+			// Load the Visualization API and the piechart package.
+		  google.load('visualization', '1.0', {'packages':['corechart']});
+		  // Set a callback to run when the Google Visualization API is loaded.
+		  // google.setOnLoadCallback(drawChart);
+	</script>
+
+	<script src="data/games.json"></script>
+	<script src="data/connections.json"></script>
+	<script src="data/levels.json"></script>
+	<script src="data/pieces.json"></script>
+	<script src="data/tutorials.json"></script>
+
+	<!-- include own JavaScript library -->
+	<script type="text/javascript" src="assets/scripts/serious-game-framework.js"></script>
+
+	<!-- Configuration for mobile devices -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<link rel="apple-touch-icon-precomposed"  href="assets/images/icon-ipad.png" sizes="72x72" />
+	<link rel="apple-touch-icon-precomposed"  href="assets/images/icon-iphone.png" sizes="144x144" />
+	<link rel="apple-touch-icon-precomposed"  href="assets/images/icon-iphone.png" sizes="114x114" />
+	<link rel="apple-touch-icon-precomposed"  href="assets/images/icon-iphone.png" />
+	<link rel="apple-touch-startup-image" href="assets/images/splash-iphone.png" />
+	<link rel="icon" href="assets/images/favicon.png" type="image/png">
+</head>
+<body>
+
+<div id="home" data-role="page" class="ui-helper-clearfix bodywrapper">
+	<div data-role="header" data-theme="b">
+		<h1>Serious Game Framework</h1>
+		<a href="#options" data-icon="gear" class="ui-btn-right options-button" data-rel="dialog">Options</a>
+		<span data-role="button" data-inline="true" data-corners="true" class="ui-btn-left">
+			<span class="oidc-signin"
+			    data-callback="signinCallback"
+			    data-name="Learning Layers"
+			    data-logo="http://learning-layers.eu/wp-content/themes/learninglayers/images/logo.png"
+			    data-server="https://api.learning-layers.eu/o/oauth2"
+			    data-clientid="5af6f4dc-a102-4811-ab00-b1eb4114c908"
+			    data-scope="openid email profile phone"
+			    data-size="sm">
+			</span>
+		</span>
+	</div>
+	<div data-role="content">
+		<ul data-role="listview" data-inset="true" class="gameslist">
+			<!-- filled dynamically -->
+			<!-- <li><a href="#game" class="gamelink" game-id="0"><h3>Test</h3><p>Test.</p></a></li> -->
+		</ul>
+	</div>
+</div>
+
+<div id="game" data-role="page" class="ui-helper-clearfix bodywrapper">
+	<div id="game-header" data-role="header" data-theme="b">
+		<a href="#" data-icon="arrow-l" id="game-header-home" class="ui-btn-left" data-iconpos="notext"  data-rel="back">Home</a>
+		<h1 class="gametitle"></h1>
+		<a href="#options" data-icon="gear" id="game-header-options" class="ui-btn-right options-button" data-rel="dialog">Options</a>
+	</div>
+	<div data-role="content">
+		<div id="wrappergameboard">
+			<span id="gameboard" class="gameboard ui-widget-content">
+				<table class="slots ui-helper-reset">
+					<tr class="slotheader">
+						<td><h4 id="header-slot0" class="ui-widget-header">Slot 1</h4></td>
+						<td> </td>
+						<td><h4 id="header-slot1" class="ui-widget-header">Slot 2</h4></td>
+						<td> </td>
+						<td><h4 id="header-slot2" class="ui-widget-header">Slot 3</h4></td>
+						<td> </td>
+						<td><h4 id="header-slot3" class="ui-widget-header">Slot 4</h4></td>
+					</tr>
+					<tr>
+						<td>
+							<div id="wrapperslot0" class="wrapperslot">
+								<ul id="slot0" class="slot ui-widget-content ui-state-default">
+									<!-- Filled dynamically -->
+								</ul>
+							</div>
+						</td>
+						<td>
+							<div id="connection0" class="connection">
+								<!-- Filled dynamically -->
+							</div>
+						</td>
+						<td>
+							<div id="wrapperslot1" class="wrapperslot">
+								<ul id="slot1" class="slot ui-widget-content ui-state-default">
+									<!-- Filled dynamically -->
+								</ul>
+							</div>
+						</td>
+						<td>
+							<div id="connection1" class="connection">
+								<!-- Filled dynamically -->
+							</div>
+						</td>
+						<td>
+							<div id="wrapperslot2" class="wrapperslot">
+								<ul id="slot2" class="slot ui-widget-content ui-state-default">
+									<!-- Filled dynamically -->
+								</ul>
+							</div>
+						</td>
+						<td>
+							<div id="connection2" class="connection">
+								<!-- Filled dynamically -->
+							</div>
+						</td>
+						<td>
+							<div id="wrapperslot3" class="wrapperslot">
+								<ul id="slot3" class="slot ui-widget-content ui-state-default">
+									<!-- Filled dynamically -->
+								</ul>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</span>
+			<span id="levelcontrol" class="ui-widget-content">
+				<span id="wrapper-level-tutorial">
+					<button id="button-level-tutorial" data-theme="b" data-mini="false">Show Tutorial</button>
+				</span>
+				<span id="wrapper-back-main">
+					<a href="#" data-role="button" data-rel="back" data-mini="false">Back to Main Menu</a>
+				</span>
+				<span id="wrapper-showme">
+					<button id="button-showme" data-theme="c" data-mini="false">Show me</button>
+				</span>
+				<span id="wrapper-next">
+					<button id="button-next" data-theme="e" data-mini="false">Next</button>
+				</span>
+				<h3 id="level-verification-correct" class="level-verification">Correct Answer!</h3>
+				<h3 id="level-verification-wrong" class="level-verification">Wrong Answer</h3>
+				<h3 id="level-verification-revealed" class="level-verification">Solution revealed</h3>
+				<p id="elearning">
+					<!-- Here the E-learning link -->
+				</p>
+				<p id="leveldone">
+				</p>
+			</span>
+		</div>
+
+		<div id="gallery0wrapper">
+			<div id="gallery0" class="gallery ui-helper-reset ui-helper-clearfix">
+				<h4 id="header-gallery0" class="ui-widget-header">1</h4>
+				<span id="button-up-gallery0" class="button-up"><button data-icon="arrow-u" data-iconshadow="false" data-inline="false" data-mini="false" data-iconpos="notext" class="ui-icon-alt">&nbsp;</button></span>
+				<ul>
+					<!-- Filled dynamically -->
+				</ul>
+				<span id="button-down-gallery0" class="button-down"><button data-icon="arrow-d" data-iconshadow="false" data-inline="false" data-mini="false" data-iconpos="notext" class="ui-icon-alt">&nbsp;</button></span>
+			</div>
+		</div>
+
+		<div id="gallery1wrapper">
+			<div id="gallery1" class="gallery ui-helper-reset ui-helper-clearfix">
+				<h4 id="header-gallery1" class="ui-widget-header">2</h4>
+				<span id="button-left-gallery1" class="button-left"><button data-icon="arrow-l" data-iconshadow="false" data-inline="true" data-mini="false" data-iconpos="notext" class="ui-icon-alt">&nbsp;</button></span>
+				<span id="ulwrap-gallery1">
+					<ul>
+						<!-- Filled dynamically -->
+					</ul>
+				</span>
+				<span id="button-right-gallery1" class="button-right"><button data-icon="arrow-r" data-iconshadow="false" data-inline="true" data-mini="false" data-iconpos="notext" class="ui-icon-alt">&nbsp;</button></span>
+			</div>
+		</div>
+
+		<div id="gallery2wrapper">
+			<div id="gallery2" class="gallery ui-helper-reset ui-helper-clearfix">
+				<h4 id="header-gallery2" class="ui-widget-header">3</h4>
+				<span id="button-up-gallery2" class="button-up"><button data-icon="arrow-u" data-iconshadow="false" data-inline="false" data-mini="false" data-iconpos="notext" class="ui-icon-alt">&nbsp;</button></span>
+				<ul>
+					<!-- Filled dynamically -->
+				</ul>
+				<span id="button-down-gallery2" class="button-down"><button data-icon="arrow-d" data-iconshadow="false" data-inline="false" data-mini="false" data-iconpos="notext" class="ui-icon-alt">&nbsp;</button></span>
+			</div>
+		</div>
+
+		<div id="gallery3wrapper">
+			<div id="gallery3" class="gallery ui-helper-reset ui-helper-clearfix">
+				<h4 id="header-gallery3" class="ui-widget-header">4</h4>
+				<span id="button-left-gallery3" class="button-left"><button data-icon="arrow-l" data-iconshadow="false" data-inline="true" data-mini="false" data-iconpos="notext" class="ui-icon-alt">&nbsp;</button></span>
+				<span id="ulwrap-gallery3">
+					<ul>
+						<!-- Filled dynamically -->
+					</ul>
+				</span>
+				<span id="button-right-gallery3" class="button-right"><button data-icon="arrow-r" data-iconshadow="false" data-inline="true" data-mini="false" data-iconpos="notext" class="ui-icon-alt">&nbsp;</button></span>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="options" data-role="page" class="ui-helper-clearfix bodywrapper" data-theme="c" data-overlay-theme="c">
+	<div data-role="header" data-theme="c">
+		<h1>Options</h1>
+	</div>
+	<div data-role="content">
+		<form id="optionsform">
+			<div data-role="fieldcontain">
+				<fieldset data-role="controlgroup">
+					<legend>Difficulty:</legend>
+
+					<input type="radio" name="difficulty" id="difficulty-choice1" value="1" disabled="disabled" />
+					<label for="difficulty-choice1">Easy</label>
+
+					<input type="radio" name="difficulty" id="difficulty-choice2" value="2" disabled="disabled" />
+					<label for="difficulty-choice2">Medium</label>
+
+					<input type="radio" name="difficulty" id="difficulty-choice3" value="3" />
+					<label for="difficulty-choice3">Free game</label>
+
+					<input type="radio" name="difficulty" id="difficulty-choice4" value="4" />
+					<label for="difficulty-choice4">Difficult</label>
+					<p>New difficulty level will take effect at the next set.<p>
+				</fieldset>
+			</div>
+			<input type="submit" value="OK" data-role="button" data-icon="check" />
+		</form>
+	</div>
+</div>
+
+<!-- Profile Page -->
+<div id="profile" data-role="page" class="ui-helper-clearfix bodywrapper">
+	<div id="header" data-role="header" data-theme="b">
+		<a href="#" data-icon="arrow-l" id="game-header-home" class="ui-btn-left" data-iconpos="notext"  data-rel="back">Home</a>
+		<h1>Profile</h1>
+	</div>
+	<div data-role="content">
+		<div id="user-info" class="ui-widget-content">
+			<div id="user_img">
+				<img src="https://api.learning-layers.eu/profile.png">
+			</div>
+			<div id="profile_tags">
+				<div>Username: </div>
+				<div>Name: </div>
+				<div>Email: </div>
+				<!--<div>Phone number: </div>-->
+			</div>
+			<div id="profile_info">
+				<div id="user_name"></div>
+				<div id="user_real_name"></div>
+				<div id="user_email"></div>
+				<!--<div id="user_phone"></div>-->
+			</div>
+		</div>
+
+		<div id="experience" class="ui-widget-content">
+			<div id="experience-header">Experience</div>
+
+			<img id="experience-badge" />
+
+			<div id="experience-data">
+				<div id="level-name">
+				</div>
+
+				<div id="progressbar">
+					<div class="progress-label">
+					</div>
+				</div>
+
+				<div id="experience-tags">
+					<div>Total experience: </div>
+					<div>Level experience: </div>
+					<div>Experience to next level: </div>
+				</div>
+
+				<div id="experience-info">
+					<div id="total-exp"></div>
+					<div id="level-exp"></div>
+					<div id="exp-to-next"></div>
+				</div>
+			</div>
+		</div>
+
+		<div id="earned-badges" class="ui-widget-content">
+			<div id="badges-header">Badges</div>
+
+			<div id="badges-container">
+			</div>
+		</div>
+
+		<div id="high-score" class="ui-widget-content">
+			<div id="score-header">High Scores</div>
+
+			<table data-role="table" id="high-score-table" data-mode="columntoggle" class="ui-responsive table-stripe">
+				<thead>
+					<tr class="ui-bar-d">
+						<th>Rank</th>
+						<th>User</th>
+						<th>High Score</th>
+					</tr>
+				</thead>
+				<tbody>
+				</tbody>
+			</table>
+		</div>
+
+		<!-- Stats for Players -->
+		<div class="ui-widget-content stats" id="player">
+			<div class="stats-header">Statistics</div>
+
+			<div data-role="fieldcontain">
+				<label for="stats-game-select" class="select">Choose Game: </label>
+				<select name="stats-game-select" id="stats-game-select"></select>
+			</div>
+
+			<div id="player-worst-levels">
+				<div class="worst-header">Worst Levels</div>
+			</div>
+
+			<div data-role="fieldcontain" id="player-choose-chart">
+		    <fieldset data-role="controlgroup" data-type="horizontal" data-role="fieldcontain">
+		    	<legend>Choose a chart:</legend>
+	       	<input type="radio" name="chart-choice" id="chart-1" value="pie" checked="checked" />
+	       	<label for="chart-1">Pie</label>
+
+	       	<input type="radio" name="chart-choice" id="chart-2" value="bar" />
+	       	<label for="chart-2">Bar</label>
+		    </fieldset>
+	    </div>
+
+			<div id="player-chart-container">
+			</div>
+
+			<div id="player-no-records">
+				No records have been found! You might want to play this game for a while.
+			</div>
+		</div>
+		<!-- END Stats for Players END -->
+
+		<!-- Stats for Game Designers -->
+		<div class="ui-widget-content stats" id="game-designer">
+			<div class="stats-header">Statistics of games created by you</div>
+
+			<div data-role="fieldcontain">
+				<label for="designer-stats-game-select" class="select">Choose Game: </label>
+				<select name="designer-stats-game-select" id="designer-stats-game-select"></select>
+			</div>
+
+			<div id="designer-worst-levels">
+				<div class="worst-header">Worst Levels</div>
+			</div>
+
+			<div data-role="fieldcontain" id="designer-choose-chart">
+		    <fieldset data-role="controlgroup" data-type="horizontal" data-role="fieldcontain">
+		    	<legend>Choose a chart:</legend>
+	       	<input type="radio" name="designer-chart-choice" id="designer-chart-1" value="pie" checked="checked" />
+	       	<label for="designer-chart-1">Pie</label>
+
+	       	<input type="radio" name="designer-chart-choice" id="designer-chart-2" value="bar" />
+	       	<label for="designer-chart-2">Bar</label>
+		    </fieldset>
+	    </div>
+
+			<div id="designer-chart-container">
+			</div>
+
+			<div id="designer-no-records">
+				No records found! Your students might want to play some games.
+			</div>
+		</div>
+		<!-- END Stats for Game Designers END -->
+
+		<!-- Stats for Admins -->
+		<div class="ui-widget-content stats" id="admin">
+			<div class="stats-header">Admin Statistics</div>
+
+			<div data-role="fieldcontain">
+				<label for="admin-stats-game-select" class="select">Choose Game: </label>
+				<select name="admin-stats-game-select" id="admin-stats-game-select"></select>
+			</div>
+
+			<div data-role="fieldcontain">
+		    <fieldset data-role="controlgroup" data-type="horizontal" data-role="fieldcontain">
+		    	<legend>Choose a chart:</legend>
+	       	<input type="radio" name="admin-chart-choice" id="admin-chart-1" value="pie" checked="checked" />
+	       	<label for="admin-chart-1">Pie</label>
+
+	       	<input type="radio" name="admin-chart-choice" id="admin-chart-2" value="bar" />
+	       	<label for="admin-chart-2">Bar</label>
+		    </fieldset>
+	    </div>
+
+			<div id="admin-chart-container">
+			</div>
+		</div>
+		<!-- END Stats for Admins END -->
+	</div>
+</div>
+
+<audio id="achievement_sound" src="data/badges/sound.wav" preload="auto"></audio>
+
+<!-- The blueimp Gallery widget -->
+<!-- <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls" data-filter=":even">
+    <div class="slides"></div>
+    <h3 class="title"></h3>
+    <a class="prev">‹</a>
+    <a class="next">›</a>
+    <a class="close">×</a>
+    <a class="play-pause"></a>
+    <ol class="indicator"></ol>
+</div> -->
+
+<!-- Hides the status bar on older android browsers. Not available on Chrome browser (Android 4.0 and above) -->
+<script>
+	window.scrollTo(0,1);
+</script>
+	<!-- OpenID Connect Button Callback -->
+	<script type="text/javascript">
+		function signinCallback(result) {
+			// TODO MARKO result === "success"
+	    if(true) {
+	      // after successful sign in, display a welcome string for the user
+	      console.log("Hello, " + oidc_userinfo.name + "!");
+        var profile =	$('<li>' +
+        									'<a href="#profile" id="profilelink">' +
+  														'<h3>Profile</h3>' +
+  														'<p>Check your stats and badges!</p>' +
+  												'</a>' +
+  											'</li>');
+        $('.gameslist').prepend(profile);
+        $('.gameslist').listview('refresh');
+        $('#profilelink').click(function() { showProfile() });
+        startTracking();
+	    } else {
+	      // if sign in was not successful, log the cause of the error on the console
+	      console.log(result);
+	      // TODO MARKO
+				// alert('Please log in with the button on the top left, so we can track your progress!');
+	    }
+		}
+	</script>
+
+	<!-- OpenID Connect Insertion -->
+	<script type="text/javascript">
+	  (function() {
+	    var po = document.createElement('script');
+	    po.type = 'text/javascript';
+	    po.async = true;
+	    po.src = 'assets/scripts/oidc/oidc-button.js';
+	    var s = document.getElementsByTagName('script')[0];
+	    s.parentNode.insertBefore(po, s);
+	  })();
+	</script>
+</body>
+</html>

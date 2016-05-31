@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Serious Game Framework</title>
+	
+	<!-- include jQuery UI stylesheet -->
+	<link rel="stylesheet" href="jqueryui/themes/jquery.ui.all.css">
+	<!-- <link rel="stylesheet" href="styles/demos.css"> -->
+	
+	<!-- include jQuery Mobile stylesheet -->
+	<link rel="stylesheet" href="jquerymobile/jquery.mobile-1.3.1.min.css">
+	
+	<!-- include own stylesheet -->
+	<link rel="stylesheet" href="styles/style.css">
+	
+	<!-- include jQuery and jQuery UI -->
+	<script src="js/jquery-1.10.2.min.js"></script>
+	<!-- <script src="jqueryui/ui/jquery.ui.position.min.js"></script> -->
+	<script src="jqueryui/ui/jquery.ui.core.min.js"></script>
+	<script src="jqueryui/ui/jquery.ui.widget.min.js"></script>
+	<script src="jqueryui/ui/jquery.ui.mouse.min.js"></script>
+	<script src="jqueryui/ui/jquery.ui.draggable.min.js"></script>
+	<script src="jqueryui/ui/jquery.ui.droppable.min.js"></script>
+	<script src="jqueryui/ui/jquery.ui.progressbar.min.js"></script>
+	<!-- <script src="jqueryui/ui/jquery.ui.resizable.min.js"></script> -->
+	<!-- <script src="jqueryui/ui/jquery.ui.dialog.min.js"></script> -->
+	
+	<!-- include jQuery Storage API by Julien Maurel -->
+	<!-- <script src="js/jquery.storageapi.min.js"></script> -->
+	
+	<!-- include jQuery Mobile -->
+	<script src="jquerymobile/jquery.mobile-1.3.1.min.js"></script>
+	
+	<!-- include jQuery UI Touch Punch © 2011 David Furfero  -->
+	<script src="js/jquery.ui.touch-punch.min.js"></script>
+	
+	<!-- include jQuery Knob Plugin -->
+	<script src="js/jquery.knob.js"></script>
+	
+	<!-- include jQuery File Upload and Dependencies -->
+	<script src="js/jquery.iframe-transport.js"></script>
+    <script src="js/jquery.fileupload.js"></script>
+	
+	<!-- include own JavaScript library -->
+	<script src="js/serious-game-framework-game-designer.js"></script>
+	
+	<!-- Configuration for mobile devices -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<link rel="apple-touch-icon-precomposed"  href="assets/images/icon-ipad.png" sizes="72x72" />
+	<link rel="apple-touch-icon-precomposed"  href="assets/images/icon-iphone.png" sizes="144x144" />
+	<link rel="apple-touch-icon-precomposed"  href="assets/images/icon-iphone.png" sizes="114x114" />
+	<link rel="apple-touch-icon-precomposed"  href="assets/images/icon-iphone.png" />
+	<link rel="apple-touch-startup-image" href="assets/images/splash-iphone.png" />
+	<link rel="icon" href="assets/images/favicon.png" type="image/png">
+</head>
+<body>
+
+<div id="home" data-role="page" class="ui-helper-clearfix bodywrapper">
+	<div data-role="header" data-theme="b"> 
+		<h1>Serious Game Framework</h1>
+	</div>
+	<div data-role="content">
+		<ul data-role="listview" data-inset="true">
+			<li><a href="#pieces"><h3>Manage Puzzle Pieces</h3><p>Create new Pieces and delete existing ones.</p></a></li>
+			<li><a href="#connections"><h3>Manage Connections</h3><p>Create new Connections and delete existing ones.</p></a></li>
+			<li><a href="#newgame"><h3>New Game</h3><p>Create a new game.</p></a></li>
+			<li><a href="#games" id="button-games"><h3>Manage Games</h3><p>Edit and delete existing games.</p></a></li>
+		</ul>
+	</div>
+</div>
+
+<div id="pieces" data-role="page" class="ui-helper-clearfix bodywrapper">
+	<div data-role="header" data-theme="b"> 
+		<a href="#" data-icon="arrow-l" class="ui-btn-left" data-iconpos="notext"  data-rel="back">Home</a>
+		<h1>Manage Puzzle Pieces</h1>
+	</div>
+	<div data-role="content">
+		<ul data-role="listview" data-inset="true">
+			<li><a href="#newpieces" id="button-newpieces"><h3>Create New Puzzle Pieces</h3><p>Upload new Puzzle Pieces.</p></a></li>
+			<li><a href="#managepieces"><h3>Manage Connections</h3><p>Create new Connections and delete existing ones.</p></a></li>
+			<li><a href="#manageset" id="button-games"><h3>Manage Sets</h3><p>Edit and delete existing sets of Puzzle Pieces.</p></a></li>
+		</ul>
+	</div>
+</div>
+
+<div id="newpieces" data-role="page" class="ui-helper-clearfix bodywrapper">
+	<div data-role="header" data-theme="b"> 
+		<a href="#" data-icon="arrow-l" class="ui-btn-left" data-iconpos="notext"  data-rel="back">Home</a>
+		<h1>Upload Puzzle Pieces</h1>
+	</div>
+	<div data-role="content">
+		<div class="ui-field-contain">
+			<form id="uploadPiece" method="post" action="uploadPieces.php" enctype="multipart/form-data" class="upload">
+				<label for="select-setOfPieces-1">Set to store the new piece:</label>
+				<select name="select-setOfPieces-1" id="select-setOfPieces-1">
+					<!-- Filled dynamically -->
+				</select>
+				
+				<label for="FileInput-Pieces">File:</label>
+				<input type="file" name="FileInput-Pieces" id="FileInput-Pieces" multiple />
+				
+				<ul data-role="listview" data-inset="true" id="uploadPieceList">
+					<!-- The file uploads will be shown here -->
+				</ul>
+
+			</form>
+			
+		</div>
+	</div>
+</div>
+
+<div id="games" data-role="page" class="ui-helper-clearfix bodywrapper">
+	<div data-role="header" data-theme="b"> 
+		<a href="#" data-icon="arrow-l" class="ui-btn-left" data-iconpos="notext"  data-rel="back">Home</a>
+		<h1>Manage Games</h1>
+	</div>
+	<div data-role="content">
+		<ul data-role="listview" data-inset="true" class="gameslist ui-icon-alt" data-split-icon="delete" data-split-theme="c">
+			<!-- Filled dynamically -->
+		</ul>
+	</div>
+</div>
+
+<div id="editgame" data-role="page" class="ui-helper-clearfix bodywrapper">
+	<div data-role="header" data-theme="b"> 
+		<a href="#" data-icon="arrow-l" class="ui-btn-left" data-iconpos="notext"  data-rel="back">Home</a>
+		<h1 class="gametitle"></h1>
+	</div>
+	<div data-role="content">
+		<div id="wrappergameboard">
+			<span id="gameboard" class="gameboard ui-widget-content">
+				<table class="slots ui-helper-reset">
+					<tr class="slotheader">
+						<td><h4 class="ui-widget-header">Slot 1</h4></td>
+						<td> </td>
+						<td><h4 class="ui-widget-header">Slot 2</h4></td>
+						<td> </td>
+						<td><h4 class="ui-widget-header">Slot 3</h4></td>
+						<td> </td>
+						<td><h4 class="ui-widget-header">Slot 4</h4></td>
+					</tr>
+					<tr>
+						<td>
+							<div id="wrapperslot0" class="wrapperslot">
+								<ul id="slot0" class="slot ui-widget-content ui-state-default">
+									<!-- Filled dynamically -->
+								</ul>
+							</div>
+						</td>
+						<td>
+							<div id="connection0" class="connection">
+								<!-- Filled dynamically -->
+							</div>
+						</td>
+						<td>
+							<div id="wrapperslot1" class="wrapperslot">
+								<ul id="slot1" class="slot ui-widget-content ui-state-default">
+									<!-- Filled dynamically -->
+								</ul>
+							</div>
+						</td>
+						<td>
+							<div id="connection1" class="connection">
+								<!-- Filled dynamically -->
+							</div>
+						</td>
+						<td>
+							<div id="wrapperslot2" class="wrapperslot">
+								<ul id="slot2" class="slot ui-widget-content ui-state-default">
+									<!-- Filled dynamically -->
+								</ul>
+							</div>
+						</td>
+						<td>
+							<div id="connection2" class="connection">
+								<!-- Filled dynamically -->
+							</div>
+						</td>
+						<td>
+							<div id="wrapperslot3" class="wrapperslot">
+								<ul id="slot3" class="slot ui-widget-content ui-state-default">
+									<!-- Filled dynamically -->
+								</ul>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</span>
+			<span id="levelcontrol" class="ui-widget-content">
+				<button id="button-showme" data-theme="c" data-mini="false">Show me</button>
+				<button id="button-next" data-theme="e" data-mini="false">Next</button>
+				<h3 id="level-verification-correct" class="level-verification">Correct Answer!</h3>
+				<h3 id="level-verification-wrong" class="level-verification">Wrong Answer</h3>
+				<p id="elearning">
+					<!-- Here the E-learning link -->
+				</p>
+				<ul>
+					<!-- Filled dynamically -->
+				</ul>
+			</span>
+		</div>
+		
+		<!-- <div id="gallery0wrapper"> -->
+			<div id="gallery0" class="gallery ui-helper-reset ui-helper-clearfix">
+				<h4 class="ui-widget-header">1</h4>
+				<ul>
+					<!-- Filled dynamically -->
+				</ul>
+			</div>
+		<!-- </div> -->
+		
+		<div id="gallery1wrapper">
+			<div id="gallery1" class="gallery ui-helper-reset ui-helper-clearfix">
+				<h4 class="ui-widget-header">2</h4>
+				<ul>
+					<!-- Filled dynamically -->
+				</ul>
+			</div>
+		</div>
+		
+		<!-- <div id="gallery2wrapper"> -->
+			<div id="gallery2" class="gallery ui-helper-reset ui-helper-clearfix">
+				<h4 class="ui-widget-header">3</h4>
+				<ul>
+					<!-- Filled dynamically -->
+				</ul>
+			</div>
+		<!-- </div> -->
+		
+		<div id="gallery3wrapper">
+			<div id="gallery3" class="gallery ui-helper-reset ui-helper-clearfix">
+				<h4 class="ui-widget-header">4</h4>
+				<ul>
+					<!-- Filled dynamically -->
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Hides the status bar on older android browsers. Not available on Chrome browser (Android 4.0 and above) -->
+<script>
+	window.scrollTo(0,1);
+</script>
+</body>
+</html>
