@@ -31,7 +31,7 @@ var GAMESTATE = "leveldone";
 
 // TODO MARKO add real oidc_userinfo
 var oidc_userinfo = {name: "Marko Kajzer", preferred_username: "marko.kajzer", email: "marko.kajzer@hotmail.de"};
-var gleaner_url = "http://localhost:3000/"; // TODO ADD REAL LOCATION HERE
+var gleaner_url = "http://gaudi.informatik.rwth-aachen.de:3000/"; // TODO ADD REAL LOCATION HERE
 
 var correct = 0;
 var wrong = 0;

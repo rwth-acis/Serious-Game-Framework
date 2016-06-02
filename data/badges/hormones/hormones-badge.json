@@ -1,8 +1,8 @@
 {
   "name": "Hormones Badge",
   "description": "For completing the game 'Hormones'.",
-  "image": "http://monet.informatik.rwth-aachen.de/Serious-Game-Framework/data/badges/hormones/hormones-badge.png",
-  "criteria": "http://monet.informatik.rwth-aachen.de/Serious-Game-Framework/",
-  "issuer": "http://monet.informatik.rwth-aachen.de/Serious-Game-Framework/data/badges/organization.json",
+  "image": "http://gaudi.informatik.rwth-aachen.de/Serious-Game-Framework/data/badges/hormones/hormones-badge.png",
+  "criteria": "http://gaudi.informatik.rwth-aachen.de/Serious-Game-Framework/",
+  "issuer": "http://gaudi.informatik.rwth-aachen.de/Serious-Game-Framework/data/badges/organization.json",
   "tags": ["hormones"]
 }
