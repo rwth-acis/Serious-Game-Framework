@@ -1,0 +1,9 @@
+.DS_Store
+todo.todo
+README.html
+cache.manifest.php
+lib/gleaner-frontend/app/public/bower/
+lib/gleaner-frontend/node_modules/*
+!lib/gleaner-frontend/node_modules/gleaner-data
+
+data/badges/other/basic-link-badge2.png
