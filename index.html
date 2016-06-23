@@ -198,6 +198,15 @@
 							</div>
 						</td>
 					</tr>
+					<tr id="inforow">
+						<td><h4 id="info0" class="ui-widget-header">Slot 1</h4></td>
+						<td> </td>
+						<td><h4 id="info1" class="ui-widget-header">Slot 2</h4></td>
+						<td> </td>
+						<td><h4 id="info2" class="ui-widget-header">Slot 3</h4></td>
+						<td> </td>
+						<td><h4 id="info3" class="ui-widget-header">Slot 4</h4></td>
+					</tr>
 				</table>
 			</span>
 			<span id="levelcontrol" class="ui-widget-content">
@@ -497,14 +506,15 @@
 	      // after successful sign in, display a welcome string for the user
 	      console.log("Hello, " + oidc_userinfo.name + "!");
         var profile =	$('<li>' +
-        									'<a href="#profile" id="profilelink">' +
+        									'<a href="#profile" id="profilelink" >' +
   														'<h3>Profile</h3>' +
   														'<p>Check your stats and badges!</p>' +
   												'</a>' +
   											'</li>');
-        $('.gameslist').prepend(profile);
-        $('.gameslist').listview('refresh');
-        $('#profilelink').click(function() { showProfile() });
+        //$('.gameslist').prepend(profile);
+        //$('.gameslist').listview('refresh');
+        //$('#profilelink').click(function() { showProfile() });
+		//$('#testtest').click(function() { showProfile() });
         startTracking();
 	    } else {
 	      // if sign in was not successful, log the cause of the error on the console

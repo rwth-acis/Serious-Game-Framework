@@ -2,13 +2,19 @@ var GAMESDATA = {
 	"0": {
 		"name": "Tutorial",
 		"description": "Tutorial game.",
-		"slotnames": ["","","",""],
+		"slotnames": ["Slot 1","Slot 2","Slot 3","Slot 4"],
 		"tutorial": true
 	},
 	"1": {
-		"name": "Hormones",
-		"description": "Testgame about hormones.",
-		"slotnames": ["origin","hormone","target-organ","effect"],
+		"name": "Zucker Spiel",
+		"description": "Alle Lebensmittel sind in 100g bzw. 100ml angegeben.",
+		"slotnames": ["Lebensmittel","","Zucker",""],
+		"tutorial": false
+	},
+	"2": {
+		"name": "Mahlzeigen Puzzeln",
+		"description": "Alle Lebensmittel sind in 100g bzw. 100ml angegeben.",
+		"slotnames": ["Essen","","Getränk","Kohlenhydrate"],
 		"tutorial": false
 	}
 };

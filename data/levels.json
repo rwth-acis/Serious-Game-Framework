@@ -2,127 +2,122 @@ var LEVELDATA = {
 	"0": {
 		"game_id": 0,
 		"elearning": "http://www.forbes.com/sites/danieltack/2013/09/12/serious-games-and-the-future-of-education/",
-		"pieces": [68,69,70,47],
+		"pieces": [2,3,4,1],
 		"connections": [1,1,1]
 	},
 	"1": {
 		"game_id": 1,
-		"elearning": "http://www.yourhormones.info/Hormones/Leptin.aspx",
-		"pieces": [68,69,70,47],
-		"connections": [1,1,1]
+		"elearning": "https://ndb.nal.usda.gov/ndb/foods/show/6153?fgcd=Sweets&manu=&lfacet=&format=&count=&max=35&offset=&sort=&qlookup=chocolate",
+		"pieces": [10,-1,53,-1],
+		"connections": [7,-1,-1]
 	},
 	"2": {
 		"game_id": 1,
-		"elearning": "http://www.yourhormones.info/Hormones/Antidiuretic_hormone.aspx",
-		"pieces": [1,12,31,48],
-		"connections": [1,1,1]
+		"elearning": "https://ndb.nal.usda.gov/ndb/foods/show/2871?fgcd=&manu=&lfacet=&format=&count=&max=35&offset=&sort=&qlookup=11090",
+		"pieces": [11,-1,42,-1],
+		"connections": [7,-1,-1]
 	},
 	"3": {
 		"game_id": 1,
-		"elearning": "http://www.yourhormones.info/Hormones/Thyroid_stimulating_hormone.aspx",
-		"pieces": [0,13,32,49],
-		"connections": [1,1,1]
+		"elearning": "https://ndb.nal.usda.gov/ndb/foods/show/4378?fgcd=&manu=&lfacet=&format=&count=&max=35&offset=&sort=&qlookup=14400",
+		"pieces": [12,-1,46,-1],
+		"connections": [7,-1,-1]
 	},
 	"4": {
 		"game_id": 1,
-		"elearning": "http://www.yourhormones.info/Hormones/Adrenocorticotropic_hormone.aspx",
-		"pieces": [0,14,33,50],
-		"connections": [1,1,1]
+		"elearning": "https://ndb.nal.usda.gov/ndb/foods/show/2159?fgcd=&manu=&lfacet=&format=&count=&max=35&offset=&sort=&qlookup=09040",
+		"pieces": [13,-1,48,-1],
+		"connections": [7,-1,-1]
 	},
 	"5": {
 		"game_id": 1,
-		"elearning": "http://www.yourhormones.info/Hormones/Growth_hormone.aspx",
-		"pieces": [0,15,34,51],
-		"connections": [1,1,1]
+		"elearning": "https://ndb.nal.usda.gov/ndb/foods/show/154?fg=&manu=&lfacet=&format=&count=&max=35&offset=&sort=&qlookup=01175",
+		"pieces": [14,-1,44,-1],
+		"connections": [7,-1,-1]
 	},
 	"6": {
 		"game_id": 1,
-		"elearning": "http://www.yourhormones.info/Hormones/Oxytocin.aspx",
-		"pieces": [1,16,35,52],
-		"connections": [1,1,1]
+		"elearning": "https://ndb.nal.usda.gov/ndb/foods/show/2122?fgcd=&manu=&lfacet=&format=&count=&max=35&offset=&sort=&qlookup=apple",
+		"pieces": [15,-1,47,-1],
+		"connections": [7,-1,-1]
 	},
 	"7": {
 		"game_id": 1,
-		"elearning": "http://www.yourhormones.info/Hormones/Prolactin.aspx",
-		"pieces": [0,17,36,53],
-		"connections": [1,1,1]
+		"elearning": "https://ndb.nal.usda.gov/ndb/foods/show/5614?fg=&manu=&lfacet=&format=&count=&max=35&offset=&sort=&qlookup=18069",
+		"pieces": [16,-1,47,-1],
+		"connections": [7,-1,-1]
 	},
 	"8": {
 		"game_id": 1,
-		"elearning": "http://www.yourhormones.info/Hormones/Luteinising_hormone.aspx",
-		"pieces": [0,18,37,54],
-		"connections": [1,1,1]
+		"elearning": "https://ndb.nal.usda.gov/ndb/foods/show/4157?fgcd=&manu=&lfacet=&format=&count=&max=35&offset=&sort=&qlookup=14050",
+		"pieces": [17,-1,40,-1],
+		"connections": [7,-1,-1]
 	},
 	"9": {
 		"game_id": 1,
-		"elearning": "http://www.yourhormones.info/Hormones/Luteinising_hormone.aspx",
-		"pieces": [0,19,38,55],
-		"connections": [1,1,1]
+		"elearning": "https://ndb.nal.usda.gov/ndb/foods/show/8804?fgcd=&manu=&lfacet=&format=&count=&max=35&offset=&sort=&qlookup=ketchup",
+		"pieces": [18,-1,50,-1],
+		"connections": [7,-1,-1]
 	},
 	"10": {
 		"game_id": 1,
-		"elearning": "http://www.yourhormones.info/hormones/follicle_stimulating_hormone.aspx",
-		"pieces": [0,20,37,56],
-		"connections": [1,1,1]
+		"elearning": "https://ndb.nal.usda.gov/ndb/foods/show/2289?fgcd=&manu=&lfacet=&format=&count=&max=35&offset=&sort=&qlookup=09206",
+		"pieces": [19,-1,45,-1],
+		"connections": [7,-1,-1]
 	},
 	"11": {
 		"game_id": 1,
-		"elearning": "http://www.yourhormones.info/Hormones/Melanocytestimulating_hormone.aspx",
-		"pieces": [0,21,39,57],
-		"connections": [1,1,1]
-	},
-	"12": {
-		"game_id": 1,
-		"elearning": "http://www.cvphysiology.com/Blood%20Pressure/BP017.htm",
-		"pieces": [2,22,40,58],
-		"connections": [1,1,1]
+		"elearning": "https://ndb.nal.usda.gov/ndb/foods/show/5598?fgcd=&manu=&lfacet=&format=&count=&max=35&offset=&sort=&qlookup=18044",
+		"pieces": [20,-1,41,-1],
+		"connections": [7,-1,-1]
 	},
 	"13": {
 		"game_id": 1,
-		"elearning": "http://www.yourhormones.info/Hormones/Aldosterone.aspx",
-		"pieces": [3,23,40,48],
-		"connections": [1,1,1]
+		"elearning": "https://ndb.nal.usda.gov/ndb/foods/show/240?fgcd=&manu=&lfacet=&format=&count=&max=35&offset=&sort=&qlookup=yogurt",
+		"pieces": [22,-1,43,-1],
+		"connections": [7,-1,-1]
 	},
 	"14": {
 		"game_id": 1,
-		"elearning": "http://www.yourhormones.info/Hormones/Adrenaline.aspx",
-		"pieces": [4,24,41,60],
-		"connections": [1,1,1]
+		"elearning": "https://ndb.nal.usda.gov/ndb/foods/show/241?fgcd=&manu=&lfacet=&format=&count=&max=35&offset=&sort=&qlookup=yogurt",
+		"pieces": [23,-1,48,-1],
+		"connections": [7,-1,-1]
 	},
 	"15": {
 		"game_id": 1,
-		"elearning": "http://www.yourhormones.info/Hormones/Calcitonin.aspx",
-		"pieces": [5,25,42,61],
-		"connections": [1,1,1]
+		"elearning": "https://ndb.nal.usda.gov/ndb/foods/show/6158?fgcd=&manu=&lfacet=&format=&count=&max=35&offset=&sort=&qlookup=19125",
+		"pieces": [24,-1,52,-1],
+		"connections": [7,-1,-1]
 	},
 	"16": {
 		"game_id": 1,
-		"elearning": "http://www.yourhormones.info/hormones/parathyroid_hormone.aspx",
-		"pieces": [6,26,42,62],
-		"connections": [1,1,1]
+		"elearning": "https://ndb.nal.usda.gov/ndb/foods/show/6564?fgcd=&manu=&lfacet=&format=&count=&max=35&offset=&sort=&qlookup=20110",
+		"pieces": [25,-1,41,-1],
+		"connections": [7,-1,-1]
 	},
 	"17": {
 		"game_id": 1,
-		"elearning": "http://www.yourhormones.info/Hormones/Cholecystokinin.aspx",
-		"pieces": [7,27,43,63],
-		"connections": [1,1,1]
+		"elearning": "https://ndb.nal.usda.gov/ndb/foods/show/6405?fgcd=&manu=&lfacet=&format=&count=&max=35&offset=&sort=&qlookup=19811",
+		"pieces": [26,-1,41,-1],
+		"connections": [7,-1,-1]
 	},
 	"18": {
 		"game_id": 1,
-		"elearning": "http://www.yourhormones.info/Hormones/Gastrin.aspx",
-		"pieces": [8,28,44,64],
-		"connections": [1,1,1]
+		"elearning": "https://ndb.nal.usda.gov/ndb/foods/show/6128?fgcd=&manu=&lfacet=&format=&count=&max=35&offset=&sort=&qlookup=19095",
+		"pieces": [27,-1,54,-1],
+		"connections": [7,-1,-1]
 	},
 	"19": {
 		"game_id": 1,
-		"elearning": "http://www.yourhormones.info/hormones/ghrelin.aspx",
-		"pieces": [9,29,45,65],
-		"connections": [1,1,1]
+		"elearning": "https://ndb.nal.usda.gov/ndb/foods/show/9?fgcd=&manu=&lfacet=&format=&count=&max=35&offset=&sort=&qlookup=01009",
+		"pieces": [28,-1,41,-1],
+		"connections": [7,-1,-1]
 	},
 	"20": {
 		"game_id": 1,
-		"elearning": "http://www.yourhormones.info/Hormones/Melatonin.aspx",
-		"pieces": [10,67,46,66],
-		"connections": [1,1,1]
+		"elearning": "https://ndb.nal.usda.gov/ndb/foods/show/6453?fgcd=&manu=&lfacet=&format=&count=&max=35&offset=&sort=&qlookup=chocolate",
+		"pieces": [29,-1,50,-1],
+		"connections": [7,-1,-1]
 	}
+	
 };

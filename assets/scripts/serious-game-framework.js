@@ -305,17 +305,36 @@ $(document).ready(function() {
 			$('#elearning').fadeOut();
 			$('#leveldone').fadeOut();
 			$('#levelcontrol').fadeOut();
+			$('#inforow').hide();
 
 			$('.gametitle').empty().append(GAMESDATA[gameID].name);
+			
+
+				
+			
 
 			// set the gallery and slot titles if available
 			for (var i=0; i < 4; i++) {
 				if (GAMESDATA[gameID].slotnames[i]) {
 					$('#header-slot' + i).empty().append(GAMESDATA[gameID].slotnames[i]);
 					$('#header-gallery' + i).empty().append(GAMESDATA[gameID].slotnames[i]);
+					$('#header-slot' + i).fadeIn();
+					$('#header-gallery' + i).fadeIn();
+					$('#gallery' + i ).fadeIn();
+					$('#wrapperslot' + i).fadeIn();
+					$('#connection' + i).fadeIn();
 				} else {
 					$('#header-slot' + i).empty().append("Slot " + (i+1));
 					$('#header-gallery' + i).empty().append(i+1);
+					$('#header-slot' + i).hide();
+					$('#header-gallery' + i).hide();
+					$('#gallery' + i ).hide();
+					$('#wrapperslot' + i).hide();
+					$('#connection' + i).hide();
+					$('#info' + i).hide();
+					if(gameID == 2){
+						$('#connection2').hide();
+					}
 				}
 			}
 			clearGalleries();
@@ -839,6 +858,8 @@ $(document).ready(function() {
 			$('#wrapper-level-tutorial').fadeOut();
 			$('#levelcontrol').fadeOut();
 			
+			$('#inforow').fadeOut();
+			
 			
 			for (var i = 0; i <= 3; i++) {
 				var slot = $('#slot' + i);
@@ -983,6 +1004,8 @@ $(document).ready(function() {
 			}
 			if (l > -1) {
 				
+				
+				
 				if (SHOWME) {
 					GAMESTATE = "leveldone";
 					logLevel(l, "revealed");
@@ -992,7 +1015,12 @@ $(document).ready(function() {
 					$('#elearning').empty();
 					$('#elearning').fadeIn();
 					if (LEVELDATA[l].elearning) {
-						$('#elearning').append('<a href="' + LEVELDATA[l].elearning + '" target="_blank">E-Learning Link</a>');
+						if(GAMEID==1){
+							$('#elearning').append('<a href="' + LEVELDATA[l].elearning + '" target="_blank">Nährwerttabelle</a>');
+						}
+						else{
+							$('#elearning').append('<a href="' + LEVELDATA[l].elearning + '" target="_blank">E-Learning Link</a>');
+						}
 					}
 
 					GAMESTATE = "leveldone";
@@ -1033,6 +1061,14 @@ $(document).ready(function() {
 					p[2] = $("img", slot2).attr('piece-id');
 					p[3] = $("img", slot3).attr('piece-id');
 					
+					
+					
+					// if(GAMEID == 1){
+						// p[2] = LEVELDATA[l].pieces[2];
+						// p[3] = LEVELDATA[l].pieces[3];
+					// }
+					
+					
 					//if (typeof p3 == 'undefined') {
 					//alert("Antwort: " + p0 + ", " + p1 + ", " + p2 + ", " + p3);
 					//}
@@ -1048,6 +1084,11 @@ $(document).ready(function() {
 					
 					
 					if (levelStructure) {
+						
+						if(GAMEID == 2){
+							$('#inforow').show();
+						}
+						
 						//alert("Structure OK");
 						if ( 	((LEVELDATA[l].pieces[0] == p[0]) || (LEVELDATA[l].pieces[0] == -1))
 							&& 	((LEVELDATA[l].pieces[1] == p[1]) || (LEVELDATA[l].pieces[1] == -1))
@@ -1063,7 +1104,12 @@ $(document).ready(function() {
 						$('#elearning').empty();
 						$('#elearning').fadeIn();
 						if (LEVELDATA[l].elearning) {
-							$('#elearning').append('<a href="' + LEVELDATA[l].elearning + '" target="_blank">E-Learning Link</a>');
+							if(GAMEID==1){
+								$('#elearning').append('<a href="' + LEVELDATA[l].elearning + '" target="_blank">Nährwerttabelle</a>');
+							}
+							else{
+								$('#elearning').append('<a href="' + LEVELDATA[l].elearning + '" target="_blank">E-Learning Link</a>');
+							}
 						}
 
 						if (!correct) {
