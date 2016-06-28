@@ -14,5 +14,6 @@ var CONNECTIONSDATA = {
 	"12": {"description": "Equal", "src": "equal_32.png"},
 	"13": {"description": "plus", "src": "plus_32.png"},
 	"14": {"description": "minus", "src": "minus_32.png"},
-	"15": {"description": "leftarrow", "src": "leftarrow_32.png"}	
+	"15": {"description": "leftarrow", "src": "leftarrow_32.png"},
+	"16": {"description": "black plus", "src": "plus.png"}	
 };

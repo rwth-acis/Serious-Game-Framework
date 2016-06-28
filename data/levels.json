@@ -118,6 +118,161 @@ var LEVELDATA = {
 		"elearning": "https://ndb.nal.usda.gov/ndb/foods/show/6453?fgcd=&manu=&lfacet=&format=&count=&max=35&offset=&sort=&qlookup=chocolate",
 		"pieces": [29,-1,50,-1],
 		"connections": [7,-1,-1]
-	}
+	},
 	
+	
+	"21": {
+		"game_id": 2,
+		"elearning": "",
+		"pieces": [70,-1,80,90],
+		"connections": [16,-1,7]
+	},
+	"22": {
+		"game_id": 2,
+		"elearning": "",
+		"pieces": [70,-1,81,91],
+		"connections": [16,-1,7]
+	},
+	"23": {
+		"game_id": 2,
+		"elearning": "",
+		"pieces": [70,-1,82,92],
+		"connections": [16,-1,7]
+	},
+	"24": {
+		"game_id": 2,
+		"elearning": "",
+		"pieces": [70,-1,83,93],
+		"connections": [16,-1,7]
+	},
+	
+	
+	"25": {
+		"game_id": 2,
+		"elearning": "",
+		"pieces": [71,-1,80,94],
+		"connections": [16,-1,7]
+	},
+	"26": {
+		"game_id": 2,
+		"elearning": "",
+		"pieces": [71,-1,81,95],
+		"connections": [16,-1,7]
+	},
+	"27": {
+		"game_id": 2,
+		"elearning": "",
+		"pieces": [71,-1,82,96],
+		"connections": [16,-1,7]
+	},
+	"28": {
+		"game_id": 2,
+		"elearning": "",
+		"pieces": [71,-1,83,97],
+		"connections": [16,-1,7]
+	},
+	
+	
+	"29": {
+		"game_id": 2,
+		"elearning": "",
+		"pieces": [72,-1,80,98],
+		"connections": [16,-1,7]
+	},
+	"30": {
+		"game_id": 2,
+		"elearning": "",
+		"pieces": [72,-1,81,99],
+		"connections": [16,-1,7]
+	},
+	"31": {
+		"game_id": 2,
+		"elearning": "",
+		"pieces": [72,-1,82,100],
+		"connections": [16,-1,7]
+	},
+	"32": {
+		"game_id": 2,
+		"elearning": "",
+		"pieces": [72,-1,83,101],
+		"connections": [16,-1,7]
+	},
+	
+	
+	"33": {
+		"game_id": 2,
+		"elearning": "",
+		"pieces": [73,-1,80,94],
+		"connections": [16,-1,7]
+	},
+	"34": {
+		"game_id": 2,
+		"elearning": "",
+		"pieces": [73,-1,81,95],
+		"connections": [16,-1,7]
+	},
+	"35": {
+		"game_id": 2,
+		"elearning": "",
+		"pieces": [73,-1,82,96],
+		"connections": [16,-1,7]
+	},
+	"36": {
+		"game_id": 2,
+		"elearning": "",
+		"pieces": [73,-1,83,97],
+		"connections": [16,-1,7]
+	},
+	
+	
+	"37": {
+		"game_id": 2,
+		"elearning": "",
+		"pieces": [74,-1,80,102],
+		"connections": [16,-1,7]
+	},
+	"38": {
+		"game_id": 2,
+		"elearning": "",
+		"pieces": [74,-1,81,103],
+		"connections": [16,-1,7]
+	},
+	"39": {
+		"game_id": 2,
+		"elearning": "",
+		"pieces": [74,-1,82,104],
+		"connections": [16,-1,7]
+	},
+	"40": {
+		"game_id": 2,
+		"elearning": "",
+		"pieces": [74,-1,83,105],
+		"connections": [16,-1,7]
+	},
+	
+	
+	"41": {
+		"game_id": 2,
+		"elearning": "",
+		"pieces": [75,-1,80,106],
+		"connections": [16,-1,7]
+	},
+	"42": {
+		"game_id": 2,
+		"elearning": "",
+		"pieces": [75,-1,81,107],
+		"connections": [16,-1,7]
+	},
+	"43": {
+		"game_id": 2,
+		"elearning": "",
+		"pieces": [75,-1,82,108],
+		"connections": [16,-1,7]
+	},
+	"44": {
+		"game_id": 2,
+		"elearning": "",
+		"pieces": [75,-1,83,109],
+		"connections": [16,-1,7]
+	}
 };

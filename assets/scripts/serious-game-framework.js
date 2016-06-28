@@ -1005,7 +1005,6 @@ $(document).ready(function() {
 			if (l > -1) {
 				
 				
-				
 				if (SHOWME) {
 					GAMESTATE = "leveldone";
 					logLevel(l, "revealed");
@@ -1022,6 +1021,8 @@ $(document).ready(function() {
 							$('#elearning').append('<a href="' + LEVELDATA[l].elearning + '" target="_blank">E-Learning Link</a>');
 						}
 					}
+					
+					
 
 					GAMESTATE = "leveldone";
 
@@ -1085,8 +1086,16 @@ $(document).ready(function() {
 					
 					if (levelStructure) {
 						
+						console.log(PIECESDATA[p[0]].description);
+						console.log(PIECESDATA[p[1]]);
+						console.log(PIECESDATA[p[2]]);
+						console.log(PIECESDATA[p[3]]);
+						
 						if(GAMEID == 2){
 							$('#inforow').show();
+							$('#info0').text(PIECESDATA[p[0]].kohlenhydrate);
+							$('#info2').text(PIECESDATA[p[2]].kohlenhydrate);
+							$('#info3').text(PIECESDATA[p[3]].kohlenhydrate);
 						}
 						
 						//alert("Structure OK");
@@ -1248,10 +1257,20 @@ $(document).ready(function() {
 		selected[1] = $("img", slot1).attr('piece-id');
 		selected[2] = $("img", slot2).attr('piece-id');
 		selected[3] = $("img", slot3).attr('piece-id');
+		
+		
 
 		if (l > -1) {
 			//alert("level > -1");
 			SHOWME = true;
+			
+			if(GAMEID == 2){
+							$('#inforow').show();
+							$('#info0').text(PIECESDATA[LEVELDATA[l].pieces[0]].kohlenhydrate);
+							$('#info2').text(PIECESDATA[LEVELDATA[l].pieces[2]].kohlenhydrate);
+							$('#info3').text(PIECESDATA[LEVELDATA[l].pieces[3]].kohlenhydrate);
+			}
+			
 			for (var i = 0; i <= 3; i++) {
 				var slot = $('#slot' + i);
 				var piece = $('li', '#slot' + i);
