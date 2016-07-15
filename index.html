@@ -472,6 +472,213 @@
 	</div>
 </div>
 
+<div id="gameDesignerView" data-role="page" class="ui-helper-clearfix bodywrapper">
+				<div data-role="header" data-theme="b">
+					<a href="#" data-icon="arrow-l" id="game-header-home" class="ui-btn-left" data-iconpos="notext"  data-rel="back">Home</a>	
+					<h1>Game Designer View</h1>
+				</div>
+				<div data-role="content">
+					<ul data-role="listview" data-inset="true">
+						<li><a href="#editgalleries" id="editgallerieslink"><h3>Manage Galleries</h3><p>Create new Pieces or galleries and delete existing ones.</p></a></li>
+						<li><a href="#connections" id="editconnectionslink"><h3>Manage Connections</h3><p>Create new Connections and delete existing ones.</p></a></li>
+						<li><a href="#games"><h3>Manage Games</h3><p>Create new games or edit existing ones.</p></a></li>
+						<li><a href="#badges" id="editbadgeslink"><h3>Manage Badges</h3><p>Create new Badges and delete existing ones.</p></a></li>
+					</ul>
+				</div>
+			</div>
+			<div id="editgalleries" data-role="page" class="ui-helper-clearfix bodywrapper">
+				<div data-role="header" data-theme="b"> 
+					<a href="#" data-icon="arrow-l" class="ui-btn-left" data-iconpos="notext"  data-rel="back">Home</a>
+					<h1>Manage Galleries</h1>
+				</div>
+				<div data-role="content">
+					<div class="ui-content">
+						<fieldset class="ui-grid-c sideByside">
+							<div  class="ui-block-a">
+								<fieldset data-role="fieldcontain">
+									<label for="gallery-name">Create New Gallery:</label>
+									<input name="gallery-name" id="gallery-name" value="" type="text">
+								</fieldset>
+							</div>
+						</fieldset>
+						<fieldset class="ui-grid-c sideByside">
+							<div  class="ui-block-a">
+								<fieldset data-role="fieldcontain">
+									<label for="gallery-desc">Description of the gallery:</label>
+									<input name="gallery-desc" id="gallery-desc" value="" type="text">
+								</fieldset>
+							</div>
+						</fieldset>
+						<fieldset data-role="fieldcontain">
+							<div id="create-gallery-button">
+								<button id="button-create-gallery" data-inline="true">Create</button>
+							</div>
+						</fieldset>
+						<div id="create-gallery-message"></div>
+						<fieldset class="ui-grid-c sideByside">
+							<div  class="ui-block-a">
+								<fieldset data-role="fieldcontain">
+									<label for="select-gallery" class="select"> <p>Select Gallery to Edit: </p></label>
+									<select name="select-gallery" id="select-gallery"></select>
+								</fieldset>
+							</div>
+							<div  class="ui-block-b">
+								<fieldset data-role="fieldcontain" class="ui-block-b">
+								<div id="edit-gallery-button">
+									<button id="button-edit-gallery" data-inline="true">Edit Gallery</button>
+								</div>
+									<div id="delete-button-gallery">
+										<button id="button-delete-gallery" data-inline="true">Delete Gallery</button>
+									</div>
+									
+								</fieldset>
+							</div>
+
+						</fieldset>
+						<div id="gallery-description-message"></div>
+						<fieldset class="ui-grid-b sideByside">
+							<div  class="ui-block-a">
+								<div id="populategallerywrapper">
+									<div id="populategallery" class="editgallery ui-helper-reset ui-helper-clearfix">
+										<h4 id="header-populategallery" class="ui-widget-header"></h4>
+										<span id="button-left-populategallery" class="button-left"><button data-icon="arrow-l" data-iconshadow="false" data-inline="false" data-mini="false" data-iconpos="notext" class="ui-icon-alt">&nbsp;</button></span>
+										<span id="ulwrap-populategallery">
+											<ul id="editgallery">
+												<!-- Filled dynamically -->
+											</ul>
+										</span>
+										<span id="button-right-populategallery" class="button-right"><button data-icon="arrow-r" data-iconshadow="false" data-inline="false" data-mini="false" data-iconpos="notext" class="ui-icon-alt">&nbsp;</button></span>
+									</div>
+								</div>
+							</div>
+							<div  class="ui-block-b">
+								<fieldset data-role="fieldcontain" class="ui-block-b">
+									<div id="tile-delete-button">
+										<button id="button-delete-gallery-tile" data-inline="true">Delete Tile</button>
+									</div>
+
+									<span id="AddTilesButton" class="fileinput-button" data-role="button" data-icon="plus">
+										<span>Add Tiles</span>
+										<input type="file" id="uploadTiles" name="uploadTiles[]" multiple data-role="none"/>
+									</span>
+
+								</fieldset>
+							</div>
+						</fieldset>
+						<div id="gallery-saved-message"></div>
+					</div>
+				</div>
+			</div>
+
+
+			<div id="connections" data-role="page" class="ui-helper-clearfix bodywrapper">
+				<div data-role="header" data-theme="b"> 
+					<a href="#" data-icon="arrow-l" class="ui-btn-left" data-iconpos="notext"  data-rel="back">Home</a>
+					<h1>Manage Connections</h1>
+				</div>
+				<div data-role="content">
+					<div class="ui-content">
+					<div id="showconnections">
+						<button id="show-connection" data-inline="true">Show Existing Connections</button>
+					</div>
+						<fieldset class="ui-grid-b sideByside">
+							<div  class="ui-block-a">
+								<div id="populateconnectionswrapper">
+									<div id="populateconnections" class="editconnection ui-helper-reset ui-helper-clearfix">
+										<h4 id="header-populateconnections" class="ui-widget-header"></h4>
+										<span id="button-left-populateconnections" class="button-left"><button data-icon="arrow-l" data-iconshadow="false" data-inline="false" data-mini="false" data-iconpos="notext" class="ui-icon-alt">&nbsp;</button></span>
+										<span id="ulwrap-populateconnections">
+											<ul id="editconnection">
+												<!-- Filled dynamically -->
+											</ul>
+										</span>
+										<span id="button-right-populateconnections" class="button-right"><button data-icon="arrow-r" data-iconshadow="false" data-inline="false" data-mini="false" data-iconpos="notext" class="ui-icon-alt">&nbsp;</button></span>
+									</div>
+								</div>
+							</div>
+							<div  class="ui-block-b">
+								<fieldset data-role="fieldcontain" class="ui-block-b">
+									<div id="connection-delete-button">
+										<button id="button-delete-connection" data-inline="true">Delete Connection</button>
+									</div>
+									
+									<span id="AddConnectionsButton" class="fileinput-button" data-role="button" data-icon="plus">
+										<span>Add Connections</span>
+										<input type="file" id="uploadConnections" name="uploadConnections[]" multiple data-role="none"/>
+									</span>
+								</fieldset>
+							</div>
+						</fieldset>
+						<div id="connection-saved-message"></div>
+					</div>
+				</div>
+			</div>
+
+
+
+			<div id="badges" data-role="page" class="ui-helper-clearfix bodywrapper">
+				<div data-role="header" data-theme="b"> 
+					<a href="#" data-icon="arrow-l" class="ui-btn-left" data-iconpos="notext"  data-rel="back">Home</a>
+					<h1>Manage Badges</h1>
+				</div>
+				<div data-role="content">
+					<div class="ui-content">
+					<fieldset class="ui-grid-c sideByside">
+							<div  class="ui-block-a">
+								<fieldset data-role="fieldcontain">
+									<label for="badge-name">Badge Name:</label>
+									<input name="badge-name" id="badge-name" value="" type="text">
+								</fieldset>
+							</div>
+						</fieldset>
+						<fieldset class="ui-grid-c sideByside">
+							<div  class="ui-block-a">
+								<fieldset data-role="fieldcontain">
+									<label for="badge-desc">Badge Description:</label>
+									<input name="badge-desc" id="badge-desc" value="" type="text">
+								</fieldset>
+							</div>
+						</fieldset>
+						<fieldset data-role="fieldcontain">
+							<span id="AddBadgeButton" class="fileinput-button" data-role="button" data-icon="plus">
+										<span>Add Badge</span>
+										<input type="file" id="uploadBadge" name="uploadBadge" data-role="none"/>
+						</span>
+						<div id="showbadges">
+						<button id="show-badges" data-inline="true">Show Existing Badges</button>
+					</div>
+						</fieldset>
+						<div id="create-badge-message"></div>
+									
+						<fieldset class="ui-grid-b sideByside">
+							<div  class="ui-block-a">
+								<div id="populatebadgeswrapper">
+									<div id="populatebadges" class="editbadge ui-helper-reset ui-helper-clearfix">
+										<h4 id="header-populatebadges" class="ui-widget-header"></h4>
+										<span id="button-left-populatebadges" class="button-left"><button data-icon="arrow-l" data-iconshadow="false" data-inline="false" data-mini="false" data-iconpos="notext" class="ui-icon-alt">&nbsp;</button></span>
+										<span id="ulwrap-populatebadges">
+											<ul id="editbadge">
+												<!-- Filled dynamically -->
+											</ul>
+										</span>
+										<span id="button-right-populatebadges" class="button-right"><button data-icon="arrow-r" data-iconshadow="false" data-inline="false" data-mini="false" data-iconpos="notext" class="ui-icon-alt">&nbsp;</button></span>
+									</div>
+								</div>
+							</div>
+							<div  class="ui-block-b">
+								<fieldset data-role="fieldcontain" class="ui-block-b">
+									<div id="badge-delete-button">
+										<button id="button-delete-badge" data-inline="true">Delete Badge</button>
+									</div>
+									
+								</fieldset>
+							</div>
+						</fieldset>
+						<div id="badge-saved-message"></div>
+					</div>
+				</div>
+			</div>
+
 <audio id="achievement_sound" src="data/badges/sound.wav" preload="auto"></audio>
 
 <!-- The blueimp Gallery widget -->
@@ -503,6 +710,15 @@
   												'</a>' +
   											'</li>');
         $('.gameslist').prepend(profile);
+
+        var gamedesignerview =	$('<li>' +
+		      	'<a href="#gameDesignerView" id="gamedesignerlink">' +
+		      	'<h3>Design Games</h3>' +
+		      	'<p>Create or Edit games!</p>' +
+		      	'</a>' +
+		      	'</li>');
+		      $('.gameslist').append(gamedesignerview);
+
         $('.gameslist').listview('refresh');
         $('#profilelink').click(function() { showProfile() });
         startTracking();
