@@ -53,6 +53,9 @@ function rand(min, max) {
 		var CONNECTIONS = $("#populateconnections"),
 		CONNECTIONSul = $("ul", CONNECTIONS);
 
+		var CONNECTIONS2 = $("#populateconnections2"),
+		CONNECTIONS2ul = $("ul", CONNECTIONS2);
+
 		var BADGES = $("#populatebadges"),
 		BADGESul = $("ul", BADGES);
 
@@ -125,6 +128,10 @@ function rand(min, max) {
 			resetEditBadgesView();
 		});
 
+		$('#creategameslink').click(function() { 
+			resetGameCreationView();
+		});
+
 		$('#select-gallery').change(function(){
 			$('#create-gallery-message').text("");
 			$('#gallery-description-message').text("");
@@ -155,6 +162,56 @@ function rand(min, max) {
 			}
 		});
 
+		$('#gallerycount').change(function(){
+			$('#create-game-message').text("");
+			var galleryId = $('select[name=gallerycount]').val();
+			if(galleryId < 2){
+				$('#selectgallery1fieldset').addClass('hideElement');
+				$('#selectgallery2fieldset').addClass('hideElement');
+				$('#selectgallery3fieldset').addClass('hideElement');
+				$('#selectgallery4fieldset').addClass('hideElement');
+				$('#selectconnection-fieldset').addClass('hideElement');
+				$('#create-game-button').find('*').prop('disabled',true);
+				$('#create-game-button').find('*').addClass('ui-disabled');
+				var createGameMessage = $('<h2>To enable game creation, give non-empty game name and select the number of galleries to be added in the game</h2>');
+				$('#create-game-message').append(createGameMessage);
+				
+			} else{
+				$('#selectconnection-fieldset').removeClass('hideElement');
+				getConnections("populateconnections2");
+				if(galleryId >= 2){
+					$('#selectgallery1fieldset').removeClass('hideElement');
+					$('#selectgallery2fieldset').removeClass('hideElement');
+					$('#selectgallery3fieldset').addClass('hideElement');
+					$('#selectgallery4fieldset').addClass('hideElement');
+				}
+				if(galleryId > 2){
+					$('#selectgallery3fieldset').removeClass('hideElement');
+					$('#selectgallery4fieldset').addClass('hideElement');
+				}
+				if(galleryId > 3){
+					$('#selectgallery4fieldset').removeClass('hideElement');
+				}
+				var createGameMessage = $('<h2>To enable game creation, give non-empty game name and select galleries and connection</h2>');
+				$('#create-game-message').append(createGameMessage);
+			}
+			
+			enableCreateGameButton();
+		});
+
+		$('#selectgallery1').change(function(){
+			enableCreateGameButton();
+		});
+		$('#selectgallery2').change(function(){
+			enableCreateGameButton();
+		});
+		$('#selectgallery3').change(function(){
+			enableCreateGameButton();
+		});
+		$('#selectgallery4').change(function(){
+			enableCreateGameButton();
+		});
+
 		$('#button-edit-gallery').click(function() {
 			$('#populategallerywrapper').find('*').prop('disabled',false);
 			$('#populategallerywrapper').find('*').removeClass('ui-disabled');
@@ -164,7 +221,6 @@ function rand(min, max) {
 			$('#create-gallery-message').text("");
 			$('#tile-delete-button').find('*').prop('disabled',true);
 			$('#tile-delete-button').find('*').addClass('ui-disabled');
-
 			getGalleryTiles();
 			
 		});
@@ -175,6 +231,10 @@ function rand(min, max) {
 			if(galleryName !=""){
 				createGallery(galleryName,galleryDescription);
 			}
+		});
+
+		$('#create-game-button').click(function() {
+			createGame();
 		});
 
 		$('#gallery-name').on('change keyup paste',function() { 
@@ -201,6 +261,10 @@ function rand(min, max) {
 				$('#uploadBadge').prop('disabled',true);
 				$('.fileinput-button').css('opacity',0.3);
 			}
+		});
+
+		$('#gallery-name').on('change keyup paste',function() { 
+			enableCreateGameButton();
 		});
 
 	$('#editgallery').on('click', 'li', function() { // id of clicked li by directly accessing DOMElement property
@@ -235,6 +299,19 @@ function rand(min, max) {
 				$('#connection-delete-button').css('opacity','1');
 			}
 			$(this).siblings().removeClass("active");
+
+		});
+
+		$('#editconnection2').on('click', 'li', function() { // id of clicked li by directly accessing DOMElement property
+			
+			if($(this).hasClass("active")){
+				$(this).removeClass("active");
+				
+			} else {
+				$(this).addClass("active");
+			}
+			$(this).siblings().removeClass("active");
+			enableCreateGameButton();
 
 		});
 
@@ -309,7 +386,7 @@ function rand(min, max) {
 
 	$('#show-connection').click(function(){
 		$('#populateconnections' + ' ul').children().remove();
-		getConnections();
+		getConnections("populateconnections");
 	});
 
 	$('#show-badges').click(function(){
@@ -326,6 +403,21 @@ function rand(min, max) {
 					GALLERYNAMES = data;
 					if(GALLERYNAMES != 'NULL'){
 						createGalleryList(GALLERYNAMES);
+					}
+				}
+			});
+	}
+
+	function getGalleriesList2(element){
+		$.ajax({
+			url: "lib/database/get_galleries.php",
+			type: "GET",
+			contentType: false,
+			success: function(data){
+					//alert(data);
+					GALLERYNAMES = data;
+					if(GALLERYNAMES != 'NULL'){
+						createGalleryList2(element,GALLERYNAMES);
 					}
 				}
 			});
@@ -348,7 +440,6 @@ function rand(min, max) {
 		$('#gallery-description-message').text("");
 		$('#edit-gallery-button').find('*').prop('disabled',true);
 		$('#edit-gallery-button').find('*').addClass('ui-disabled');
-
 		$('#delete-button-gallery').find('*').prop('disabled',true);
 		$('#delete-button-gallery').find('*').addClass('ui-disabled');
 		getGalleriesList();
@@ -376,6 +467,77 @@ function rand(min, max) {
 		$('.fileinput-button').css('opacity',1);
 	}
 
+	function resetGameCreationView(){
+		$('#game-name')[0].value = "";
+		$('#game-desc')[0].value = "";
+		$('#gallerycount').children().remove();
+		$('#gallerycount').append('<option value="'+ 1 +'" description="Select number of galleries to be added in the game">--Select Galleries Count--</option>');
+		$('#gallerycount').append('<option value="'+ 2 +'" >2</option>');
+		$('#gallerycount').append('<option value="'+ 3 +'" >3</option>');
+		$('#gallerycount').append('<option value="'+ 4 +'" >4</option>');
+		$('#selectgallery1fieldset').addClass('hideElement');
+		$('#selectgallery2fieldset').addClass('hideElement');
+		$('#selectgallery3fieldset').addClass('hideElement');
+		$('#selectgallery4fieldset').addClass('hideElement');
+		$('#selectconnection-fieldset').addClass('hideElement');
+		$('#create-game-button').find('*').prop('disabled',true);
+		$('#create-game-button').find('*').addClass('ui-disabled');
+		getGalleriesList2("selectgallery1");
+		getGalleriesList2("selectgallery2");
+		getGalleriesList2("selectgallery3");
+		getGalleriesList2("selectgallery4");
+		$('#create-game-message').text("");
+		var createGameMessage = $('<h2>To enable game creation, give non-empty game name and select the number of galleries to be added in the game</h2>');
+		$('#create-game-message').append(createGameMessage);
+		var myselect = $("select#gallerycount");
+		myselect[0].selectedIndex = 0;
+		myselect.selectmenu("refresh");
+		
+	}
+
+	function enableCreateGameButton(){
+		var galleryCountVal = $('select[name=gallerycount]').val();
+		var gallery1Val = $('select[name=selectgallery1]').val();
+		var gallery2Val = $('select[name=selectgallery2]').val();
+		var gallery3Val = $('select[name=selectgallery3]').val();
+		var gallery4Val = $('select[name=selectgallery4]').val();
+		var validSelector = "false";
+		if(galleryCountVal == 2){
+			if(gallery1Val != 0 && gallery2Val != 0){
+				validSelector = "true";
+			}else{
+				validSelector = "false";
+			}
+		}
+		if(galleryCountVal == 3){
+			if(gallery1Val != 0 && gallery2Val != 0 && gallery3Val != 0){
+				validSelector = "true";
+			}else{
+				validSelector = "false";
+			}
+		}
+		if(galleryCountVal == 4){
+			if(gallery1Val != 0 && gallery2Val != 0 && gallery3Val != 0 && gallery4Val != 0){
+				validSelector = "true";
+			}else{
+				validSelector = "false";
+			}
+		}
+		$('#create-game-message').text("");
+		var val = $.trim($('#game-name')[0].value);
+		if(val != "" && $('#editconnection2').find('*').hasClass("active") && validSelector == "true"){
+			$('#create-game-button').find('*').prop('disabled',false);
+			$('#create-game-button').find('*').removeClass('ui-disabled');
+			var createGameMessage = $('<h2>Click on "Create" to create the game</h2>');
+			$('#create-game-message').append(createGameMessage);
+		}else{
+			var createGameMessage = $('<h2>To enable game creation, give non-empty game name and select galleries and connection</h2>');
+			$('#create-game-message').append(createGameMessage);
+			$('#create-game-button').find('*').prop('disabled',true);
+			$('#create-game-button').find('*').addClass('ui-disabled');
+		}
+	}
+
 	function createGalleryList(data){
 		$('#select-gallery').children().remove();
 		$('#select-gallery').append('<option value="'+ 0 +'" description="Select a gallery from the dropdown and click on \'Edit Gallery\' to edit the gallery tiles">--Select Gallery--</option>');
@@ -398,6 +560,18 @@ function rand(min, max) {
 		$('#delete-button-gallery').find('*').addClass('ui-disabled');
 	}
 
+	function createGalleryList2(element, data){
+		$('#'+element).children().remove();
+		$('#'+element).append('<option value="'+ 0 +'" description="Select a gallery from the dropdown and click on \'Edit Gallery\' to edit the gallery tiles">--Select Gallery--</option>');
+		jsondata = JSON.parse(data);
+		$.each(jsondata, function(index, value) {
+			$('#'+element).append('<option value="'+ value.galleryId +'" description="'+value.galleryDescription+'">' + value.galleryName + '</option>');
+		});
+
+		var myselect = $("select#"+element);
+		myselect[0].selectedIndex = 0;
+		myselect.selectmenu("refresh");
+	}
 	function getGalleryTiles(){
 
 		var galleryId = $('select[name=select-gallery]').val();
@@ -420,7 +594,7 @@ function rand(min, max) {
 		}
 	}
 
-	function getConnections(){
+	function getConnections(element){
 
 		formdata = false;
 		if (window.FormData) {
@@ -435,12 +609,11 @@ function rand(min, max) {
 				processData: false,
 				contentType: false,
 				success: function(data){
-					populateConnections(data);
+					populateConnections(element,data);
 				}
 			});
 		}
 	}
-
 
 	function getBadges(){
 
@@ -713,6 +886,51 @@ function rand(min, max) {
 
 	}
 
+	function createGame(){
+		var gameName = $.trim($('#game-name')[0].value);
+		var gameDescription = $.trim($('#game-desc')[0].value);
+		var gallery1Id = $('select[name=selectgallery1]').val();
+		var gallery2Id = $('select[name=selectgallery2]').val();
+		var gallery3Id = $('select[name=selectgallery3]').val();
+		var gallery4Id = $('select[name=selectgallery4]').val();
+		var connectionSrc = $('#editconnection2').find(".active").find(".imgfocus")[0].alt;
+		formdata = false;
+		if (window.FormData) {
+			formdata = new FormData();
+		}
+		formdata.append("gameName",gameName);
+		formdata.append("gameDescription",gameDescription);
+		formdata.append("gallery1Id",gallery1Id);
+		formdata.append("gallery2Id",gallery2Id);
+		if(gallery3Id != 0){
+			formdata.append("gallery3Id",gallery3Id);
+		}else{
+			formdata.append("gallery3Id","");
+		}
+		if(gallery4Id != 0){
+			formdata.append("gallery4Id",gallery4Id);
+		}else{
+			formdata.append("gallery4Id","");
+		}
+		formdata.append("connectionSrc",connectionSrc);
+		if(formdata){
+			$.ajax({
+				url: "lib/database/create_game.php",
+				type: "POST",
+				data: formdata,
+				processData: false,
+				contentType: false,
+				success: function(data){
+					resetGameCreationView();
+					var createGameMessage = $('<h2>Game with name "'+gameName+'" is created successfully! Go to \'Edit Games\' menu to add levels to the game.</h2>');
+					$('#create-game-message').append(createGameMessage);
+
+				}
+			});
+		}
+
+	}
+
 	function addTiles(filesdata){
 		files = JSON.parse(filesdata);
 		$.each(files, function(index, value) {
@@ -766,12 +984,12 @@ function rand(min, max) {
 		
 		
 	}
-	function populateConnections(filesdata){
+	function populateConnections(element, filesdata){
 		files = JSON.parse(filesdata);
 		length = files.length;
 		$.each(files, function(index, value) {
 			var image1 = $('<li class="ui-widget-content ui-corner-tr piece"><a href="#"><img src="' + TEMP + value.connectionSrc + '" alt="' +  value.connectionSrc + '" width="94" height="68" id="piece-id-'+index+'" piece-id="' + index + '" piece-count="1" class="imgfocus"/></a></li>');
-			rand(0,1) ? $('#populateconnections' + ' ul').prepend(image1) : $('#populateconnections' + ' ul').append(image1);
+			rand(0,1) ? $('#'+element + ' ul').prepend(image1) : $('#'+element + ' ul').append(image1);
 		});
 		setGalleryWidth();
 	}
@@ -784,6 +1002,10 @@ function rand(min, max) {
 		var connWidth = $('#populateconnections').width();
 		$('#ulwrap-populateconnections').width(connWidth-75);
 		CONNECTIONSul.width((102 * CONNECTIONSul.children().length));
+
+		var connWidth2 = $('#populateconnections2').width();
+		$('#ulwrap-populateconnections2').width(connWidth2-75);
+		CONNECTIONS2ul.width((102 * CONNECTIONS2ul.children().length));
 
 		var badgeWidth = $('#populatebadges').width();
 		$('#ulwrap-populatebadges').width(badgeWidth-75);
@@ -1168,7 +1390,7 @@ function getConnectionsData() {
 		}
 	}*/
 	
-		
+
 	/** 
 	  * Fills the four galleries with data
 	  * @param gameID The ID of the current game.
