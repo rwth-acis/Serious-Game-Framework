@@ -16,6 +16,9 @@ body { list-style: none; }
 #gallery3wrapper { position:absolute; width:100%; left:0; top:50px; right:0; }
 #gallery2wrapper { position:absolute; right:130px; top:0px; bottom:0; vertical-align: middle; display: table-cell; }
 #gallery1wrapper { position:absolute; width:100%; left:0; bottom:8px; right:0; }
+#populategallerywrapper { position:relative; width:100%; left:0; top:0; right:0; }
+#populateconnectionswrapper { position:relative; width:100%; left:0; top:0; right:0; }
+#populatebadgeswrapper { position:relative; width:100%; left:0; top:0; right:0; }
 
 .gallery { background-color:#dddddd; }
 .gallery.custom-state-active { background: #eee; }
@@ -23,6 +26,27 @@ body { list-style: none; }
 .gallery li { float:left; width: 94px; height:68px; padding: 0px; text-align: center; vertical-align: middle; }
 .gallery li img { width: 100%; cursor: move; padding:0; margin:0; }
 .gallery h4 { margin:0 0 2px 0; text-align:center; }
+
+.editgallery { background-color:#dddddd; }
+.editgallery.custom-state-active { background: #eee; }
+.editgallery ul { list-style: none; padding:0; margin:0; }
+.editgallery li { float:left; width: 94px; height:68px; padding: 0px; text-align: center; vertical-align: middle; }
+.editgallery li img { width: 100%; cursor: pointer; padding:0; margin:0; }
+.editgallery h4 { margin:0 0 2px 0; text-align:center; }
+
+.editconnection { background-color:#dddddd; }
+.editconnection.custom-state-active { background: #eee; }
+.editconnection ul { list-style: none; padding:0; margin:0; }
+.editconnection li { float:left; width: 94px; height:68px; padding: 0px; text-align: center; vertical-align: middle; }
+.editconnection li img { width: 100%; cursor: pointer; padding:0; margin:0; }
+.editconnection h4 { margin:0 0 2px 0; text-align:center; }
+
+.editbadge { background-color:#dddddd; }
+.editbadge.custom-state-active { background: #eee; }
+.editbadge ul { list-style: none; padding:0; margin:0; }
+.editbadge li { float:left; width: 94px; height:68px; padding: 0px; text-align: center; vertical-align: middle; }
+.editbadge li img { width: 100%; cursor: pointer; padding:0; margin:0; }
+.editbadge h4 { margin:0 0 2px 0; text-align:center; }
 
 /* #gallery0 { position: absolute; left: 10px; top: 50%; bottom:50%; width: 120px; height: 750px; z-index: 1004 } */
 #gallery0 { position: absolute; top: 15%; width: 120px; z-index: 1004; }
@@ -40,6 +64,18 @@ body { list-style: none; }
 #ulwrap-gallery3 { overflow:hidden; width: 500px; float: left; }
 #gallery3 ul { height: 70px; width: 500px; float: left; overflow:visible }
 
+#populategallery { height: 110px; margin:0 0px 0 0px; z-index: 1002 }
+#ulwrap-populategallery { overflow:hidden; width: 500px; float: left; }
+#populategallery ul { height: 100px; width: 500px; float: left; overflow:visible; }
+
+#populateconnections { height: 110px; margin:0 0px 0 0px; z-index: 1002 }
+#ulwrap-populateconnections { overflow:hidden; width: 500px; float: left; }
+#populateconnections ul { height: 100px; width: 500px; float: left; overflow:visible; }
+
+#populatebadges { height: 110px; margin:0 0px 0 0px; z-index: 1002 }
+#ulwrap-populatebadges { overflow:hidden; width: 500px; float: left; }
+#populatebadges ul { height: 100px; width: 500px; float: left; overflow:visible; }
+
 .button-left { float: left; }
 .button-right { float: left; }
 
@@ -47,6 +83,9 @@ body { list-style: none; }
 #gallery2 li { margin: 2px 0px 2px 0px; }
 #gallery1 li { margin: 0px 2px 0px 2px; }
 #gallery3 li { margin: 0px 2px 0px 2px; }
+#populategallery li { margin: 0px 2px 0px 2px; }
+#populateconnections li { margin: 0px 2px 0px 2px; }
+#populatebadges li { margin: 0px 2px 0px 2px; }
 
 /* #wrappergameboard {position: absolute; top: 110px; left: 140px; bottom:110px; right:140px; text-align: center; vertical-align: middle;} */
 #wrappergameboard { position: absolute; top: 35%; left: 15%; bottom:25%; right:15%; }
@@ -94,4 +133,32 @@ position: absolute;
 left: 50%;
 top: 2px;
 font-weight: bold;
+}
+
+.sideByside .ui-block-a {
+  padding-right: 6px;
+}
+.sideByside .ui-block-b {
+  padding-left: 6px;
+}
+
+.active {
+  border: solid 3px orange;
+}
+
+.fileinput-button {
+  position: relative;
+  overflow: hidden;
+  float: left;
+  margin-right: 4px;
+}
+
+.fileinput-button input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  opacity: 0;
+  font-size: 23px;
+  cursor: pointer;
 }
