@@ -1,4 +1,5 @@
 var UPLOADPATH = "uploads/";
+var TEMP = "tmp/";
 var DEBUG = false;
 
 // 0: very easy (only one piece left to fill)

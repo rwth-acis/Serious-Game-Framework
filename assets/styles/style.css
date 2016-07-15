@@ -77,7 +77,7 @@ body { list-style: none; }
 #populatebadges ul { height: 100px; width: 500px; float: left; overflow:visible; }
 
 .button-left { float: left; }
-.button-right { float: left; }
+.button-right { float: right; }
 
 #gallery0 li { margin: 2px 0px 2px 0px; }
 #gallery2 li { margin: 2px 0px 2px 0px; }
