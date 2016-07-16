@@ -1,19 +1,19 @@
 var GAMESDATA = {
 	"0": {
 		"name": "Tutorial",
-		"description": "Tutorial game.",
+		"description": "Erklärung der Spiele.",
 		"slotnames": ["Slot 1","Slot 2","Slot 3","Slot 4"],
 		"tutorial": true
 	},
 	"1": {
 		"name": "Zucker Spiel",
-		"description": "Alle Lebensmittel sind in 100g bzw. 100ml angegeben.",
+		"description": "Finde heraus wieviel Zucker in Lebensmitteln steckt!",
 		"slotnames": ["Lebensmittel","","Zucker",""],
 		"tutorial": false
 	},
 	"2": {
-		"name": "Mahlzeigen Puzzeln",
-		"description": "Alle Lebensmittel sind in 100g bzw. 100ml angegeben.",
+		"name": "Mahlzeiten puzzeln",
+		"description": "Erstelle Mahlzeiten und achte auf die Kohlenhydrate!",
 		"slotnames": ["Essen","","Getränk","Kohlenhydrate"],
 		"tutorial": false
 	}

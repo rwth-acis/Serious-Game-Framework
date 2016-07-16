@@ -272,7 +272,7 @@ var LEVELDATA = {
 	"44": {
 		"game_id": 2,
 		"elearning": "",
-		"pieces": [75,-1,83,109],
+		"pieces": [75,-1,83,102],
 		"connections": [16,-1,7]
 	}
 };

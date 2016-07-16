@@ -72,8 +72,7 @@ var PIECESDATA = {
 	"105": {"description": "137g", "kohlenhydrate": "137g", "src": "kh-3-16.png"},
 	"106": {"description": "113g", "kohlenhydrate": "113g", "src": "kh-3-17.png"},
 	"107": {"description": "153g", "kohlenhydrate": "153g", "src": "kh-3-18.png"},
-	"108": {"description": "119g", "kohlenhydrate": "119g", "src": "kh-3-19.png"},
-	"109": {"description": "125", "kohlenhydrate": "125g", "src": "kh-3-20.png"}
+	"108": {"description": "119g", "kohlenhydrate": "119g", "src": "kh-3-19.png"}
 	
 	
 	

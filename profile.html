@@ -12,9 +12,7 @@
       $.mobile.pushStateEnabled = false;
     });
   </script>
-  
-
-
+ 
 	<!-- <script src="js/jquery-2.0.2.min.js"></script> -->
 	<!-- <script src="jqueryui/ui/jquery.ui.position.min.js"></script> -->
 	<script src="assets/scripts/jqueryui/ui/jquery.ui.core.min.js"></script>
@@ -112,7 +110,15 @@
 </head>
 <body>
 
-
+<span class="oidc-signin"
+			    data-callback="signinCallback"
+			    data-name="Learning Layers"
+			    data-logo="http://learning-layers.eu/wp-content/themes/learninglayers/images/logo.png"
+			    data-server="https://api.learning-layers.eu/o/oauth2"
+			    data-clientid="294acab0-2cc7-436a-8d17-1d87290d4ca0"
+			    data-scope="openid email profile phone"
+			    data-size="sm">
+			</span>
 
 <!-- Profile Page -->
 <div id="profile" data-role="page" class="ui-helper-clearfix bodywrapper">
@@ -279,9 +285,41 @@
 	</div>
 </div>
 
-  <script>
-  $( document ).ready(function() {showProfile() });
-  </script>
+  <script type="text/javascript">
+		function signinCallback(result) {
+			// TODO MARKO result === "success"
+	    if(true) {
+	      // after successful sign in, display a welcome string for the user
+	     console.log("Hello, " + oidc_userinfo.name + "!");
+		 console.log(oidc_userinfo);
+		 
+		 
+		 
+		 $( document ).ready(function() {showProfile() });
+        //$('.gameslist').prepend(profile);
+        //$('.gameslist').listview('refresh');
+        //$('#profilelink').click(function() { showProfile() });
+		//$('#testtest').click(function() { showProfile() });
+        startTracking();
+	    } else {
+	      // if sign in was not successful, log the cause of the error on the console
+	      console.log(result);
+	      // TODO MARKO
+				// alert('Please log in with the button on the top left, so we can track your progress!');
+	    }
+		}
+	</script>
+	
+	<script type="text/javascript">
+	  (function() {
+	    var po = document.createElement('script');
+	    po.type = 'text/javascript';
+	    po.async = true;
+	    po.src = 'assets/scripts/oidc/oidc-button.js';
+	    var s = document.getElementsByTagName('script')[0];
+	    s.parentNode.insertBefore(po, s);
+	  })();
+	</script>
 
 </body>
 </html>

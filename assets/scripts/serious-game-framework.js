@@ -905,6 +905,9 @@ $(document).ready(function() {
 						var pieceID;
 						do {
 							slotID = rand(0,3);
+							if(GAMEID == 2){
+								slotID = 3;
+							}
 							pieceID = LEVELDATA[CURRENTLEVEL].pieces[slotID];
 							//alert(CURRENTLEVEL + " - " + slotID + " - " + pieceID);
 						} while (pieceID < 0);

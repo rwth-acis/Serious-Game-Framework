@@ -110,21 +110,20 @@
 </head>
 <body>
 
-<div id="home" data-role="page" class="ui-helper-clearfix bodywrapper">
-	<div data-role="header" data-theme="b">
-		<h1>Serious Game Framework</h1>
-		<a href="#options" data-icon="gear" class="ui-btn-right options-button" data-rel="dialog">Options</a>
-		<span data-role="button" data-inline="true" data-corners="true" class="ui-btn-left">
-			<span class="oidc-signin"
+<span class="oidc-signin"
 			    data-callback="signinCallback"
 			    data-name="Learning Layers"
 			    data-logo="http://learning-layers.eu/wp-content/themes/learninglayers/images/logo.png"
 			    data-server="https://api.learning-layers.eu/o/oauth2"
-			    data-clientid="5af6f4dc-a102-4811-ab00-b1eb4114c908"
+			    data-clientid="294acab0-2cc7-436a-8d17-1d87290d4ca0"
 			    data-scope="openid email profile phone"
 			    data-size="sm">
 			</span>
-		</span>
+
+<div id="home" data-role="page" class="ui-helper-clearfix bodywrapper">
+	<div data-role="header" data-theme="b">
+		<h1>Diabetes Game</h1>
+		<a href="#options" data-icon="gear" class="ui-btn-right options-button" data-rel="dialog">Einstellungen</a>
 	</div>
 	<div data-role="content">
 		<ul data-role="listview" data-inset="true" class="gameslist">
@@ -138,7 +137,7 @@
 	<div id="game-header" data-role="header" data-theme="b">
 		<a href="#" data-icon="arrow-l" id="game-header-home" class="ui-btn-left" data-iconpos="notext"  data-rel="back">Home</a>
 		<h1 class="gametitle"></h1>
-		<a href="#options" data-icon="gear" id="game-header-options" class="ui-btn-right options-button" data-rel="dialog">Options</a>
+		<a href="#options" data-icon="gear" id="game-header-options" class="ui-btn-right options-button" data-rel="dialog">Einstellungen</a>
 	</div>
 	<div data-role="content">
 		<div id="wrappergameboard">
@@ -211,20 +210,20 @@
 			</span>
 			<span id="levelcontrol" class="ui-widget-content">
 				<span id="wrapper-level-tutorial">
-					<button id="button-level-tutorial" data-theme="b" data-mini="false">Show Tutorial</button>
+					<button id="button-level-tutorial" data-theme="b" data-mini="false">Ziege das Tutorial</button>
 				</span>
 				<span id="wrapper-back-main">
-					<a href="#" data-role="button" data-rel="back" data-mini="false">Back to Main Menu</a>
+					<a href="#" data-role="button" data-rel="back" data-mini="false">Zurück zum Hauptmenü</a>
 				</span>
 				<span id="wrapper-showme">
-					<button id="button-showme" data-theme="c" data-mini="false">Show me</button>
+					<button id="button-showme" data-theme="c" data-mini="false">Aufdecken</button>
 				</span>
 				<span id="wrapper-next">
-					<button id="button-next" data-theme="e" data-mini="false">Next</button>
+					<button id="button-next" data-theme="e" data-mini="false">Nächstes Level</button>
 				</span>
-				<h3 id="level-verification-correct" class="level-verification">Correct Answer!</h3>
-				<h3 id="level-verification-wrong" class="level-verification">Wrong Answer</h3>
-				<h3 id="level-verification-revealed" class="level-verification">Solution revealed</h3>
+				<h3 id="level-verification-correct" class="level-verification">Richtige Antwort!</h3>
+				<h3 id="level-verification-wrong" class="level-verification">Falsche Antwort</h3>
+				<h3 id="level-verification-revealed" class="level-verification">Lösung gezeigt</h3>
 				<p id="elearning">
 					<!-- Here the E-learning link -->
 				</p>
@@ -285,26 +284,26 @@
 
 <div id="options" data-role="page" class="ui-helper-clearfix bodywrapper" data-theme="c" data-overlay-theme="c">
 	<div data-role="header" data-theme="c">
-		<h1>Options</h1>
+		<h1>Einstellungen</h1>
 	</div>
 	<div data-role="content">
 		<form id="optionsform">
 			<div data-role="fieldcontain">
 				<fieldset data-role="controlgroup">
-					<legend>Difficulty:</legend>
+					<legend>Schwierigkeit:</legend>
 
 					<input type="radio" name="difficulty" id="difficulty-choice1" value="1" disabled="disabled" />
-					<label for="difficulty-choice1">Easy</label>
+					<label for="difficulty-choice1">Leicht</label>
 
 					<input type="radio" name="difficulty" id="difficulty-choice2" value="2" disabled="disabled" />
-					<label for="difficulty-choice2">Medium</label>
+					<label for="difficulty-choice2">Normal</label>
 
 					<input type="radio" name="difficulty" id="difficulty-choice3" value="3" />
-					<label for="difficulty-choice3">Free game</label>
+					<label for="difficulty-choice3">Freies Spiel</label>
 
 					<input type="radio" name="difficulty" id="difficulty-choice4" value="4" />
-					<label for="difficulty-choice4">Difficult</label>
-					<p>New difficulty level will take effect at the next set.<p>
+					<label for="difficulty-choice4">Schwierig</label>
+					<p>Die neue Schwierigkeitseinstellung wird ab dem nächsten Level in Kraft treten.<p>
 				</fieldset>
 			</div>
 			<input type="submit" value="OK" data-role="button" data-icon="check" />
@@ -498,6 +497,8 @@
 <script>
 	window.scrollTo(0,1);
 </script>
+
+
 	<!-- OpenID Connect Button Callback -->
 	<script type="text/javascript">
 		function signinCallback(result) {
@@ -505,12 +506,6 @@
 	    if(true) {
 	      // after successful sign in, display a welcome string for the user
 	      console.log("Hello, " + oidc_userinfo.name + "!");
-        var profile =	$('<li>' +
-        									'<a href="#profile" id="profilelink" >' +
-  														'<h3>Profile</h3>' +
-  														'<p>Check your stats and badges!</p>' +
-  												'</a>' +
-  											'</li>');
         //$('.gameslist').prepend(profile);
         //$('.gameslist').listview('refresh');
         //$('#profilelink').click(function() { showProfile() });

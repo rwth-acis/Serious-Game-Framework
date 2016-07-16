@@ -5,72 +5,72 @@ var TUTORIALSDATA = {
 		"tutorials": {
 			"1": {
 				"identifier": "#button-level-tutorial",
-				"text": "Welcome to our serious game framework.",
+				"text": "Willkommen zu dem Diabetes Game!",
 				"position": "right"
 			},
 			"2": {
 				"identifier": "#gallery0",
-				"text": "The games consists of images ordered in four of these galleries.",
+				"text": "Das Spiel besteht aus Bildern, welche in 2-4 Gallerien angeordnet sind.",
 				"position": "right"
 			},
 			"3": {
-				"identifier": "img[piece-id=68]",
-				"text": "First select a piece in one of these galleries.",
+				"identifier": "img[piece-id=2]",
+				"text": "Wähle zuerst eine Kachel aus einer dieser Gallerien.",
 				"position": "right"
 			},
 			"4": {
 				"identifier": "#slot0",
-				"text": "Place the piece in the appropriate slot using drag and drop.",
+				"text": "Ziehe die Kachel in den vorgesehenen Slot per Drag and Drop.",
 				"position": "bottom"
 			},
 			"5": {
-				"identifier": "img[piece-id=69]",
-				"text": "Then choose a second piece.",
+				"identifier": "img[piece-id=3]",
+				"text": "Danach wähle eine Zweite Kachel.",
 				"position": "top"
 			},
 			"6": {
 				"identifier": "#slot1",
-				"text": "Also arrange this piece in the appropriate slot.",
+				"text": "Ziehe auch diese Kachel in den vorgesehenen Slot.",
 				"position": "bottom"
 			},
 			"7": {
-				"identifier": "img[piece-id=70]",
-				"text": "Do the same with a third piece.",
+				"identifier": "img[piece-id=4]",
+				"text": "Mache das selbe mit der 3. Kachel.",
 				"position": "left"
 			},
 			"8": {
-				"identifier": "img[piece-id=47]",
-				"text": "And finally a fourth piece.",
+				"identifier": "img[piece-id=1]",
+				"text": "Und zuletzt auch mit der 4. Kachel.",
 				"position": "bottom"
 			},
 			"9": {
 				"identifier": "#button-showme",
-				"text": "If you don't know the correct solution, hit the 'Show Me'-Button to reveal it.",
+				"text": "Klicke den 'Aufdecken' Button, wenn du die richtige Lösung nicht weißt, um diese aufzudecken.",
 				"position": "right"
 			},
 			"10": {
 				"identifier": "#elearning",
-				"text": "After each level an e-Learning link is shown, where you can get more information about the topic.",
+				"text": "Nach jedem Level taucht ein e-Learning Link auf, wo weiter informationen über das Thema nachgelesen werden können.",
 				"position": "right"
 			},
 			"11": {
 				"identifier": "#game-header-home",
-				"text": "Click here to get back to the main menu.",
+				"text": "Klicke hier um zurück zum Hauptmenü zu kommen.",
 				"position": "right"
 			},
 			"12": {
 				"identifier": ".gametitle",
-				"text": "Here you see the title of the current game you play.",
+				"text": "Hier siehst du den Namen des Spiels, welches du gerade spielst.",
 				"position": "bottom"
 			},
 			"13": {
 				"identifier": "#game-header-options",
-				"text": "Click here to change the difficulty level of the game.",
+				"text": "Klicke hier um die Schwierigkeit des Spiels zu ändern.",
 				"position": "left"
 			},
 			"14": {
 				"identifier": "#gameboard",
-				"text": "The game can also be played offline. The game data will be synchronized automatically when you are online again (this could take several seconds and is done in the background). Try to create a shortcut and use the game like a normal app. Now start and enjoy the game!",
+				"text": "Das Spiel kann auch offline gespielt werden. Die Spieldaten werden automatisch synchronisiert, wenn du wieder online kommst(Das kann ein paar sekunden dauern und wird auch im Hintergrund ausgeführt). Erstelle eine Verknüfung auf deinem Tablet und benutze das Spiel wie eine normale App. Jetzt fang an und genieße das Spiel!",
 				"position": "bottom"
 			}
 		}
