@@ -1,29 +1,5 @@
 var UPLOADPATH = "uploads/";
 var TEMP = "tmp/";
-var DEBUG = false;
-
-// 0: very easy (only one piece left to fill)
-// 1: easy (only two pieces left to fill)
-// 2: medium (user chooses first piece; system gives one other piece)
-// 3: hard (free game)
-// 4: very hard (one random piece will be shown and the user has to pick the missing ones IMPLEMENTED
-var DIFFICULTY = 3;
-var NEWDIFFICULTY = 3;
-
-var GAMEID = -1;
-
-var GOTDATA = false;
-var GAMESDATA;
-var LEVELDATA;
-var PIECESDATA;
-var CONNECTIONSDATA;
-
-var SETSOFPIECES;
-
-var NEXTLEVELS = [];
-var LEVELSDONE = [];
-var CURRENTLEVEL = -1;
-var GAMESTATE = "leveldone";
 
 function rand(min, max) {
 	if (!DEBUG) {
@@ -59,7 +35,27 @@ function rand(min, max) {
 		var BADGES = $("#populatebadges"),
 		BADGESul = $("ul", BADGES);
 
+		var GAMEGALLERY1 = $("#populategamegallery1"),
+		GAMEGALLERY1ul = $("ul", GAMEGALLERY1);
+
+		var GAMEGALLERY2 = $("#populategamegallery2"),
+		GAMEGALLERY2ul = $("ul", GAMEGALLERY2);
+
+		var GAMEGALLERY3 = $("#populategamegallery3"),
+		GAMEGALLERY3ul = $("ul", GAMEGALLERY3);
+
+		var GAMEGALLERY4 = $("#populategamegallery4"),
+		GAMEGALLERY4ul = $("ul", GAMEGALLERY4);
+
+		var EDITLEVELS = $("#populateeditlevels"),
+		EDITLEVELSul = $("ul", EDITLEVELS);
+
+		var CHANGECONNECTION = $("#populatechangeconnection"),
+		CHANGECONNECTIONul = $("ul", CHANGECONNECTION);
+
 		var GALLERYNAMES;
+		var GAMEGALLERYNAMES;
+		var GAMENAMES;
 
 		$('.select').find('option').css("height","20px"); 
 
@@ -111,6 +107,119 @@ function rand(min, max) {
 			}
 		});
 
+		$('#button-right-populategamegallery1').bind('mousedown mouseup touchstart touchend', function(event){
+			if ((event.type == 'mousedown') || (event.type == 'touchstart')){
+				$('#ulwrap-populategamegallery1').animate({"scrollLeft": "+=2000px"}, 3000, 'linear');
+			}else{
+				$('#ulwrap-populategamegallery1').stop();
+			}
+		});
+
+		$('#button-left-populategamegallery1').bind('mousedown mouseup touchstart touchend', function(event){
+			if ((event.type == 'mousedown') || (event.type == 'touchstart')){
+				$('#ulwrap-populategamegallery1').animate({"scrollLeft": "-=2000px"}, 3000, 'linear');
+			}else{
+				$('#ulwrap-populategamegallery1').stop();
+			}
+		});
+
+		$('#button-right-populategamegallery2').bind('mousedown mouseup touchstart touchend', function(event){
+			if ((event.type == 'mousedown') || (event.type == 'touchstart')){
+				$('#ulwrap-populategamegallery2').animate({"scrollLeft": "+=2000px"}, 3000, 'linear');
+			}else{
+				$('#ulwrap-populategamegallery2').stop();
+			}
+		});
+
+		$('#button-left-populategamegallery2').bind('mousedown mouseup touchstart touchend', function(event){
+			if ((event.type == 'mousedown') || (event.type == 'touchstart')){
+				$('#ulwrap-populategamegallery2').animate({"scrollLeft": "-=2000px"}, 3000, 'linear');
+			}else{
+				$('#ulwrap-populategamegallery2').stop();
+			}
+		});
+
+		$('#button-right-populategamegallery3').bind('mousedown mouseup touchstart touchend', function(event){
+			if ((event.type == 'mousedown') || (event.type == 'touchstart')){
+				$('#ulwrap-populategamegallery3').animate({"scrollLeft": "+=2000px"}, 3000, 'linear');
+			}else{
+				$('#ulwrap-populategamegallery3').stop();
+			}
+		});
+
+		$('#button-left-populategamegallery3').bind('mousedown mouseup touchstart touchend', function(event){
+			if ((event.type == 'mousedown') || (event.type == 'touchstart')){
+				$('#ulwrap-populategamegallery3').animate({"scrollLeft": "-=2000px"}, 3000, 'linear');
+			}else{
+				$('#ulwrap-populategamegallery3').stop();
+			}
+		});
+
+		$('#button-right-populategamegallery4').bind('mousedown mouseup touchstart touchend', function(event){
+			if ((event.type == 'mousedown') || (event.type == 'touchstart')){
+				$('#ulwrap-populategamegallery4').animate({"scrollLeft": "+=2000px"}, 3000, 'linear');
+			}else{
+				$('#ulwrap-populategamegallery4').stop();
+			}
+		});
+
+		$('#button-left-populategamegallery4').bind('mousedown mouseup touchstart touchend', function(event){
+			if ((event.type == 'mousedown') || (event.type == 'touchstart')){
+				$('#ulwrap-populategamegallery4').animate({"scrollLeft": "-=2000px"}, 3000, 'linear');
+			}else{
+				$('#ulwrap-populategamegallery4').stop();
+			}
+		});
+
+		$('#button-right-populateeditlevels').bind('mousedown mouseup touchstart touchend', function(event){
+			if ((event.type == 'mousedown') || (event.type == 'touchstart')){
+				$('#ulwrap-populateeditlevels').animate({"scrollLeft": "+=2000px"}, 3000, 'linear');
+			}else{
+				$('#ulwrap-populateeditlevels').stop();
+			}
+		});
+
+		$('#button-left-populateeditlevels').bind('mousedown mouseup touchstart touchend', function(event){
+			if ((event.type == 'mousedown') || (event.type == 'touchstart')){
+				$('#ulwrap-populateeditlevels').animate({"scrollLeft": "-=2000px"}, 3000, 'linear');
+			}else{
+				$('#ulwrap-populateeditlevels').stop();
+			}
+		});
+
+
+		$('#button-down-populateeditlevels').bind('mousedown mouseup touchstart touchend', function(event){
+		if ((event.type == 'mousedown') || (event.type == 'touchstart')){
+			$('#populateeditlevels ul').animate({"scrollTop": "+=2000px"}, 3000, 'linear');
+		}else{
+			$('#populateeditlevels ul').stop();
+		}
+		});
+
+		$('#button-up-populateeditlevels').bind('mousedown mouseup touchstart touchend', function(event){
+		if ((event.type == 'mousedown') || (event.type == 'touchstart')){
+			$('#populateeditlevels ul').animate({"scrollTop": "-=2000px"}, 3000, 'linear');
+		}else{
+			$('#populateeditlevels ul').stop();
+		}
+		});
+
+		$('#button-right-populatechangeconnection').bind('mousedown mouseup touchstart touchend', function(event){
+			if ((event.type == 'mousedown') || (event.type == 'touchstart')){
+				$('#ulwrap-populatechangeconnection').animate({"scrollLeft": "+=2000px"}, 3000, 'linear');
+			}else{
+				$('#ulwrap-populatechangeconnection').stop();
+			}
+		});
+
+		$('#button-left-populatechangeconnection').bind('mousedown mouseup touchstart touchend', function(event){
+			if ((event.type == 'mousedown') || (event.type == 'touchstart')){
+				$('#ulwrap-populatechangeconnection').animate({"scrollLeft": "-=2000px"}, 3000, 'linear');
+			}else{
+				$('#ulwrap-populatechangeconnection').stop();
+			}
+		});
+
 		$(window).resize(function() {
 			setGalleryHeight();
 			setGalleryWidth();
@@ -130,6 +239,10 @@ function rand(min, max) {
 
 		$('#creategameslink').click(function() { 
 			resetGameCreationView();
+		});
+
+		$('#editgameslink').click(function() { 
+			resetEditGameView();
 		});
 
 		$('#select-gallery').change(function(){
@@ -199,6 +312,28 @@ function rand(min, max) {
 			enableCreateGameButton();
 		});
 
+		$('#selectgame').change(function(){
+			$('#game-description-message').text("");
+			var description = $('option:selected', this).attr('description');
+			var gameDescMessage = $('<h2>Game Description: '+description+'</h2>');
+			$('#game-description-message').append(gameDescMessage);
+			var galleryId = $('select[name=selectgame]').val();
+			if(galleryId != 0){
+				$('#edit-game-button').find('*').prop('disabled',false);
+				$('#edit-game-button').find('*').removeClass('ui-disabled');
+				$('#delete-button-game').find('*').prop('disabled',false);
+				$('#delete-button-game').find('*').removeClass('ui-disabled');
+			}else{
+				$('#edit-game-button').find('*').prop('disabled',true);
+				$('#edit-game-button').find('*').addClass('ui-disabled');
+				$('#delete-button-game').find('*').prop('disabled',true);
+				$('#delete-button-game').find('*').addClass('ui-disabled');
+				resetEditGameView();
+			}
+			$('#editgamesection').addClass('hideElement');
+
+		});
+
 		$('#selectgallery1').change(function(){
 			enableCreateGameButton();
 		});
@@ -221,7 +356,8 @@ function rand(min, max) {
 			$('#create-gallery-message').text("");
 			$('#tile-delete-button').find('*').prop('disabled',true);
 			$('#tile-delete-button').find('*').addClass('ui-disabled');
-			getGalleryTiles();
+			var galleryId = $('select[name=select-gallery]').val();
+			getGalleryTiles(galleryId,"populategallery");
 			
 		});
 
@@ -267,6 +403,11 @@ function rand(min, max) {
 			enableCreateGameButton();
 		});
 
+		$('#button-create-level').click(function() {
+			createLevel();
+		});
+		
+
 	$('#editgallery').on('click', 'li', function() { // id of clicked li by directly accessing DOMElement property
 		$('#create-gallery-message').text("");
 		$('#gallery-saved-message').text("");
@@ -280,6 +421,65 @@ function rand(min, max) {
 			$('#tile-delete-button').find('*').prop('disabled',false);
 			$('#tile-delete-button').find('*').removeClass('ui-disabled');
 			$('#tile-delete-button').css('opacity','1');
+		}
+		$(this).siblings().removeClass("active");
+
+	});
+
+	$('#selectedgamegallery1').on('click', 'li', function() { // id of clicked li by directly accessing DOMElement property
+		if($(this).hasClass("active")){
+			$(this).removeClass("active");
+			} else {
+			$(this).addClass("active");
+			}
+		$(this).siblings().removeClass("active");
+		enableCreateLevelButton();
+	});
+
+	$('#selectedgamegallery2').on('click', 'li', function() { // id of clicked li by directly accessing DOMElement property
+		//$('#create-gallery-message').text("");
+		if($(this).hasClass("active")){
+			$(this).removeClass("active");
+			} else {
+			$(this).addClass("active");
+		}
+		$(this).siblings().removeClass("active");
+		enableCreateLevelButton();
+	});
+
+	$('#selectedgamegallery3').on('click', 'li', function() { // id of clicked li by directly accessing DOMElement property
+	//	$('#create-gallery-message').text("");
+		if($(this).hasClass("active")){
+			$(this).removeClass("active");
+			} else {
+			$(this).addClass("active");
+		}
+			$(this).siblings().removeClass("active");
+			enableCreateLevelButton();
+	});
+
+	$('#selectedgamegallery4').on('click', 'li', function() { // id of clicked li by directly accessing DOMElement property
+		//$('#create-gallery-message').text("");
+		if($(this).hasClass("active")){
+			$(this).removeClass("active");
+		} else {
+			$(this).addClass("active");
+		}
+		$(this).siblings().removeClass("active");
+		enableCreateLevelButton();
+	});
+
+	$('#changeconnection').on('click', 'li', function() { // id of clicked li by directly accessing DOMElement property
+		$('#changeConnectionMessage').text("");
+		if($(this).hasClass("active")){
+			$(this).removeClass("active");
+			$('#change-connection-button').find('*').prop('disabled',true);
+			$('#change-connection-button').find('*').addClass('ui-disabled');
+		} else {
+			$(this).addClass("active");
+			$('#change-connection-button').find('*').prop('disabled',false);
+			$('#change-connection-button').find('*').removeClass('ui-disabled');
+			$('#change-connection-button').css('opacity','1');
 		}
 		$(this).siblings().removeClass("active");
 
@@ -393,6 +593,55 @@ function rand(min, max) {
 		$('#populatebadges' + ' ul').children().remove();
 		getBadges();
 	});
+
+	$('#button-change-connection').click(function() {
+		changeConnection();
+	});
+
+	$('#button-edit-game').click(function() {
+		$('#add-level-message').text("");
+		var addLevelMessage = $('<h2>Select tile from each gallery and enter eLearning link to enable \'Add Level\' button</h2>');
+		$('#add-level-message').append(addLevelMessage);
+		$('#editgamesection').removeClass('hideElement');
+		var gameGallery1 = $('option:selected', $('#selectgame')).attr('gameGallery1');
+		getGalleryTiles(gameGallery1,"populategamegallery1");
+		var gameGallery2 = $('option:selected', $('#selectgame')).attr('gameGallery2');
+		getGalleryTiles(gameGallery2,"populategamegallery2");
+		var gameGallery3 = $('option:selected', $('#selectgame')).attr('gameGallery3');
+		var gameGallery4 = $('option:selected', $('#selectgame')).attr('gameGallery4');
+		if(gameGallery3 !=""){
+			$('#gamegallery3-fieldset').removeClass('hideElement');
+			getGalleryTiles(gameGallery3,"populategamegallery3");
+		}else{
+			$('#gamegallery3-fieldset').addClass('hideElement');
+		}
+		if(gameGallery4 !=""){
+			$('#gamegallery4-fieldset').removeClass('hideElement');
+			getGalleryTiles(gameGallery4,"populategamegallery4");
+		}else{
+			$('#gamegallery4-fieldset').addClass('hideElement');
+		}	
+		$.each(GAMEGALLERYNAMES, function(index, value) {
+			if(gameGallery1 == value.galleryId){
+				$('#header-populategamegallery1').empty().append(value.galleryName);
+			}
+			if(gameGallery2 == value.galleryId){
+				$('#header-populategamegallery2').empty().append(value.galleryName);
+			}
+			if(gameGallery3 == value.galleryId){
+				$('#header-populategamegallery3').empty().append(value.galleryName);
+			}
+			if(gameGallery4 == value.galleryId){
+				$('#header-populategamegallery4').empty().append(value.galleryName);
+			}
+		
+		});	
+		var activeConnection = $('option:selected', $('#selectgame')).attr('gameConnection');
+		getGameConnections("populatechangeconnection",activeConnection);	
+		
+
+	});
+
 	function getGalleriesList(){
 		$.ajax({
 			url: "lib/database/get_galleries.php",
@@ -418,6 +667,32 @@ function rand(min, max) {
 					GALLERYNAMES = data;
 					if(GALLERYNAMES != 'NULL'){
 						createGalleryList2(element,GALLERYNAMES);
+					}
+				}
+			});
+	}
+
+	function getGameGalleriesList(){
+		$.ajax({
+			url: "lib/database/get_galleries.php",
+			type: "GET",
+			contentType: false,
+			success: function(data){
+					GAMEGALLERYNAMES = JSON.parse(data);
+				}
+			});
+	}
+
+	function getGamesList(){
+		$.ajax({
+			url: "lib/database/get_games.php",
+			type: "GET",
+			contentType: false,
+			success: function(data){
+					//alert(data);
+					GAMENAMES = data;
+					if(GAMENAMES != 'NULL'){
+						createGamesList(GAMENAMES);
 					}
 				}
 			});
@@ -495,6 +770,18 @@ function rand(min, max) {
 		
 	}
 
+	function resetEditGameView(){
+		$('#editgamesection').addClass('hideElement');
+		$('#selectgame').children().remove();
+		var addLevelMessage = $('<h2>Select tile from each gallery and enter eLearning link to enable \'Add Level\' button</h2>');
+		$('#add-level-message').append(addLevelMessage);
+		$('#changeConnectionMessage').text("");
+		$('#create-level-button').find('*').prop('disabled',true);
+		$('#create-level-button').find('*').addClass('ui-disabled');
+		getGameGalleriesList();
+		getGamesList();
+	}
+
 	function enableCreateGameButton(){
 		var galleryCountVal = $('select[name=gallerycount]').val();
 		var gallery1Val = $('select[name=selectgallery1]').val();
@@ -537,6 +824,45 @@ function rand(min, max) {
 			$('#create-game-button').find('*').addClass('ui-disabled');
 		}
 	}
+	function enableCreateLevelButton(){
+		$('#add-level-message').text("");
+		var addLevelMessage = $('<h2>Select tile from each gallery and enter eLearning link to enable \'Add Level\' button. Click on the \'Add Level\' button to add the level to the game</h2>');
+		$('#add-level-message').append(addLevelMessage);
+
+		var valid = "true";
+		var gameGallery3 = $('option:selected', $('#selectgame')).attr('gameGallery3');
+		var gameGallery4 = $('option:selected', $('#selectgame')).attr('gameGallery4');
+		if(gameGallery3 != ""){
+			if($('#selectedgamegallery3').find('*').hasClass("active")){
+				valid = "true";
+			}else{
+				valid = "false";
+			}
+		}
+		if(gameGallery4 != ""){
+			if($('#selectedgamegallery3').find('*').hasClass("active") && $('#selectedgamegallery4').find('*').hasClass("active")){
+				valid = "true";
+			}else{
+				valid = "false";
+			}
+		}
+		if($('#selectedgamegallery1').find('*').hasClass("active") && $('#selectedgamegallery2').find('*').hasClass("active") && valid == "true"){
+			$('#add-level-message').text("");
+			var addLevelMessage = $('<h2>Click on the \'Add Level\' button to add the level to the game</h2>');
+			$('#add-level-message').append(addLevelMessage);
+			$('#create-level-button').find('*').prop('disabled',false);
+			$('#create-level-button').find('*').removeClass('ui-disabled');
+		}else{
+			$('#add-level-message').text("");
+			var addLevelMessage = $('<h2>Select tile from each gallery and enter eLearning link to enable \'Add Level\' button</h2>');
+			$('#add-level-message').append(addLevelMessage);
+			$('#create-level-button').find('*').prop('disabled',true);
+			$('#create-level-button').find('*').addClass('ui-disabled');
+
+		}
+
+
+	}
 
 	function createGalleryList(data){
 		$('#select-gallery').children().remove();
@@ -560,6 +886,8 @@ function rand(min, max) {
 		$('#delete-button-gallery').find('*').addClass('ui-disabled');
 	}
 
+
+
 	function createGalleryList2(element, data){
 		$('#'+element).children().remove();
 		$('#'+element).append('<option value="'+ 0 +'" description="Select a gallery from the dropdown and click on \'Edit Gallery\' to edit the gallery tiles">--Select Gallery--</option>');
@@ -572,9 +900,34 @@ function rand(min, max) {
 		myselect[0].selectedIndex = 0;
 		myselect.selectmenu("refresh");
 	}
-	function getGalleryTiles(){
 
-		var galleryId = $('select[name=select-gallery]').val();
+	function createGamesList(data){
+		$('#selectgame').children().remove();
+		$('#selectgame').append('<option value="'+ 0 +'" description="Select a game from the dropdown and click on \'Edit Game\' to edit the game">--Select Game--</option>');
+		jsondata = JSON.parse(data);
+		$.each(jsondata, function(index, value) {
+			$('#selectgame').append('<option value="'+ value.gameId +'" description="'+value.gameDescription+'" gameGallery1="'+value.gallery1Id+'" gameGallery2="'+value.gallery2Id+'" gameGallery3="'+value.gallery3Id+'" gameGallery4="'+value.gallery4Id+'" gameConnection="'+value.connection1Id+'">' + value.gameName + '</option>');
+		});
+
+		var myselect1 = $("select#selectgame");
+		myselect1[0].selectedIndex = 0;
+		myselect1.selectmenu("refresh");
+
+		$('#game-description-message').text("");
+		var description = $('option:selected', $('#selectgame')).attr('description');
+		var gameDescMessage = $('<h2>'+description+'</h2>');
+		$('#game-description-message').append(gameDescMessage);
+		$('#edit-game-button').find('*').prop('disabled',true);
+		$('#edit-game-button').find('*').addClass('ui-disabled');
+
+		$('#delete-button-game').find('*').prop('disabled',true);
+		$('#delete-button-game').find('*').addClass('ui-disabled');
+
+	}
+
+	function getGalleryTiles(galleryId,galleryElement){
+
+		
 		formdata = false;
 		if (window.FormData) {
 			formdata = new FormData();
@@ -588,7 +941,34 @@ function rand(min, max) {
 				processData: false,
 				contentType: false,
 				success: function(data){
-					populateGallery(data);
+					populateGallery(galleryElement,data);
+				}
+			});
+		}
+	}
+
+		function changeConnection(){
+
+		formdata = false;
+		if (window.FormData) {
+			formdata = new FormData();
+		}
+		var gameId = $('select[name=selectgame]').val();
+		var connectionSrc = $('#changeconnection').find(".active").find(".imgfocus")[0].alt;
+		formdata.append("gameId",gameId);
+		formdata.append("connectionSrc",connectionSrc);
+		
+		if(formdata){
+			$.ajax({
+				url: "lib/database/update_connection.php",
+				type: "POST",
+				data: formdata,
+				processData: false,
+				contentType: false,
+				success: function(data){
+					$('#changeConnectionMessage').text("");
+					var changeConnectionMessage = $('<h2>Connection changed successfully</h2>');
+					$('#changeConnectionMessage').append(changeConnectionMessage);
 				}
 			});
 		}
@@ -610,6 +990,27 @@ function rand(min, max) {
 				contentType: false,
 				success: function(data){
 					populateConnections(element,data);
+				}
+			});
+		}
+	}
+
+		function getGameConnections(element,activeli){
+
+		formdata = false;
+		if (window.FormData) {
+			formdata = new FormData();
+		}
+		
+		if(formdata){
+			$.ajax({
+				url: "lib/database/get_connections.php",
+				type: "POST",
+				data: formdata,
+				processData: false,
+				contentType: false,
+				success: function(data){
+					populateGameConnections(element,activeli,data);
 				}
 			});
 		}
@@ -931,6 +1332,64 @@ function rand(min, max) {
 
 	}
 
+	function createLevel(){
+		
+		var eLearningLink = $.trim($('#newELearningLink')[0].value);
+		var gameId = $('select[name=selectgame]').val();
+		var gallery1src = $('#selectedgamegallery1').find(".active").find(".imgfocus")[0].alt;
+		var gallery2src = $('#selectedgamegallery2').find(".active").find(".imgfocus")[0].alt;
+
+		var gameGallery3 = $('option:selected', $('#selectgame')).attr('gameGallery3');
+		var gameGallery4 = $('option:selected', $('#selectgame')).attr('gameGallery4');
+		formdata = false;
+		if (window.FormData) {
+			formdata = new FormData();
+		}
+		formdata.append("gameId",gameId);
+		formdata.append("gallery1src",gallery1src);
+		formdata.append("gallery2src",gallery2src);
+		
+		if(gameGallery3 != ""){
+			var gallery3src = $('#selectedgamegallery3').find(".active").find(".imgfocus")[0].alt;
+			formdata.append("gallery3src",gallery3src);
+		}else{
+			formdata.append("gallery3src","");
+		}
+		if(gameGallery4 != ""){
+			var gallery4src = $('#selectedgamegallery4').find(".active").find(".imgfocus")[0].alt;
+			formdata.append("gallery4src",gallery4src);
+		}else{
+			formdata.append("gallery4src","");
+		}
+		formdata.append("eLearningLink",eLearningLink);
+		if(formdata){
+			$.ajax({
+				url: "lib/database/create_level.php",
+				type: "POST",
+				data: formdata,
+				processData: false,
+				contentType: false,
+				success: function(data){
+					$('#add-level-message').text("");
+					$('#selectedgamegallery1').find(".active").remove();
+					$('#selectedgamegallery2').find(".active").remove();
+					if(gameGallery3 != ""){
+					$('#selectedgamegallery3').find(".active").remove();
+					}
+					if(gameGallery4 != ""){
+					$('#selectedgamegallery4').find(".active").remove();
+					}
+					$('#create-level-button').find('*').prop('disabled',true);
+					$('#create-level-button').find('*').addClass('ui-disabled');
+					var createLevelMessage = $('<h2>New Level is added to the game.</h2>');
+					$('#add-level-message').append(createLevelMessage);
+
+				}
+			});
+		}
+
+	}
+
 	function addTiles(filesdata){
 		files = JSON.parse(filesdata);
 		$.each(files, function(index, value) {
@@ -941,11 +1400,12 @@ function rand(min, max) {
 		
 		
 	}
-	function populateGallery(filesdata){
+	function populateGallery(element, filesdata){
+		$('#'+element + ' ul').children().remove();
 		files = JSON.parse(filesdata);
 		$.each(files, function(index, value) {
 			var image1 = $('<li class="ui-widget-content ui-corner-tr piece"><a href="#"><img src="' + TEMP + value.tileSrc + '" alt="' +  value.tileSrc + '" width="94" height="68" id="piece-id-'+index+'" piece-id="' + index + '" piece-count="1" class="imgfocus"/></a></li>');
-			rand(0,1) ? $('#populategallery' + ' ul').prepend(image1) : $('#populategallery' + ' ul').append(image1);
+			rand(0,1) ? $('#'+element + ' ul').prepend(image1) : $('#'+element + ' ul').append(image1);
 		});
 
 		setGalleryWidth();
@@ -961,6 +1421,7 @@ function rand(min, max) {
 	}
 
 	function populateBadges(filesdata){
+		$('#populatebadges' + ' ul').children().remove();
 		files = JSON.parse(filesdata);
 		$.each(files, function(index, value) {
 			var image1 = $('<li class="ui-widget-content ui-corner-tr piece"><a href="#"><img src="' + TEMP + value.badgeSrc + '" alt="' +  value.badgeSrc + '" width="94" height="68" id="piece-id-'+index+'" piece-id="' + index + '" piece-count="1" class="imgfocus"/></a></li>');
@@ -985,11 +1446,26 @@ function rand(min, max) {
 		
 	}
 	function populateConnections(element, filesdata){
+		$('#'+element + ' ul').children().remove();
 		files = JSON.parse(filesdata);
 		length = files.length;
 		$.each(files, function(index, value) {
 			var image1 = $('<li class="ui-widget-content ui-corner-tr piece"><a href="#"><img src="' + TEMP + value.connectionSrc + '" alt="' +  value.connectionSrc + '" width="94" height="68" id="piece-id-'+index+'" piece-id="' + index + '" piece-count="1" class="imgfocus"/></a></li>');
 			rand(0,1) ? $('#'+element + ' ul').prepend(image1) : $('#'+element + ' ul').append(image1);
+		});
+		setGalleryWidth();
+	}
+
+	function populateGameConnections(element, activeli, filesdata){
+		$('#'+element + ' ul').children().remove();
+		files = JSON.parse(filesdata);
+		length = files.length;
+		$.each(files, function(index, value) {
+			var image1 = $('<li class="ui-widget-content ui-corner-tr piece"><a href="#"><img src="' + TEMP + value.connectionSrc + '" alt="' +  value.connectionSrc + '" width="94" height="68" id="piece-id-'+index+'" piece-id="' + index + '" piece-count="1" class="imgfocus"/></a></li>');
+			rand(0,1) ? $('#'+element + ' ul').prepend(image1) : $('#'+element + ' ul').append(image1);
+			if(value.connectionSrc == activeli){
+				image1.addClass('active');
+			}
 		});
 		setGalleryWidth();
 	}
@@ -1010,6 +1486,31 @@ function rand(min, max) {
 		var badgeWidth = $('#populatebadges').width();
 		$('#ulwrap-populatebadges').width(badgeWidth-75);
 		BADGESul.width((102 * BADGESul.children().length));
+
+		var gameGal1Width = $('#populategamegallery1').width();
+		$('#ulwrap-populategamegallery1').width(gameGal1Width-75);
+		GAMEGALLERY1ul.width((102 * GAMEGALLERY1ul.children().length));
+
+		var gameGal2Width = $('#populategamegallery2').width();
+		$('#ulwrap-populategamegallery2').width(gameGal2Width-75);
+		GAMEGALLERY2ul.width((102 * GAMEGALLERY2ul.children().length));
+
+		var gameGal3Width = $('#populategamegallery3').width();
+		$('#ulwrap-populategamegallery3').width(gameGal3Width-75);
+		GAMEGALLERY3ul.width((102 * GAMEGALLERY3ul.children().length));
+
+		var gameGal4Width = $('#populategamegallery4').width();
+		$('#ulwrap-populategamegallery4').width(gameGal4Width-75);
+		GAMEGALLERY4ul.width((102 * GAMEGALLERY4ul.children().length));
+
+	/*	var editLevelsWidth = $('#populateeditlevels').width();
+		$('#ulwrap-populateeditlevels').width(editLevelsWidth-75);
+		EDITLEVELSul.width((102 * EDITLEVELSul.children().length));*/
+
+		var changeConnectionWidth = $('#populatechangeconnection').width();
+		$('#ulwrap-populatechangeconnection').width(changeConnectionWidth-75);
+		CHANGECONNECTIONul.width((102 * CHANGECONNECTIONul.children().length));
+
 	}
 
 	function setGalleryHeight() {
@@ -1030,6 +1531,9 @@ function rand(min, max) {
 		//alert("height: " + myHeight);
 		var galHeight = myHeight*0.6;
 		var wrapperHeight = galHeight+110;
+	/*	$('#populateeditlevelswrapper').height(myHeight);
+		$('#populateeditlevels').height(wrapperHeight);
+		$('#populateeditlevels ul').height(galHeight);*/
 		
 		//var galWidth = myWidth-280;
 		

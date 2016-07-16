@@ -540,7 +540,7 @@
 					<fieldset class="ui-grid-b sideByside">
 						<div  class="ui-block-a">
 							<div id="populategallerywrapper">
-								<div id="populategallery" class="editgallery ui-helper-reset ui-helper-clearfix">
+								<div id="populategallery" class="gallery ui-helper-reset ui-helper-clearfix">
 									<h4 id="header-populategallery" class="ui-widget-header"></h4>
 									<span id="button-left-populategallery" class="button-left"><button data-icon="arrow-l" data-iconshadow="false" data-inline="false" data-mini="false" data-iconpos="notext" class="ui-icon-alt">&nbsp;</button></span>
 									<span id="ulwrap-populategallery">
@@ -585,7 +585,7 @@
 					<fieldset class="ui-grid-b sideByside">
 						<div  class="ui-block-a">
 							<div id="populateconnectionswrapper">
-								<div id="populateconnections" class="editconnection ui-helper-reset ui-helper-clearfix">
+								<div id="populateconnections" class="gallery ui-helper-reset ui-helper-clearfix">
 									<h4 id="header-populateconnections" class="ui-widget-header"></h4>
 									<span id="button-left-populateconnections" class="button-left"><button data-icon="arrow-l" data-iconshadow="false" data-inline="false" data-mini="false" data-iconpos="notext" class="ui-icon-alt">&nbsp;</button></span>
 									<span id="ulwrap-populateconnections">
@@ -654,7 +654,7 @@
 					<fieldset class="ui-grid-b sideByside">
 						<div  class="ui-block-a">
 							<div id="populatebadgeswrapper">
-								<div id="populatebadges" class="editbadge ui-helper-reset ui-helper-clearfix">
+								<div id="populatebadges" class="gallery ui-helper-reset ui-helper-clearfix">
 									<h4 id="header-populatebadges" class="ui-widget-header"></h4>
 									<span id="button-left-populatebadges" class="button-left"><button data-icon="arrow-l" data-iconshadow="false" data-inline="false" data-mini="false" data-iconpos="notext" class="ui-icon-alt">&nbsp;</button></span>
 									<span id="ulwrap-populatebadges">
@@ -688,7 +688,7 @@
 			<div data-role="content">
 				<ul data-role="listview" data-inset="true">
 					<li><a href="#creategames" id="creategameslink"><h3>Create Games</h3><p>Create new games</p></a></li>
-					<li><a href="#editgames" id="editgameslink"><h3>Edit Badges</h3><p>Edit existing games.</p></a></li>
+					<li><a href="#editgames" id="editgameslink"><h3>Edit Games</h3><p>Edit existing games.</p></a></li>
 				</ul>
 			</div>
 		</div>
@@ -697,90 +697,260 @@
 				<a href="#" data-icon="arrow-l" class="ui-btn-left" data-iconpos="notext"  data-rel="back">Home</a>
 				<h1>Create Games</h1>
 			</div>
-		<div data-role="content">
-			<div class="ui-content">
-				<fieldset class="ui-grid-c sideByside">
-					<div  class="ui-block-a">
-						<fieldset data-role="fieldcontain">
-							<label for="game-name">Game Name:</label>
-							<input name="game-name" id="game-name" value="" type="text">
-						</fieldset>
-					</div>
-				</fieldset>
-				<fieldset class="ui-grid-c sideByside">
-					<div  class="ui-block-a">
-						<fieldset data-role="fieldcontain">
-							<label for="game-desc">Description of the game:</label>
-							<input name="game-desc" id="game-desc" value="" type="text">
-						</fieldset>
-					</div>
-				</fieldset>
-				<fieldset class="ui-grid-c sideByside">
-					<div class="ui-block-a">
-						<fieldset data-role="fieldcontain">
-							<label for="gallerycount" class="select"> <p>Number of Galleries: </p></label>
-							<select name="gallerycount" id="gallerycount"></select>
-						</fieldset>
-					</div>
-				</fieldset>
-				<fieldset id="selectgallery1fieldset" class="hideElement ui-grid-c sideByside">
-					<div class="ui-block-a">
-						<fieldset data-role="fieldcontain">
-							<label for="selectgallery1" class="select"> <p>Select Gallery 1: </p></label>
-							<select name="selectgallery1" id="selectgallery1"></select>
-						</fieldset>
-					</div>
-				</fieldset>
-				<fieldset id="selectgallery2fieldset" class="hideElement ui-grid-c sideByside">
-					<div class="ui-block-a">
-						<fieldset data-role="fieldcontain">
-							<label for="selectgallery2" class="select"> <p>Select Gallery 2: </p></label>
-							<select name="selectgallery2" id="selectgallery2"></select>
-						</fieldset>
-					</div>
-				</fieldset>
-				<fieldset id="selectgallery3fieldset" class="hideElement ui-grid-c sideByside">
-					<div class="ui-block-a">
-						<fieldset data-role="fieldcontain">
-							<label for="selectgallery3" class="select"> <p>Select Gallery 3:: </p></label>
-							<select name="selectgallery3" id="selectgallery3"></select>
-						</fieldset>
-					</div>
-				</fieldset>
-				<fieldset id="selectgallery4fieldset" class="hideElement ui-grid-c sideByside">
-					<div class="ui-block-a">
-						<fieldset data-role="fieldcontain">
-							<label for="selectgallery4" class="select"> <p>Select Gallery 4: </p></label>
-							<select name="selectgallery4" id="selectgallery4"></select>
-						</fieldset>
-					</div>
-				</fieldset>
-				<fieldset id="selectconnection-fieldset" class="hideElement ui-grid-b sideByside">
-					<div  class="ui-block-a">
-						<div id="populateconnectionswrapper2">
-							<div id="populateconnections2" class="editconnection2 ui-helper-reset ui-helper-clearfix">
-								<h4 id="header-populateconnections2" class="ui-widget-header"></h4>
-								<span id="button-left-populateconnections2" class="button-left"><button data-icon="arrow-l" data-iconshadow="false" data-inline="false" data-mini="false" data-iconpos="notext" class="ui-icon-alt">&nbsp;</button></span>
-								<span id="ulwrap-populateconnections2">
-									<ul id="editconnection2">
-										<!-- Filled dynamically -->
-									</ul>
-								</span>
-								<span id="button-right-populateconnections2" class="button-right"><button data-icon="arrow-r" data-iconshadow="false" data-inline="false" data-mini="false" data-iconpos="notext" class="ui-icon-alt">&nbsp;</button></span>
+			<div data-role="content">
+				<div class="ui-content">
+					<fieldset class="ui-grid-c sideByside">
+						<div  class="ui-block-a">
+							<fieldset data-role="fieldcontain">
+								<label for="game-name">Game Name:</label>
+								<input name="game-name" id="game-name" value="" type="text">
+							</fieldset>
+						</div>
+					</fieldset>
+					<fieldset class="ui-grid-c sideByside">
+						<div  class="ui-block-a">
+							<fieldset data-role="fieldcontain">
+								<label for="game-desc">Description of the game:</label>
+								<input name="game-desc" id="game-desc" value="" type="text">
+							</fieldset>
+						</div>
+					</fieldset>
+					<fieldset class="ui-grid-c sideByside">
+						<div class="ui-block-a">
+							<fieldset data-role="fieldcontain">
+								<label for="gallerycount" class="select"> <p>Number of Galleries: </p></label>
+								<select name="gallerycount" id="gallerycount"></select>
+							</fieldset>
+						</div>
+					</fieldset>
+					<fieldset id="selectgallery1fieldset" class="hideElement ui-grid-c sideByside">
+						<div class="ui-block-a">
+							<fieldset data-role="fieldcontain">
+								<label for="selectgallery1" class="select"> <p>Select Gallery 1: </p></label>
+								<select name="selectgallery1" id="selectgallery1"></select>
+							</fieldset>
+						</div>
+					</fieldset>
+					<fieldset id="selectgallery2fieldset" class="hideElement ui-grid-c sideByside">
+						<div class="ui-block-a">
+							<fieldset data-role="fieldcontain">
+								<label for="selectgallery2" class="select"> <p>Select Gallery 2: </p></label>
+								<select name="selectgallery2" id="selectgallery2"></select>
+							</fieldset>
+						</div>
+					</fieldset>
+					<fieldset id="selectgallery3fieldset" class="hideElement ui-grid-c sideByside">
+						<div class="ui-block-a">
+							<fieldset data-role="fieldcontain">
+								<label for="selectgallery3" class="select"> <p>Select Gallery 3:: </p></label>
+								<select name="selectgallery3" id="selectgallery3"></select>
+							</fieldset>
+						</div>
+					</fieldset>
+					<fieldset id="selectgallery4fieldset" class="hideElement ui-grid-c sideByside">
+						<div class="ui-block-a">
+							<fieldset data-role="fieldcontain">
+								<label for="selectgallery4" class="select"> <p>Select Gallery 4: </p></label>
+								<select name="selectgallery4" id="selectgallery4"></select>
+							</fieldset>
+						</div>
+					</fieldset>
+					<fieldset id="selectconnection-fieldset" class="hideElement ui-grid-b sideByside">
+						<div  class="ui-block-a">
+							<div id="populateconnectionswrapper2">
+								<div id="populateconnections2" class="gallery ui-helper-reset ui-helper-clearfix">
+									<h4 id="header-populateconnections2" class="ui-widget-header"></h4>
+									<span id="button-left-populateconnections2" class="button-left"><button data-icon="arrow-l" data-iconshadow="false" data-inline="false" data-mini="false" data-iconpos="notext" class="ui-icon-alt">&nbsp;</button></span>
+									<span id="ulwrap-populateconnections2">
+										<ul id="editconnection2">
+											<!-- Filled dynamically -->
+										</ul>
+									</span>
+									<span id="button-right-populateconnections2" class="button-right"><button data-icon="arrow-r" data-iconshadow="false" data-inline="false" data-mini="false" data-iconpos="notext" class="ui-icon-alt">&nbsp;</button></span>
+								</div>
 							</div>
 						</div>
-					</div>
-				</fieldset>
-				<fieldset data-role="fieldcontain">
-					<div id="create-game-button">
-						<button id="button-create-game" data-inline="true">Create</button>
-					</div>
-				</fieldset>
-				<div id="create-game-message"></div>
+					</fieldset>
+					<fieldset data-role="fieldcontain">
+						<div id="create-game-button">
+							<button id="button-create-game" data-inline="true">Create</button>
+						</div>
+					</fieldset>
+					<div id="create-game-message"></div>
+				</div>
 			</div>
 		</div>
-		</div>
 
+		<div id="editgames" data-role="page" class="ui-helper-clearfix bodywrapper">
+			<div data-role="header" data-theme="b"> 
+				<a href="#" data-icon="arrow-l" class="ui-btn-left" data-iconpos="notext"  data-rel="back">Home</a>
+				<h1>Edit Games</h1>
+			</div>
+			<div data-role="content">
+				<div class="ui-content">
+					<fieldset class="ui-grid-c sideByside">
+						<div class="ui-block-a">
+							<fieldset data-role="fieldcontain">
+								<label for="selectgame" class="select"> <p>Select Game: </p></label>
+								<select name="selectgame" id="selectgame"></select>
+							</fieldset>
+						</div>
+						<div  class="ui-block-b">
+							<fieldset data-role="fieldcontain" class="ui-block-b">
+								<div id="edit-game-button">
+									<button id="button-edit-game" data-inline="true">Edit Game</button>
+								</div>
+								<div id="delete-button-game">
+									<button id="button-delete-game" data-inline="true">Delete Game</button>
+								</div>
+
+							</fieldset>
+						</div>
+					</fieldset>
+					<div id="game-description-message"></div>
+					<div id="editgamesection" class="hideElement">
+						<h2 id="addLevelsHeader">Add Levels</h2>
+						<fieldset id="gamegallery1-fieldset" class="ui-grid-b sideByside">
+							<div  class="ui-block-a">
+								<div id="populategamegallery1wrapper">
+									<div id="populategamegallery1" class="gallery ui-helper-reset ui-helper-clearfix">
+										<h4 id="header-populategamegallery1" class="ui-widget-header"></h4>
+										<span id="button-left-populategamegallery1" class="button-left"><button data-icon="arrow-l" data-iconshadow="false" data-inline="false" data-mini="false" data-iconpos="notext" class="ui-icon-alt">&nbsp;</button></span>
+										<span id="ulwrap-populategamegallery1">
+											<ul id="selectedgamegallery1">
+												<!-- Filled dynamically -->
+											</ul>
+										</span>
+										<span id="button-right-populategamegallery1" class="button-right"><button data-icon="arrow-r" data-iconshadow="false" data-inline="false" data-mini="false" data-iconpos="notext" class="ui-icon-alt">&nbsp;</button></span>
+									</div>
+								</div>
+							</div>
+						</fieldset>
+						<fieldset id="gamegallery2-fieldset" class="ui-grid-b sideByside">
+							<div  class="ui-block-a">
+								<div id="populategamegallery2wrapper">
+									<div id="populategamegallery2" class="gallery ui-helper-reset ui-helper-clearfix">
+										<h4 id="header-populategamegallery2" class="ui-widget-header"></h4>
+										<span id="button-left-populategamegallery2" class="button-left"><button data-icon="arrow-l" data-iconshadow="false" data-inline="false" data-mini="false" data-iconpos="notext" class="ui-icon-alt">&nbsp;</button></span>
+										<span id="ulwrap-populategamegallery2">
+											<ul id="selectedgamegallery2">
+												<!-- Filled dynamically -->
+											</ul>
+										</span>
+										<span id="button-right-populategamegallery2" class="button-right"><button data-icon="arrow-r" data-iconshadow="false" data-inline="false" data-mini="false" data-iconpos="notext" class="ui-icon-alt">&nbsp;</button></span>
+									</div>
+								</div>
+							</div>
+						</fieldset>
+						<fieldset id="gamegallery3-fieldset" class="ui-grid-b sideByside">
+							<div  class="ui-block-a">
+								<div id="populategamegallery3wrapper">
+									<div id="populategamegallery3" class="gallery ui-helper-reset ui-helper-clearfix">
+										<h4 id="header-populategamegallery3" class="ui-widget-header"></h4>
+										<span id="button-left-populategamegallery3" class="button-left"><button data-icon="arrow-l" data-iconshadow="false" data-inline="false" data-mini="false" data-iconpos="notext" class="ui-icon-alt">&nbsp;</button></span>
+										<span id="ulwrap-populategamegallery3">
+											<ul id="selectedgamegallery3">
+												<!-- Filled dynamically -->
+											</ul>
+										</span>
+										<span id="button-right-populategamegallery3" class="button-right"><button data-icon="arrow-r" data-iconshadow="false" data-inline="false" data-mini="false" data-iconpos="notext" class="ui-icon-alt">&nbsp;</button></span>
+									</div>
+								</div>
+							</div>
+						</fieldset>
+						<fieldset id="gamegallery4-fieldset" class="ui-grid-b sideByside">
+							<div  class="ui-block-a">
+								<div id="populategamegallery4wrapper">
+									<div id="populategamegallery4" class="gallery ui-helper-reset ui-helper-clearfix">
+										<h4 id="header-populategamegallery4" class="ui-widget-header"></h4>
+										<span id="button-left-populategamegallery4" class="button-left"><button data-icon="arrow-l" data-iconshadow="false" data-inline="false" data-mini="false" data-iconpos="notext" class="ui-icon-alt">&nbsp;</button></span>
+										<span id="ulwrap-populategamegallery4">
+											<ul id="selectedgamegallery4">
+												<!-- Filled dynamically -->
+											</ul>
+										</span>
+										<span id="button-right-populategamegallery4" class="button-right"><button data-icon="arrow-r" data-iconshadow="false" data-inline="false" data-mini="false" data-iconpos="notext" class="ui-icon-alt">&nbsp;</button></span>
+									</div>
+								</div>
+							</div>
+						</fieldset>
+						<fieldset class="ui-grid-c sideByside">
+							<div  class="ui-block-a">
+								<fieldset data-role="fieldcontain">
+									<label for="newELearningLink">eLearning Link:</label>
+									<input name="newELearningLink" id="newELearningLink" value="" type="text">
+								</fieldset>
+							</div>
+						</fieldset>
+
+						<fieldset data-role="fieldcontain">
+							<div id="create-level-button">
+								<button id="button-create-level" data-inline="true">Add Level</button>
+							</div>
+						</fieldset>
+						<div id="add-level-message"></div>
+						<h2 id="deleteLevelsHeader">Edit Levels</h2>
+						<fieldset id="editlevels-fieldset" class="ui-grid-b sideByside">
+							<div  class="ui-block-a">
+								<div id="populateeditlevelswrapper">
+									<div id="populateeditlevels" class="gallery ui-helper-reset ui-helper-clearfix">
+										<h4 id="header-populateeditlevels" class="ui-widget-header"></h4>
+										<span id="button-up-populateeditlevels" class="button-up"><button data-icon="arrow-u" data-iconshadow="false" data-inline="true" data-mini="false" data-iconpos="notext" class="ui-icon-alt">&nbsp;</button></span>
+										<span id="ulwrap-populateeditlevels">
+											<ul id="editlevels">
+												<!-- Filled dynamically -->
+											</ul>
+										</span>
+										<span id="button-down-populateeditlevels" class="button-down"><button data-icon="arrow-d" data-iconshadow="false" data-inline="true" data-mini="false" data-iconpos="notext" class="ui-icon-alt">&nbsp;</button></span>
+									</div>
+								</div>
+							</div>
+						</fieldset>
+						<fieldset class="ui-grid-c sideByside">
+							<div  class="ui-block-a">
+								<fieldset data-role="fieldcontain">
+									<label for="eLearningLink">eLearning Link:</label>
+									<input name="eLearningLink" id="eLearningLink" value="" type="text">
+
+									<div id="level-delete-button">
+										<button id="button-delete-level" data-inline="true">Delete Level</button>
+									</div>
+
+									<div id="save-level-button">
+										<button id="button-save-level" data-inline="true">Save</button>
+									</div>
+								</fieldset>
+							</div>
+						</fieldset>				
+						<h2 id="changeConnectionHeader">Change Connection</h2>
+						<fieldset id="changeconnection-fieldset" class="ui-grid-b sideByside">
+							<div  class="ui-block-a">
+								<div id="populatechangeconnectionwrapper">
+									<div id="populatechangeconnection" class="gallery ui-helper-reset ui-helper-clearfix">
+										<h4 id="header-populatechangeconnection" class="ui-widget-header"></h4>
+										<span id="button-left-populatechangeconnection" class="button-left"><button data-icon="arrow-l" data-iconshadow="false" data-inline="false" data-mini="false" data-iconpos="notext" class="ui-icon-alt">&nbsp;</button></span>
+										<span id="ulwrap-populatechangeconnection">
+											<ul id="changeconnection">
+												<!-- Filled dynamically -->
+											</ul>
+										</span>
+										<span id="button-right-changeconnection" class="button-right"><button data-icon="arrow-r" data-iconshadow="false" data-inline="false" data-mini="false" data-iconpos="notext" class="ui-icon-alt">&nbsp;</button></span>
+									</div>
+								</div>
+							</div>
+							<div  class="ui-block-b">
+								<fieldset data-role="fieldcontain" class="ui-block-b">
+									<div id="change-connection-button">
+										<button id="button-change-connection" data-inline="true">Set Connection</button>
+									</div>
+								</fieldset>
+							</div>
+						</fieldset>
+						<div id="changeConnectionMessage"></div>
+					</div>
+				</div>
+			</div>
+		</div>
 		<audio id="achievement_sound" src="data/badges/sound.wav" preload="auto"></audio>
 
 		<!-- The blueimp Gallery widget -->
