@@ -1,9 +1,5 @@
 <?php
-$conn = new mysqli("localhost:3308", "root", "root","sgf");
-if (mysqli_connect_errno()) {
-	printf("Connect failed: %s\n", mysqli_connect_error());
-	exit();
-}
+include 'config.php';
 $sql = "INSERT INTO game_galleries_connections (gameName, gameDescription, gallery1Id, gallery2Id, gallery3Id, gallery4Id, connection1Id, connection2Id, connection3Id) VALUES ";
 
 $gameName = $_POST['gameName'];

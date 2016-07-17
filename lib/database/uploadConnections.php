@@ -1,12 +1,6 @@
 <?php
-$conn = new mysqli("localhost:3308", "root", "root","sgf");
-if (mysqli_connect_errno()) {
-	printf("Connect failed: %s\n", mysqli_connect_error());
-	exit();
-}
+include 'config.php';
 $sql = "INSERT INTO connections (connectionName,connectionSrc) VALUES ";
-
-$path = "../../tmp/";
 $allowed = array('png', 'jpg', 'gif');
 $length = count($_FILES['uploadConnections']['name']);
 

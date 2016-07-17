@@ -1,11 +1,5 @@
 <?php
-$conn = new mysqli("localhost:3308", "root", "root","sgf");
-
-/* check connection */
-if (mysqli_connect_errno()) {
-    printf("Connect failed: %s\n", mysqli_connect_error());
-    exit();
-}
+include 'config.php';
 $query="CREATE TABLE IF NOT EXISTS levels(
 		id int(11) NOT NULL AUTO_INCREMENT,
 		gameId int(11) NOT NULL,
