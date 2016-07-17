@@ -88,14 +88,15 @@
 		  // google.setOnLoadCallback(drawChart);
 		</script>
 
-		<script src="data/games.json"></script>
+		<!-- <script src="data/games.json"></script>-->
 		<script src="data/connections.json"></script>
 		<script src="data/levels.json"></script>
 		<script src="data/pieces.json"></script>
-		<script src="data/tutorials.json"></script>
+		<script src="data/tutorials.json"></script> 
 
 		<!-- include own JavaScript library -->
-		<script type="text/javascript" src="assets/scripts/serious-game-framework.js"></script>
+		<script type="text/javascript" src="assets/scripts/loadData.js"></script>
+		<script type="text/javascript" src="assets/scripts/serious-game-framework-new.js"></script>
 		<script type="text/javascript" src="assets/scripts/serious-game-framework-game-designer.js"></script>
 
 		<!-- Configuration for mobile devices -->
@@ -110,8 +111,7 @@
 		<link rel="icon" href="assets/images/favicon.png" type="image/png">
 	</head>
 	<body>
-
-		<div id="home" data-role="page" class="ui-helper-clearfix bodywrapper">
+	<div id="home" data-role="page" class="ui-helper-clearfix bodywrapper">
 			<div data-role="header" data-theme="b">
 				<h1>Serious Game Framework</h1>
 				<a href="#options" data-icon="gear" class="ui-btn-right options-button" data-rel="dialog">Options</a>
@@ -128,12 +128,25 @@
 			</span>
 		</div>
 		<div data-role="content">
-			<ul data-role="listview" data-inset="true" class="gameslist">
+			<ul data-role="listview" data-inset="true" class="menulist">
+				<li><a href="#playgames" id="playgameslink"><h3>Play Games</h3><p>Tutorial and Games</p></a></li>
 				<!-- filled dynamically -->
 				<!-- <li><a href="#game" class="gamelink" game-id="0"><h3>Test</h3><p>Test.</p></a></li> -->
 			</ul>
 		</div>
 	</div>
+
+	<div id="playgames" data-role="page" class="ui-helper-clearfix bodywrapper">
+			<div data-role="header" data-theme="b">
+				<a href="#" data-icon="arrow-l" id="game-header-home" class="ui-btn-left" data-iconpos="notext"  data-rel="back">Home</a>	
+				<h1>Play Games</h1>
+			</div>
+			<div data-role="content">
+				<ul id="gameslistId" data-role="listview" data-inset="true" class="gameslist">
+					
+				</ul>
+			</div>
+		</div>
 
 	<div id="game" data-role="page" class="ui-helper-clearfix bodywrapper">
 		<div id="game-header" data-role="header" data-theme="b">
@@ -150,9 +163,9 @@
 							<td> </td>
 							<td><h4 id="header-slot1" class="ui-widget-header">Slot 2</h4></td>
 							<td> </td>
-							<td><h4 id="header-slot2" class="ui-widget-header">Slot 3</h4></td>
+							<td id="headerslot2td"><h4 id="header-slot2" class="ui-widget-header">Slot 3</h4></td>
 							<td> </td>
-							<td><h4 id="header-slot3" class="ui-widget-header">Slot 4</h4></td>
+							<td id="headerslot3td"><h4 id="header-slot3" class="ui-widget-header">Slot 4</h4></td>
 						</tr>
 						<tr>
 							<td>
@@ -981,7 +994,7 @@
 	      	'<p>Check your stats and badges!</p>' +
 	      	'</a>' +
 	      	'</li>');
-	      $('.gameslist').prepend(profile);
+	      $('.menulist').prepend(profile);
 
 	      var gamedesignerview =	$('<li>' +
 	      	'<a href="#gameDesignerView" id="gamedesignerlink">' +
@@ -989,9 +1002,9 @@
 	      	'<p>Create or Edit games!</p>' +
 	      	'</a>' +
 	      	'</li>');
-	      $('.gameslist').append(gamedesignerview);
+	      $('.menulist').append(gamedesignerview);
 
-	      $('.gameslist').listview('refresh');
+	      $('.menulist').listview('refresh');
 	      $('#profilelink').click(function() { showProfile() });
 	      startTracking();
 	  } else {
