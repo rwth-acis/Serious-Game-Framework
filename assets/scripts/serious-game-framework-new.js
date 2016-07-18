@@ -94,7 +94,7 @@ $(document).ready(function() {
 		$('#playgameslink').click(function() { 
 			$('.gameslist').empty();
 			fillGamesList(GAMESDATA);
-			$('.gameslist').listview("refresh");
+			
 		});
 
 		$(document).on('click', '.gamelink', function () {
@@ -356,6 +356,13 @@ $(document).ready(function() {
 			var game = $('<li><a href="#game" id="game-id-'+ data.gameId + '" game-id="' + data.gameId + '" gameIndex="' + i +'" class="gamelink"><h3>' + data.gameName + '</h3><p>' + data.gameDescription + '</p></a></li>');
 			$('.gameslist').append(game);
 		});
+
+		if ( $('.gameslist').hasClass('ui-listview')) {
+    		$('.gameslist').listview('refresh');
+     	} 
+		else {
+    		$('.gameslist').trigger('create');
+    	 }
 		//$('.gameslist').listview('refresh');
 	}
 

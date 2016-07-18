@@ -1,7 +1,9 @@
+
+
 var GAMESDATA;
 var GALLERYNAMES;
 //var GAMELEVELS;
-
+$(document).ready(function() {
 function getGamesList(){
 		$.ajax({
 			url: "lib/database/get_games.php",
@@ -52,3 +54,5 @@ function getGalleriesList(){
 getGamesList();	
 getGalleriesList();
 //getGameLevels(2);
+
+});	
