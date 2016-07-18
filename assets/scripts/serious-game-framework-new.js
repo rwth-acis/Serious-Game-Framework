@@ -502,7 +502,7 @@ $(document).ready(function() {
 	  		for(var i=0;i<NUMBER_OF_GALLERIES;i++){
 	  			var j = i+1;
 	  			var id= "gallery"+j+"src";
-	  			var image = $('<li class="ui-widget-content ui-corner-tr piece" draggable="true"><img src="' + TEMP + value[id] + '" alt="' +  value[id] + '" width="94" height="68" id="piece-id-0" piece-id="0" piece-count="1"/></li>');
+	  			var image = $('<li class="ui-widget-content ui-corner-tr piece" draggable="true"><img src="' + TEMP + value[id] + '" alt="' +  value[id] + '" width="94" height="68" id="piece-id-'+i+'" piece-id="' + i + '" piece-count="1"/></li>');
 	  			rand(0,1) ? $('#gallery' + i + ' ul').prepend(image) : $('#gallery' + i + ' ul').append(image);
 	  		}
 	  	});

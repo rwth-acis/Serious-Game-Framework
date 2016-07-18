@@ -24,7 +24,7 @@ body { list-style: none; }
 #populategamegallery2wrapper { position:relative; width:100%; left:0; top:0; right:0; }
 #populategamegallery3wrapper { position:relative; width:100%; left:0; top:0; right:0; }
 #populategamegallery4wrapper { position:relative; width:100%; left:0; top:0; right:0; }
-#populateeditlevelswrapper { position: relative;  width:100%; left:0; top:0; right:0; display: table-cell; }
+#populateeditlevelswrapper { position: relative;  width:100%; left:0; top:0; right:0; }
 #populatechangeconnectionwrapper { position:relative; width:100%; left:0; top:0; right:0; }
 
 .gallery { background-color:#dddddd; }
@@ -82,8 +82,9 @@ body { list-style: none; }
 #ulwrap-populategamegallery4 { overflow:hidden; width: 500px; float: left; }
 #populategamegallery4 ul { height: 100px; width: 500px; float: left; overflow:visible; }
 
-#populateeditlevels { position: relative; top: 15%; width: 120px; z-index: 1003; }
-#populateeditlevels ul { height: 200px; overflow: visible }
+#populateeditlevels { position: relative; top: 15%; width: 120px; z-index: 1002; height: 110px;}
+#ulwrap-populateeditlevels { overflow:hidden; width: 500px; float: left; }
+#populateeditlevels ul { height: 200px; overflow: visible; width: 500px; }
 
 #populatechangeconnection { height: 110px; margin:0 0px 0 0px; z-index: 1002 }
 #ulwrap-populatechangeconnection { overflow:hidden; width: 500px; float: left; }

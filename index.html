@@ -905,18 +905,73 @@
 						<h2 id="deleteLevelsHeader">Edit Levels</h2>
 						<fieldset id="editlevels-fieldset" class="ui-grid-b sideByside">
 							<div  class="ui-block-a">
-								<div id="populateeditlevelswrapper">
+							<!-- 	<div id="populateeditlevelswrapper">
 									<div id="populateeditlevels" class="gallery ui-helper-reset ui-helper-clearfix">
 										<h4 id="header-populateeditlevels" class="ui-widget-header"></h4>
 										<span id="button-up-populateeditlevels" class="button-up"><button data-icon="arrow-u" data-iconshadow="false" data-inline="true" data-mini="false" data-iconpos="notext" class="ui-icon-alt">&nbsp;</button></span>
 										<span id="ulwrap-populateeditlevels">
 											<ul id="editlevels">
-												<!-- Filled dynamically -->
+												
 											</ul>
 										</span>
 										<span id="button-down-populateeditlevels" class="button-down"><button data-icon="arrow-d" data-iconshadow="false" data-inline="true" data-mini="false" data-iconpos="notext" class="ui-icon-alt">&nbsp;</button></span>
 									</div>
+								</div> -->
+					<span id="editgameboard" levelNo="0" class="gameboard ui-widget-content">
+					<table class="slots ui-helper-reset">
+						<tr class="slotheader">
+							<td><h4 id="editheader-slot0" class="ui-widget-header">Slot 1</h4></td>
+							<td> </td>
+							<td><h4 id="editheader-slot1" class="ui-widget-header">Slot 2</h4></td>
+							<td> </td>
+							<td id="editheaderslot2td"><h4 id="editheader-slot2" class="ui-widget-header">Slot 3</h4></td>
+							<td> </td>
+							<td id="editheaderslot3td"><h4 id="editheader-slot3" class="ui-widget-header">Slot 4</h4></td>
+						</tr>
+						<tr>
+							<td>
+								<div id="editwrapperslot0" class="wrapperslot">
+									<ul id="editslot0" class="slot ui-widget-content ui-state-default">
+										<!-- Filled dynamically -->
+									</ul>
 								</div>
+							</td>
+							<td> </td>
+							<td>
+								<div id="editwrapperslot1" class="wrapperslot">
+									<ul id="editslot1" class="slot ui-widget-content ui-state-default">
+										<!-- Filled dynamically -->
+									</ul>
+								</div>
+							</td>
+							<td> </td>
+							<td>
+								<div id="editwrapperslot2" class="wrapperslot">
+									<ul id="editslot2" class="slot ui-widget-content ui-state-default">
+										<!-- Filled dynamically -->
+									</ul>
+								</div>
+							</td>
+							<td> </td>
+							<td>
+								<div id="editwrapperslot3" class="wrapperslot">
+									<ul id="editslot3" class="slot ui-widget-content ui-state-default">
+										<!-- Filled dynamically -->
+									</ul>
+								</div>
+							</td>
+							<td>
+								<div>
+									<button id="button-previous-level"  data-inline="true">Previous</button>	
+								</div>
+								<div id="next-level-button">
+									<button id="button-next-level"  data-inline="true">Next</button>
+								</div>
+								
+							</td>
+						</tr>
+					</table>
+				</span>
 							</div>
 						</fieldset>
 						<fieldset class="ui-grid-c sideByside">
@@ -932,6 +987,7 @@
 									<div id="save-level-button">
 										<button id="button-save-level" data-inline="true">Save</button>
 									</div>
+									<div id="editLevelMessage"></div>
 								</fieldset>
 							</div>
 						</fieldset>				

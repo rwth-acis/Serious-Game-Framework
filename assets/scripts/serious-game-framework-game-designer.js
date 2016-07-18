@@ -56,6 +56,8 @@ function rand(min, max) {
 		var GALLERYNAMES;
 		var GAMEGALLERYNAMES;
 		var GAMENAMES;
+		var GAMELEVELS;
+		var NUMBER_OF_GALLERIES;
 
 		$('.select').find('option').css("height","20px"); 
 
@@ -189,19 +191,19 @@ function rand(min, max) {
 
 
 		$('#button-down-populateeditlevels').bind('mousedown mouseup touchstart touchend', function(event){
-		if ((event.type == 'mousedown') || (event.type == 'touchstart')){
-			$('#populateeditlevels ul').animate({"scrollTop": "+=2000px"}, 3000, 'linear');
-		}else{
-			$('#populateeditlevels ul').stop();
-		}
+			if ((event.type == 'mousedown') || (event.type == 'touchstart')){
+				$('#populateeditlevels ul').animate({"scrollTop": "+=2000px"}, 3000, 'linear');
+			}else{
+				$('#populateeditlevels ul').stop();
+			}
 		});
 
 		$('#button-up-populateeditlevels').bind('mousedown mouseup touchstart touchend', function(event){
-		if ((event.type == 'mousedown') || (event.type == 'touchstart')){
-			$('#populateeditlevels ul').animate({"scrollTop": "-=2000px"}, 3000, 'linear');
-		}else{
-			$('#populateeditlevels ul').stop();
-		}
+			if ((event.type == 'mousedown') || (event.type == 'touchstart')){
+				$('#populateeditlevels ul').animate({"scrollTop": "-=2000px"}, 3000, 'linear');
+			}else{
+				$('#populateeditlevels ul').stop();
+			}
 		});
 
 		$('#button-right-populatechangeconnection').bind('mousedown mouseup touchstart touchend', function(event){
@@ -429,9 +431,9 @@ function rand(min, max) {
 	$('#selectedgamegallery1').on('click', 'li', function() { // id of clicked li by directly accessing DOMElement property
 		if($(this).hasClass("active")){
 			$(this).removeClass("active");
-			} else {
+		} else {
 			$(this).addClass("active");
-			}
+		}
 		$(this).siblings().removeClass("active");
 		enableCreateLevelButton();
 	});
@@ -440,7 +442,7 @@ function rand(min, max) {
 		//$('#create-gallery-message').text("");
 		if($(this).hasClass("active")){
 			$(this).removeClass("active");
-			} else {
+		} else {
 			$(this).addClass("active");
 		}
 		$(this).siblings().removeClass("active");
@@ -449,14 +451,14 @@ function rand(min, max) {
 
 	$('#selectedgamegallery3').on('click', 'li', function() { // id of clicked li by directly accessing DOMElement property
 	//	$('#create-gallery-message').text("");
-		if($(this).hasClass("active")){
-			$(this).removeClass("active");
-			} else {
-			$(this).addClass("active");
-		}
-			$(this).siblings().removeClass("active");
-			enableCreateLevelButton();
-	});
+	if($(this).hasClass("active")){
+		$(this).removeClass("active");
+	} else {
+		$(this).addClass("active");
+	}
+	$(this).siblings().removeClass("active");
+	enableCreateLevelButton();
+});
 
 	$('#selectedgamegallery4').on('click', 'li', function() { // id of clicked li by directly accessing DOMElement property
 		//$('#create-gallery-message').text("");
@@ -600,6 +602,8 @@ function rand(min, max) {
 
 	$('#button-edit-game').click(function() {
 		$('#add-level-message').text("");
+		$('#editLevelMessage').text("");
+		$('#editgameboard').attr("levelNo",0);
 		var addLevelMessage = $('<h2>Select tile from each gallery and enter eLearning link to enable \'Add Level\' button</h2>');
 		$('#add-level-message').append(addLevelMessage);
 		$('#editgamesection').removeClass('hideElement');
@@ -609,37 +613,98 @@ function rand(min, max) {
 		getGalleryTiles(gameGallery2,"populategamegallery2");
 		var gameGallery3 = $('option:selected', $('#selectgame')).attr('gameGallery3');
 		var gameGallery4 = $('option:selected', $('#selectgame')).attr('gameGallery4');
+		NUMBER_OF_GALLERIES = 2;
 		if(gameGallery3 !=""){
+			NUMBER_OF_GALLERIES = 3;
 			$('#gamegallery3-fieldset').removeClass('hideElement');
+			$('#editheaderslot2td').removeClass('hideElement');
+			$('#edithideslot2').removeClass('hideElement');
+			$('#editwrapperslot2').css("display","block");
 			getGalleryTiles(gameGallery3,"populategamegallery3");
 		}else{
 			$('#gamegallery3-fieldset').addClass('hideElement');
+			$('#editheaderslot2td').addClass('hideElement');
+			$('#edithideslot2').addClass('hideElement');
+			$('#editwrapperslot2').css("display","none");
 		}
 		if(gameGallery4 !=""){
+			NUMBER_OF_GALLERIES = 4;
 			$('#gamegallery4-fieldset').removeClass('hideElement');
+			$('#editheaderslot3td').removeClass('hideElement');
+			$('#edithideslot3').removeClass('hideElement');
+			$('#editwrapperslot3').css("display","block");
 			getGalleryTiles(gameGallery4,"populategamegallery4");
 		}else{
 			$('#gamegallery4-fieldset').addClass('hideElement');
+			$('#editheaderslot3td').addClass('hideElement');
+			$('#edithideslot3').addClass('hideElement');
+			$('#editwrapperslot3').css("display","none");
 		}	
 		$.each(GAMEGALLERYNAMES, function(index, value) {
-			if(gameGallery1 == value.galleryId){
-				$('#header-populategamegallery1').empty().append(value.galleryName);
+			for (var i = 1; i <= NUMBER_OF_GALLERIES; i++) {
+				var id= $('option:selected', $('#selectgame')).attr('gameGallery'+i);
+				var j = i-1;
+				if(id == value.galleryId){
+					$('#editheader-slot'+j).empty().append(value.galleryName);
+					$('#editheader-gallery'+j).empty().append(value.galleryName);
+					$('#header-populategamegallery'+i).empty().append(value.galleryName);
+				}
 			}
-			if(gameGallery2 == value.galleryId){
-				$('#header-populategamegallery2').empty().append(value.galleryName);
-			}
-			if(gameGallery3 == value.galleryId){
-				$('#header-populategamegallery3').empty().append(value.galleryName);
-			}
-			if(gameGallery4 == value.galleryId){
-				$('#header-populategamegallery4').empty().append(value.galleryName);
-			}
-		
+
 		});	
+		var gameId = $('select[name=selectgame]').val();
+		getGameLevels(gameId);
 		var activeConnection = $('option:selected', $('#selectgame')).attr('gameConnection');
 		getGameConnections("populatechangeconnection",activeConnection);	
 		
+	});
+	$('#button-next-level').click(function(){
+		changeLevels("next");
+	});
 
+	$('#button-previous-level').click(function(){
+		changeLevels("previous");
+	});
+
+	function changeLevels(direction){
+		$('#editLevelMessage').text("");
+		var level = $('#editgameboard').attr("levelNo");
+		var levelNo = parseInt(level);
+		var length = Object.keys(GAMELEVELS).length;
+		while(length != 0 && true){
+			if(direction == "previous"){
+			if(levelNo - 1 < 0 || levelNo > length){
+				levelNo = length;
+			}else{
+				levelNo = levelNo - 1;
+			}
+			}else if(direction == "next"){
+				if(levelNo + 1 > length || levelNo < 0){
+				levelNo = 0;
+			}else{
+				levelNo = levelNo + 1;
+			}
+			}
+			
+			if(GAMELEVELS.hasOwnProperty(levelNo)){
+				break;
+			}
+		}
+
+		$('#editgameboard').attr("levelNo",levelNo);
+		GetLevel(levelNo);
+	}
+
+	$('#button-delete-level').click(function(){
+		var level = $('#editgameboard').attr("levelNo");
+		var levelNo = parseInt(level);
+		deleteLevel(levelNo);
+	});
+
+	$('#button-save-level').click(function(){
+		var level = $('#editgameboard').attr("levelNo");
+		var levelNo = parseInt(level);
+		saveLevel(levelNo);
 	});
 
 	function getGalleriesList(){
@@ -655,6 +720,27 @@ function rand(min, max) {
 					}
 				}
 			});
+	}
+
+	function getGameLevels(gameId){
+		formdata = false;
+		if (window.FormData) {
+			formdata = new FormData();
+		}
+		
+		formdata.append("gameId",gameId);
+		$.ajax({
+			url: "lib/database/get_game_levels.php",
+			type: "POST",
+			data: formdata,
+			processData: false,
+			contentType: false,
+			success: function(data){
+
+				GAMELEVELS = JSON.parse(data);
+				GetLevel(0);
+			}
+		});
 	}
 
 	function getGalleriesList2(element){
@@ -678,9 +764,9 @@ function rand(min, max) {
 			type: "GET",
 			contentType: false,
 			success: function(data){
-					GAMEGALLERYNAMES = JSON.parse(data);
-				}
-			});
+				GAMEGALLERYNAMES = JSON.parse(data);
+			}
+		});
 	}
 
 	function getGamesList(){
@@ -947,7 +1033,7 @@ function rand(min, max) {
 		}
 	}
 
-		function changeConnection(){
+	function changeConnection(){
 
 		formdata = false;
 		if (window.FormData) {
@@ -995,7 +1081,7 @@ function rand(min, max) {
 		}
 	}
 
-		function getGameConnections(element,activeli){
+	function getGameConnections(element,activeli){
 
 		formdata = false;
 		if (window.FormData) {
@@ -1085,6 +1171,57 @@ function rand(min, max) {
 					var connectionSavedMessage = $('<h2>Changes to the connections are saved successfully!</h2>');
 					$('#connection-saved-message').append(connectionSavedMessage);
 
+				}
+			});
+		}
+
+	}
+
+	function deleteLevel(levelNo){
+		formdata = false;
+		if (window.FormData) {
+			formdata = new FormData();
+		}
+
+		formdata.append("id", GAMELEVELS[levelNo]["id"]);
+		if(formdata){
+			$.ajax({
+				url: "lib/database/deleteLevel.php",
+				type: "POST",
+				data: formdata,
+				processData: false,
+				contentType: false,
+				success: function(data){
+					clearSlots();
+					var editLevelMessage = $('<h2>Level deleted successfully!</h2>');
+					delete GAMELEVELS[levelNo];
+					changeLevels("next");
+					$('#editLevelMessage').append(editLevelMessage);
+				}
+			});
+		}
+
+	}
+
+	function saveLevel(levelNo){
+		formdata = false;
+		if (window.FormData) {
+			formdata = new FormData();
+		}
+
+		formdata.append("id", GAMELEVELS[levelNo]["id"]);
+		formdata.append("eLearningLink",$.trim($('#eLearningLink')[0].value));
+		if(formdata){
+			$.ajax({
+				url: "lib/database/updateLevel.php",
+				type: "POST",
+				data: formdata,
+				processData: false,
+				contentType: false,
+				success: function(data){
+					GAMELEVELS[levelNo]["eLearningLink"] = $.trim($('#eLearningLink')[0].value);
+					var editLevelMessage = $('<h2>Level saved successfully!</h2>');
+					$('#editLevelMessage').append(editLevelMessage);
 				}
 			});
 		}
@@ -1374,16 +1511,17 @@ function rand(min, max) {
 					$('#selectedgamegallery1').find(".active").remove();
 					$('#selectedgamegallery2').find(".active").remove();
 					if(gameGallery3 != ""){
-					$('#selectedgamegallery3').find(".active").remove();
+						$('#selectedgamegallery3').find(".active").remove();
 					}
 					if(gameGallery4 != ""){
-					$('#selectedgamegallery4').find(".active").remove();
+						$('#selectedgamegallery4').find(".active").remove();
 					}
 					$('#create-level-button').find('*').prop('disabled',true);
 					$('#create-level-button').find('*').addClass('ui-disabled');
 					var createLevelMessage = $('<h2>New Level is added to the game.</h2>');
 					$('#add-level-message').append(createLevelMessage);
-
+					
+					getGameLevels(gameId);
 				}
 			});
 		}
@@ -1410,6 +1548,31 @@ function rand(min, max) {
 
 		setGalleryWidth();
 	}
+
+	function GetLevel(index){
+
+		if(GAMELEVELS.hasOwnProperty(index)){
+			for(var i=0;i<NUMBER_OF_GALLERIES;i++){
+				var j = i+1;
+				var id= "gallery"+j+"src";
+				var image = $('<li class="ui-widget-content ui-corner-tr piece"><img src="' + TEMP + GAMELEVELS[index][id] + '" alt="' +  GAMELEVELS[index][id] + '" width="94" height="68" id="piece-id-'+i+'" piece-id="' + i + '" piece-count="1" class="imgfocus"/></li>');
+				var slot = $('#editslot' + i);
+				slot.children().remove();
+				image.appendTo(slot);
+			}
+			$('#eLearningLink')[0].value = GAMELEVELS[index]["eLearningLink"];	
+		}
+	}
+
+	function clearSlots(){
+		for(var i=0;i<NUMBER_OF_GALLERIES;i++){
+			var slot = $('#editslot' + i);
+			slot.children().remove();
+
+		}
+		$('#eLearningLink')[0].value = "";	
+	}
+
 
 	function addBadge(filesdata){
 		files = JSON.parse(filesdata);
