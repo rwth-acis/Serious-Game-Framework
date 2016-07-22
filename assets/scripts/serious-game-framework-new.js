@@ -34,6 +34,7 @@ var LEVELSDONE = [];
 var CURRENTLEVEL = -1;
 var SELECTEDITEMS = [];
 var GAMESTATE = "leveldone";
+var GAMEINDEX;
 
 // TODO MARKO add real oidc_userinfo
 var oidc_userinfo = {name: "Marko Kajzer", preferred_username: "marko.kajzer", email: "marko.kajzer@hotmail.de"};
@@ -509,7 +510,7 @@ $(document).ready(function() {
 	  		for(var i=0;i<NUMBER_OF_GALLERIES;i++){
 	  			var j = i+1;
 	  			var id= "gallery"+j+"src";
-	  			var image = $('<li class="ui-widget-content ui-corner-tr piece" draggable="true"><img src="' + TEMP + value[id] + '" alt="' +  value[id] + '" width="94" height="68" id="piece-id-'+i+'" piece-id="' + i + '" piece-count="1"/></li>');
+	  			var image = $('<li class="ui-widget-content ui-corner-tr piece" draggable="true"><img src="' + TEMP + value[id] + '" alt="' +  value[id] + '" width="94" height="68" id="piece-id-'+i+'" piece-id="' + value[id] + '" piece-count="1"/></li>');
 	  			rand(0,1) ? $('#gallery' + i + ' ul').prepend(image) : $('#gallery' + i + ' ul').append(image);
 	  		}
 	  	});
@@ -622,7 +623,7 @@ $(document).ready(function() {
 	}
 	
 	function addToSelectedItems(piece, slotID) {
-		var pieceID = parseInt($("img", piece).attr('piece-id'));
+		var pieceID = $("img", piece).attr('piece-id');
 		//var arrEntry = new Object();
 		//arrEntry["piece"] = pieceID;
 		//arrEntry["slot"] = slotID;
@@ -631,7 +632,7 @@ $(document).ready(function() {
 	}
 	
 	function deleteFromSelectedItems(piece, slotID) {
-		var pieceID = parseInt($("img", piece).attr('piece-id'));
+		var pieceID = $("img", piece).attr('piece-id');
 		//var arrEntry = new Object();
 		//arrEntry["piece"] = pieceID;
 		//arrEntry["slot"] = slotID;
@@ -817,8 +818,10 @@ $(document).ready(function() {
 					var tmpPieceID = subSets[i][k][0];
 					var tmpSlotID = subSets[i][k][1];
 					
-					if (LEVELDATA[levelID].game_id == GAMEID) {
-						if (LEVELDATA[levelID].pieces[tmpSlotID] != tmpPieceID) {
+					if (GAMELEVELS[levelID].gameId == GAMEID) {
+						var m = tmpSlotID + 1;
+						var id= "gallery"+m+"src";
+						if (GAMELEVELS[levelID][id] != tmpPieceID) {
 							levelfits = false;
 						}
 					} else {
@@ -855,7 +858,9 @@ $(document).ready(function() {
 		
 		if (oldLevel > -1) {
 			for (var i = 0; i < NUMBER_OF_GALLERIES; i++) {
-				if (LEVELDATA[oldLevel].pieces[i] == p[i]) {
+				var j = i + 1;
+				var id= "gallery"+j+"src";
+				if (GAMELEVELS[oldLevel][id] == p[i]) {
 					oldMatching++;
 				}
 			}
@@ -866,13 +871,15 @@ $(document).ready(function() {
 		
 		//alert("oldMatching: " + bestMatching);
 		
-		$.each(LEVELDATA, function(j, data) {
+		$.each(GAMELEVELS, function(j, data) {
 			// i: levelID
 			// data: level data
 			if (data.game_id == GAMEID) {
 				var tmpMatching = 0;
 				for (var i = 0; i < NUMBER_OF_GALLERIES; i++) {
-					if (LEVELDATA[j].pieces[i] == p[i]) {
+					var k = i + 1;
+					var id= "gallery"+k+"src";
+					if (GAMELEVELS[j][id] == p[i]) {
 						tmpMatching++;
 					}
 				}
@@ -960,14 +967,16 @@ $(document).ready(function() {
 					var pieceID;
 					do {
 						slotID = rand(0,3);
-						pieceID = LEVELDATA[CURRENTLEVEL].pieces[slotID];
+						var k = slotID + 1;
+						var id= "gallery"+k+"src";
+						pieceID = GAMELEVELS[CURRENTLEVEL][id];
 							//alert(CURRENTLEVEL + " - " + slotID + " - " + pieceID);
 						} while (pieceID < 0);
 						
 						var slot =  $('#slot' + slotID);
 						var gallery = $('#gallery' + slotID);
 						var list = $( "li", slot );
-						var piece = $('img[piece-id=' + pieceID + ']', '#gallery' + slotID + ' ul').parent();
+						var piece = $('img[piece-id="' + pieceID + '"]', '#gallery' + slotID + ' ul').parent();
 						
 						movePieceToSlot( piece, slotID, slotID )
 						//alert("blockSlot2: " + slot.attr('id'));
@@ -1003,10 +1012,11 @@ $(document).ready(function() {
 			var number_of_connections = NUMBER_OF_GALLERIES - 1;
 			if (CURRENTLEVEL > -1) {
 				for (var i = 0; i < number_of_connections; i++) {
-					var c = LEVELDATA[CURRENTLEVEL].connections[i];
+					//var c = GAMELEVELS[CURRENTLEVEL].connections[i];
+					c = 1;
 				//alert(c);
 				if (c > -1) {
-					var connection = $('<img src="' + UPLOADPATH + CONNECTIONSDATA[c].src + '" alt="' + CONNECTIONSDATA[c].description + '" width="32" height="32" connection-id="' + c + '" />');
+					var connection = $('<img src="' + TEMP + GAMESDATA[GAMEINDEX].connection1Id+ '" alt="' + GAMESDATA[GAMEINDEX].connection1Id + '" width="32" height="32" connection-id="' + c + '" />');
 					$('#connection' + i).append(connection);
 				}
 			}
@@ -1016,7 +1026,9 @@ $(document).ready(function() {
 	function blockUnusedSlots() {
 		if (CURRENTLEVEL > -1) {
 			for (var i = 0; i < NUMBER_OF_GALLERIES; i++) {
-				if (LEVELDATA[CURRENTLEVEL].pieces[i] < 0) {
+				var k = i + 1;
+				var id= "gallery"+k+"src";
+				if (GAMELEVELS[CURRENTLEVEL][id] < 0) {
 					var block = function(j){
 						//alert("blockSlot3: Slot" + j);
 						blockSlot($('#slot' + j), true);
@@ -1029,7 +1041,9 @@ $(document).ready(function() {
 	function moveUnfittingPiecesBack() {
 		if (CURRENTLEVEL > -1) {
 			for (var i = 0; i < NUMBER_OF_GALLERIES; i++) {
-				if (LEVELDATA[CURRENTLEVEL].pieces[i] < 0) {
+				var k = i + 1;
+				var id= "gallery"+k+"src";
+				if (GAMELEVELS[CURRENTLEVEL][id] < 0) {
 					var piece = $('li', '#slot' + i);
 					if (piece.length) {
 						var move = function(j, p){
@@ -1069,8 +1083,8 @@ $(document).ready(function() {
 					$('#level-verification-revealed').show();
 					$('#elearning').empty();
 					$('#elearning').fadeIn();
-					if (LEVELDATA[l].elearning) {
-						$('#elearning').append('<a href="' + LEVELDATA[l].elearning + '" target="_blank">E-Learning Link</a>');
+					if (GAMELEVELS[l]["eLearningLink"]) {
+						$('#elearning').append('<a href="' + GAMELEVELS[l]["eLearningLink"] + '" target="_blank">E-Learning Link</a>');
 					}
 
 					GAMESTATE = "leveldone";
@@ -1117,7 +1131,9 @@ $(document).ready(function() {
 					var levelStructure = true;
 					
 					for (var i = 0; i < NUMBER_OF_GALLERIES; i++) {
-						if ((LEVELDATA[l].pieces[i] > -1) != (p[i] > -1)) {
+						var j = i + 1;
+						var id= "gallery"+j+"src";
+						if ((GAMELEVELS[l][id] != "") != (p[i] != undefined)) {
 							levelStructure = false;
 						}
 					}
@@ -1127,7 +1143,9 @@ $(document).ready(function() {
 						//alert("Structure OK");
 						var check = "true";
 						for(var i=0;i<NUMBER_OF_GALLERIES;i++){
-							if(!(LEVELDATA[l].pieces[i] == p[i]) || (LEVELDATA[l].pieces[i] == -1)){
+							var j = i + 1;
+							var id= "gallery"+j+"src";
+							if(!(GAMELEVELS[l][id]== p[i]) || (GAMELEVELS[l][id] == "")){
 								check = "false";
 							}
 						}
@@ -1141,8 +1159,8 @@ $(document).ready(function() {
 					$('#wrapper-level-tutorial').fadeOut();
 					$('#elearning').empty();
 					$('#elearning').fadeIn();
-					if (LEVELDATA[l].elearning) {
-						$('#elearning').append('<a href="' + LEVELDATA[l].elearning + '" target="_blank">E-Learning Link</a>');
+					if (GAMELEVELS[l]["eLearningLink"]) {
+						$('#elearning').append('<a href="' + GAMELEVELS[l]["eLearningLink"] + '" target="_blank">E-Learning Link</a>');
 					}
 
 					if (!correct) {
@@ -1170,9 +1188,11 @@ $(document).ready(function() {
 						}
 						for (var i = 0; i < NUMBER_OF_GALLERIES; i++) {
 							var slot = $('#slot' + i);
-							if (LEVELDATA[l].pieces[i] > -1) {
+							var j = i + 1;
+							var id= "gallery"+j+"src";
+							if (GAMELEVELS[l][id] != "") {
 								if (!slot.hasClass('slot-blocked')) {
-									if (LEVELDATA[l].pieces[i] == p[i]) {
+									if (GAMELEVELS[l][id] == p[i]) {
 										setSlotColor(slot,"green");
 									} else {
 										setSlotColor(slot,"red");
@@ -1181,7 +1201,7 @@ $(document).ready(function() {
 							}
 							var slotPieceID = $('img', slot).attr('piece-id');
 							if (slotPieceID) {
-								var piece = $('img[piece-id=' + slotPieceID + ']', slot).parent().attr("testattr","hier");
+								var piece = $('img[piece-id="' + slotPieceID + '"]', slot).parent().attr("testattr","hier");
 								var block = function(p) {
 									blockPiece(p);
 								}(piece);
@@ -1252,8 +1272,10 @@ $(document).ready(function() {
 					var move = function(j, level, p, s){
 						movePieceToGallery( p, j );
 						unblockPiece(p);
-						pieceID = LEVELDATA[level].pieces[j];
-						var piece2 = $('img[piece-id=' + pieceID + ']', '#gallery' + j + ' ul').parent();
+						var k = j + 1;
+						var id= "gallery"+k+"src";
+						pieceID = GAMELEVELS[level][id];
+						var piece2 = $('img[piece-id="' + pieceID + '"]', '#gallery' + j + ' ul').parent();
 						movePieceToSlot( piece2, j, j );
 						blockSlot(s, false);
 						blockPiece(piece2);
@@ -1288,9 +1310,11 @@ $(document).ready(function() {
 				var slot = $('#slot' + i);
 				var piece = $('li', '#slot' + i);
 				blockPiece(piece);
-				if (LEVELDATA[l].pieces[i] > -1) {
+				var k = i + 1;
+				var id= "gallery"+k+"src";
+				if (GAMELEVELS[l][id] != "") {
 					if (!slot.hasClass('slot-blocked')) {
-						if (LEVELDATA[l].pieces[i] == selected[i]) {
+						if (GAMELEVELS[l][id] == selected[i]) {
 							setSlotColor(slot,"green");
 							//alert("piece in slot" + i + " is now green");
 						} else {
@@ -1304,12 +1328,15 @@ $(document).ready(function() {
 				if (slot.hasClass('slot-red')) {
 					var move = function(j, level, p, s){
 						//unblockSlot(s);
-						if (selected[i] > -1) {
+						if (selected[i] != "") {
 							movePieceToGallery( p, j );
 						}
 						unblockPiece(p);
-						pieceID = LEVELDATA[level].pieces[j];
-						var piece2 = $('img[piece-id=' + pieceID + ']', '#gallery' + j + ' ul').parent();
+						var k = j + 1;
+						var id= "gallery"+k+"src";
+						pieceID = GAMELEVELS[level][id];
+						//pieceID = LEVELDATA[level].pieces[j];
+						var piece2 = $('img[piece-id="' + pieceID + '"]', '#gallery' + j + ' ul').parent();
 						movePieceToSlot( piece2, j, j );
 						blockSlot(s, false);
 						blockPiece(piece2);
@@ -1509,8 +1536,9 @@ insertExperience = function() {
 insertPlayerStatistics = function() {
 	// Insert SelectOptions for each game besides Tutorial
 	$.each(GAMESDATA, function(i, game) {
-		if(game.name !== 'Tutorial') {
-			$('#stats-game-select').append('<option value="'+ i +'">' + game.name + '</option>');
+		var game_name = GAMESDATA[i].gameName.toLowerCase();
+		if(game_name !== 'Tutorial') {
+			$('#stats-game-select').append('<option value="'+ i +'">' + game_name + '</option>');
 		}
 	});
 
