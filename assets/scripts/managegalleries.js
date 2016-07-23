@@ -193,10 +193,11 @@ function rand(min, max) {
 		$('#select-gallery').children().remove();
 		$('#select-gallery').append('<option value="'+ 0 +'" description="Select a gallery from the dropdown and click on \'Edit Gallery\' to edit the gallery tiles">--Select Gallery--</option>');
 		jsondata = JSON.parse(data);
-		$.each(jsondata, function(index, value) {
-			$('#select-gallery').append('<option value="'+ value.galleryId +'" description="'+value.galleryDescription+'">' + value.galleryName + '</option>');
-		});
-
+		if(jsondata != null){
+			$.each(jsondata, function(index, value) {
+				$('#select-gallery').append('<option value="'+ value.galleryId +'" description="'+value.galleryDescription+'">' + value.galleryName + '</option>');
+			});
+		}
 		var myselect = $("select#select-gallery");
 		myselect[0].selectedIndex = 0;
 		myselect.selectmenu("refresh");
@@ -353,24 +354,27 @@ function rand(min, max) {
 
 	function addTiles(filesdata){
 		files = JSON.parse(filesdata);
-		$.each(files, function(index, value) {
-			var image1 = $('<li class="ui-widget-content ui-corner-tr piece"><a href="#"><img src="' + TEMP + value + '" alt="' +  value + '" width="94" height="68" id="piece-id-'+index+'" piece-id="' + index + '" piece-count="1" class="imgfocus"/></a></li>');
-			rand(0,1) ? $('#populategallery' + ' ul').prepend(image1) : $('#populategallery' + ' ul').append(image1);
-		});
-		setGalleryWidth();
-
+		if(files != null){
+			$.each(files, function(index, value) {
+				var image1 = $('<li class="ui-widget-content ui-corner-tr piece"><a href="#"><img src="' + TEMP + value + '" alt="' +  value + '" width="94" height="68" id="piece-id-'+index+'" piece-id="' + index + '" piece-count="1" class="imgfocus"/></a></li>');
+				rand(0,1) ? $('#populategallery' + ' ul').prepend(image1) : $('#populategallery' + ' ul').append(image1);
+			});
+			setGalleryWidth();
+		}
 
 	}
 
 	function populateGallery(element, filesdata){
 		$('#'+element + ' ul').children().remove();
 		files = JSON.parse(filesdata);
-		$.each(files, function(index, value) {
-			var image1 = $('<li class="ui-widget-content ui-corner-tr piece"><a href="#"><img src="' + TEMP + value.tileSrc + '" alt="' +  value.tileSrc + '" width="94" height="68" id="piece-id-'+index+'" piece-id="' + index + '" piece-count="1" class="imgfocus"/></a></li>');
-			rand(0,1) ? $('#'+element + ' ul').prepend(image1) : $('#'+element + ' ul').append(image1);
-		});
+		if(files != null){
+			$.each(files, function(index, value) {
+				var image1 = $('<li class="ui-widget-content ui-corner-tr piece"><a href="#"><img src="' + TEMP + value.tileSrc + '" alt="' +  value.tileSrc + '" width="94" height="68" id="piece-id-'+index+'" piece-id="' + index + '" piece-count="1" class="imgfocus"/></a></li>');
+				rand(0,1) ? $('#'+element + ' ul').prepend(image1) : $('#'+element + ' ul').append(image1);
+			});
 
-		setGalleryWidth();
+			setGalleryWidth();
+		}
 	}
 
 

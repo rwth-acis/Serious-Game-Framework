@@ -199,22 +199,26 @@ function uploadBadge(){
 
 function addBadge(filesdata){
 	files = JSON.parse(filesdata);
-	$.each(files, function(index, value) {
-		var image1 = $('<li class="ui-widget-content ui-corner-tr piece"><a href="#"><img src="' + TEMP + value + '" alt="' +  value + '" width="94" height="68" id="piece-id-'+index+'" piece-id="' + index + '" piece-count="1" class="imgfocus"/></a></li>');
-		rand(0,1) ? $('#populatebadges' + ' ul').prepend(image1) : $('#populatebadges' + ' ul').append(image1);
-	});
-	setGalleryWidth();
+	if(files != null){
+		$.each(files, function(index, value) {
+			var image1 = $('<li class="ui-widget-content ui-corner-tr piece"><a href="#"><img src="' + TEMP + value + '" alt="' +  value + '" width="94" height="68" id="piece-id-'+index+'" piece-id="' + index + '" piece-count="1" class="imgfocus"/></a></li>');
+			rand(0,1) ? $('#populatebadges' + ' ul').prepend(image1) : $('#populatebadges' + ' ul').append(image1);
+		});
+		setGalleryWidth();
+	}
 }
 
 function populateBadges(filesdata){
 	$('#populatebadges' + ' ul').children().remove();
 	files = JSON.parse(filesdata);
-	$.each(files, function(index, value) {
-		var image1 = $('<li class="ui-widget-content ui-corner-tr piece"><a href="#"><img src="' + TEMP + value.badgeSrc + '" alt="' +  value.badgeSrc + '" width="94" height="68" id="piece-id-'+index+'" piece-id="' + index + '" piece-count="1" class="imgfocus"/></a></li>');
-		rand(0,1) ? $('#populatebadges' + ' ul').prepend(image1) : $('#populatebadges' + ' ul').append(image1);
-	});
+	if(files != null){
+		$.each(files, function(index, value) {
+			var image1 = $('<li class="ui-widget-content ui-corner-tr piece"><a href="#"><img src="' + TEMP + value.badgeSrc + '" alt="' +  value.badgeSrc + '" width="94" height="68" id="piece-id-'+index+'" piece-id="' + index + '" piece-count="1" class="imgfocus"/></a></li>');
+			rand(0,1) ? $('#populatebadges' + ' ul').prepend(image1) : $('#populatebadges' + ' ul').append(image1);
+		});
 
-	setGalleryWidth();
+		setGalleryWidth();
+	}
 }
 
 function setGalleryWidth() {

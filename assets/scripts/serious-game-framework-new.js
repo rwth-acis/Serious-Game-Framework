@@ -94,7 +94,9 @@ $(document).ready(function() {
 		
 		$('#playgameslink').click(function() { 
 			$('.gameslist').empty();
-			fillGamesList(GAMESDATA);
+			if(GAMESDATA != null){
+				fillGamesList(GAMESDATA);
+			}
 			
 		});
 
@@ -348,7 +350,8 @@ $(document).ready(function() {
 	}
 	
 	function fillGamesList(gamesData) {
-		$.each(gamesData, function(i, data) {
+		if(gamesData != null){
+			$.each(gamesData, function(i, data) {
 			// i: gameID
 			// data: gameData
 			//alert(i + " - " + data.name);
@@ -358,27 +361,28 @@ $(document).ready(function() {
 			$('.gameslist').append(game);
 		});
 
-		if ( $('.gameslist').hasClass('ui-listview')) {
-    		$('.gameslist').listview('refresh');
-     	} 
-		else {
-    		$('.gameslist').trigger('create');
-    	 }
+			if ( $('.gameslist').hasClass('ui-listview')) {
+				$('.gameslist').listview('refresh');
+			} 
+			else {
+				$('.gameslist').trigger('create');
+			}
 		//$('.gameslist').listview('refresh');
 	}
+}
 
-	function loadGame(gameIndex, gameID) {
-		if (gameIndex > -1) {
-			$('#wrapper-level-tutorial').fadeOut();
-			$('#wrapper-back-main').fadeOut();
-			$('#wrapper-showme').fadeOut();
-			$('#wrapper-next').fadeOut();
-			$('#elearning').empty();
-			$('#elearning').fadeOut();
-			$('#leveldone').fadeOut();
-			$('#levelcontrol').fadeOut();
+function loadGame(gameIndex, gameID) {
+	if (gameIndex > -1) {
+		$('#wrapper-level-tutorial').fadeOut();
+		$('#wrapper-back-main').fadeOut();
+		$('#wrapper-showme').fadeOut();
+		$('#wrapper-next').fadeOut();
+		$('#elearning').empty();
+		$('#elearning').fadeOut();
+		$('#leveldone').fadeOut();
+		$('#levelcontrol').fadeOut();
 
-			$('.gametitle').empty().append(GAMESDATA[gameIndex].gameName);
+		$('.gametitle').empty().append(GAMESDATA[gameIndex].gameName);
 
 			// set the gallery and slot titles if available
 			NUMBER_OF_GALLERIES = 2;
@@ -412,19 +416,19 @@ $(document).ready(function() {
 				$('#connection2').css("display","none");
 				$('#wrapperslot3').css("display","none");
 			}
-
-			$.each(GALLERYNAMES, function(index, value) {
-				for (var i = 1; i <= NUMBER_OF_GALLERIES; i++) {
-					var id="gallery"+i+"Id";
-					var j = i-1;
-					if(GAMESDATA[gameIndex][id]== value.galleryId){
-						$('#header-slot'+j).empty().append(value.galleryName);
-						$('#header-gallery'+j).empty().append(value.galleryName);
+			if(GALLERYNAMES != null){
+				$.each(GALLERYNAMES, function(index, value) {
+					for (var i = 1; i <= NUMBER_OF_GALLERIES; i++) {
+						var id="gallery"+i+"Id";
+						var j = i-1;
+						if(GAMESDATA[gameIndex][id]== value.galleryId){
+							$('#header-slot'+j).empty().append(value.galleryName);
+							$('#header-gallery'+j).empty().append(value.galleryName);
+						}
 					}
-				}
 
-			});	
-			
+				});	
+			}
 			clearGalleries();
 			initializeLevelState();
 			getGameLevels(gameID,gameIndex);
@@ -444,7 +448,8 @@ $(document).ready(function() {
 	
 	function addTutorialTexts() {
 		//var tutorialSteps;
-		$.each(TUTORIALSDATA, function(i, data) {
+		if(TUTORIALSDATA != null){
+			$.each(TUTORIALSDATA, function(i, data) {
 			// i: Tutorial ID
 			// data: Tutorial data
 			if (data.game == GAMEID) {
@@ -471,6 +476,7 @@ $(document).ready(function() {
 				
 			}
 		});
+		}
 	}
 
 	function initializeLevelState() {
@@ -503,19 +509,20 @@ $(document).ready(function() {
 	  * @param gameID The ID of the current game.
 	  */
 	  function loadGaleries( gameLevels ) {
+	  	if(gameLevels != null){
+	  		$.each(gameLevels, function(index, value) {
+	  			rand(0,1) ? NEXTLEVELS.push(parseInt(index)) : NEXTLEVELS.unshift(parseInt(index));
 
-	  	$.each(gameLevels, function(index, value) {
-	  		rand(0,1) ? NEXTLEVELS.push(parseInt(index)) : NEXTLEVELS.unshift(parseInt(index));
+	  			for(var i=0;i<NUMBER_OF_GALLERIES;i++){
+	  				var j = i+1;
+	  				var id= "gallery"+j+"src";
+	  				var image = $('<li class="ui-widget-content ui-corner-tr piece" draggable="true"><img src="' + TEMP + value[id] + '" alt="' +  value[id] + '" width="94" height="68" id="piece-id-'+i+'" piece-id="' + value[id] + '" piece-count="1"/></li>');
+	  				rand(0,1) ? $('#gallery' + i + ' ul').prepend(image) : $('#gallery' + i + ' ul').append(image);
+	  			}
+	  		});
 
-	  		for(var i=0;i<NUMBER_OF_GALLERIES;i++){
-	  			var j = i+1;
-	  			var id= "gallery"+j+"src";
-	  			var image = $('<li class="ui-widget-content ui-corner-tr piece" draggable="true"><img src="' + TEMP + value[id] + '" alt="' +  value[id] + '" width="94" height="68" id="piece-id-'+i+'" piece-id="' + value[id] + '" piece-count="1"/></li>');
-	  			rand(0,1) ? $('#gallery' + i + ' ul').prepend(image) : $('#gallery' + i + ' ul').append(image);
-	  		}
-	  	});
-
-	  	setGalleryWidth();
+	  		setGalleryWidth();
+	  	}
 	  }
 
 	  function setGalleryWidth() {
@@ -870,8 +877,8 @@ $(document).ready(function() {
 		var bestFittingLevel = oldLevel;
 		
 		//alert("oldMatching: " + bestMatching);
-		
-		$.each(GAMELEVELS, function(j, data) {
+		if(GAMELEVELS != null){
+			$.each(GAMELEVELS, function(j, data) {
 			// i: levelID
 			// data: level data
 			if (data.game_id == GAMEID) {
@@ -890,7 +897,7 @@ $(document).ready(function() {
 				}
 			}
 		});
-		
+		}
 		if (bestMatching == 0) {
 			bestFittingLevel = -1;
 		}
@@ -1122,7 +1129,7 @@ $(document).ready(function() {
 					for(var i=0;i<NUMBER_OF_GALLERIES;i++){
 						p[i] = $("img", "#slot"+i).attr('piece-id');
 					}
-									
+					
 					//if (typeof p3 == 'undefined') {
 					//alert("Antwort: " + p0 + ", " + p1 + ", " + p2 + ", " + p3);
 					//}
@@ -1153,18 +1160,18 @@ $(document).ready(function() {
 							correct = true;
 						}
 
-					GAMESTATE = "leveldone";
-					$('#wrapper-level-tutorial').fadeOut();
-					$('#wrapper-showme').fadeOut();
-					$('#wrapper-level-tutorial').fadeOut();
-					$('#elearning').empty();
-					$('#elearning').fadeIn();
-					if (GAMELEVELS[l]["eLearningLink"]) {
-						$('#elearning').append('<a href="' + GAMELEVELS[l]["eLearningLink"] + '" target="_blank">E-Learning Link</a>');
-					}
+						GAMESTATE = "leveldone";
+						$('#wrapper-level-tutorial').fadeOut();
+						$('#wrapper-showme').fadeOut();
+						$('#wrapper-level-tutorial').fadeOut();
+						$('#elearning').empty();
+						$('#elearning').fadeIn();
+						if (GAMELEVELS[l]["eLearningLink"]) {
+							$('#elearning').append('<a href="' + GAMELEVELS[l]["eLearningLink"] + '" target="_blank">E-Learning Link</a>');
+						}
 
-					if (!correct) {
-						logLevel(l, "wrong");
+						if (!correct) {
+							logLevel(l, "wrong");
 							// Tell the user that the solution is wrong
 							$('#level-verification-wrong').show();
 
@@ -1362,11 +1369,11 @@ $(document).ready(function() {
 	  */
 	  function allSlotsFilled() {
 	  	var check = "true";
-		for(var i=0;i<NUMBER_OF_GALLERIES;i++){
-			if(!($("li", "#slot"+i).length)){
+	  	for(var i=0;i<NUMBER_OF_GALLERIES;i++){
+	  		if(!($("li", "#slot"+i).length)){
 	  			check = "false";
-			}
-		}
+	  		}
+	  	}
 	  	if (check == "true") {
 	  		return true;
 	  	} else {
@@ -1376,11 +1383,11 @@ $(document).ready(function() {
 
 	  function allGalleriesEmpty() {
 	  	var check = "true";
-		for(var i=0;i<NUMBER_OF_GALLERIES;i++){
-			if(!($("li", "#gallery"+i).length)){
+	  	for(var i=0;i<NUMBER_OF_GALLERIES;i++){
+	  		if(!($("li", "#gallery"+i).length)){
 	  			check = "false";
-			}
-		}
+	  		}
+	  	}
 	  	if (check == "true") {
 	  		return false;
 	  	} else {
@@ -1535,13 +1542,14 @@ insertExperience = function() {
 
 insertPlayerStatistics = function() {
 	// Insert SelectOptions for each game besides Tutorial
-	$.each(GAMESDATA, function(i, game) {
-		var game_name = GAMESDATA[i].gameName.toLowerCase();
-		if(game_name !== 'Tutorial') {
-			$('#stats-game-select').append('<option value="'+ i +'">' + game_name + '</option>');
-		}
-	});
-
+	if(GAMESDATA != null){
+		$.each(GAMESDATA, function(i, game) {
+			var game_name = GAMESDATA[i].gameName.toLowerCase();
+			if(game_name !== 'Tutorial') {
+				$('#stats-game-select').append('<option value="'+ i +'">' + game_name + '</option>');
+			}
+		});
+	}
 	// TODO MARKO Remove this testgame, which is for showcasing only
 	$('#stats-game-select').append('<option value="2">Test Game 2</option>');
 
@@ -1573,9 +1581,11 @@ insertGameDesignerStatistics = function(designed_games) {
 	}
 
 	// Insert SelectOptions for each game the user has designed
-	$.each(designed_games, function(i, game) {
-		$('#designer-stats-game-select').append('<option value="'+ (i + 1) +'">' + GAMESDATA[game].name + '</option>');
-	});
+	if(designed_games != null){
+		$.each(designed_games, function(i, game) {
+			$('#designer-stats-game-select').append('<option value="'+ (i + 1) +'">' + GAMESDATA[game].name + '</option>');
+		});
+	}
 
 	// TODO MARKO Remove this testgame, which is for showcasing only
 	$('#designer-stats-game-select').append('<option value="2">Test Game 2</option>');
@@ -1602,11 +1612,13 @@ insertGameDesignerStatistics = function(designed_games) {
 insertAdminStatistics = function() {
 	$('div.stats#admin').show();
 	// Insert SelectOptions for each game besides Tutorial
-	$.each(GAMESDATA, function(i, game) {
-		if(game.name !== 'Tutorial') {
-			$('#admin-stats-game-select').append('<option value="'+ i +'">' + game.name + '</option>');
-		}
-	});
+	if(GAMESDATA != null){
+		$.each(GAMESDATA, function(i, game) {
+			if(game.name !== 'Tutorial') {
+				$('#admin-stats-game-select').append('<option value="'+ i +'">' + game.name + '</option>');
+			}
+		});
+	}
 
 	// TODO MARKO Remove this testgame, which is for showcasing only
 	$('#admin-stats-game-select').append('<option value="2">Test Game 2</option>');

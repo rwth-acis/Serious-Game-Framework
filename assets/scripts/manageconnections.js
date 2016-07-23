@@ -172,12 +172,13 @@ function rand(min, max) {
 			}else{
 				files = JSON.parse(filesdata);
 			}
-			$.each(files, function(index, value) {
-				var image1 = $('<li class="ui-widget-content ui-corner-tr piece"><a href="#"><img src="' + TEMP + value + '" alt="' +  value + '" width="94" height="68" id="piece-id-'+index+'" piece-id="' + index + '" piece-count="1" class="imgfocus"/></a></li>');
-				rand(0,1) ? $('#populateconnections' + ' ul').prepend(image1) : $('#populateconnections' + ' ul').append(image1);
-			});
-			setGalleryWidth();
-
+			if(files != null){
+				$.each(files, function(index, value) {
+					var image1 = $('<li class="ui-widget-content ui-corner-tr piece"><a href="#"><img src="' + TEMP + value + '" alt="' +  value + '" width="94" height="68" id="piece-id-'+index+'" piece-id="' + index + '" piece-count="1" class="imgfocus"/></a></li>');
+					rand(0,1) ? $('#populateconnections' + ' ul').prepend(image1) : $('#populateconnections' + ' ul').append(image1);
+				});
+				setGalleryWidth();
+			}
 
 		}
 
@@ -185,11 +186,13 @@ function rand(min, max) {
 			$('#'+element + ' ul').children().remove();
 			files = JSON.parse(filesdata);
 			length = files.length;
-			$.each(files, function(index, value) {
-				var image1 = $('<li class="ui-widget-content ui-corner-tr piece"><a href="#"><img src="' + TEMP + value.connectionSrc + '" alt="' +  value.connectionSrc + '" width="94" height="68" id="piece-id-'+index+'" piece-id="' + index + '" piece-count="1" class="imgfocus"/></a></li>');
-				rand(0,1) ? $('#'+element + ' ul').prepend(image1) : $('#'+element + ' ul').append(image1);
-			});
-			setGalleryWidth();
+			if(files != null){
+				$.each(files, function(index, value) {
+					var image1 = $('<li class="ui-widget-content ui-corner-tr piece"><a href="#"><img src="' + TEMP + value.connectionSrc + '" alt="' +  value.connectionSrc + '" width="94" height="68" id="piece-id-'+index+'" piece-id="' + index + '" piece-count="1" class="imgfocus"/></a></li>');
+					rand(0,1) ? $('#'+element + ' ul').prepend(image1) : $('#'+element + ' ul').append(image1);
+				});
+				setGalleryWidth();
+			}
 		}
 
 		function setGalleryWidth() {
