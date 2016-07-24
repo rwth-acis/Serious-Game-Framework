@@ -19,6 +19,7 @@ var PIECESDATA;
 var CONNECTIONSDATA;
 var TUTORIALSDATA;
 
+
 //var INTRO = introJs();
 var TUTORIAL = false;
 var TUTORIALSTARTED = false;
@@ -87,28 +88,65 @@ $(document).ready(function() {
 
 
 	fillGamesList(GAMESDATA);
-
-	$('.gamelink').click(function(){
+	
+	$('.descriptionlink').click(function(){
 		var gameID = $(this).attr('game-id');
 		GAMEID = parseInt(gameID);
-		loadGame(GAMEID);
+		
+		$('.gametitledescription').empty().append(GAMESDATA[gameID].name);
+		$('.description').empty().append('<h4>' + GAMESDATA[gameID].descriptionpage + '</h4>');
+		
+		
+		$('.linktogame').empty().append('<a href="#game" id="game-id-'+ gameID + '" game-id="' + gameID + '" class="gamesslink">Weiter zum Spiel</a>');
 
-		// Send trace for starting a game
-		gleaner_tracker.trackTrace(oidc_userinfo, "game_start",
-															{gameID: GAMEID});
+		
+			$('.gamesslink').click(function(){
+			
+			loadGame(GAMEID);
+			
+			
+			
+
+			// Send trace for starting a game
+			gleaner_tracker.trackTrace(oidc_userinfo, "game_start",
+																{gameID: GAMEID});
+		});
+		
+		
 	});
+
+	$('.gameslink').click(function(){
+			var gameID = $(this).attr('game-id');
+			GAMEID = parseInt(gameID);
+			loadGame(GAMEID);
+			
+
+			// Send trace for starting a game
+			gleaner_tracker.trackTrace(oidc_userinfo, "game_start",
+																{gameID: GAMEID});
+		});
+	
+	
+	
 
 	$('.options-button').click(function(){
 		selectCurrentOptions();
 	});
 
-	$('#elearning').click(function() {
+	$('#elearningbachelor').click(function() {
 		elearning++;
 		// Send trace for clicking an eLearning link
 		gleaner_tracker.trackTrace(oidc_userinfo, "elearning",
 															{gameID: GAMEID, levelID: CURRENTLEVEL});
 	});
 
+	$('#elearningmaster').click(function() {
+		elearning++;
+		// Send trace for clicking an eLearning link
+		gleaner_tracker.trackTrace(oidc_userinfo, "elearning",
+															{gameID: GAMEID, levelID: CURRENTLEVEL});
+	});
+	
 	// Functions for Player Statistics
 	$('#stats-game-select').change(function(element) {
 		var act_type = $('#chart-1')[0].checked ? "pie" : "bar";
@@ -289,8 +327,12 @@ $(document).ready(function() {
 			//alert(i + " - " + data.name);
 			//var game = $('<a class="ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-right ui-btn-up-c" game-id="' + i + '" data-transition="slide" data-iconpos="right" data-icon="arrow-r" data-role="button" href="#game" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c">' + data.name + '</a>');
 
-			var game = $('<li><a href="#game" id="game-id-'+ i + '" game-id="' + i + '" class="gamelink"><h3>' + data.name + '</h3><p>' + data.description + '</p></a></li>');
-			$('.gameslist').append(game);
+			
+			
+				var game = $('<li><a href="#descriptionpage" id="game-id-'+ i + '" game-id="' + i + '" class="descriptionlink"><h3>' + data.name + '</h3><p>' + data.description + '</p></a></li>');
+				//var game = $('<li><a href="#game" id="game-id-'+ i + '" game-id="' + i + '" class="gamelink"><h3>' + data.name + '</h3><p>' + data.description + '</p></a></li>');
+				$('.gameslist').append(game);
+			
 		});
 		$('.gameslist').listview('refresh');
 	}
@@ -301,8 +343,10 @@ $(document).ready(function() {
 			$('#wrapper-back-main').fadeOut();
 			$('#wrapper-showme').fadeOut();
 			$('#wrapper-next').fadeOut();
-			$('#elearning').empty();
-			$('#elearning').fadeOut();
+			$('#elearningbachelor').empty();
+			$('#elearningbachelor').fadeOut();
+			$('#elearningmaster').empty();
+			$('#elearningmaster').fadeOut();
 			$('#leveldone').fadeOut();
 			$('#levelcontrol').fadeOut();
 			$('#inforow').hide();
@@ -363,9 +407,11 @@ $(document).ready(function() {
 		introJs().start();
 		$('#wrapper-showme').fadeIn();
 		$('#button-showme').show();
-		$('#elearning').empty();
-		$('#elearning').fadeIn();
-		$('#elearning').append('<a href="' + LEVELDATA[0].elearning + '" target="_blank">E-Learning Link</a>');
+		$('#elearningbachelor').empty();
+		$('#elearningmaster').empty();
+		$('#elearningmaster').fadeOut();
+		$('#elearningbachelor').fadeIn();
+		$('#elearningbachelor').append('<a href="' + LEVELDATA[0].elearningbachelor + '" target="_blank">E-Learning Link</a>');
 		TUTORIALSTARTED = true;
 	}
 	
@@ -704,11 +750,13 @@ $(document).ready(function() {
 				// if != currentlevel : updateConnections()
 				var tmpres = findBestFittingLevels();
 				//alert(tmpres);
-				if (tmpres.length == 1) {
+				//if (tmpres.length == 1) {
 					res = tmpres[0];
-				} else {
-					res = -1;
-				}
+				//} else {
+					//res = -1;
+					
+				
+				//}
 				break;
 		}
 		CURRENTLEVEL = res;
@@ -854,7 +902,8 @@ $(document).ready(function() {
 			$('#wrapper-showme').fadeOut();
 			$('#wrapper-next').fadeOut();
 			$('.level-verification').fadeOut();
-			$('#elearning').fadeOut().empty();
+			$('#elearningbachelor').fadeOut().empty();
+			$('#elearningmaster').fadeOut().empty();
 			$('#wrapper-level-tutorial').fadeOut();
 			$('#levelcontrol').fadeOut();
 			
@@ -1014,16 +1063,33 @@ $(document).ready(function() {
 					$('#wrapper-showme').fadeOut();
 					$('#levelcontrol').fadeIn();
 					$('#level-verification-revealed').show();
-					$('#elearning').empty();
-					$('#elearning').fadeIn();
-					if (LEVELDATA[l].elearning) {
-						if(GAMEID==1){
-							$('#elearning').append('<a href="' + LEVELDATA[l].elearning + '" target="_blank">Nährwerttabelle</a>');
+					$('#elearningbachelor').empty();
+					$('#elearningbachelor').fadeIn();
+					$('#elearningmaster').empty();
+					$('#elearningmaster').fadeIn();
+					if (LEVELDATA[l].elearningbachelor) {
+							if(GAMEID==1){
+									$('#elearningbachelor').append('<a href="' + LEVELDATA[l].elearningbachelor + '" target="_blank">E-Learning Link</a>');
+							}
+							else if(GAMEID==2){
+								$('#elearningbachelor').append('<a href="' + LEVELDATA[l].elearningbachelor + '" target="_blank">Link Mahlzeit</a>');
+							}
+							else{
+								$('#elearningbachelor').append('<a href="' + LEVELDATA[l].elearningbachelor + '" target="_blank">E-Learning Link</a>');
+							}
 						}
-						else{
-							$('#elearning').append('<a href="' + LEVELDATA[l].elearning + '" target="_blank">E-Learning Link</a>');
+						
+						if (LEVELDATA[l].elearningmaster) {
+							if(GAMEID==1){
+									$('#elearningmaster').append('<a href="' + LEVELDATA[l].elearningmaster + '" target="_blank">Weitere Informationen</a>');
+							}
+							else if(GAMEID==2){
+								$('#elearningmaster').append('<a href="' + LEVELDATA[l].elearningmaster + '" target="_blank">Link Getränk</a>');
+							}
+							else{
+								$('#elearningmaster').append('<a href="' + LEVELDATA[l].elearningmaster + '" target="_blank">E-Learning Link</a>');
+							}
 						}
-					}
 					
 					
 
@@ -1113,14 +1179,31 @@ $(document).ready(function() {
 						$('#wrapper-level-tutorial').fadeOut();
 						$('#wrapper-showme').fadeOut();
 						$('#wrapper-level-tutorial').fadeOut();
-						$('#elearning').empty();
-						$('#elearning').fadeIn();
-						if (LEVELDATA[l].elearning) {
+						$('#elearningbachelor').empty();
+						$('#elearningbachelor').fadeIn();
+						$('#elearningmaster').empty();
+						$('#elearningmaster').fadeIn();
+						if (LEVELDATA[l].elearningbachelor) {
 							if(GAMEID==1){
-								$('#elearning').append('<a href="' + LEVELDATA[l].elearning + '" target="_blank">Nährwerttabelle</a>');
+									$('#elearningbachelor').append('<a href="' + LEVELDATA[l].elearningbachelor + '" target="_blank">E-Learning Link</a>');
+							}
+							else if(GAMEID==2){
+								$('#elearningbachelor').append('<a href="' + LEVELDATA[l].elearningbachelor + '" target="_blank">Link Mahlzeit</a>');
 							}
 							else{
-								$('#elearning').append('<a href="' + LEVELDATA[l].elearning + '" target="_blank">E-Learning Link</a>');
+								$('#elearningbachelor').append('<a href="' + LEVELDATA[l].elearningbachelor + '" target="_blank">E-Learning Link</a>');
+							}
+						}
+						
+						if (LEVELDATA[l].elearningmaster) {
+							if(GAMEID==1){
+									$('#elearningmaster').append('<a href="' + LEVELDATA[l].elearningmaster + '" target="_blank">Weitere Informationen</a>');
+							}
+							else if(GAMEID==2){
+								$('#elearningmaster').append('<a href="' + LEVELDATA[l].elearningmaster + '" target="_blank">Link Getränk</a>');
+							}
+							else{
+								$('#elearningmaster').append('<a href="' + LEVELDATA[l].elearningmaster + '" target="_blank">E-Learning Link</a>');
 							}
 						}
 

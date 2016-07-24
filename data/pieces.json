@@ -23,56 +23,55 @@ var PIECESDATA = {
 	"27": {"description": "speiseeis", "src": "sugar-1-18.png"},
 	"28": {"description": "kaese", "src": "sugar-1-19.png"},
 	"29": {"description": "80kakaoschokolade", "src": "sugar-1-20.png"},
+	
+	
+	
 	"40": {"description": "0g", "src": "sugar-2-01.png"},
-	"41": {"description": "05g", "src": "sugar-2-02.png"},
-	"42": {"description": "2g", "src": "sugar-2-03.png"},
-	"43": {"description": "4g", "src": "sugar-2-04.png"},
-	"44": {"description": "5g", "src": "sugar-2-05.png"},
-	"45": {"description": "8g", "src": "sugar-2-06.png"},
-	"46": {"description": "9g", "src": "sugar-2-07.png"},
-	"47": {"description": "10g", "src": "sugar-2-08.png"},
-	"48": {"description": "12g", "src": "sugar-2-09.png"},
-	"49": {"description": "15g", "src": "sugar-2-10.png"},
-	"50": {"description": "23g", "src": "sugar-2-11.png"},
-	"51": {"description": "50g", "src": "sugar-2-12.png"},
-	"52": {"description": "54g", "src": "sugar-2-13.png"},
-	"53": {"description": "52g", "src": "sugar-2-14.png"},
-	"54": {"description": "21g", "src": "sugar-2-15.png"},
+	"41": {"description": "1g", "src": "sugar-2-02.png"},
+	"42": {"description": "5g", "src": "sugar-2-03.png"},
+	"43": {"description": "10g", "src": "sugar-2-04.png"},
+	"44": {"description": "15g", "src": "sugar-2-05.png"},
+	"45": {"description": "20g", "src": "sugar-2-06.png"},
+	"46": {"description": "25g", "src": "sugar-2-07.png"},
+	"47": {"description": "50g", "src": "sugar-2-08.png"},
+	"48": {"description": "55g", "src": "sugar-2-09.png"},
+	
 	
 	
 	"70": {"description": "forelle", "kohlenhydrate": "0g", "src": "kh-1-01.png"},
-	"71": {"description": "schnitzelPommes", "kohlenhydrate": "18g + 82g", "src": "kh-1-02.png"},
+	"71": {"description": "schnitzelPommes", "kohlenhydrate": "20g + 80g", "src": "kh-1-02.png"},
 	"72": {"description": "pizza", "kohlenhydrate": "90g", "src": "kh-1-03.png"},
 	"73": {"description": "BrotWurst", "kohlenhydrate": "100 + 0g", "src": "kh-1-04.png"},
-	"74": {"description": "NudelnSauce", "kohlenhydrate": "93g + 32g", "src": "kh-1-05.png"},
-	"75": {"description": "ReisGemüse", "kohlenhydrate": "93g + 20g", "src": "kh-1-06.png"},
+	"74": {"description": "NudelnSauce", "kohlenhydrate": "95g + 30g", "src": "kh-1-05.png"},
+	"75": {"description": "ReisGemüse", "kohlenhydrate": "95g + 20g", "src": "kh-1-06.png"},
 	
 	
 	"80": {"description": "Wasser", "kohlenhydrate": "0g", "src": "kh-2-01.png"},
 	"81": {"description": "Cola", "kohlenhydrate": "40g", "src": "kh-2-02.png"},
-	"82": {"description": "Wein", "kohlenhydrate": "6g", "src": "kh-2-03.png"},
-	"83": {"description": "Bier", "kohlenhydrate": "12g", "src": "kh-2-04.png"},
-	
+	"82": {"description": "Wein", "kohlenhydrate": "5g", "src": "kh-2-03.png"},
+	"83": {"description": "Bier", "kohlenhydrate": "10g", "src": "kh-2-04.png"},
 	
 	"90": {"description": "0g", "kohlenhydrate": "0g", "src": "kh-3-01.png"},
-	"91": {"description": "40g", "kohlenhydrate": "40g", "src": "kh-3-02.png"},
-	"92": {"description": "6g", "kohlenhydrate": "6g", "src": "kh-3-03.png"},
-	"93": {"description": "12g", "kohlenhydrate": "12g", "src": "kh-3-04.png"},
-	"94": {"description": "100g", "kohlenhydrate": "100g", "src": "kh-3-05.png"},
-	"95": {"description": "140g", "kohlenhydrate": "140g", "src": "kh-3-06.png"},
-	"96": {"description": "106g", "kohlenhydrate": "106g", "src": "kh-3-07.png"},
-	"97": {"description": "112g", "kohlenhydrate": "112g", "src": "kh-3-08.png"},
-	"98": {"description": "90g", "kohlenhydrate": "90g", "src": "kh-3-09.png"},
-	"99": {"description": "130g", "kohlenhydrate": "130g", "src": "kh-3-10.png"},
-	"100": {"description": "96g", "kohlenhydrate": "96g", "src": "kh-3-11.png"},
-	"101": {"description": "102g", "kohlenhydrate": "102g", "src": "kh-3-12.png"},
-	"102": {"description": "125g", "kohlenhydrate": "125g", "src": "kh-3-13.png"},
-	"103": {"description": "165g", "kohlenhydrate": "165g", "src": "kh-3-14.png"},
-	"104": {"description": "131g", "kohlenhydrate": "131g", "src": "kh-3-15.png"},
-	"105": {"description": "137g", "kohlenhydrate": "137g", "src": "kh-3-16.png"},
-	"106": {"description": "113g", "kohlenhydrate": "113g", "src": "kh-3-17.png"},
-	"107": {"description": "153g", "kohlenhydrate": "153g", "src": "kh-3-18.png"},
-	"108": {"description": "119g", "kohlenhydrate": "119g", "src": "kh-3-19.png"}
+	"91": {"description": "40g", "kohlenhydrate": "40g", "src": "kh-3-04.png"},
+	"92": {"description": "5g", "kohlenhydrate": "5g", "src": "kh-3-02.png"},
+	"93": {"description": "10g", "kohlenhydrate": "10g", "src": "kh-3-03.png"},
+	"94": {"description": "100g", "kohlenhydrate": "100g", "src": "kh-3-07.png"},
+	"95": {"description": "140g", "kohlenhydrate": "140g", "src": "kh-3-15.png"},
+	"96": {"description": "105g", "kohlenhydrate": "105g", "src": "kh-3-08.png"},
+	"97": {"description": "110g", "kohlenhydrate": "110g", "src": "kh-3-09.png"},
+	"98": {"description": "90g", "kohlenhydrate": "90g", "src": "kh-3-05.png"},
+	"99": {"description": "130g", "kohlenhydrate": "130g", "src": "kh-3-13.png"},
+	"100": {"description": "95g", "kohlenhydrate": "95g", "src": "kh-3-06.png"},
+	
+	"102": {"description": "125g", "kohlenhydrate": "125g", "src": "kh-3-12.png"},
+	"103": {"description": "165g", "kohlenhydrate": "165g", "src": "kh-3-17.png"},
+	
+	"105": {"description": "135g", "kohlenhydrate": "135g", "src": "kh-3-14.png"},
+	"106": {"description": "115g", "kohlenhydrate": "115g", "src": "kh-3-10.png"},
+	"107": {"description": "155g", "kohlenhydrate": "155g", "src": "kh-3-16.png"},
+	"108": {"description": "120g", "kohlenhydrate": "120g", "src": "kh-3-11.png"}
+	
+	
 	
 	
 	

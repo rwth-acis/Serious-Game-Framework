@@ -2,19 +2,24 @@ var GAMESDATA = {
 	"0": {
 		"name": "Tutorial",
 		"description": "Erklärung der Spiele.",
+		"descriptionpage": "In diesem Tutorial werden die Grundelemente dieses Frameworks erklärt. Es sollte gespielt werden bevor die anderen Spiele begonnen werden.",
 		"slotnames": ["Slot 1","Slot 2","Slot 3","Slot 4"],
 		"tutorial": true
 	},
 	"1": {
 		"name": "Zucker Spiel",
 		"description": "Finde heraus wieviel Zucker in Lebensmitteln steckt!",
+		"descriptionpage": "Bei diesem Spiel hat der Spieler die Möglichkeit herauszufinden wieviel Zucker in verschiedenen Lebensmittel steckt. Der Zuckeranteil bezieht sich auf die Gramm-Menge, welche auch auf alle verpackten Lebensmitteln abgedruckt sein muss, also auf der biochemische Ebene und nicht metabolisch gesehen.<br><br>Die Lebensmittel auf der linken Seite sind alle in 100g bzw. 100ml angegeben und ihnen muss eine Kachel von der rechten Seite mit der Gramm Zucker Anzahl zugeordnet werden. Die Zucker Mengen sind gerundet auf 5g, das heißt wenn ein Lebensmittel 8g Zucker pro 100g enthält ist die 10g Kachel die korrekte (bei 7g die 5g Kachel). Dies ist so gewählt da es sich hierbei um gemittelte Werte handelt und weiterhin die Inhaltsstoffe bei Lebensmitteln schwanken können.<br><br>Das Ziel dieses Spieles ist es dem Spieler ein Gefühl zu geben wieviel Zucker ungefähr in verschiedenen Lebensmitteln ist, um sich auf diese Weise angepasster und gesunder ernähren zu können.",
 		"slotnames": ["Lebensmittel","","Zucker",""],
 		"tutorial": false
 	},
 	"2": {
 		"name": "Mahlzeiten puzzeln",
 		"description": "Erstelle Mahlzeiten und achte auf die Kohlenhydrate!",
+		"descriptionpage": "In diesem Spiel geht es um die Kohlenhydrate in Lebensmitteln/Mahlzeiten und wie man diese am besten kombinieren kann. Auf der linken Seite stehen vorkonfigurierte Mahlzeiten und auf der rechten Seite verschiedene Getränke. Diese müssen kombiniert werden und dementsprechend die richtige Kohlenhydrat Anzahl aus der oberen Reihe zugeordnet werden. Auch bei diesem Spiel sind die Gramm Anzahlen auf 5g gerundet (7g &rarr; 5g, 8g &rarr; 10g), da die Inhaltsstoffe in Lebensmitteln variieren können. <br><br> Das Ziel dieses Spieles ist, dass der Spieler lernt wie viele Kohlenhydrate in verschiedenen Mahlzeiten sind und dass er sich auch an Kohlenhydrat Beschränkungen halten kann.<br><br>Leider ist es bei diesem Spiel aktuell nur möglich das freie Spiel zu spielen",
 		"slotnames": ["Essen","","Getränk","Kohlenhydrate"],
 		"tutorial": false
 	}
 };
+
+

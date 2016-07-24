@@ -94,6 +94,7 @@
 	<script src="data/pieces.json"></script>
 	<script src="data/tutorials.json"></script>
 
+
 	<!-- include own JavaScript library -->
 	<script type="text/javascript" src="assets/scripts/serious-game-framework.js"></script>
 
@@ -197,6 +198,9 @@
 							</div>
 						</td>
 					</tr>
+					
+				
+						
 					<tr id="inforow">
 						<td><h4 id="info0" class="ui-widget-content" align="center" >Slot 1</h4></td>
 						<td> </td>
@@ -224,7 +228,10 @@
 				<h3 id="level-verification-correct" class="level-verification">Richtige Antwort!</h3>
 				<h3 id="level-verification-wrong" class="level-verification">Falsche Antwort</h3>
 				<h3 id="level-verification-revealed" class="level-verification">Lösung gezeigt</h3>
-				<p id="elearning">
+				<p id="elearningbachelor">
+					<!-- Here the E-learning link -->
+				</p>
+				<p id="elearningmaster">
 					<!-- Here the E-learning link -->
 				</p>
 				<p id="leveldone">
@@ -311,174 +318,31 @@
 	</div>
 </div>
 
-<!-- Profile Page -->
-<div id="profile" data-role="page" class="ui-helper-clearfix bodywrapper">
+<div id="descriptionpage" data-role="page" class="ui-helper-clearfix bodywrapper">
 	<div id="header" data-role="header" data-theme="b">
 		<a href="#" data-icon="arrow-l" id="game-header-home" class="ui-btn-left" data-iconpos="notext"  data-rel="back">Home</a>
-		<h1>Profile</h1>
+		<h1 class="gametitledescription"></h1>
+		<a href="#options" data-icon="gear" id="game-header-options" class="ui-btn-right options-button" data-rel="dialog">Einstellungen</a>
 	</div>
 	<div data-role="content">
-		<div id="user-info" class="ui-widget-content">
-			<div id="user_img">
-				<img src="https://api.learning-layers.eu/profile.png">
-			</div>
-			<div id="profile_tags">
-				<div>Username: </div>
-				<div>Name: </div>
-				<div>Email: </div>
-				<!--<div>Phone number: </div>-->
-			</div>
-			<div id="profile_info">
-				<div id="user_name"></div>
-				<div id="user_real_name"></div>
-				<div id="user_email"></div>
-				<!--<div id="user_phone"></div>-->
-			</div>
-		</div>
-
-		<div id="experience" class="ui-widget-content">
-			<div id="experience-header">Experience</div>
-
-			<img id="experience-badge" />
-
-			<div id="experience-data">
-				<div id="level-name">
+		<br>
+		
+		<div data-theme="c" data-form="ui-body-c" class="ui-body ui-body-c ui-corner-all" style="width:50%; text-align: center; margin: auto;">
+				<h2>Beschreibung:</h2>
+				<div class="description">
 				</div>
-
-				<div id="progressbar">
-					<div class="progress-label">
-					</div>
-				</div>
-
-				<div id="experience-tags">
-					<div>Total experience: </div>
-					<div>Level experience: </div>
-					<div>Experience to next level: </div>
-				</div>
-
-				<div id="experience-info">
-					<div id="total-exp"></div>
-					<div id="level-exp"></div>
-					<div id="exp-to-next"></div>
-				</div>
-			</div>
+				<br>
 		</div>
-
-		<div id="earned-badges" class="ui-widget-content">
-			<div id="badges-header">Badges</div>
-
-			<div id="badges-container">
-			</div>
+		<br>
+		<div data-theme="c" data-form="ui-body-c" class="ui-body ui-body-c ui-corner-all" style="width:17%; text-align: center; margin: auto;">
+		<div class="linktogame">
 		</div>
-
-		<div id="high-score" class="ui-widget-content">
-			<div id="score-header">High Scores</div>
-
-			<table data-role="table" id="high-score-table" data-mode="columntoggle" class="ui-responsive table-stripe">
-				<thead>
-					<tr class="ui-bar-d">
-						<th>Rank</th>
-						<th>User</th>
-						<th>High Score</th>
-					</tr>
-				</thead>
-				<tbody>
-				</tbody>
-			</table>
 		</div>
-
-		<!-- Stats for Players -->
-		<div class="ui-widget-content stats" id="player">
-			<div class="stats-header">Statistics</div>
-
-			<div data-role="fieldcontain">
-				<label for="stats-game-select" class="select">Choose Game: </label>
-				<select name="stats-game-select" id="stats-game-select"></select>
-			</div>
-
-			<div id="player-worst-levels">
-				<div class="worst-header">Worst Levels</div>
-			</div>
-
-			<div data-role="fieldcontain" id="player-choose-chart">
-		    <fieldset data-role="controlgroup" data-type="horizontal" data-role="fieldcontain">
-		    	<legend>Choose a chart:</legend>
-	       	<input type="radio" name="chart-choice" id="chart-1" value="pie" checked="checked" />
-	       	<label for="chart-1">Pie</label>
-
-	       	<input type="radio" name="chart-choice" id="chart-2" value="bar" />
-	       	<label for="chart-2">Bar</label>
-		    </fieldset>
-	    </div>
-
-			<div id="player-chart-container">
-			</div>
-
-			<div id="player-no-records">
-				No records have been found! You might want to play this game for a while.
-			</div>
-		</div>
-		<!-- END Stats for Players END -->
-
-		<!-- Stats for Game Designers -->
-		<div class="ui-widget-content stats" id="game-designer">
-			<div class="stats-header">Statistics of games created by you</div>
-
-			<div data-role="fieldcontain">
-				<label for="designer-stats-game-select" class="select">Choose Game: </label>
-				<select name="designer-stats-game-select" id="designer-stats-game-select"></select>
-			</div>
-
-			<div id="designer-worst-levels">
-				<div class="worst-header">Worst Levels</div>
-			</div>
-
-			<div data-role="fieldcontain" id="designer-choose-chart">
-		    <fieldset data-role="controlgroup" data-type="horizontal" data-role="fieldcontain">
-		    	<legend>Choose a chart:</legend>
-	       	<input type="radio" name="designer-chart-choice" id="designer-chart-1" value="pie" checked="checked" />
-	       	<label for="designer-chart-1">Pie</label>
-
-	       	<input type="radio" name="designer-chart-choice" id="designer-chart-2" value="bar" />
-	       	<label for="designer-chart-2">Bar</label>
-		    </fieldset>
-	    </div>
-
-			<div id="designer-chart-container">
-			</div>
-
-			<div id="designer-no-records">
-				No records found! Your students might want to play some games.
-			</div>
-		</div>
-		<!-- END Stats for Game Designers END -->
-
-		<!-- Stats for Admins -->
-		<div class="ui-widget-content stats" id="admin">
-			<div class="stats-header">Admin Statistics</div>
-
-			<div data-role="fieldcontain">
-				<label for="admin-stats-game-select" class="select">Choose Game: </label>
-				<select name="admin-stats-game-select" id="admin-stats-game-select"></select>
-			</div>
-
-			<div data-role="fieldcontain">
-		    <fieldset data-role="controlgroup" data-type="horizontal" data-role="fieldcontain">
-		    	<legend>Choose a chart:</legend>
-	       	<input type="radio" name="admin-chart-choice" id="admin-chart-1" value="pie" checked="checked" />
-	       	<label for="admin-chart-1">Pie</label>
-
-	       	<input type="radio" name="admin-chart-choice" id="admin-chart-2" value="bar" />
-	       	<label for="admin-chart-2">Bar</label>
-		    </fieldset>
-	    </div>
-
-			<div id="admin-chart-container">
-			</div>
-		</div>
-		<!-- END Stats for Admins END -->
+		
 	</div>
 </div>
+
+
 
 <audio id="achievement_sound" src="data/badges/sound.wav" preload="auto"></audio>
 
