@@ -1,4 +1,4 @@
-var UPLOADPATH = "uploads/";
+//var UPLOADPATH = "uploads/";
 var TEMP = "tmp/";
 
 function rand(min, max) {

@@ -1,4 +1,4 @@
-var UPLOADPATH = "uploads/";
+//var UPLOADPATH = "uploads/";
 var TEMP = "tmp/";
 
 function rand(min, max) {
@@ -128,6 +128,21 @@ function rand(min, max) {
 				$('#ulwrap-populatechangeconnection').animate({"scrollLeft": "-=2000px"}, 3000, 'linear');
 			}else{
 				$('#ulwrap-populatechangeconnection').stop();
+			}
+		});
+
+		$('#button-right-populateconnections2').bind('mousedown mouseup touchstart touchend', function(event){
+			if ((event.type == 'mousedown') || (event.type == 'touchstart')){
+				$('#ulwrap-populateconnections2').animate({"scrollLeft": "+=2000px"}, 3000, 'linear');
+			}else{
+				$('#ulwrap-populateconnections2').stop();
+			}
+		});
+		$('#button-left-populateconnections2').bind('mousedown mouseup touchstart touchend', function(event){
+			if ((event.type == 'mousedown') || (event.type == 'touchstart')){
+				$('#ulwrap-populateconnections2').animate({"scrollLeft": "-=2000px"}, 3000, 'linear');
+			}else{
+				$('#ulwrap-populateconnections2').stop();
 			}
 		});
 
@@ -618,7 +633,9 @@ function rand(min, max) {
 			jsondata = JSON.parse(data);
 			if(jsondata != null){
 				$.each(jsondata, function(index, value) {
-					$('#'+element).append('<option value="'+ value.galleryId +'" description="'+value.galleryDescription+'">' + value.galleryName + '</option>');
+					if(value.galleryName != "1" && value.galleryName != "2" && value.galleryName != "3" && value.galleryName != "4"){
+						$('#'+element).append('<option value="'+ value.galleryId +'" description="'+value.galleryDescription+'">' + value.galleryName + '</option>');
+					}
 				});
 			}
 			var myselect = $("select#"+element);
@@ -632,7 +649,9 @@ function rand(min, max) {
 			jsondata = JSON.parse(data);
 			if(jsondata != null){
 				$.each(jsondata, function(index, value) {
-					$('#selectgame').append('<option value="'+ value.gameId +'" description="'+value.gameDescription+'" gameGallery1="'+value.gallery1Id+'" gameGallery2="'+value.gallery2Id+'" gameGallery3="'+value.gallery3Id+'" gameGallery4="'+value.gallery4Id+'" gameConnection="'+value.connection1Id+'">' + value.gameName + '</option>');
+					if(value.gameName != "Tutorial"){
+						$('#selectgame').append('<option value="'+ value.gameId +'" description="'+value.gameDescription+'" gameGallery1="'+value.gallery1Id+'" gameGallery2="'+value.gallery2Id+'" gameGallery3="'+value.gallery3Id+'" gameGallery4="'+value.gallery4Id+'" gameConnection="'+value.connection1Id+'">' + value.gameName + '</option>');
+					}
 				});
 			}
 			var myselect1 = $("select#selectgame");

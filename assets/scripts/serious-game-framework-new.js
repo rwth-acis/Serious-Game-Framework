@@ -1,4 +1,4 @@
-var UPLOADPATH = "uploads/";
+//var UPLOADPATH = "uploads/";
 var DEBUG = false;
 
 // 0: very easy (only one piece left to fill)
@@ -17,12 +17,13 @@ var GAMEINDEX = -1;
 var GALLERYNAMES;
 var GAMELEVELS;
 var NUMBER_OF_GALLERIES;
+var GAMELEVELSSTATS;
 
 var GOTDATA = false;
-var GAMESDATA;
-var LEVELDATA;
-var PIECESDATA;
-var CONNECTIONSDATA;
+//var GAMESDATA;
+//var LEVELDATA;
+//var PIECESDATA;
+//var CONNECTIONSDATA;
 var TUTORIALSDATA;
 
 //var INTRO = introJs();
@@ -49,6 +50,25 @@ var gleaner_tracker = new GleanerTracker();
 var chart_creator = new ChartCreator();
 
 // When DOM is loaded do the following
+function getGameLevelsForStats(gameId,act_type, prefix,gameIndex){
+	formdata = false;
+	if (window.FormData) {
+		formdata = new FormData();
+	}
+
+	formdata.append("gameId",gameId);
+	$.ajax({
+		url: "lib/database/get_game_levels.php",
+		type: "POST",
+		data: formdata,
+		processData: false,
+		contentType: false,
+		success: function(data){
+			GAMELEVELSSTATS = JSON.parse(data);
+			chart_creator.changeChart(gameId, act_type, prefix, gameIndex);
+		}
+	});
+}
 $(document).ready(function() {
 	// TODO MARKO Session Summary ALERT instead of LOG
 	window.onbeforeunload = function() {
@@ -137,13 +157,17 @@ $(document).ready(function() {
 	// Functions for Player Statistics
 	$('#stats-game-select').change(function(element) {
 		var act_type = $('#chart-1')[0].checked ? "pie" : "bar";
-		chart_creator.changeChart($("#stats-game-select option:selected").val(), act_type);
+		var game_index = $('option:selected', $('#stats-game-select')).attr('gameIndex');
+		var game_id = $("#stats-game-select option:selected").val();
+		getGameLevelsForStats(game_id,act_type,"player-",game_index);
 	});
 	$('#chart-1').click(function() {
-		chart_creator.changeChart($("#stats-game-select option:selected").val(), $('#chart-1').val());
+		var game_index = $('option:selected', $('#stats-game-select')).attr('gameIndex');
+		chart_creator.changeChart($("#stats-game-select option:selected").val(), $('#chart-1').val(),"player-", game_index);
 	});
 	$('#chart-2').click(function() {
-		chart_creator.changeChart($("#stats-game-select option:selected").val(), $('#chart-2').val());
+		var game_index = $('option:selected', $('#stats-game-select')).attr('gameIndex');
+		chart_creator.changeChart($("#stats-game-select option:selected").val(), $('#chart-2').val(),"player-", game_index);
 	});
 
 	// Functions for Designer Statistics
@@ -422,8 +446,14 @@ function loadGame(gameIndex, gameID) {
 						var id="gallery"+i+"Id";
 						var j = i-1;
 						if(GAMESDATA[gameIndex][id]== value.galleryId){
-							$('#header-slot'+j).empty().append(value.galleryName);
-							$('#header-gallery'+j).empty().append(value.galleryName);
+							if(value.galleryName != i){
+								$('#header-slot'+j).empty().append(value.galleryName);
+								$('#header-gallery'+j).empty().append(value.galleryName);
+							}else{
+								$('#header-slot' + j).empty().append("Slot " + (i));
+								$('#header-gallery' + j).empty().append(i);
+							}
+							
 						}
 					}
 
@@ -442,7 +472,7 @@ function loadGame(gameIndex, gameID) {
 		$('#button-showme').show();
 		$('#elearning').empty();
 		$('#elearning').fadeIn();
-		$('#elearning').append('<a href="' +GAMELEVELS[0]["eLearningLink"] + '" target="_blank">E-Learning Link</a>');
+		$('#elearning').append('<a href="' + GAMELEVELS[0]["eLearningLink"] + '" target="_blank">E-Learning Link</a>');
 		TUTORIALSTARTED = true;
 	}
 	
@@ -452,15 +482,24 @@ function loadGame(gameIndex, gameID) {
 			$.each(TUTORIALSDATA, function(i, data) {
 			// i: Tutorial ID
 			// data: Tutorial data
-			if (data.game == GAMEID) {
+			if (data.game == GAMESDATA[GAMEINDEX].gameName) {
 				TUTORIAL = true;
 				$.each(data.tutorials, function(j, tutData) {
 					// j: data-step
 					// tutData.identifier: A jQuery identifier where the tutorial text should be added
 					// tutData.text: Tutorial Text of this step
 					// tutData.position: Position of the tutorial text
-					
 					var area = $(tutData.identifier);
+					if(j == 3){
+						area = $('img', '#gallery0 ul');
+					}else if(j == 5){
+						area = $('img', '#gallery1 ul');
+					}else if(j == 7){
+						area = $('img', '#gallery2 ul');
+					}else if(j == 8){
+						area = $('img', '#gallery3 ul');
+					}
+					
 					area.attr( "data-step", j );
 					area.attr( "data-intro", tutData.text );
 					area.attr( "data-position", tutData.position );
@@ -510,15 +549,25 @@ function loadGame(gameIndex, gameID) {
 	  */
 	  function loadGaleries( gameLevels ) {
 	  	if(gameLevels != null){
+	  		var pieceCounter = new Array();
 	  		$.each(gameLevels, function(index, value) {
 	  			rand(0,1) ? NEXTLEVELS.push(parseInt(index)) : NEXTLEVELS.unshift(parseInt(index));
 
 	  			for(var i=0;i<NUMBER_OF_GALLERIES;i++){
 	  				var j = i+1;
 	  				var id= "gallery"+j+"src";
-	  				var image = $('<li class="ui-widget-content ui-corner-tr piece" draggable="true"><img src="' + TEMP + value[id] + '" alt="' +  value[id] + '" width="94" height="68" id="piece-id-'+i+'" piece-id="' + value[id] + '" piece-count="1"/></li>');
+	  				var p= value[id];
+					if (pieceCounter[p]) {
+							pieceCounter[p]++;
+							$('img[piece-id="' + p + '"]', '#gallery' + i + ' ul').attr('piece-count',pieceCounter[p]);
+
+						} else {
+	  				var image = $('<li class="ui-widget-content ui-corner-tr piece" draggable="true"><img src="' + TEMP + p + '" alt="' +  p + '" width="94" height="68" id="piece-id-'+i+'" piece-id="' + p + '" piece-count="1"/></li>');
 	  				rand(0,1) ? $('#gallery' + i + ' ul').prepend(image) : $('#gallery' + i + ' ul').append(image);
-	  			}
+	  				pieceCounter[p] = 1;
+						}
+	  			
+	  		}
 	  		});
 
 	  		setGalleryWidth();
@@ -1545,8 +1594,9 @@ insertPlayerStatistics = function() {
 	if(GAMESDATA != null){
 		$.each(GAMESDATA, function(i, game) {
 			var game_name = GAMESDATA[i].gameName.toLowerCase();
+			var game_id = GAMESDATA[i].gameId;
 			if(game_name !== 'Tutorial') {
-				$('#stats-game-select').append('<option value="'+ i +'">' + game_name + '</option>');
+				$('#stats-game-select').append('<option value="'+ game_id +'" gameIndex="'+ i +'">' + game_name + '</option>');
 			}
 		});
 	}
@@ -1554,21 +1604,27 @@ insertPlayerStatistics = function() {
 	$('#stats-game-select').append('<option value="2">Test Game 2</option>');
 
 	// Query statistics for Hormones game
+	//var game = GAMEID;
+	var game_id = $('select[name=stats-game-select]').val();
+	var game_index = $('option:selected', $('#stats-game-select')).attr('gameIndex');
+	getGameLevelsForStats(game_id,"pie", "player-",game_index);
+
+/*	var collectGameTracesurl = "collect/traces/"+game_id;
 	$.ajax({
-	  url: gleaner_url + "collect/traces/1", // TODO MARKO add real url
+	  url: gleaner_url + collectGameTracesurl, // TODO MARKO add real url
 	  dataType: "json",
 	  headers: {
 	  	'Email': oidc_userinfo.email
 	  },
 	  success: function(result) {
     	// If everything went ok, draw the chart
-    	chart_creator.drawChart(result);
+    	chart_creator.drawChart(result,game_index);
     },
     error: function(err) {
     	console.log(err);
     	console.log("Can't get traces. Server down?");
     }
-});
+});*/
 }
 
 insertGameDesignerStatistics = function(designed_games) {

@@ -1,6 +1,6 @@
 var TUTORIALSDATA = {
 	"1": {
-		"game": 0,
+		"game": "Tutorial",
 		"difficulty": 3,
 		"tutorials": {
 			"1": {
@@ -14,7 +14,7 @@ var TUTORIALSDATA = {
 				"position": "right"
 			},
 			"3": {
-				"identifier": "img[piece-id=68]",
+				"identifier": "",
 				"text": "First select a piece in one of these galleries.",
 				"position": "right"
 			},
@@ -24,7 +24,7 @@ var TUTORIALSDATA = {
 				"position": "bottom"
 			},
 			"5": {
-				"identifier": "img[piece-id=69]",
+				"identifier": "",
 				"text": "Then choose a second piece.",
 				"position": "top"
 			},
@@ -34,12 +34,12 @@ var TUTORIALSDATA = {
 				"position": "bottom"
 			},
 			"7": {
-				"identifier": "img[piece-id=70]",
+				"identifier": "",
 				"text": "Do the same with a third piece.",
 				"position": "left"
 			},
 			"8": {
-				"identifier": "img[piece-id=47]",
+				"identifier": "",
 				"text": "And finally a fourth piece.",
 				"position": "bottom"
 			},

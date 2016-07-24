@@ -1,4 +1,4 @@
-var UPLOADPATH = "uploads/";
+//var UPLOADPATH = "uploads/";
 var TEMP = "tmp/";
 
 
@@ -195,7 +195,9 @@ function rand(min, max) {
 		jsondata = JSON.parse(data);
 		if(jsondata != null){
 			$.each(jsondata, function(index, value) {
-				$('#select-gallery').append('<option value="'+ value.galleryId +'" description="'+value.galleryDescription+'">' + value.galleryName + '</option>');
+				if(value.galleryName != "1" && value.galleryName != "2" && value.galleryName != "3" && value.galleryName != "4"){
+					$('#select-gallery').append('<option value="'+ value.galleryId +'" description="'+value.galleryDescription+'">' + value.galleryName + '</option>');
+				}
 			});
 		}
 		var myselect = $("select#select-gallery");
