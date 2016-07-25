@@ -557,17 +557,17 @@ function loadGame(gameIndex, gameID) {
 	  				var j = i+1;
 	  				var id= "gallery"+j+"src";
 	  				var p= value[id];
-					if (pieceCounter[p]) {
-							pieceCounter[p]++;
-							$('img[piece-id="' + p + '"]', '#gallery' + i + ' ul').attr('piece-count',pieceCounter[p]);
+	  				if (pieceCounter[p]) {
+	  					pieceCounter[p]++;
+	  					$('img[piece-id="' + p + '"]', '#gallery' + i + ' ul').attr('piece-count',pieceCounter[p]);
 
-						} else {
-	  				var image = $('<li class="ui-widget-content ui-corner-tr piece" draggable="true"><img src="' + TEMP + p + '" alt="' +  p + '" width="94" height="68" id="piece-id-'+i+'" piece-id="' + p + '" piece-count="1"/></li>');
-	  				rand(0,1) ? $('#gallery' + i + ' ul').prepend(image) : $('#gallery' + i + ' ul').append(image);
-	  				pieceCounter[p] = 1;
-						}
-	  			
-	  		}
+	  				} else {
+	  					var image = $('<li class="ui-widget-content ui-corner-tr piece" draggable="true"><img src="' + TEMP + p + '" alt="' +  p + '" width="94" height="68" id="piece-id-'+i+'" piece-id="' + p + '" piece-count="1"/></li>');
+	  					rand(0,1) ? $('#gallery' + i + ' ul').prepend(image) : $('#gallery' + i + ' ul').append(image);
+	  					pieceCounter[p] = 1;
+	  				}
+	  				
+	  			}
 	  		});
 
 	  		setGalleryWidth();
