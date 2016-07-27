@@ -29,6 +29,5 @@ echo 'gallery name is '.$galleryName;
 $sql .= "(".$max.", '".$galleryName."', '".$galleryDescription."')";
 $result = $conn->query($sql);
 echo $max;
-$result->close();
 $conn->close();
 ?>
