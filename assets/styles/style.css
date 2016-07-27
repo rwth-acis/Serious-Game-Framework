@@ -19,13 +19,18 @@ body { list-style: none; }
 #populategallerywrapper { position:relative; width:100%; left:0; top:0; right:0; }
 #populateconnectionswrapper { position:relative; width:100%; left:0; top:0; right:0; }
 #populatebadgeswrapper { position:relative; width:100%; left:0; top:0; right:0; }
+#populateconnectionswrapper1 { position:relative; width:100%; left:0; top:0; right:0; }
 #populateconnectionswrapper2 { position:relative; width:100%; left:0; top:0; right:0; }
+#populateconnectionswrapper3 { position:relative; width:100%; left:0; top:0; right:0; }
 #populategamegallery1wrapper { position:relative; width:100%; left:0; top:0; right:0; }
 #populategamegallery2wrapper { position:relative; width:100%; left:0; top:0; right:0; }
 #populategamegallery3wrapper { position:relative; width:100%; left:0; top:0; right:0; }
 #populategamegallery4wrapper { position:relative; width:100%; left:0; top:0; right:0; }
 #populateeditlevelswrapper { position: relative;  width:100%; left:0; top:0; right:0; }
-#populatechangeconnectionwrapper { position:relative; width:100%; left:0; top:0; right:0; }
+#populatechangeconnectionwrapper1 { position:relative; width:100%; left:0; top:0; right:0; }
+#populatechangeconnectionwrapper2 { position:relative; width:100%; left:0; top:0; right:0; }
+#populatechangeconnectionwrapper3 { position:relative; width:100%; left:0; top:0; right:0; }
+
 
 .gallery { background-color:#dddddd; }
 .gallery.custom-state-active { background: #eee; }
@@ -62,9 +67,17 @@ body { list-style: none; }
 #ulwrap-populatebadges { overflow:hidden; width: 500px; float: left; }
 #populatebadges ul { height: 100px; width: 500px; float: left; overflow:visible; }
 
+#populateconnections1 { height: 110px; margin:0 0px 0 0px; z-index: 1002 }
+#ulwrap-populateconnections1 { overflow:hidden; width: 500px; float: left; }
+#populateconnections1 ul { height: 100px; width: 500px; float: left; overflow:visible; }
+
 #populateconnections2 { height: 110px; margin:0 0px 0 0px; z-index: 1002 }
 #ulwrap-populateconnections2 { overflow:hidden; width: 500px; float: left; }
 #populateconnections2 ul { height: 100px; width: 500px; float: left; overflow:visible; }
+
+#populateconnections3 { height: 110px; margin:0 0px 0 0px; z-index: 1002 }
+#ulwrap-populateconnections3 { overflow:hidden; width: 500px; float: left; }
+#populateconnections3 ul { height: 100px; width: 500px; float: left; overflow:visible; }
 
 #populategamegallery1 { height: 110px; margin:0 0px 0 0px; z-index: 1002 }
 #ulwrap-populategamegallery1 { overflow:hidden; width: 500px; float: left; }
@@ -86,9 +99,17 @@ body { list-style: none; }
 #ulwrap-populateeditlevels { overflow:hidden; width: 500px; float: left; }
 #populateeditlevels ul { height: 200px; overflow: visible; width: 500px; }
 
-#populatechangeconnection { height: 110px; margin:0 0px 0 0px; z-index: 1002 }
-#ulwrap-populatechangeconnection { overflow:hidden; width: 500px; float: left; }
-#populatechangeconnection ul { height: 100px; width: 500px; float: left; overflow:visible; }
+#populatechangeconnection1 { height: 110px; margin:0 0px 0 0px; z-index: 1002 }
+#ulwrap-populatechangeconnection1 { overflow:hidden; width: 500px; float: left; }
+#populatechangeconnection1 ul { height: 100px; width: 500px; float: left; overflow:visible; }
+
+#populatechangeconnection2 { height: 110px; margin:0 0px 0 0px; z-index: 1002 }
+#ulwrap-populatechangeconnection2 { overflow:hidden; width: 500px; float: left; }
+#populatechangeconnection2 ul { height: 100px; width: 500px; float: left; overflow:visible; }
+
+#populatechangeconnection3 { height: 110px; margin:0 0px 0 0px; z-index: 1002 }
+#ulwrap-populatechangeconnection3 { overflow:hidden; width: 500px; float: left; }
+#populatechangeconnection3 ul { height: 100px; width: 500px; float: left; overflow:visible; }
 
 .button-left { float: left; }
 .button-right { float: right; }
@@ -100,13 +121,17 @@ body { list-style: none; }
 #populategallery li { margin: 0px 2px 0px 2px; }
 #populateconnections li { margin: 0px 2px 0px 2px; }
 #populatebadges li { margin: 0px 2px 0px 2px; }
+#populateconnections1 li { margin: 0px 2px 0px 2px; }
 #populateconnections2 li { margin: 0px 2px 0px 2px; }
+#populateconnections3 li { margin: 0px 2px 0px 2px; }
 #populategamegallery1 li { margin: 0px 2px 0px 2px; }
 #populategamegallery2 li { margin: 0px 2px 0px 2px; }
 #populategamegallery3 li { margin: 0px 2px 0px 2px; }
 #populategamegallery4 li { margin: 0px 2px 0px 2px; }
 #populateeditlevels li { margin: 2px 0px 2px 0px; }
-#populatechangeconnection li { margin: 0px 2px 0px 2px; }
+#populatechangeconnection1 li { margin: 0px 2px 0px 2px; }
+#populatechangeconnection2 li { margin: 0px 2px 0px 2px; }
+#populatechangeconnection3 li { margin: 0px 2px 0px 2px; }
 
 /* #wrappergameboard {position: absolute; top: 110px; left: 140px; bottom:110px; right:140px; text-align: center; vertical-align: middle;} */
 #wrappergameboard { position: absolute; top: 35%; left: 15%; bottom:25%; right:15%; }

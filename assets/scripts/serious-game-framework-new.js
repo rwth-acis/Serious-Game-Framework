@@ -9,6 +9,8 @@ var DEBUG = false;
 var DIFFICULTY = 3;
 var NEWDIFFICULTY = 3;
 var SHOWME = false;
+var TRYAGAIN = false;
+var HINT = false;
 
 var GAMEID = -1;
 
@@ -200,6 +202,22 @@ $(document).ready(function() {
 		// Send trace for using the show_me button
 		gleaner_tracker.trackTrace(oidc_userinfo, "level_completion",
 			{gameID: GAMEID, levelID: CURRENTLEVEL, result: "show_me"});
+	});
+
+	$('#wrapper-tryagain').click(function() {
+		tryAgain();
+
+		// Send trace for using the show_me button
+		gleaner_tracker.trackTrace(oidc_userinfo, "level_completion",
+			{gameID: GAMEID, levelID: CURRENTLEVEL, result: "try_again"});
+	});
+
+	$('#wrapper-hint').click(function() {
+		hint();
+
+		// Send trace for using the show_me button
+		gleaner_tracker.trackTrace(oidc_userinfo, "level_completion",
+			{gameID: GAMEID, levelID: CURRENTLEVEL, result: "hint"});
 	});
 
 	$('#wrapper-level-tutorial').click(function(){
@@ -400,6 +418,8 @@ function loadGame(gameIndex, gameID) {
 		$('#wrapper-level-tutorial').fadeOut();
 		$('#wrapper-back-main').fadeOut();
 		$('#wrapper-showme').fadeOut();
+		$('#wrapper-tryagain').fadeOut();
+		$('#wrapper-hint').fadeOut();
 		$('#wrapper-next').fadeOut();
 		$('#elearning').empty();
 		$('#elearning').fadeOut();
@@ -470,6 +490,10 @@ function loadGame(gameIndex, gameID) {
 		introJs().start();
 		$('#wrapper-showme').fadeIn();
 		$('#button-showme').show();
+		$('#wrapper-tryagain').fadeIn();
+		$('#button-tryagain').show();
+		$('#wrapper-hint').fadeIn();
+		$('#button-hint').show();
 		$('#elearning').empty();
 		$('#elearning').fadeIn();
 		$('#elearning').append('<a href="' + GAMELEVELS[0]["eLearningLink"] + '" target="_blank">E-Learning Link</a>');
@@ -557,16 +581,17 @@ function loadGame(gameIndex, gameID) {
 	  				var j = i+1;
 	  				var id= "gallery"+j+"src";
 	  				var p= value[id];
-	  				if (pieceCounter[p]) {
-	  					pieceCounter[p]++;
+	  				var distinct = p+j;
+	  				if (pieceCounter[distinct]) {
+	  					pieceCounter[distinct]++;
 	  					$('img[piece-id="' + p + '"]', '#gallery' + i + ' ul').attr('piece-count',pieceCounter[p]);
 
 	  				} else {
 	  					var image = $('<li class="ui-widget-content ui-corner-tr piece" draggable="true"><img src="' + TEMP + p + '" alt="' +  p + '" width="94" height="68" id="piece-id-'+i+'" piece-id="' + p + '" piece-count="1"/></li>');
 	  					rand(0,1) ? $('#gallery' + i + ' ul').prepend(image) : $('#gallery' + i + ' ul').append(image);
-	  					pieceCounter[p] = 1;
+	  					pieceCounter[distinct] = 1;
 	  				}
-	  				
+
 	  			}
 	  		});
 
@@ -819,11 +844,11 @@ function loadGame(gameIndex, gameID) {
 				// if != currentlevel : updateConnections()
 				var tmpres = findBestFittingLevels();
 				//alert(tmpres);
-				if (tmpres.length == 1) {
+			//	if (tmpres.length == 1) {
 					res = tmpres[0];
-				} else {
-					res = -1;
-				}
+				//} else {
+				//	res = -1;
+				//}
 				break;
 			}
 			CURRENTLEVEL = res;
@@ -972,6 +997,8 @@ function loadGame(gameIndex, gameID) {
 			
 			
 			$('#wrapper-showme').fadeOut();
+			$('#wrapper-tryagain').fadeOut();
+			$('#wrapper-hint').fadeOut();
 			$('#wrapper-next').fadeOut();
 			$('.level-verification').fadeOut();
 			$('#elearning').fadeOut().empty();
@@ -1009,6 +1036,8 @@ function loadGame(gameIndex, gameID) {
 			SELECTEDITEMS = [];
 			
 			SHOWME = false;
+			TRYAGAIN = false;
+			HINT = false;
 			
 			//alert(DIFFICULTY);
 			switch (DIFFICULTY) {
@@ -1069,10 +1098,12 @@ function loadGame(gameIndex, gameID) {
 			if (CURRENTLEVEL > -1) {
 				for (var i = 0; i < number_of_connections; i++) {
 					//var c = GAMELEVELS[CURRENTLEVEL].connections[i];
-					c = 1;
+					c = i;
+					k = i+1;
+					var id= "connection"+k+"Id";
 				//alert(c);
 				if (c > -1) {
-					var connection = $('<img src="' + TEMP + GAMESDATA[GAMEINDEX].connection1Id+ '" alt="' + GAMESDATA[GAMEINDEX].connection1Id + '" width="32" height="32" connection-id="' + c + '" />');
+					var connection = $('<img src="' + TEMP + GAMESDATA[GAMEINDEX][id]+ '" alt="' + GAMESDATA[GAMEINDEX][id] + '" width="32" height="32" connection-id="' + c + '" />');
 					$('#connection' + i).append(connection);
 				}
 			}

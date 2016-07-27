@@ -23,9 +23,14 @@ function rand(min, max) {
 
 		setGalleryHeight();
 
+		var CONNECTIONS1 = $("#populateconnections1"),
+		CONNECTIONS1ul = $("ul", CONNECTIONS1);
 		
 		var CONNECTIONS2 = $("#populateconnections2"),
 		CONNECTIONS2ul = $("ul", CONNECTIONS2);
+
+		var CONNECTIONS3 = $("#populateconnections3"),
+		CONNECTIONS3ul = $("ul", CONNECTIONS3);
 
 		var GAMEGALLERY1 = $("#populategamegallery1"),
 		GAMEGALLERY1ul = $("ul", GAMEGALLERY1);
@@ -39,8 +44,14 @@ function rand(min, max) {
 		var GAMEGALLERY4 = $("#populategamegallery4"),
 		GAMEGALLERY4ul = $("ul", GAMEGALLERY4);
 
-		var CHANGECONNECTION = $("#populatechangeconnection"),
-		CHANGECONNECTIONul = $("ul", CHANGECONNECTION);
+		var CHANGECONNECTION1 = $("#populatechangeconnection1"),
+		CHANGECONNECTION1ul = $("ul", CHANGECONNECTION1);
+
+		var CHANGECONNECTION2 = $("#populatechangeconnection2"),
+		CHANGECONNECTION2ul = $("ul", CHANGECONNECTION2);
+
+		var CHANGECONNECTION3 = $("#populatechangeconnection3"),
+		CHANGECONNECTION3ul = $("ul", CHANGECONNECTION3);
 
 		var GALLERYNAMES;
 		var GAMEGALLERYNAMES;
@@ -115,19 +126,66 @@ function rand(min, max) {
 			}
 		});
 
-		$('#button-right-populatechangeconnection').bind('mousedown mouseup touchstart touchend', function(event){
+		$('#button-right-populatechangeconnection1').bind('mousedown mouseup touchstart touchend', function(event){
 			if ((event.type == 'mousedown') || (event.type == 'touchstart')){
-				$('#ulwrap-populatechangeconnection').animate({"scrollLeft": "+=2000px"}, 3000, 'linear');
+				$('#ulwrap-populatechangeconnection1').animate({"scrollLeft": "+=2000px"}, 3000, 'linear');
 			}else{
-				$('#ulwrap-populatechangeconnection').stop();
+				$('#ulwrap-populatechangeconnection1').stop();
 			}
 		});
 
-		$('#button-left-populatechangeconnection').bind('mousedown mouseup touchstart touchend', function(event){
+		$('#button-left-populatechangeconnection1').bind('mousedown mouseup touchstart touchend', function(event){
 			if ((event.type == 'mousedown') || (event.type == 'touchstart')){
-				$('#ulwrap-populatechangeconnection').animate({"scrollLeft": "-=2000px"}, 3000, 'linear');
+				$('#ulwrap-populatechangeconnection1').animate({"scrollLeft": "-=2000px"}, 3000, 'linear');
 			}else{
-				$('#ulwrap-populatechangeconnection').stop();
+				$('#ulwrap-populatechangeconnection1').stop();
+			}
+		});
+
+		$('#button-right-populatechangeconnection2').bind('mousedown mouseup touchstart touchend', function(event){
+			if ((event.type == 'mousedown') || (event.type == 'touchstart')){
+				$('#ulwrap-populatechangeconnection2').animate({"scrollLeft": "+=2000px"}, 3000, 'linear');
+			}else{
+				$('#ulwrap-populatechangeconnection2').stop();
+			}
+		});
+
+		$('#button-left-populatechangeconnection2').bind('mousedown mouseup touchstart touchend', function(event){
+			if ((event.type == 'mousedown') || (event.type == 'touchstart')){
+				$('#ulwrap-populatechangeconnection2').animate({"scrollLeft": "-=2000px"}, 3000, 'linear');
+			}else{
+				$('#ulwrap-populatechangeconnection2').stop();
+			}
+		});
+
+		$('#button-right-populatechangeconnection3').bind('mousedown mouseup touchstart touchend', function(event){
+			if ((event.type == 'mousedown') || (event.type == 'touchstart')){
+				$('#ulwrap-populatechangeconnection3').animate({"scrollLeft": "+=2000px"}, 3000, 'linear');
+			}else{
+				$('#ulwrap-populatechangeconnection3').stop();
+			}
+		});
+
+		$('#button-left-populatechangeconnection3').bind('mousedown mouseup touchstart touchend', function(event){
+			if ((event.type == 'mousedown') || (event.type == 'touchstart')){
+				$('#ulwrap-populatechangeconnection3').animate({"scrollLeft": "-=2000px"}, 3000, 'linear');
+			}else{
+				$('#ulwrap-populatechangeconnection3').stop();
+			}
+		});
+
+		$('#button-right-populateconnections1').bind('mousedown mouseup touchstart touchend', function(event){
+			if ((event.type == 'mousedown') || (event.type == 'touchstart')){
+				$('#ulwrap-populateconnections1').animate({"scrollLeft": "+=2000px"}, 3000, 'linear');
+			}else{
+				$('#ulwrap-populateconnections1').stop();
+			}
+		});
+		$('#button-left-populateconnections1').bind('mousedown mouseup touchstart touchend', function(event){
+			if ((event.type == 'mousedown') || (event.type == 'touchstart')){
+				$('#ulwrap-populateconnections1').animate({"scrollLeft": "-=2000px"}, 3000, 'linear');
+			}else{
+				$('#ulwrap-populateconnections1').stop();
 			}
 		});
 
@@ -146,6 +204,21 @@ function rand(min, max) {
 			}
 		});
 
+		$('#button-right-populateconnections3').bind('mousedown mouseup touchstart touchend', function(event){
+			if ((event.type == 'mousedown') || (event.type == 'touchstart')){
+				$('#ulwrap-populateconnections3').animate({"scrollLeft": "+=2000px"}, 3000, 'linear');
+			}else{
+				$('#ulwrap-populateconnections3').stop();
+			}
+		});
+		$('#button-left-populateconnections3').bind('mousedown mouseup touchstart touchend', function(event){
+			if ((event.type == 'mousedown') || (event.type == 'touchstart')){
+				$('#ulwrap-populateconnections3').animate({"scrollLeft": "-=2000px"}, 3000, 'linear');
+			}else{
+				$('#ulwrap-populateconnections3').stop();
+			}
+		});
+
 		$(window).resize(function() {
 			setGalleryHeight();
 			setGalleryWidth();
@@ -153,6 +226,9 @@ function rand(min, max) {
 
 		
 		$('#creategameslink').click(function() { 
+			$('#game-designer-name')[0].value = "";
+			$('#game-designer-institution')[0].value = "";
+			$('#game-designer-email')[0].value = "";
 			resetGameCreationView();
 		});
 
@@ -168,27 +244,37 @@ function rand(min, max) {
 				$('#selectgallery2fieldset').addClass('hideElement');
 				$('#selectgallery3fieldset').addClass('hideElement');
 				$('#selectgallery4fieldset').addClass('hideElement');
-				$('#selectconnection-fieldset').addClass('hideElement');
+				$('#selectconnection1-fieldset').addClass('hideElement');
+				$('#selectconnection2-fieldset').addClass('hideElement');
+				$('#selectconnection3-fieldset').addClass('hideElement');
 				$('#create-game-button').find('*').prop('disabled',true);
 				$('#create-game-button').find('*').addClass('ui-disabled');
 				var createGameMessage = $('<h2>To enable game creation, give non-empty game name and select the number of galleries to be added in the game</h2>');
 				$('#create-game-message').append(createGameMessage);
 				
 			} else{
-				$('#selectconnection-fieldset').removeClass('hideElement');
-				getConnections("populateconnections2");
+				$('#selectconnection1-fieldset').removeClass('hideElement');
+				getConnections("populateconnections1");
 				if(galleryId >= 2){
 					$('#selectgallery1fieldset').removeClass('hideElement');
 					$('#selectgallery2fieldset').removeClass('hideElement');
 					$('#selectgallery3fieldset').addClass('hideElement');
 					$('#selectgallery4fieldset').addClass('hideElement');
+					$('#selectconnection2-fieldset').addClass('hideElement');
+					$('#selectconnection3-fieldset').addClass('hideElement');
 				}
 				if(galleryId > 2){
 					$('#selectgallery3fieldset').removeClass('hideElement');
 					$('#selectgallery4fieldset').addClass('hideElement');
+					$('#selectconnection2-fieldset').removeClass('hideElement');
+					getConnections("populateconnections2");
+					$('#selectconnection3-fieldset').addClass('hideElement');
+				
 				}
 				if(galleryId > 3){
 					$('#selectgallery4fieldset').removeClass('hideElement');
+					$('#selectconnection3-fieldset').removeClass('hideElement');
+					getConnections("populateconnections3");
 				}
 				var createGameMessage = $('<h2>To enable game creation, give non-empty game name and select galleries and connection</h2>');
 				$('#create-game-message').append(createGameMessage);
@@ -290,23 +376,68 @@ function rand(min, max) {
 		enableCreateLevelButton();
 	});
 
-	$('#changeconnection').on('click', 'li', function() { // id of clicked li by directly accessing DOMElement property
+	$('#changeconnection1').on('click', 'li', function() { // id of clicked li by directly accessing DOMElement property
 		$('#changeConnectionMessage').text("");
 		if($(this).hasClass("active")){
 			$(this).removeClass("active");
-			$('#change-connection-button').find('*').prop('disabled',true);
-			$('#change-connection-button').find('*').addClass('ui-disabled');
+			$('#change-connection-button1').find('*').prop('disabled',true);
+			$('#change-connection-button1').find('*').addClass('ui-disabled');
 		} else {
 			$(this).addClass("active");
-			$('#change-connection-button').find('*').prop('disabled',false);
-			$('#change-connection-button').find('*').removeClass('ui-disabled');
-			$('#change-connection-button').css('opacity','1');
+			$('#change-connection-button1').find('*').prop('disabled',false);
+			$('#change-connection-button1').find('*').removeClass('ui-disabled');
+			$('#change-connection-button1').css('opacity','1');
+		}
+		$(this).siblings().removeClass("active");
+
+	});
+
+	$('#changeconnection2').on('click', 'li', function() { // id of clicked li by directly accessing DOMElement property
+		$('#changeConnectionMessage').text("");
+		if($(this).hasClass("active")){
+			$(this).removeClass("active");
+			$('#change-connection-button2').find('*').prop('disabled',true);
+			$('#change-connection-button2').find('*').addClass('ui-disabled');
+		} else {
+			$(this).addClass("active");
+			$('#change-connection-button2').find('*').prop('disabled',false);
+			$('#change-connection-button2').find('*').removeClass('ui-disabled');
+			$('#change-connection-button2').css('opacity','1');
+		}
+		$(this).siblings().removeClass("active");
+
+	});
+
+	$('#changeconnection3').on('click', 'li', function() { // id of clicked li by directly accessing DOMElement property
+		$('#changeConnectionMessage').text("");
+		if($(this).hasClass("active")){
+			$(this).removeClass("active");
+			$('#change-connection-button3').find('*').prop('disabled',true);
+			$('#change-connection-button3').find('*').addClass('ui-disabled');
+		} else {
+			$(this).addClass("active");
+			$('#change-connection-button3').find('*').prop('disabled',false);
+			$('#change-connection-button3').find('*').removeClass('ui-disabled');
+			$('#change-connection-button3').css('opacity','1');
 		}
 		$(this).siblings().removeClass("active");
 
 	});
 
 	
+		$('#editconnection1').on('click', 'li', function() { // id of clicked li by directly accessing DOMElement property
+			
+			if($(this).hasClass("active")){
+				$(this).removeClass("active");
+				
+			} else {
+				$(this).addClass("active");
+			}
+			$(this).siblings().removeClass("active");
+			enableCreateGameButton();
+
+		});
+
 		$('#editconnection2').on('click', 'li', function() { // id of clicked li by directly accessing DOMElement property
 			
 			if($(this).hasClass("active")){
@@ -320,9 +451,32 @@ function rand(min, max) {
 
 		});
 
+		$('#editconnection3').on('click', 'li', function() { // id of clicked li by directly accessing DOMElement property
+			
+			if($(this).hasClass("active")){
+				$(this).removeClass("active");
+				
+			} else {
+				$(this).addClass("active");
+			}
+			$(this).siblings().removeClass("active");
+			enableCreateGameButton();
 
-		$('#button-change-connection').click(function() {
-			changeConnection();
+		});
+
+
+		$('#button-change-connection1').click(function() {
+			changeConnection1();
+		});
+
+
+		$('#button-change-connection2').click(function() {
+			changeConnection2();
+		});
+
+
+		$('#button-change-connection3').click(function() {
+			changeConnection3();
 		});
 
 		$('#button-edit-game').click(function() {
@@ -339,15 +493,21 @@ function rand(min, max) {
 			var gameGallery3 = $('option:selected', $('#selectgame')).attr('gameGallery3');
 			var gameGallery4 = $('option:selected', $('#selectgame')).attr('gameGallery4');
 			NUMBER_OF_GALLERIES = 2;
+			var activeConnection1 = $('option:selected', $('#selectgame')).attr('gameConnection1');
+			getGameConnections("populatechangeconnection1",activeConnection1);
 			if(gameGallery3 !=""){
 				NUMBER_OF_GALLERIES = 3;
 				$('#gamegallery3-fieldset').removeClass('hideElement');
 				$('#editheaderslot2td').removeClass('hideElement');
 				$('#edithideslot2').removeClass('hideElement');
 				$('#editwrapperslot2').css("display","block");
+				$('#changeconnection2-fieldset').removeClass('hideElement');
 				getGalleryTiles(gameGallery3,"populategamegallery3");
+				var activeConnection2 = $('option:selected', $('#selectgame')).attr('gameConnection2');
+				getGameConnections("populatechangeconnection2",activeConnection2);
 			}else{
 				$('#gamegallery3-fieldset').addClass('hideElement');
+				$('#changeconnection2-fieldset').addClass('hideElement');
 				$('#editheaderslot2td').addClass('hideElement');
 				$('#edithideslot2').addClass('hideElement');
 				$('#editwrapperslot2').css("display","none");
@@ -358,9 +518,13 @@ function rand(min, max) {
 				$('#editheaderslot3td').removeClass('hideElement');
 				$('#edithideslot3').removeClass('hideElement');
 				$('#editwrapperslot3').css("display","block");
+				$('#changeconnection3-fieldset').removeClass('hideElement');
 				getGalleryTiles(gameGallery4,"populategamegallery4");
+				var activeConnection3 = $('option:selected', $('#selectgame')).attr('gameConnection3');
+				getGameConnections("populatechangeconnection3",activeConnection3);
 			}else{
 				$('#gamegallery4-fieldset').addClass('hideElement');
+				$('#changeconnection3-fieldset').addClass('hideElement');
 				$('#editheaderslot3td').addClass('hideElement');
 				$('#edithideslot3').addClass('hideElement');
 				$('#editwrapperslot3').css("display","none");
@@ -381,9 +545,7 @@ function rand(min, max) {
 			}
 			var gameId = $('select[name=selectgame]').val();
 			getGameLevels(gameId);
-			var activeConnection = $('option:selected', $('#selectgame')).attr('gameConnection');
-			getGameConnections("populatechangeconnection",activeConnection);	
-			
+					
 		});
 		$('#button-next-level').click(function(){
 			changeLevels("next");
@@ -507,6 +669,7 @@ function rand(min, max) {
 		function resetGameCreationView(){
 			$('#game-name')[0].value = "";
 			$('#game-desc')[0].value = "";
+			$('#game-desc-text')[0].value = "";
 			$('#gallerycount').children().remove();
 			$('#gallerycount').append('<option value="'+ 1 +'" description="Select number of galleries to be added in the game">--Select Galleries Count--</option>');
 			$('#gallerycount').append('<option value="'+ 2 +'" >2</option>');
@@ -516,7 +679,9 @@ function rand(min, max) {
 			$('#selectgallery2fieldset').addClass('hideElement');
 			$('#selectgallery3fieldset').addClass('hideElement');
 			$('#selectgallery4fieldset').addClass('hideElement');
-			$('#selectconnection-fieldset').addClass('hideElement');
+			$('#selectconnection1-fieldset').addClass('hideElement');
+			$('#selectconnection2-fieldset').addClass('hideElement');
+			$('#selectconnection3-fieldset').addClass('hideElement');
 			$('#create-game-button').find('*').prop('disabled',true);
 			$('#create-game-button').find('*').addClass('ui-disabled');
 			getGalleriesList2("selectgallery1");
@@ -552,21 +717,21 @@ function rand(min, max) {
 			var gallery4Val = $('select[name=selectgallery4]').val();
 			var validSelector = "false";
 			if(galleryCountVal == 2){
-				if(gallery1Val != 0 && gallery2Val != 0){
+				if(gallery1Val != 0 && gallery2Val != 0 && $('#editconnection1').find('*').hasClass("active")){
 					validSelector = "true";
 				}else{
 					validSelector = "false";
 				}
 			}
 			if(galleryCountVal == 3){
-				if(gallery1Val != 0 && gallery2Val != 0 && gallery3Val != 0){
+				if(gallery1Val != 0 && gallery2Val != 0 && gallery3Val != 0 && $('#editconnection1').find('*').hasClass("active") && $('#editconnection2').find('*').hasClass("active")){
 					validSelector = "true";
 				}else{
 					validSelector = "false";
 				}
 			}
 			if(galleryCountVal == 4){
-				if(gallery1Val != 0 && gallery2Val != 0 && gallery3Val != 0 && gallery4Val != 0){
+				if(gallery1Val != 0 && gallery2Val != 0 && gallery3Val != 0 && gallery4Val != 0 && $('#editconnection1').find('*').hasClass("active") && $('#editconnection2').find('*').hasClass("active") && $('#editconnection3').find('*').hasClass("active")){
 					validSelector = "true";
 				}else{
 					validSelector = "false";
@@ -574,7 +739,7 @@ function rand(min, max) {
 			}
 			$('#create-game-message').text("");
 			var val = $.trim($('#game-name')[0].value);
-			if(val != "" && $('#editconnection2').find('*').hasClass("active") && validSelector == "true"){
+			if(val != "" && validSelector == "true"){
 				$('#create-game-button').find('*').prop('disabled',false);
 				$('#create-game-button').find('*').removeClass('ui-disabled');
 				var createGameMessage = $('<h2>Click on "Create" to create the game</h2>');
@@ -633,9 +798,9 @@ function rand(min, max) {
 			jsondata = JSON.parse(data);
 			if(jsondata != null){
 				$.each(jsondata, function(index, value) {
-					if(value.galleryName != "1" && value.galleryName != "2" && value.galleryName != "3" && value.galleryName != "4"){
+					//if(value.galleryName != "1" && value.galleryName != "2" && value.galleryName != "3" && value.galleryName != "4"){
 						$('#'+element).append('<option value="'+ value.galleryId +'" description="'+value.galleryDescription+'">' + value.galleryName + '</option>');
-					}
+					//}
 				});
 			}
 			var myselect = $("select#"+element);
@@ -649,15 +814,11 @@ function rand(min, max) {
 			jsondata = JSON.parse(data);
 			if(jsondata != null){
 				$.each(jsondata, function(index, value) {
-					if(value.gameName != "Tutorial"){
-						$('#selectgame').append('<option value="'+ value.gameId +'" description="'+value.gameDescription+'" gameGallery1="'+value.gallery1Id+'" gameGallery2="'+value.gallery2Id+'" gameGallery3="'+value.gallery3Id+'" gameGallery4="'+value.gallery4Id+'" gameConnection="'+value.connection1Id+'">' + value.gameName + '</option>');
-					}
+					//if(value.gameName != "Tutorial"){
+						$('#selectgame').append('<option value="'+ value.gameId +'" description="'+value.gameDescription+'" gameGallery1="'+value.gallery1Id+'" gameGallery2="'+value.gallery2Id+'" gameGallery3="'+value.gallery3Id+'" gameGallery4="'+value.gallery4Id+'" gameConnection1="'+value.connection1Id+'" gameConnection2="'+value.connection2Id+'" gameConnection3="'+value.connection3Id+'">' + value.gameName + '</option>');
+					//}
 				});
 			}
-			var myselect1 = $("select#selectgame");
-			myselect1[0].selectedIndex = 0;
-			myselect1.selectmenu("refresh");
-
 			$('#game-description-message').text("");
 			var description = $('option:selected', $('#selectgame')).attr('description');
 			var gameDescMessage = $('<h2>'+description+'</h2>');
@@ -668,6 +829,9 @@ function rand(min, max) {
 			$('#delete-button-game').find('*').prop('disabled',true);
 			$('#delete-button-game').find('*').addClass('ui-disabled');
 
+			var myselect1 = $("select#selectgame");
+			myselect1[0].selectedIndex = 0;
+			myselect1.selectmenu("refresh");
 		}
 
 		function getGalleryTiles(galleryId,galleryElement){
@@ -692,17 +856,16 @@ function rand(min, max) {
 			}
 		}
 
-		function changeConnection(){
+		function changeConnection1(){
 
 			formdata = false;
 			if (window.FormData) {
 				formdata = new FormData();
 			}
 			var gameId = $('select[name=selectgame]').val();
-			var connectionSrc = $('#changeconnection').find(".active").find(".imgfocus")[0].alt;
+			var connectionSrc1 = $('#changeconnection1').find(".active").find(".imgfocus")[0].alt;
 			formdata.append("gameId",gameId);
-			formdata.append("connectionSrc",connectionSrc);
-			
+			formdata.append("connectionSrc1",connectionSrc1);
 			if(formdata){
 				$.ajax({
 					url: "lib/database/update_connection.php",
@@ -711,6 +874,63 @@ function rand(min, max) {
 					processData: false,
 					contentType: false,
 					success: function(data){
+						refreshGamesAndGalleries();
+						$('#changeConnectionMessage').text("");
+						var changeConnectionMessage = $('<h2>Connection changed successfully</h2>');
+						$('#changeConnectionMessage').append(changeConnectionMessage);
+					}
+				});
+			}
+		}
+
+
+		function changeConnection2(){
+
+			formdata = false;
+			if (window.FormData) {
+				formdata = new FormData();
+			}
+			var gameId = $('select[name=selectgame]').val();
+			var connectionSrc2 = $('#changeconnection2').find(".active").find(".imgfocus")[0].alt;
+			formdata.append("gameId",gameId);
+			formdata.append("connectionSrc2",connectionSrc2);
+			if(formdata){
+				$.ajax({
+					url: "lib/database/update_connection2.php",
+					type: "POST",
+					data: formdata,
+					processData: false,
+					contentType: false,
+					success: function(data){
+						refreshGamesAndGalleries();
+						$('#changeConnectionMessage').text("");
+						var changeConnectionMessage = $('<h2>Connection changed successfully</h2>');
+						$('#changeConnectionMessage').append(changeConnectionMessage);
+					}
+				});
+			}
+		}
+
+
+		function changeConnection3(){
+
+			formdata = false;
+			if (window.FormData) {
+				formdata = new FormData();
+			}
+			var gameId = $('select[name=selectgame]').val();
+			var connectionSrc3 = $('#changeconnection3').find(".active").find(".imgfocus")[0].alt;
+			formdata.append("gameId",gameId);
+			formdata.append("connectionSrc3",connectionSrc3);
+			if(formdata){
+				$.ajax({
+					url: "lib/database/update_connection3.php",
+					type: "POST",
+					data: formdata,
+					processData: false,
+					contentType: false,
+					success: function(data){
+						refreshGamesAndGalleries();
 						$('#changeConnectionMessage').text("");
 						var changeConnectionMessage = $('<h2>Connection changed successfully</h2>');
 						$('#changeConnectionMessage').append(changeConnectionMessage);
@@ -804,6 +1024,7 @@ function rand(min, max) {
 					contentType: false,
 					success: function(data){
 						getGamesList();
+						resetEditGameView();
 						$('#game-description-message').text("");
 						var gameDescMessage = $('<h2>Game "'+gameName+'" deleted successfully!</h2>');
 						$('#game-description-message').append(gameDescMessage);
@@ -822,6 +1043,7 @@ function rand(min, max) {
 
 			formdata.append("id", GAMELEVELS[levelNo]["id"]);
 			formdata.append("eLearningLink",$.trim($('#eLearningLink')[0].value));
+			formdata.append("moreInformation",$.trim($('#moreInformationLink')[0].value));
 			if(formdata){
 				$.ajax({
 					url: "lib/database/updateLevel.php",
@@ -831,6 +1053,7 @@ function rand(min, max) {
 					contentType: false,
 					success: function(data){
 						GAMELEVELS[levelNo]["eLearningLink"] = $.trim($('#eLearningLink')[0].value);
+						GAMELEVELS[levelNo]["moreInformation"] = $.trim($('#moreInformationLink')[0].value);
 						var editLevelMessage = $('<h2>Level saved successfully!</h2>');
 						$('#editLevelMessage').append(editLevelMessage);
 					}
@@ -843,17 +1066,33 @@ function rand(min, max) {
 		function createGame(){
 			var gameName = $.trim($('#game-name')[0].value);
 			var gameDescription = $.trim($('#game-desc')[0].value);
+			var gameDescriptionText = $.trim($('#game-desc-text')[0].value);
+			var gameDesignerName = $.trim($('#game-designer-name')[0].value);
+			var gameDesignerInstitution = $.trim($('#game-designer-institution')[0].value);
+			var gameDesignerEmail = $.trim($('#game-designer-email')[0].value);
 			var gallery1Id = $('select[name=selectgallery1]').val();
 			var gallery2Id = $('select[name=selectgallery2]').val();
 			var gallery3Id = $('select[name=selectgallery3]').val();
 			var gallery4Id = $('select[name=selectgallery4]').val();
-			var connectionSrc = $('#editconnection2').find(".active").find(".imgfocus")[0].alt;
+			var connectionSrc1 = $('#editconnection1').find(".active").find(".imgfocus")[0].alt;
+			var connectionSrc2 = "";
+			if($('#editconnection2').find(".active").length != 0){
+				connectionSrc2 = $('#editconnection2').find(".active").find(".imgfocus")[0].alt;
+			}
+			var connectionSrc3 = "";
+			if($('#editconnection3').find(".active").length != 0){
+				connectionSrc3 = $('#editconnection3').find(".active").find(".imgfocus")[0].alt;
+			}
 			formdata = false;
 			if (window.FormData) {
 				formdata = new FormData();
 			}
 			formdata.append("gameName",gameName);
 			formdata.append("gameDescription",gameDescription);
+			formdata.append("gameDescriptionText",gameDescriptionText);
+			formdata.append("gameDesignerName",gameDesignerName);
+			formdata.append("gameDesignerInstitution",gameDesignerInstitution);
+			formdata.append("gameDesignerEmail",gameDesignerEmail);
 			formdata.append("gallery1Id",gallery1Id);
 			formdata.append("gallery2Id",gallery2Id);
 			if(gallery3Id != 0){
@@ -866,7 +1105,9 @@ function rand(min, max) {
 			}else{
 				formdata.append("gallery4Id","");
 			}
-			formdata.append("connectionSrc",connectionSrc);
+			formdata.append("connectionSrc1",connectionSrc1);
+			formdata.append("connectionSrc2",connectionSrc2);
+			formdata.append("connectionSrc3",connectionSrc3);
 			if(formdata){
 				$.ajax({
 					url: "lib/database/create_game.php",
@@ -896,6 +1137,7 @@ function rand(min, max) {
 		function createLevel(){
 			
 			var eLearningLink = $.trim($('#newELearningLink')[0].value);
+			var moreInformation = $.trim($('#newMoreInformationLink')[0].value);
 			var gameId = $('select[name=selectgame]').val();
 			var gallery1src = $('#selectedgamegallery1').find(".active").find(".imgfocus")[0].alt;
 			var gallery2src = $('#selectedgamegallery2').find(".active").find(".imgfocus")[0].alt;
@@ -923,6 +1165,7 @@ function rand(min, max) {
 				formdata.append("gallery4src","");
 			}
 			formdata.append("eLearningLink",eLearningLink);
+			formdata.append("moreInformation",moreInformation);
 			if(formdata){
 				$.ajax({
 					url: "lib/database/create_level.php",
@@ -932,16 +1175,16 @@ function rand(min, max) {
 					contentType: false,
 					success: function(data){
 						$('#add-level-message').text("");
-						$('#selectedgamegallery1').find(".active").remove();
+						/*$('#selectedgamegallery1').find(".active").remove();
 						$('#selectedgamegallery2').find(".active").remove();
 						if(gameGallery3 != ""){
 							$('#selectedgamegallery3').find(".active").remove();
 						}
 						if(gameGallery4 != ""){
 							$('#selectedgamegallery4').find(".active").remove();
-						}
-						$('#create-level-button').find('*').prop('disabled',true);
-						$('#create-level-button').find('*').addClass('ui-disabled');
+						}*/
+						/*$('#create-level-button').find('*').prop('disabled',true);
+						$('#create-level-button').find('*').addClass('ui-disabled');*/
 						var createLevelMessage = $('<h2>New Level is added to the game.</h2>');
 						$('#add-level-message').append(createLevelMessage);
 						
@@ -977,7 +1220,8 @@ function rand(min, max) {
 					slot.children().remove();
 					image.appendTo(slot);
 				}
-				$('#eLearningLink')[0].value = GAMELEVELS[index]["eLearningLink"];	
+				$('#eLearningLink')[0].value = GAMELEVELS[index]["eLearningLink"];
+				$('#moreInformationLink')[0].value = GAMELEVELS[index]["moreInformation"];	
 			}
 		}
 
@@ -988,6 +1232,7 @@ function rand(min, max) {
 
 			}
 			$('#eLearningLink')[0].value = "";	
+			$('#moreInformationLink')[0].value = "";
 		}
 		
 		function populateConnections(element, filesdata){
@@ -1021,9 +1266,17 @@ function rand(min, max) {
 
 		function setGalleryWidth() {
 			
+			var connWidth1 = $('#populateconnections1').width();
+			$('#ulwrap-populateconnections1').width(connWidth1-75);
+			CONNECTIONS1ul.width((102 * CONNECTIONS1ul.children().length));
+
 			var connWidth2 = $('#populateconnections2').width();
 			$('#ulwrap-populateconnections2').width(connWidth2-75);
 			CONNECTIONS2ul.width((102 * CONNECTIONS2ul.children().length));
+
+			var connWidth3 = $('#populateconnections3').width();
+			$('#ulwrap-populateconnections3').width(connWidth3-75);
+			CONNECTIONS3ul.width((102 * CONNECTIONS3ul.children().length));
 
 			
 			var gameGal1Width = $('#populategamegallery1').width();
@@ -1042,9 +1295,17 @@ function rand(min, max) {
 			$('#ulwrap-populategamegallery4').width(gameGal4Width-75);
 			GAMEGALLERY4ul.width((102 * GAMEGALLERY4ul.children().length));
 
-			var changeConnectionWidth = $('#populatechangeconnection').width();
-			$('#ulwrap-populatechangeconnection').width(changeConnectionWidth-75);
-			CHANGECONNECTIONul.width((102 * CHANGECONNECTIONul.children().length));
+			var changeConnectionWidth1 = $('#populatechangeconnection1').width();
+			$('#ulwrap-populatechangeconnection1').width(changeConnectionWidth1-75);
+			CHANGECONNECTION1ul.width((102 * CHANGECONNECTION1ul.children().length));
+
+			var changeConnectionWidth2 = $('#populatechangeconnection2').width();
+			$('#ulwrap-populatechangeconnection2').width(changeConnectionWidth2-75);
+			CHANGECONNECTION2ul.width((102 * CHANGECONNECTION2ul.children().length));
+
+			var changeConnectionWidth3 = $('#populatechangeconnection3').width();
+			$('#ulwrap-populatechangeconnection3').width(changeConnectionWidth3-75);
+			CHANGECONNECTION3ul.width((102 * CHANGECONNECTION3ul.children().length));
 
 		}
 

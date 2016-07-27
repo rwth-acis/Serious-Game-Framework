@@ -227,6 +227,12 @@
 					<span id="wrapper-showme">
 						<button id="button-showme" data-theme="c" data-mini="false">Show me</button>
 					</span>
+					<span id="wrapper-tryagain">
+						<button id="button-tryagain" data-theme="c" data-mini="false">Try Again</button>
+					</span>
+					<span id="wrapper-hint">
+						<button id="button-hint" data-theme="c" data-mini="false">Show Hint</button>
+					</span>
 					<span id="wrapper-next">
 						<button id="button-next" data-theme="e" data-mini="false">Next</button>
 					</span>
@@ -235,6 +241,9 @@
 					<h3 id="level-verification-revealed" class="level-verification">Solution revealed</h3>
 					<p id="elearning">
 						<!-- Here the E-learning link -->
+					</p>
+					<p id="moreInformation">
+						<!-- Here the More Information link -->
 					</p>
 					<p id="leveldone">
 					</p>
@@ -715,6 +724,32 @@
 			</div>
 			<div data-role="content">
 				<div class="ui-content">
+				<h2>Game Designer Details</h2>
+				<fieldset class="ui-grid-b sideByside">
+						<div  class="ui-block-a">
+							<fieldset data-role="fieldcontain">
+								<label for="game-designer-name">Name:</label>
+								<input name="game-designer-name" id="game-designer-name" value="" type="text">
+							</fieldset>
+						</div>
+					</fieldset>
+					<fieldset class="ui-grid-b sideByside">
+						<div  class="ui-block-a">
+							<fieldset data-role="fieldcontain">
+								<label for="game-designer-institution">Institution:</label>
+								<input name="game-designer-institution" id="game-designer-institution" value="" type="text">
+							</fieldset>
+						</div>
+					</fieldset>
+					<fieldset class="ui-grid-b sideByside">
+						<div  class="ui-block-a">
+							<fieldset data-role="fieldcontain">
+								<label for="game-designer-email">EMail:</label>
+								<input name="game-designer-email" id="game-designer-email" value="" type="text">
+							</fieldset>
+						</div>
+					</fieldset>
+					<h2>Game Details</h2>
 					<fieldset class="ui-grid-b sideByside">
 						<div  class="ui-block-a">
 							<fieldset data-role="fieldcontain">
@@ -728,6 +763,14 @@
 							<fieldset data-role="fieldcontain">
 								<label for="game-desc">Description of the game:</label>
 								<input name="game-desc" id="game-desc" value="" type="text">
+							</fieldset>
+						</div>
+					</fieldset>
+					<fieldset class="ui-grid-b sideByside">
+						<div  class="ui-block-a">
+							<fieldset data-role="fieldcontain">
+								<label for="game-desc-text">Description Text of the game:</label>
+								<textarea name="game-desc-text" id="game-desc-text" value=""></textarea>
 							</fieldset>
 						</div>
 					</fieldset>
@@ -771,7 +814,23 @@
 							</fieldset>
 						</div>
 					</fieldset>
-					<fieldset id="selectconnection-fieldset" class="hideElement ui-grid-solo sideByside">
+					<fieldset id="selectconnection1-fieldset" class="hideElement ui-grid-solo sideByside">
+						<div  class="ui-block-a">
+							<div id="populateconnectionswrapper1">
+								<div id="populateconnections1" class="gallery ui-helper-reset ui-helper-clearfix">
+									<h4 id="header-populateconnections1" class="ui-widget-header"></h4>
+									<span id="button-left-populateconnections1" class="button-left"><button data-icon="arrow-l" data-iconshadow="false" data-inline="false" data-mini="false" data-iconpos="notext" class="ui-icon-alt">&nbsp;</button></span>
+									<span id="ulwrap-populateconnections1">
+										<ul id="editconnection1">
+											<!-- Filled dynamically -->
+										</ul>
+									</span>
+									<span id="button-right-populateconnections1" class="button-right"><button data-icon="arrow-r" data-iconshadow="false" data-inline="false" data-mini="false" data-iconpos="notext" class="ui-icon-alt">&nbsp;</button></span>
+								</div>
+							</div>
+						</div>
+					</fieldset>
+					<fieldset id="selectconnection2-fieldset" class="hideElement ui-grid-solo sideByside">
 						<div  class="ui-block-a">
 							<div id="populateconnectionswrapper2">
 								<div id="populateconnections2" class="gallery ui-helper-reset ui-helper-clearfix">
@@ -783,6 +842,22 @@
 										</ul>
 									</span>
 									<span id="button-right-populateconnections2" class="button-right"><button data-icon="arrow-r" data-iconshadow="false" data-inline="false" data-mini="false" data-iconpos="notext" class="ui-icon-alt">&nbsp;</button></span>
+								</div>
+							</div>
+						</div>
+					</fieldset>
+					<fieldset id="selectconnection3-fieldset" class="hideElement ui-grid-solo sideByside">
+						<div  class="ui-block-a">
+							<div id="populateconnectionswrapper3">
+								<div id="populateconnections3" class="gallery ui-helper-reset ui-helper-clearfix">
+									<h4 id="header-populateconnections3" class="ui-widget-header"></h4>
+									<span id="button-left-populateconnections3" class="button-left"><button data-icon="arrow-l" data-iconshadow="false" data-inline="false" data-mini="false" data-iconpos="notext" class="ui-icon-alt">&nbsp;</button></span>
+									<span id="ulwrap-populateconnections3">
+										<ul id="editconnection3">
+											<!-- Filled dynamically -->
+										</ul>
+									</span>
+									<span id="button-right-populateconnections3" class="button-right"><button data-icon="arrow-r" data-iconshadow="false" data-inline="false" data-mini="false" data-iconpos="notext" class="ui-icon-alt">&nbsp;</button></span>
 								</div>
 							</div>
 						</div>
@@ -898,6 +973,14 @@
 								</fieldset>
 							</div>
 						</fieldset>
+						<fieldset class="ui-grid-b sideByside">
+							<div  class="ui-block-a">
+								<fieldset data-role="fieldcontain">
+									<label for="newMoreInformationLink">More Information Link:</label>
+									<input name="newMoreInformationLink" id="newMoreInformationLink" value="" type="text">
+								</fieldset>
+							</div>
+						</fieldset>
 
 						<fieldset data-role="fieldcontain">
 							<div id="create-level-button">
@@ -908,19 +991,7 @@
 						<h2 id="deleteLevelsHeader">Edit Levels</h2>
 						<fieldset id="editlevels-fieldset" class="ui-grid-b sideByside">
 							<div  class="ui-block-a">
-							<!-- 	<div id="populateeditlevelswrapper">
-									<div id="populateeditlevels" class="gallery ui-helper-reset ui-helper-clearfix">
-										<h4 id="header-populateeditlevels" class="ui-widget-header"></h4>
-										<span id="button-up-populateeditlevels" class="button-up"><button data-icon="arrow-u" data-iconshadow="false" data-inline="true" data-mini="false" data-iconpos="notext" class="ui-icon-alt">&nbsp;</button></span>
-										<span id="ulwrap-populateeditlevels">
-											<ul id="editlevels">
-												
-											</ul>
-										</span>
-										<span id="button-down-populateeditlevels" class="button-down"><button data-icon="arrow-d" data-iconshadow="false" data-inline="true" data-mini="false" data-iconpos="notext" class="ui-icon-alt">&nbsp;</button></span>
-									</div>
-								</div> -->
-					<span id="editgameboard" levelNo="0" class="gameboard ui-widget-content">
+						<span id="editgameboard" levelNo="0" class="gameboard ui-widget-content">
 					<table class="slots ui-helper-reset">
 						<tr class="slotheader">
 							<td><h4 id="editheader-slot0" class="ui-widget-header">Slot 1</h4></td>
@@ -982,6 +1053,15 @@
 								<fieldset data-role="fieldcontain">
 									<label for="eLearningLink">eLearning Link:</label>
 									<input name="eLearningLink" id="eLearningLink" value="" type="text">
+								</fieldset>
+							</div>
+						</fieldset>
+						<fieldset class="ui-grid-b sideByside">
+							<div  class="ui-block-a">
+								<fieldset data-role="fieldcontain">
+									
+									<label for="moreInformationLink">More Information Link:</label>
+									<input name="moreInformationLink" id="moreInformationLink" value="" type="text">
 
 									<div id="level-delete-button">
 										<button id="button-delete-level" data-inline="true">Delete Level</button>
@@ -995,25 +1075,72 @@
 							</div>
 						</fieldset>				
 						<h2 id="changeConnectionHeader">Change Connection</h2>
-						<fieldset id="changeconnection-fieldset" class="ui-grid-solo sideByside">
+
+						<fieldset id="changeconnection1-fieldset" class="ui-grid-solo sideByside">
 							<div  class="ui-block-a">
-								<div id="populatechangeconnectionwrapper">
-									<div id="populatechangeconnection" class="gallery ui-helper-reset ui-helper-clearfix">
-										<h4 id="header-populatechangeconnection" class="ui-widget-header"></h4>
-										<span id="button-left-populatechangeconnection" class="button-left"><button data-icon="arrow-l" data-iconshadow="false" data-inline="false" data-mini="false" data-iconpos="notext" class="ui-icon-alt">&nbsp;</button></span>
-										<span id="ulwrap-populatechangeconnection">
-											<ul id="changeconnection">
+								<div id="populatechangeconnectionwrapper1">
+									<div id="populatechangeconnection1" class="gallery ui-helper-reset ui-helper-clearfix">
+										<h4 id="header-populatechangeconnection1" class="ui-widget-header"></h4>
+										<span id="button-left-populatechangeconnection1" class="button-left"><button data-icon="arrow-l" data-iconshadow="false" data-inline="false" data-mini="false" data-iconpos="notext" class="ui-icon-alt">&nbsp;</button></span>
+										<span id="ulwrap-populatechangeconnection1">
+											<ul id="changeconnection1">
 												<!-- Filled dynamically -->
 											</ul>
 										</span>
-										<span id="button-right-changeconnection" class="button-right"><button data-icon="arrow-r" data-iconshadow="false" data-inline="false" data-mini="false" data-iconpos="notext" class="ui-icon-alt">&nbsp;</button></span>
+										<span id="button-right-changeconnection1" class="button-right"><button data-icon="arrow-r" data-iconshadow="false" data-inline="false" data-mini="false" data-iconpos="notext" class="ui-icon-alt">&nbsp;</button></span>
 									</div>
 								</div>
 							</div>
 							<div  class="ui-block-b">
 								<fieldset data-role="fieldcontain" class="ui-block-b">
-									<div id="change-connection-button">
-										<button id="button-change-connection" data-inline="true">Set Connection</button>
+									<div id="change-connection-button1">
+										<button id="button-change-connection1" data-inline="true">Set Connection 1</button>
+									</div>
+								</fieldset>
+							</div>
+						</fieldset>
+						<fieldset id="changeconnection2-fieldset" class="hideElement ui-grid-solo sideByside">
+							<div  class="ui-block-a">
+								<div id="populatechangeconnectionwrapper2">
+									<div id="populatechangeconnection2" class="gallery ui-helper-reset ui-helper-clearfix">
+										<h4 id="header-populatechangeconnection2" class="ui-widget-header"></h4>
+										<span id="button-left-populatechangeconnection2" class="button-left"><button data-icon="arrow-l" data-iconshadow="false" data-inline="false" data-mini="false" data-iconpos="notext" class="ui-icon-alt">&nbsp;</button></span>
+										<span id="ulwrap-populatechangeconnection2">
+											<ul id="changeconnection2">
+												<!-- Filled dynamically -->
+											</ul>
+										</span>
+										<span id="button-right-changeconnection2" class="button-right"><button data-icon="arrow-r" data-iconshadow="false" data-inline="false" data-mini="false" data-iconpos="notext" class="ui-icon-alt">&nbsp;</button></span>
+									</div>
+								</div>
+							</div>
+							<div  class="ui-block-b">
+								<fieldset data-role="fieldcontain" class="ui-block-b">
+									<div id="change-connection-button2">
+										<button id="button-change-connection2" data-inline="true">Set Connection 2</button>
+									</div>
+								</fieldset>
+							</div>
+						</fieldset>
+						<fieldset id="changeconnection3-fieldset" class="hideElement ui-grid-solo sideByside">
+							<div  class="ui-block-a">
+								<div id="populatechangeconnectionwrapper3">
+									<div id="populatechangeconnection3" class="gallery ui-helper-reset ui-helper-clearfix">
+										<h4 id="header-populatechangeconnection3" class="ui-widget-header"></h4>
+										<span id="button-left-populatechangeconnection3" class="button-left"><button data-icon="arrow-l" data-iconshadow="false" data-inline="false" data-mini="false" data-iconpos="notext" class="ui-icon-alt">&nbsp;</button></span>
+										<span id="ulwrap-populatechangeconnection3">
+											<ul id="changeconnection3">
+												<!-- Filled dynamically -->
+											</ul>
+										</span>
+										<span id="button-right-changeconnection3" class="button-right"><button data-icon="arrow-r" data-iconshadow="false" data-inline="false" data-mini="false" data-iconpos="notext" class="ui-icon-alt">&nbsp;</button></span>
+									</div>
+								</div>
+							</div>
+							<div  class="ui-block-b">
+								<fieldset data-role="fieldcontain" class="ui-block-b">
+									<div id="change-connection-button3">
+										<button id="button-change-connection3" data-inline="true">Set Connection 3</button>
 									</div>
 								</fieldset>
 							</div>
@@ -1024,6 +1151,35 @@
 			</div>
 		</div>
 		<audio id="achievement_sound" src="data/badges/sound.wav" preload="auto"></audio>
+
+
+
+		<div id="assessmentSystemView" data-role="page" class="ui-helper-clearfix bodywrapper">
+			<div data-role="header" data-theme="b">
+				<a href="#" data-icon="arrow-l" id="game-header-home" class="ui-btn-left" data-iconpos="notext"  data-rel="back">Home</a>	
+				<h1>Assessment System View</h1>
+			</div>
+			<div data-role="content">
+				<ul data-role="listview" data-inset="true">
+					<li><a href="#assessmentrules " id="assessmentruleslink"><h3>Manage Assessment Rules</h3><p>Create or Edit Assessment Rules.</p></a></li>
+					<li><a href="#gamesrules" id="gamesruleslink"><h3>Game Assessment Rules</h3><p>Set Assessment Rules to Games.</p></a></li>
+				</ul>
+			</div>
+		</div>
+
+		<div id="assessmentrules" data-role="page" class="ui-helper-clearfix bodywrapper">
+			<div data-role="header" data-theme="b">
+				<a href="#" data-icon="arrow-l" id="game-header-home" class="ui-btn-left" data-iconpos="notext"  data-rel="back">Home</a>	
+				<h1>Manage Assessment Rules</h1>
+			</div>
+			<div data-role="content">
+				<ul data-role="listview" data-inset="true">
+					<li><a href="#experiencerules " id="experienceruleslink"><h3>Manage Experience Rules</h3><p>Edit Experience Rules.</p></a></li>
+					<li><a href="#highscorerules" id="highscoreruleslink"><h3>Manage Highscore Rules</h3><p>Create or Edit Highscore rules.</p></a></li>
+					<li><a href="#badgerules" id="badgeruleslink"><h3>Manage Badge Rules</h3><p>Create or Edit Badge Rules.</p></a></li>
+				</ul>
+			</div>
+		</div>
 
 		<!-- The blueimp Gallery widget -->
 <!-- <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls" data-filter=":even">
@@ -1062,6 +1218,14 @@
 	      	'</a>' +
 	      	'</li>');
 	      $('.menulist').append(gamedesignerview);
+
+	      var assessmentsystemview =	$('<li>' +
+	      	'<a href="#assessmentSystemView" id="assessmentsystemlink">' +
+	      	'<h3>Assessment System</h3>' +
+	      	'<p>Create or Edit Assessment rules!</p>' +
+	      	'</a>' +
+	      	'</li>');
+	      $('.menulist').append(assessmentsystemview);
 
 	      $('.menulist').listview('refresh');
 	      $('#profilelink').click(function() { showProfile() });

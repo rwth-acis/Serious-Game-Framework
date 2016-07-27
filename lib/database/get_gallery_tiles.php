@@ -1,6 +1,7 @@
 <?php
 include 'config.php';
 $galleryId = $_POST['galleryId'];
+$myArray = [];
 if($result = $conn->query("SELECT tileSrc FROM gallery_tiles WHERE galleryId='$galleryId'")){
 
 	while($row = $result->fetch_array(MYSQL_ASSOC)) {
