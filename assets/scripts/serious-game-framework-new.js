@@ -40,8 +40,9 @@ var GAMESTATE = "leveldone";
 var GAMEINDEX;
 
 // TODO MARKO add real oidc_userinfo
-var oidc_userinfo = {name: "Marko Kajzer", preferred_username: "marko.kajzer", email: "marko.kajzer@hotmail.de"};
-var gleaner_url = "http://localhost:3000/"; // TODO ADD REAL LOCATION HERE
+//var oidc_userinfo = {name: "Marko Kajzer", preferred_username: "marko.kajzer", email: "marko.kajzer@hotmail.de"};
+var oidc_userinfo;
+var gleaner_url = GLEANER_URL; // TODO ADD REAL LOCATION HERE
 
 var correct = 0;
 var wrong = 0;
@@ -205,7 +206,8 @@ $(document).ready(function() {
 	});
 
 	$('#wrapper-tryagain').click(function() {
-		tryAgain();
+	tryAgain();
+
 
 		// Send trace for using the show_me button
 		gleaner_tracker.trackTrace(oidc_userinfo, "level_completion",
@@ -1168,6 +1170,7 @@ function loadGame(gameIndex, gameID) {
 					$('#wrapper-showme').fadeOut();
 					$('#levelcontrol').fadeIn();
 					$('#level-verification-revealed').show();
+					$('#level-verification-wrong').hide();
 					$('#elearning').empty();
 					$('#elearning').fadeIn();
 					if (GAMELEVELS[l]["eLearningLink"]) {
@@ -1254,9 +1257,11 @@ function loadGame(gameIndex, gameID) {
 							logLevel(l, "wrong");
 							// Tell the user that the solution is wrong
 							$('#level-verification-wrong').show();
+							$('#wrapper-hint').fadeOut();
 
 							// Send traces with result = "wrong", do not track in Tutorial
 							if(!TUTORIAL) {
+								$('#wrapper-tryagain').fadeIn();
 								wrong++;
 								gleaner_tracker.trackTrace(oidc_userinfo, "level_completion",
 									{gameID: GAMEID, levelID: CURRENTLEVEL, result: "wrong"});
@@ -1264,7 +1269,12 @@ function loadGame(gameIndex, gameID) {
 						} else {
 							logLevel(l, "correct");
 							// Tell the user that the solution is correct
+							$('#wrapper-tryagain').fadeOut();
+							if(!HINT){
 							$('#level-verification-correct').show();
+							}
+							$('#level-verification-wrong').hide();
+							$('#wrapper-hint').fadeOut();
 
 							// Send traces with result = "correct", do not track in Tutorial
 							if(!TUTORIAL) {
@@ -1383,6 +1393,10 @@ function loadGame(gameIndex, gameID) {
 	function showMe() {
 		//alert("function called");
 		$('#wrapper-showme').fadeOut();
+		$('#wrapper-tryagain').fadeOut();
+		$('#wrapper-hint').fadeOut();
+		$('#level-verification-revealed').show();
+		$('#level-verification-wrong').hide();
 		var l = CURRENTLEVEL;
 		
 		var selected = [];
@@ -1443,6 +1457,123 @@ function loadGame(gameIndex, gameID) {
 		}
 	}
 	
+	function tryAgain() {
+		$('#wrapper-tryagain').fadeOut();
+		$('#level-verification-wrong').hide();
+		$('#wrapper-hint').fadeIn();
+
+		var l = CURRENTLEVEL;
+		
+		var selected = [];
+		for(var i=0;i<NUMBER_OF_GALLERIES;i++){
+			selected[i] = $("img", "#slot"+i).attr('piece-id');
+		}
+
+		if (CURRENTLEVEL > -1) {
+			if ($.inArray(CURRENTLEVEL,NEXTLEVELS) < 0) {
+				NEXTLEVELS.splice(CURRENTLEVEL,0,CURRENTLEVEL);
+			}
+		}
+		
+		if (l > -1) {
+			//alert("level > -1");
+			TRYAGAIN = true;
+			for (var i = 0; i < NUMBER_OF_GALLERIES; i++) {
+				var slot = $('#slot' + i);
+				var piece = $('li', '#slot' + i);
+			//	blockPiece(piece);
+				var k = i + 1;
+				var id= "gallery"+k+"src";
+		
+				if (slot.hasClass('slot-red')) {
+					var move = function(j, level, p, s){
+						
+						if (selected[i] != "") {
+							movePieceToGallery( p, j );
+						}
+						unblockPiece(p);
+						unblockSlot(slot);
+						setSlotColor(slot,"none");
+						
+					}(i, l, piece, slot);
+				} else if (slot.hasClass('slot-green')) {
+					blockSlot(slot,false);
+				}
+			}
+		}
+	GAMESTATE = "playing";
+
+		}
+	
+function hint(){
+
+		var l = CURRENTLEVEL;
+		
+		var selected = [];
+		var correct = true;
+		for(var i=0;i<NUMBER_OF_GALLERIES;i++){
+			selected[i] = $("img", "#slot"+i).attr('piece-id');
+		}
+		
+		if (l > -1) {
+			//alert("level > -1");
+			HINT = true;
+			for (var i = 0; i < NUMBER_OF_GALLERIES && correct; i++) {
+				var slot = $('#slot' + i);
+				var piece = $('li', '#slot' + i);
+				blockPiece(piece);
+				var k = i + 1;
+				var id= "gallery"+k+"src";
+				if (GAMELEVELS[l][id] != "") {
+					if (!slot.hasClass('slot-blocked')) {
+						if (GAMELEVELS[l][id] == selected[i]) {
+							setSlotColor(slot,"green");
+							//alert("piece in slot" + i + " is now green");
+						} else {
+							setSlotColor(slot,"red");
+							correct = false;
+							//alert("piece in slot" + i + " is now red");
+						}
+					} else {
+						//alert("piece in slot" + i + " was blocked");
+					}
+				}
+				if (slot.hasClass('slot-red')) {
+					var move = function(j, level, p, s){
+						//unblockSlot(s);
+						if (selected[i] != "") {
+							movePieceToGallery( p, j );
+						}
+						unblockPiece(p);
+						var k = j + 1;
+						var id= "gallery"+k+"src";
+						pieceID = GAMELEVELS[level][id];
+						//pieceID = LEVELDATA[level].pieces[j];
+						var piece2 = $('img[piece-id="' + pieceID + '"]', '#gallery' + j + ' ul').parent();
+						movePieceToSlot( piece2, j, j );
+						blockSlot(s, false);
+						blockPiece(piece2);
+						setSlotColor(slot,"none");
+						setSlotColor(slot,"green");
+					}(i, l, piece, slot);
+				} else if (slot.hasClass('slot-green')) {
+					blockSlot(slot,false);
+				}
+			}
+		}
+		if (correct) {
+			GAMESTATE = "leveldone";
+			$('#wrapper-hint').fadeOut();
+			if (NEXTLEVELS.length) {
+				$('#wrapper-next').fadeIn();
+				$('#wrapper-next').click(function() {
+					nextLevel();
+				});
+			}
+		}
+
+
+}
 	/**
 	  * Returns true if all slots are filled.
 	  * NOT REALLY NEEDED ANYMORE

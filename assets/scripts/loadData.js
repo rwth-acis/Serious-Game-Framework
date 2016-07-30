@@ -1,4 +1,4 @@
-
+var GLEANER_URL = "http://localhost:3000/";
 
 var GAMESDATA;
 var GALLERYNAMES;

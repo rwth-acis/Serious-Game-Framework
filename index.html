@@ -114,7 +114,7 @@
 		<link rel="icon" href="assets/images/favicon.png" type="image/png">
 	</head>
 	<body>
-	<div id="home" data-role="page" class="ui-helper-clearfix bodywrapper">
+		<div id="home" data-role="page" class="ui-helper-clearfix bodywrapper">
 			<div data-role="header" data-theme="b">
 				<h1>Serious Game Framework</h1>
 				<a href="#options" data-icon="gear" class="ui-btn-right options-button" data-rel="dialog">Options</a>
@@ -140,16 +140,16 @@
 	</div>
 
 	<div id="playgames" data-role="page" class="ui-helper-clearfix bodywrapper">
-			<div data-role="header" data-theme="b">
-				<a href="#" data-icon="arrow-l" id="game-header-home" class="ui-btn-left" data-iconpos="notext"  data-rel="back">Home</a>	
-				<h1>Play Games</h1>
-			</div>
-			<div data-role="content">
-				<ul id="gameslistId" data-role="listview" data-inset="true" class="gameslist">
-					
-				</ul>
-			</div>
+		<div data-role="header" data-theme="b">
+			<a href="#" data-icon="arrow-l" id="game-header-home" class="ui-btn-left" data-iconpos="notext"  data-rel="back">Home</a>	
+			<h1>Play Games</h1>
 		</div>
+		<div data-role="content">
+			<ul id="gameslistId" data-role="listview" data-inset="true" class="gameslist">
+
+			</ul>
+		</div>
+	</div>
 
 	<div id="game" data-role="page" class="ui-helper-clearfix bodywrapper">
 		<div id="game-header" data-role="header" data-theme="b">
@@ -724,8 +724,8 @@
 			</div>
 			<div data-role="content">
 				<div class="ui-content">
-				<h2>Game Designer Details</h2>
-				<fieldset class="ui-grid-b sideByside">
+					<h2>Game Designer Details</h2>
+					<fieldset class="ui-grid-b sideByside">
 						<div  class="ui-block-a">
 							<fieldset data-role="fieldcontain">
 								<label for="game-designer-name">Name:</label>
@@ -991,61 +991,61 @@
 						<h2 id="deleteLevelsHeader">Edit Levels</h2>
 						<fieldset id="editlevels-fieldset" class="ui-grid-b sideByside">
 							<div  class="ui-block-a">
-						<span id="editgameboard" levelNo="0" class="gameboard ui-widget-content">
-					<table class="slots ui-helper-reset">
-						<tr class="slotheader">
-							<td><h4 id="editheader-slot0" class="ui-widget-header">Slot 1</h4></td>
-							<td> </td>
-							<td><h4 id="editheader-slot1" class="ui-widget-header">Slot 2</h4></td>
-							<td> </td>
-							<td id="editheaderslot2td"><h4 id="editheader-slot2" class="ui-widget-header">Slot 3</h4></td>
-							<td> </td>
-							<td id="editheaderslot3td"><h4 id="editheader-slot3" class="ui-widget-header">Slot 4</h4></td>
-						</tr>
-						<tr>
-							<td>
-								<div id="editwrapperslot0" class="wrapperslot">
-									<ul id="editslot0" class="slot ui-widget-content ui-state-default">
-										<!-- Filled dynamically -->
-									</ul>
-								</div>
-							</td>
-							<td> </td>
-							<td>
-								<div id="editwrapperslot1" class="wrapperslot">
-									<ul id="editslot1" class="slot ui-widget-content ui-state-default">
-										<!-- Filled dynamically -->
-									</ul>
-								</div>
-							</td>
-							<td> </td>
-							<td>
-								<div id="editwrapperslot2" class="wrapperslot">
-									<ul id="editslot2" class="slot ui-widget-content ui-state-default">
-										<!-- Filled dynamically -->
-									</ul>
-								</div>
-							</td>
-							<td> </td>
-							<td>
-								<div id="editwrapperslot3" class="wrapperslot">
-									<ul id="editslot3" class="slot ui-widget-content ui-state-default">
-										<!-- Filled dynamically -->
-									</ul>
-								</div>
-							</td>
-							<td>
-								<div>
-									<button id="button-previous-level"  data-inline="true">Previous</button>	
-								</div>
-								<div id="next-level-button">
-									<button id="button-next-level"  data-inline="true">Next</button>
-								</div>
-								
-							</td>
-						</tr>
-					</table>
-				</span>
+								<span id="editgameboard" levelNo="0" class="gameboard ui-widget-content">
+									<table class="slots ui-helper-reset">
+										<tr class="slotheader">
+											<td><h4 id="editheader-slot0" class="ui-widget-header">Slot 1</h4></td>
+											<td> </td>
+											<td><h4 id="editheader-slot1" class="ui-widget-header">Slot 2</h4></td>
+											<td> </td>
+											<td id="editheaderslot2td"><h4 id="editheader-slot2" class="ui-widget-header">Slot 3</h4></td>
+											<td> </td>
+											<td id="editheaderslot3td"><h4 id="editheader-slot3" class="ui-widget-header">Slot 4</h4></td>
+										</tr>
+										<tr>
+											<td>
+												<div id="editwrapperslot0" class="wrapperslot">
+													<ul id="editslot0" class="slot ui-widget-content ui-state-default">
+														<!-- Filled dynamically -->
+													</ul>
+												</div>
+											</td>
+											<td> </td>
+											<td>
+												<div id="editwrapperslot1" class="wrapperslot">
+													<ul id="editslot1" class="slot ui-widget-content ui-state-default">
+														<!-- Filled dynamically -->
+													</ul>
+												</div>
+											</td>
+											<td> </td>
+											<td>
+												<div id="editwrapperslot2" class="wrapperslot">
+													<ul id="editslot2" class="slot ui-widget-content ui-state-default">
+														<!-- Filled dynamically -->
+													</ul>
+												</div>
+											</td>
+											<td> </td>
+											<td>
+												<div id="editwrapperslot3" class="wrapperslot">
+													<ul id="editslot3" class="slot ui-widget-content ui-state-default">
+														<!-- Filled dynamically -->
+													</ul>
+												</div>
+											</td>
+											<td>
+												<div>
+													<button id="button-previous-level"  data-inline="true">Previous</button>	
+												</div>
+												<div id="next-level-button">
+													<button id="button-next-level"  data-inline="true">Next</button>
+												</div>
+
+											</td>
+										</tr>
+									</table>
+								</span>
 							</div>
 						</fieldset>
 						<fieldset class="ui-grid-b sideByside">
@@ -1181,6 +1181,383 @@
 			</div>
 		</div>
 
+		<div id="experiencerules" data-role="page" class="ui-helper-clearfix bodywrapper">
+			<div data-role="header" data-theme="b"> 
+				<a href="#" data-icon="arrow-l" class="ui-btn-left" data-iconpos="notext"  data-rel="back">Home</a>
+				<h1>Manage Experience Rules</h1>
+			</div>
+			<div data-role="content">
+				<div class="ui-content">
+					<fieldset class="ui-grid-b sideByside">
+						<div  class="ui-block-a">
+							<fieldset data-role="fieldcontain">
+								<label for="experience-badge-name">Experience Badge Name:</label>
+								<input name="experience-badge-name" id="experience-badge-name" value="" type="text">
+							</fieldset>
+						</div>
+					</fieldset>
+					<fieldset class="ui-grid-b sideByside">
+						<div  class="ui-block-a">
+							<fieldset data-role="fieldcontain">
+								<label for="experience-badge-desc">Experience Badge Description:</label>
+								<input name="experience-badge-desc" id="experience-badge-desc" value="" type="text">
+							</fieldset>
+						</div>
+					</fieldset>
+					<fieldset class="ui-grid-b sideByside">
+						<div  class="ui-block-a">
+							<fieldset data-role="fieldcontain">
+								<label for="experience-badge-feedback">Feedback Message:</label>
+								<input name="experience-badge-feedback" id="experience-badge-feedback" value="" type="text">
+							</fieldset>
+						</div>
+					</fieldset>
+					<fieldset class="ui-grid-b sideByside">
+						<div  class="ui-block-a">
+							<fieldset data-role="fieldcontain">
+								<label for="experience-badge-points">Required Points:</label>
+								<input name="experience-badge-points" id="experience-badge-points" value="" type="text">
+							</fieldset>
+						</div>
+					</fieldset>
+					<fieldset data-role="fieldcontain">
+						<span id="AddExperienceBadgeButton" class="fileinput-button" data-role="button" data-icon="plus">
+							<span>Add Experience Badge</span>
+							<input type="file" id="uploadExperienceBadge" name="uploadExperienceBadge" data-role="none"/>
+						</span>
+						<div id="showexperiencebadges">
+							<button id="show-experience-badges" data-inline="true">Show Existing Badges</button>
+						</div>
+					</fieldset>
+					<div id="create-experience-badge-message"></div>
+
+					<fieldset class="ui-grid-solo sideByside">
+						<div  class="ui-block-a">
+							<div id="populateexperiencebadgeswrapper">
+								<div id="populateexperiencebadges" class="gallery ui-helper-reset ui-helper-clearfix">
+									<h4 id="header-populateexperiencebadges" class="ui-widget-header"></h4>
+									<span id="button-left-populateexperiencebadges" class="button-left"><button data-icon="arrow-l" data-iconshadow="false" data-inline="false" data-mini="false" data-iconpos="notext" class="ui-icon-alt">&nbsp;</button></span>
+									<span id="ulwrap-populateexperiencebadges">
+										<ul id="editexperiencebadge">
+											<!-- Filled dynamically -->
+										</ul>
+									</span>
+									<span id="button-right-populateexperiencebadges" class="button-right"><button data-icon="arrow-r" data-iconshadow="false" data-inline="false" data-mini="false" data-iconpos="notext" class="ui-icon-alt">&nbsp;</button></span>
+								</div>
+							</div>
+						</div>
+						<div>
+							<fieldset data-role="fieldcontain" class="ui-block-b">
+								<div id="edit-experience-badge-button">
+									<button id="button-edit-experience-badge" data-inline="true">Edit Badge</button>
+								</div>
+								<div id="experience-badge-delete-button">
+									<button id="button-delete-experience-badge" data-inline="true">Delete Badge</button>
+								</div>
+
+							</fieldset>
+						</div>
+					</fieldset>
+
+					<div id="experience-badge-saved-message"></div>
+					<h2>Experience Calculation Rules</h2>
+					<fieldset class="ui-grid-b sideByside">
+						<div  class="ui-block-a">
+							<fieldset data-role="fieldcontain">
+								<label for="experience-highscore">Highscore * :</label>
+								<input name="experience-highscore" id="experience-highscore" value="" type="text">
+							</fieldset>
+						</div>
+					</fieldset>
+					<fieldset class="ui-grid-b sideByside">
+						<div  class="ui-block-a">
+							<fieldset data-role="fieldcontain">
+								<label for="experience-elearning">No. of eLearning clicks * :</label>
+								<input name="experience-elearning" id="experience-elearning" value="" type="text">
+							</fieldset>
+						</div>
+					</fieldset>
+					<fieldset class="ui-grid-b sideByside">
+						<div  class="ui-block-a">
+							<fieldset data-role="fieldcontain">
+								<label for="experience-badges">No. of Badges * :</label>
+								<input name="experience-badges" id="experience-badges" value="" type="text">
+							</fieldset>
+						</div>
+					</fieldset>
+					<fieldset class="ui-grid-b sideByside">
+						<div  class="ui-block-a">
+							<fieldset data-role="fieldcontain">
+								<label for="experience-gamesDesigned">No. of Games Designed *:</label>
+								<input name="experience-gamesDesigned" id="experience-gamesDesigned" value="" type="text">
+							</fieldset>
+						</div>
+					</fieldset>
+					<fieldset class="ui-grid-b sideByside">
+						<div  class="ui-block-a">
+							<fieldset data-role="fieldcontain">
+								<label for="experience-login">No. of times Logged in:</label>
+								<input name="experience-login" id="experience-login" value="" type="text">
+							</fieldset>
+						</div>
+					</fieldset>		
+					<fieldset data-role="fieldcontain" class="ui-block-b">
+						<div id="experience-save-rules">
+							<button id="button-save-experience-rules" data-inline="true">Save Rules</button>
+						</div>
+
+					</fieldset>			
+				</div>
+			</div>
+		</div>
+
+
+<div id="highscorerules" data-role="page" class="ui-helper-clearfix bodywrapper">
+			<div data-role="header" data-theme="b"> 
+				<a href="#" data-icon="arrow-l" class="ui-btn-left" data-iconpos="notext"  data-rel="back">Home</a>
+				<h1>Manage Highscore Rules</h1>
+			</div>
+			<div data-role="content">
+				<div class="ui-content">
+				<h2>Edit Existing Highscore Versions</h2>
+					<fieldset class="ui-grid-b sideByside">
+						<div class="ui-block-a">
+							<fieldset data-role="fieldcontain">
+								<label for="select-highscore" class="select"> <p>Select Highscore Version to Edit: </p></label>
+								<select name="select-highscore" id="select-highscore"></select>
+							</fieldset>
+						</div>
+						<div  class="ui-block-b">
+							<fieldset data-role="fieldcontain" class="ui-block-b">
+								<div id="edit-highscore-button">
+									<button id="button-edit-highscore" data-inline="true">Edit Highscore Version</button>
+								</div>
+								<div id="delete-button-highscore">
+									<button id="button-delete-highscore" data-inline="true">Delete Highscore Version</button>
+								</div>
+
+							</fieldset>
+						</div>
+
+					</fieldset>	
+					<h2>Highscore Calculation Rules</h2>
+					<fieldset class="ui-grid-b sideByside">
+						<div  class="ui-block-a">
+							<fieldset data-role="fieldcontain">
+								<label for="highscore-version">Highscore Version :</label>
+								<input name="highscore-version" id="highscore-version" value="" type="text">
+							</fieldset>
+						</div>
+					</fieldset>
+					<fieldset class="ui-grid-b sideByside">
+						<div  class="ui-block-a">
+							<fieldset data-role="fieldcontain">
+								<label for="highscore-correct">Points for correct answer :</label>
+								<input name="highscore-correct" id="highscore-correct" value="" type="text">
+							</fieldset>
+						</div>
+					</fieldset>
+					<fieldset class="ui-grid-b sideByside">
+						<div  class="ui-block-a">
+							<fieldset data-role="fieldcontain">
+								<label for="highscore-wrong">Points for wrong answer :</label>
+								<input name="highscore-wrong" id="highscore-wrong" value="" type="text">
+							</fieldset>
+						</div>
+					</fieldset>
+					<fieldset class="ui-grid-b sideByside">
+						<div  class="ui-block-a">
+							<fieldset data-role="fieldcontain">
+								<label for="highscore-show">Points for clicking 'Show me' button :</label>
+								<input name="highscore-show" id="highscore-show" value="" type="text">
+							</fieldset>
+						</div>
+					</fieldset>
+					<fieldset class="ui-grid-b sideByside">
+						<div  class="ui-block-a">
+							<fieldset data-role="fieldcontain">
+								<label for="highscore-tryagain">Points for clicking 'Try Again' button :</label>
+								<input name="highscore-tryagain" id="highscore-tryagain" value="" type="text">
+							</fieldset>
+						</div>
+					</fieldset>		
+					<fieldset class="ui-grid-b sideByside">
+						<div  class="ui-block-a">
+							<fieldset data-role="fieldcontain">
+								<label for="highscore-hint">Points for clicking 'Hint' button :</label>
+								<input name="highscore-hint" id="highscore-hint" value="" type="text">
+							</fieldset>
+						</div>
+					</fieldset>	
+					<fieldset data-role="fieldcontain" class="ui-block-b sideByside">
+						<div id="highscore-create-rules">
+							<button id="button-create-highscore-rules" data-inline="true">Create New Version</button>
+						</div>
+					</fieldset>	
+
+				</div>
+			</div>
+		</div>
+
+
+		<div id="badgerules" data-role="page" class="ui-helper-clearfix bodywrapper">
+			<div data-role="header" data-theme="b"> 
+				<a href="#" data-icon="arrow-l" class="ui-btn-left" data-iconpos="notext"  data-rel="back">Home</a>
+				<h1>Manage Badge Rules</h1>
+			</div>
+			<div data-role="content">
+				<div class="ui-content">
+					<fieldset class="ui-grid-b sideByside">
+						<div  class="ui-block-a">
+							<fieldset data-role="fieldcontain">
+								<label for="game-badge-name">Badge Name:</label>
+								<input name="game-badge-name" id="game-badge-name" value="" type="text">
+							</fieldset>
+						</div>
+					</fieldset>
+					<fieldset class="ui-grid-b sideByside">
+						<div  class="ui-block-a">
+							<fieldset data-role="fieldcontain">
+								<label for="game-badge-desc">Badge Description:</label>
+								<input name="game-badge-desc" id="game-badge-desc" value="" type="text">
+							</fieldset>
+						</div>
+					</fieldset>
+					<fieldset class="ui-grid-b sideByside">
+						<div  class="ui-block-a">
+							<fieldset data-role="fieldcontain">
+								<label for="game-badge-feedback">Feedback Message:</label>
+								<input name="game-badge-feedback" id="game-badge-feedback" value="" type="text">
+							</fieldset>
+						</div>
+					</fieldset>
+					<fieldset class="ui-grid-c sideByside">
+						<div class="ui-block-a">
+							<fieldset data-role="fieldcontain">
+								<label for="select-badge-requirement" class="select"> <p>Select Badge Requirement: </p></label>
+								<select name="select-badge-requirement" id="select-badge-requirement">
+									<option value='0' selected=true>--Select Criteria--</option>
+									<option value='1'>Game Completion Badge</option>
+									<option value='2'>No. of Correct Levels</option>
+									<option value='3'>No. of times 'eLearning' link is used</option>
+									<option value='4'>No. of times 'More Information' link is used</option>
+									<option value='4'>No. of times 'Try Again' is used</option>
+								</select>
+							</fieldset>
+						</div>
+						<div  class="ui-block-b">
+							<fieldset data-role="fieldcontain">
+								<input name="game-badge-points" id="game-badge-points" value="" type="text">
+							</fieldset>
+						</div>
+
+					</fieldset>	
+					<fieldset data-role="fieldcontain">
+						<span id="AddGameBadgeButton" class="fileinput-button" data-role="button" data-icon="plus">
+							<span>Add Badge</span>
+							<input type="file" id="uploadGameBadge" name="uploadGameBadge" data-role="none"/>
+						</span>
+						<div id="showgamebadges">
+							<button id="show-game-badges" data-inline="true">Show Existing Badges</button>
+						</div>
+					</fieldset>
+					<div id="create-game-badge-message"></div>
+
+					<fieldset class="ui-grid-solo sideByside">
+						<div  class="ui-block-a">
+							<div id="populategamebadgeswrapper">
+								<div id="populategamebadges" class="gallery ui-helper-reset ui-helper-clearfix">
+									<h4 id="header-populategamebadges" class="ui-widget-header"></h4>
+									<span id="button-left-populategamebadges" class="button-left"><button data-icon="arrow-l" data-iconshadow="false" data-inline="false" data-mini="false" data-iconpos="notext" class="ui-icon-alt">&nbsp;</button></span>
+									<span id="ulwrap-populategamebadges">
+										<ul id="editgamebadge">
+											<!-- Filled dynamically -->
+										</ul>
+									</span>
+									<span id="button-right-populategamebadges" class="button-right"><button data-icon="arrow-r" data-iconshadow="false" data-inline="false" data-mini="false" data-iconpos="notext" class="ui-icon-alt">&nbsp;</button></span>
+								</div>
+							</div>
+						</div>
+						<div>
+							<fieldset data-role="fieldcontain" class="ui-block-b">
+								<div id="edit-game-badge-button">
+									<button id="button-edit-game-badge" data-inline="true">Edit Badge</button>
+								</div>
+								<div id="game-badge-delete-button">
+									<button id="button-delete-game-badge" data-inline="true">Delete Badge</button>
+								</div>
+
+							</fieldset>
+						</div>
+					</fieldset>
+
+					<div id="game-badge-saved-message"></div>
+					
+				</div>
+			</div>
+		</div>
+
+
+		<div id="gamesrules" data-role="page" class="ui-helper-clearfix bodywrapper">
+			<div data-role="header" data-theme="b"> 
+				<a href="#" data-icon="arrow-l" class="ui-btn-left" data-iconpos="notext"  data-rel="back">Home</a>
+				<h1>Manage Game Assessment Rules</h1>
+			</div>
+			<div data-role="content">
+				<div class="ui-content">
+					<fieldset class="ui-grid-b sideByside">
+						<div class="ui-block-a">
+							<fieldset data-role="fieldcontain">
+								<label for="select-game-assessment" class="select"> <p>Select Game: </p></label>
+								<select name="select-game-assessment" id="select-game-assessment"></select>
+							</fieldset>
+						</div>
+						<div  class="ui-block-b">
+							<fieldset data-role="fieldcontain" class="ui-block-b">
+								<div id="edit-game-rules-button">
+									<button id="button-edit-game-rules" data-inline="true">Edit</button>
+								</div>
+							</fieldset>
+						</div>
+
+					</fieldset>	
+					<fieldset class="ui-grid-b sideByside">
+						<div class="ui-block-a">
+							<fieldset data-role="fieldcontain">
+								<label for="select-highscore-assessment" class="select"> <p>Select Highscore Version: </p></label>
+								<select name="select-highscore-assessment" id="select-highscore-assessment"></select>
+							</fieldset>
+						</div>
+					</fieldset>	
+					<h2>Select Game Completion Badge</h2>
+					<fieldset class="ui-grid-solo sideByside">
+						<div  class="ui-block-a">
+							<div id="populategamecompletionbadgeswrapper">
+								<div id="populategamecompletionbadges" class="gallery ui-helper-reset ui-helper-clearfix">
+									<h4 id="header-populategamecompletionbadges" class="ui-widget-header"></h4>
+									<span id="button-left-populategamecompletionbadges" class="button-left"><button data-icon="arrow-l" data-iconshadow="false" data-inline="false" data-mini="false" data-iconpos="notext" class="ui-icon-alt">&nbsp;</button></span>
+									<span id="ulwrap-populategamecompletionbadges">
+										<ul id="editgamecompletionbadge">
+											<!-- Filled dynamically -->
+										</ul>
+									</span>
+									<span id="button-right-populategamecompletionbadges" class="button-right"><button data-icon="arrow-r" data-iconshadow="false" data-inline="false" data-mini="false" data-iconpos="notext" class="ui-icon-alt">&nbsp;</button></span>
+								</div>
+							</div>
+						</div>
+						
+					</fieldset>
+					<fieldset data-role="fieldcontain" class="ui-block-b">
+						<div id="game-save-rules">
+							<button id="button-save-game-rules" data-inline="true">Save</button>
+						</div>
+
+					</fieldset>	
+					<div id="game-assessment-saved-message"></div>
+					
+				</div>
+			</div>
+		</div>
 		<!-- The blueimp Gallery widget -->
 <!-- <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls" data-filter=":even">
     <div class="slides"></div>
