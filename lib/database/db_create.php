@@ -14,11 +14,11 @@ $query="CREATE TABLE IF NOT EXISTS levels(
 $result = $conn->query($query);
 //echo "query executed";
 $query="CREATE TABLE IF NOT EXISTS galleries(
-		id int(11) NOT NULL AUTO_INCREMENT,
-		galleryId int(11) NOT NULL,
+		galleryId int(11) NOT NULL AUTO_INCREMENT,
 		galleryName varchar(255) COLLATE utf8_unicode_ci NULL DEFAULT NULL,
 		galleryDescription varchar(255) COLLATE utf8_unicode_ci NULL DEFAULT NULL,
-		PRIMARY KEY (id)
+		oidcEmail varchar(255) COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+		PRIMARY KEY (galleryId)
 	) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=0";
 $result = $conn->query($query);
 
@@ -47,6 +47,7 @@ $query="CREATE TABLE IF NOT EXISTS game_galleries_connections(
 		connection1Id varchar(255) COLLATE utf8_unicode_ci NULL DEFAULT NULL,
 		connection2Id varchar(255) COLLATE utf8_unicode_ci NULL DEFAULT NULL,
 		connection3Id varchar(255) COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+		oidcEmail varchar(255) COLLATE utf8_unicode_ci NULL DEFAULT NULL,
 		PRIMARY KEY (gameId)
 	) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=0";
 $result = $conn->query($query);
@@ -55,6 +56,7 @@ $query="CREATE TABLE IF NOT EXISTS connections(
 		connectionId int(11) NOT NULL AUTO_INCREMENT,
 		connectionName varchar(255) COLLATE utf8_unicode_ci NULL DEFAULT NULL,
 		connectionSrc varchar(255) COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+		oidcEmail varchar(255) COLLATE utf8_unicode_ci NULL DEFAULT NULL,
 		PRIMARY KEY (connectionId)
 	) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=0";
 $result = $conn->query($query);
@@ -75,6 +77,7 @@ $query="CREATE TABLE IF NOT EXISTS experience_badges(
 		badgeSrc varchar(255) COLLATE utf8_unicode_ci NULL DEFAULT NULL,
 		badgeFeedbackMessage varchar(255) COLLATE utf8_unicode_ci NULL DEFAULT NULL,
 		score int(11) NOT NULL,
+		oidcEmail varchar(255) COLLATE utf8_unicode_ci NULL DEFAULT NULL,
 		PRIMARY KEY (badgeId)
 	) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=0";
 $result = $conn->query($query);
@@ -87,6 +90,7 @@ $query="CREATE TABLE IF NOT EXISTS game_statistics_badges(
 		badgeFeedbackMessage varchar(255) COLLATE utf8_unicode_ci NULL DEFAULT NULL,
 		badgeRequirementId int(11) NOT NULL,
 		requirementValue int(11) NOT NULL,
+		oidcEmail varchar(255) COLLATE utf8_unicode_ci NULL DEFAULT NULL,
 		PRIMARY KEY (badgeId)
 	) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=0";
 $result = $conn->query($query);
@@ -115,6 +119,7 @@ $query="CREATE TABLE IF NOT EXISTS highscore_rules(
 		showMe int(11) NOT NULL,
 		tryAgain int(11) NOT NULL,
 		hint int(11) NOT NULL,
+		oidcEmail varchar(255) COLLATE utf8_unicode_ci NULL DEFAULT NULL,
 		PRIMARY KEY (id)
 	) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=0";
 $result = $conn->query($query);

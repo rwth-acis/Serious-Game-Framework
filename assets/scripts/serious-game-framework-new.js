@@ -586,7 +586,7 @@ function loadGame(gameIndex, gameID) {
 	  				var distinct = p+j;
 	  				if (pieceCounter[distinct]) {
 	  					pieceCounter[distinct]++;
-	  					$('img[piece-id="' + p + '"]', '#gallery' + i + ' ul').attr('piece-count',pieceCounter[p]);
+	  					$('img[piece-id="' + p + '"]', '#gallery' + i + ' ul').attr('piece-count',pieceCounter[distinct]);
 
 	  				} else {
 	  					var image = $('<li class="ui-widget-content ui-corner-tr piece" draggable="true"><img src="' + TEMP + p + '" alt="' +  p + '" width="94" height="68" id="piece-id-'+i+'" piece-id="' + p + '" piece-count="1"/></li>');
@@ -777,6 +777,7 @@ function loadGame(gameIndex, gameID) {
 		
 		piece.draggable( "disable" );
 		piece.fadeTo(0, 1);
+		piece.css('opacity','1');
 	}
 	
 	function unblockPiece(piece) {
@@ -784,12 +785,14 @@ function loadGame(gameIndex, gameID) {
 		//alert("unblockPiece: " + pID);
 		
 		piece.draggable( "enable" );
+		piece.css('opacity','1');
 	}
 	
 	function blockSlot(slot, option) {
 		//alert("blockSlot: " + slot.attr('id') + " - " + option);
 		
 		slot.droppable( "disable" );
+		slot.css('opacity','1');
 		slot.fadeTo(0, 1);		// Fixes that the opacity would be lowered here
 		if (option == true) {
 			slot.removeClass("ui-droppable ui-state-default ui-droppable-disabled ui-state-disabled").addClass("slot-blocked");
@@ -1299,6 +1302,7 @@ function loadGame(gameIndex, gameID) {
 							var slotPieceID = $('img', slot).attr('piece-id');
 							if (slotPieceID) {
 								var piece = $('img[piece-id="' + slotPieceID + '"]', slot).parent().attr("testattr","hier");
+									piece.css("opacity","1");
 								var block = function(p) {
 									blockPiece(p);
 								}(piece);
@@ -1320,6 +1324,13 @@ function loadGame(gameIndex, gameID) {
 						// Check if all levels completed
 						if (!NEXTLEVELS.length)
 						{
+
+							for (var i = 0; i < NUMBER_OF_GALLERIES; i++) {
+									var piece = $('li', '#slot' + i);
+									if (piece.length) {
+										piece.css("opacity","1");
+									}
+							}	
 							$('#leveldone').fadeIn();
 							$('#leveldone').empty().append('All levels done.');
 							$('#wrapper-back-main').fadeIn();

@@ -16,21 +16,10 @@ body { list-style: none; }
 #gallery3wrapper { position:absolute; width:100%; left:0; top:50px; right:0; }
 #gallery2wrapper { position:absolute; right:130px; top:0px; bottom:0; vertical-align: middle; display: table-cell; }
 #gallery1wrapper { position:absolute; width:100%; left:0; bottom:8px; right:0; }
-#populategallerywrapper { position:relative; width:100%; left:0; top:0; right:0; }
-#populateconnectionswrapper { position:relative; width:100%; left:0; top:0; right:0; }
-#populatebadgeswrapper { position:relative; width:100%; left:0; top:0; right:0; }
-#populateconnectionswrapper1 { position:relative; width:100%; left:0; top:0; right:0; }
-#populateconnectionswrapper2 { position:relative; width:100%; left:0; top:0; right:0; }
-#populateconnectionswrapper3 { position:relative; width:100%; left:0; top:0; right:0; }
-#populategamegallery1wrapper { position:relative; width:100%; left:0; top:0; right:0; }
-#populategamegallery2wrapper { position:relative; width:100%; left:0; top:0; right:0; }
-#populategamegallery3wrapper { position:relative; width:100%; left:0; top:0; right:0; }
-#populategamegallery4wrapper { position:relative; width:100%; left:0; top:0; right:0; }
-#populateeditlevelswrapper { position: relative;  width:100%; left:0; top:0; right:0; }
-#populatechangeconnectionwrapper1 { position:relative; width:100%; left:0; top:0; right:0; }
-#populatechangeconnectionwrapper2 { position:relative; width:100%; left:0; top:0; right:0; }
-#populatechangeconnectionwrapper3 { position:relative; width:100%; left:0; top:0; right:0; }
 
+/*#populateconnectionswrapper { position:relative; width:100%; left:0; top:0; right:0; }*/
+
+.horizontalgallerywrapper { position:relative; width:100%; left:0; top:0; right:0; }
 
 .gallery { background-color:#dddddd; }
 .gallery.custom-state-active { background: #eee; }
@@ -55,61 +44,58 @@ body { list-style: none; }
 #ulwrap-gallery3 { overflow:hidden; width: 500px; float: left; }
 #gallery3 ul { height: 70px; width: 500px; float: left; overflow:visible }
 
-#populategallery { height: 110px; margin:0 0px 0 0px; z-index: 1002 }
-#ulwrap-populategallery { overflow:hidden; width: 500px; float: left; }
-#populategallery ul { height: 100px; width: 500px; float: left; overflow:visible; }
+#manageGallery { height: 110px; margin:0 0px 0 0px; z-index: 1002 }
+#ulwrap-manageGallery { overflow:hidden; width: 500px; float: left; }
+#manageGallery ul { height: 100px; width: 500px; float: left; overflow:visible; }
 
-#populateconnections { height: 110px; margin:0 0px 0 0px; z-index: 1002 }
-#ulwrap-populateconnections { overflow:hidden; width: 500px; float: left; }
-#populateconnections ul { height: 100px; width: 500px; float: left; overflow:visible; }
+#connectionsManage { height: 110px; margin:0 0px 0 0px; z-index: 1002 }
+#ulwrap-connectionsManage { overflow:hidden; width: 500px; float: left; }
+#connectionsManage ul { height: 100px; width: 500px; float: left; overflow:visible; }
 
-#populatebadges { height: 110px; margin:0 0px 0 0px; z-index: 1002 }
-#ulwrap-populatebadges { overflow:hidden; width: 500px; float: left; }
-#populatebadges ul { height: 100px; width: 500px; float: left; overflow:visible; }
 
-#populateconnections1 { height: 110px; margin:0 0px 0 0px; z-index: 1002 }
-#ulwrap-populateconnections1 { overflow:hidden; width: 500px; float: left; }
-#populateconnections1 ul { height: 100px; width: 500px; float: left; overflow:visible; }
+#selectConnections1 { height: 110px; margin:0 0px 0 0px; z-index: 1002 }
+#ulwrap-selectConnections1 { overflow:hidden; width: 500px; float: left; }
+#selectConnections1 ul { height: 100px; width: 500px; float: left; overflow:visible; }
 
-#populateconnections2 { height: 110px; margin:0 0px 0 0px; z-index: 1002 }
-#ulwrap-populateconnections2 { overflow:hidden; width: 500px; float: left; }
-#populateconnections2 ul { height: 100px; width: 500px; float: left; overflow:visible; }
 
-#populateconnections3 { height: 110px; margin:0 0px 0 0px; z-index: 1002 }
-#ulwrap-populateconnections3 { overflow:hidden; width: 500px; float: left; }
-#populateconnections3 ul { height: 100px; width: 500px; float: left; overflow:visible; }
+#selectConnections2 { height: 110px; margin:0 0px 0 0px; z-index: 1002 }
+#ulwrap-selectConnections2 { overflow:hidden; width: 500px; float: left; }
+#selectConnections2 ul { height: 100px; width: 500px; float: left; overflow:visible; }
 
-#populategamegallery1 { height: 110px; margin:0 0px 0 0px; z-index: 1002 }
-#ulwrap-populategamegallery1 { overflow:hidden; width: 500px; float: left; }
-#populategamegallery1 ul { height: 100px; width: 500px; float: left; overflow:visible; }
 
-#populategamegallery2 { height: 110px; margin:0 0px 0 0px; z-index: 1002 }
-#ulwrap-populategamegallery2 { overflow:hidden; width: 500px; float: left; }
-#populategamegallery2 ul { height: 100px; width: 500px; float: left; overflow:visible; }
+#selectConnections3 { height: 110px; margin:0 0px 0 0px; z-index: 1002 }
+#ulwrap-selectConnections3 { overflow:hidden; width: 500px; float: left; }
+#selectConnections3 ul { height: 100px; width: 500px; float: left; overflow:visible; }
 
-#populategamegallery3 { height: 110px; margin:0 0px 0 0px; z-index: 1002 }
-#ulwrap-populategamegallery3 { overflow:hidden; width: 500px; float: left; }
-#populategamegallery3 ul { height: 100px; width: 500px; float: left; overflow:visible; }
 
-#populategamegallery4 { height: 110px; margin:0 0px 0 0px; z-index: 1002 }
-#ulwrap-populategamegallery4 { overflow:hidden; width: 500px; float: left; }
-#populategamegallery4 ul { height: 100px; width: 500px; float: left; overflow:visible; }
+#selectGalleryTile1 { height: 110px; margin:0 0px 0 0px; z-index: 1002 }
+#ulwrap-selectGalleryTile1 { overflow:hidden; width: 500px; float: left; }
+#selectGalleryTile1 ul { height: 100px; width: 500px; float: left; overflow:visible; }
 
-#populateeditlevels { position: relative; top: 15%; width: 120px; z-index: 1002; height: 110px;}
-#ulwrap-populateeditlevels { overflow:hidden; width: 500px; float: left; }
-#populateeditlevels ul { height: 200px; overflow: visible; width: 500px; }
+#selectGalleryTile2 { height: 110px; margin:0 0px 0 0px; z-index: 1002 }
+#ulwrap-selectGalleryTile2 { overflow:hidden; width: 500px; float: left; }
+#selectGalleryTile2 ul { height: 100px; width: 500px; float: left; overflow:visible; }
 
-#populatechangeconnection1 { height: 110px; margin:0 0px 0 0px; z-index: 1002 }
-#ulwrap-populatechangeconnection1 { overflow:hidden; width: 500px; float: left; }
-#populatechangeconnection1 ul { height: 100px; width: 500px; float: left; overflow:visible; }
+#selectGalleryTile3 { height: 110px; margin:0 0px 0 0px; z-index: 1002 }
+#ulwrap-selectGalleryTile3 { overflow:hidden; width: 500px; float: left; }
+#selectGalleryTile3 ul { height: 100px; width: 500px; float: left; overflow:visible; }
 
-#populatechangeconnection2 { height: 110px; margin:0 0px 0 0px; z-index: 1002 }
-#ulwrap-populatechangeconnection2 { overflow:hidden; width: 500px; float: left; }
-#populatechangeconnection2 ul { height: 100px; width: 500px; float: left; overflow:visible; }
+#selectGalleryTile4 { height: 110px; margin:0 0px 0 0px; z-index: 1002 }
+#ulwrap-selectGalleryTile4 { overflow:hidden; width: 500px; float: left; }
+#selectGalleryTile4 ul { height: 100px; width: 500px; float: left; overflow:visible; }
 
-#populatechangeconnection3 { height: 110px; margin:0 0px 0 0px; z-index: 1002 }
-#ulwrap-populatechangeconnection3 { overflow:hidden; width: 500px; float: left; }
-#populatechangeconnection3 ul { height: 100px; width: 500px; float: left; overflow:visible; }
+#setConnection1 { height: 110px; margin:0 0px 0 0px; z-index: 1002 }
+#ulwrap-setConnection1 { overflow:hidden; width: 500px; float: left; }
+#setConnection1 ul { height: 100px; width: 500px; float: left; overflow:visible; }
+
+#setConnection2 { height: 110px; margin:0 0px 0 0px; z-index: 1002 }
+#ulwrap-setConnection2 { overflow:hidden; width: 500px; float: left; }
+#setConnection2 ul { height: 100px; width: 500px; float: left; overflow:visible; }
+
+#setConnection3 { height: 110px; margin:0 0px 0 0px; z-index: 1002 }
+#ulwrap-setConnection3 { overflow:hidden; width: 500px; float: left; }
+#setConnection3 ul { height: 100px; width: 500px; float: left; overflow:visible; }
+
 
 .button-left { float: left; }
 .button-right { float: right; }
@@ -118,20 +104,19 @@ body { list-style: none; }
 #gallery2 li { margin: 2px 0px 2px 0px; }
 #gallery1 li { margin: 0px 2px 0px 2px; }
 #gallery3 li { margin: 0px 2px 0px 2px; }
-#populategallery li { margin: 0px 2px 0px 2px; }
-#populateconnections li { margin: 0px 2px 0px 2px; }
+#manageGallery li { margin: 0px 2px 0px 2px; }
+#connectionsManage li { margin: 0px 2px 0px 2px; }
 #populatebadges li { margin: 0px 2px 0px 2px; }
-#populateconnections1 li { margin: 0px 2px 0px 2px; }
-#populateconnections2 li { margin: 0px 2px 0px 2px; }
-#populateconnections3 li { margin: 0px 2px 0px 2px; }
-#populategamegallery1 li { margin: 0px 2px 0px 2px; }
-#populategamegallery2 li { margin: 0px 2px 0px 2px; }
-#populategamegallery3 li { margin: 0px 2px 0px 2px; }
-#populategamegallery4 li { margin: 0px 2px 0px 2px; }
-#populateeditlevels li { margin: 2px 0px 2px 0px; }
-#populatechangeconnection1 li { margin: 0px 2px 0px 2px; }
-#populatechangeconnection2 li { margin: 0px 2px 0px 2px; }
-#populatechangeconnection3 li { margin: 0px 2px 0px 2px; }
+#selectConnections1 li { margin: 0px 2px 0px 2px; }
+#selectConnections2 li { margin: 0px 2px 0px 2px; }
+#selectConnections3 li { margin: 0px 2px 0px 2px; }
+#selectGalleryTile1 li { margin: 0px 2px 0px 2px; }
+#selectGalleryTile2 li { margin: 0px 2px 0px 2px; }
+#selectGalleryTile3 li { margin: 0px 2px 0px 2px; }
+#selectGalleryTile4 li { margin: 0px 2px 0px 2px; }
+#setConnection1 li { margin: 0px 2px 0px 2px; }
+#setConnection2 li { margin: 0px 2px 0px 2px; }
+#setConnection3 li { margin: 0px 2px 0px 2px; }
 
 /* #wrappergameboard {position: absolute; top: 110px; left: 140px; bottom:110px; right:140px; text-align: center; vertical-align: middle;} */
 #wrappergameboard { position: absolute; top: 35%; left: 15%; bottom:25%; right:15%; }

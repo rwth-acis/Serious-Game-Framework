@@ -23,34 +23,48 @@ function rand(min, max) {
 
 		setGalleryHeight();
 
-		var CONNECTIONS1 = $("#populateconnections1"),
+		var connectionGallery1 = "selectConnections1";
+		var connectionGallery2 = "selectConnections2";
+		var connectionGallery3 = "selectConnections3";
+
+		var selectGalleryTile1 = "selectGalleryTile1";
+		var selectGalleryTile2 = "selectGalleryTile2";
+		var selectGalleryTile3 = "selectGalleryTile3";
+		var selectGalleryTile4 = "selectGalleryTile4";
+
+
+		var setConnection1 = "setConnection1";
+		var setConnection2 = "setConnection2";
+		var setConnection3 = "setConnection3";
+
+		var CONNECTIONS1 = $("#"+connectionGallery1),
 		CONNECTIONS1ul = $("ul", CONNECTIONS1);
 		
-		var CONNECTIONS2 = $("#populateconnections2"),
+		var CONNECTIONS2 = $("#"+connectionGallery2),
 		CONNECTIONS2ul = $("ul", CONNECTIONS2);
 
-		var CONNECTIONS3 = $("#populateconnections3"),
+		var CONNECTIONS3 = $("#"+connectionGallery3),
 		CONNECTIONS3ul = $("ul", CONNECTIONS3);
 
-		var GAMEGALLERY1 = $("#populategamegallery1"),
+		var GAMEGALLERY1 = $("#"+selectGalleryTile1),
 		GAMEGALLERY1ul = $("ul", GAMEGALLERY1);
 
-		var GAMEGALLERY2 = $("#populategamegallery2"),
+		var GAMEGALLERY2 = $("#"+selectGalleryTile2),
 		GAMEGALLERY2ul = $("ul", GAMEGALLERY2);
 
-		var GAMEGALLERY3 = $("#populategamegallery3"),
+		var GAMEGALLERY3 = $("#"+selectGalleryTile3),
 		GAMEGALLERY3ul = $("ul", GAMEGALLERY3);
 
-		var GAMEGALLERY4 = $("#populategamegallery4"),
+		var GAMEGALLERY4 = $("#"+selectGalleryTile4),
 		GAMEGALLERY4ul = $("ul", GAMEGALLERY4);
 
-		var CHANGECONNECTION1 = $("#populatechangeconnection1"),
+		var CHANGECONNECTION1 = $("#"+setConnection1),
 		CHANGECONNECTION1ul = $("ul", CHANGECONNECTION1);
 
-		var CHANGECONNECTION2 = $("#populatechangeconnection2"),
+		var CHANGECONNECTION2 = $("#"+setConnection2),
 		CHANGECONNECTION2ul = $("ul", CHANGECONNECTION2);
 
-		var CHANGECONNECTION3 = $("#populatechangeconnection3"),
+		var CHANGECONNECTION3 = $("#"+setConnection3),
 		CHANGECONNECTION3ul = $("ul", CHANGECONNECTION3);
 
 		var GALLERYNAMES;
@@ -61,163 +75,6 @@ function rand(min, max) {
 
 		$('.select').find('option').css("height","20px"); 
 
-
-		$('#button-right-populategamegallery1').bind('mousedown mouseup touchstart touchend', function(event){
-			if ((event.type == 'mousedown') || (event.type == 'touchstart')){
-				$('#ulwrap-populategamegallery1').animate({"scrollLeft": "+=2000px"}, 3000, 'linear');
-			}else{
-				$('#ulwrap-populategamegallery1').stop();
-			}
-		});
-
-		$('#button-left-populategamegallery1').bind('mousedown mouseup touchstart touchend', function(event){
-			if ((event.type == 'mousedown') || (event.type == 'touchstart')){
-				$('#ulwrap-populategamegallery1').animate({"scrollLeft": "-=2000px"}, 3000, 'linear');
-			}else{
-				$('#ulwrap-populategamegallery1').stop();
-			}
-		});
-
-		$('#button-right-populategamegallery2').bind('mousedown mouseup touchstart touchend', function(event){
-			if ((event.type == 'mousedown') || (event.type == 'touchstart')){
-				$('#ulwrap-populategamegallery2').animate({"scrollLeft": "+=2000px"}, 3000, 'linear');
-			}else{
-				$('#ulwrap-populategamegallery2').stop();
-			}
-		});
-
-		$('#button-left-populategamegallery2').bind('mousedown mouseup touchstart touchend', function(event){
-			if ((event.type == 'mousedown') || (event.type == 'touchstart')){
-				$('#ulwrap-populategamegallery2').animate({"scrollLeft": "-=2000px"}, 3000, 'linear');
-			}else{
-				$('#ulwrap-populategamegallery2').stop();
-			}
-		});
-
-		$('#button-right-populategamegallery3').bind('mousedown mouseup touchstart touchend', function(event){
-			if ((event.type == 'mousedown') || (event.type == 'touchstart')){
-				$('#ulwrap-populategamegallery3').animate({"scrollLeft": "+=2000px"}, 3000, 'linear');
-			}else{
-				$('#ulwrap-populategamegallery3').stop();
-			}
-		});
-
-		$('#button-left-populategamegallery3').bind('mousedown mouseup touchstart touchend', function(event){
-			if ((event.type == 'mousedown') || (event.type == 'touchstart')){
-				$('#ulwrap-populategamegallery3').animate({"scrollLeft": "-=2000px"}, 3000, 'linear');
-			}else{
-				$('#ulwrap-populategamegallery3').stop();
-			}
-		});
-
-		$('#button-right-populategamegallery4').bind('mousedown mouseup touchstart touchend', function(event){
-			if ((event.type == 'mousedown') || (event.type == 'touchstart')){
-				$('#ulwrap-populategamegallery4').animate({"scrollLeft": "+=2000px"}, 3000, 'linear');
-			}else{
-				$('#ulwrap-populategamegallery4').stop();
-			}
-		});
-
-		$('#button-left-populategamegallery4').bind('mousedown mouseup touchstart touchend', function(event){
-			if ((event.type == 'mousedown') || (event.type == 'touchstart')){
-				$('#ulwrap-populategamegallery4').animate({"scrollLeft": "-=2000px"}, 3000, 'linear');
-			}else{
-				$('#ulwrap-populategamegallery4').stop();
-			}
-		});
-
-		$('#button-right-populatechangeconnection1').bind('mousedown mouseup touchstart touchend', function(event){
-			if ((event.type == 'mousedown') || (event.type == 'touchstart')){
-				$('#ulwrap-populatechangeconnection1').animate({"scrollLeft": "+=2000px"}, 3000, 'linear');
-			}else{
-				$('#ulwrap-populatechangeconnection1').stop();
-			}
-		});
-
-		$('#button-left-populatechangeconnection1').bind('mousedown mouseup touchstart touchend', function(event){
-			if ((event.type == 'mousedown') || (event.type == 'touchstart')){
-				$('#ulwrap-populatechangeconnection1').animate({"scrollLeft": "-=2000px"}, 3000, 'linear');
-			}else{
-				$('#ulwrap-populatechangeconnection1').stop();
-			}
-		});
-
-		$('#button-right-populatechangeconnection2').bind('mousedown mouseup touchstart touchend', function(event){
-			if ((event.type == 'mousedown') || (event.type == 'touchstart')){
-				$('#ulwrap-populatechangeconnection2').animate({"scrollLeft": "+=2000px"}, 3000, 'linear');
-			}else{
-				$('#ulwrap-populatechangeconnection2').stop();
-			}
-		});
-
-		$('#button-left-populatechangeconnection2').bind('mousedown mouseup touchstart touchend', function(event){
-			if ((event.type == 'mousedown') || (event.type == 'touchstart')){
-				$('#ulwrap-populatechangeconnection2').animate({"scrollLeft": "-=2000px"}, 3000, 'linear');
-			}else{
-				$('#ulwrap-populatechangeconnection2').stop();
-			}
-		});
-
-		$('#button-right-populatechangeconnection3').bind('mousedown mouseup touchstart touchend', function(event){
-			if ((event.type == 'mousedown') || (event.type == 'touchstart')){
-				$('#ulwrap-populatechangeconnection3').animate({"scrollLeft": "+=2000px"}, 3000, 'linear');
-			}else{
-				$('#ulwrap-populatechangeconnection3').stop();
-			}
-		});
-
-		$('#button-left-populatechangeconnection3').bind('mousedown mouseup touchstart touchend', function(event){
-			if ((event.type == 'mousedown') || (event.type == 'touchstart')){
-				$('#ulwrap-populatechangeconnection3').animate({"scrollLeft": "-=2000px"}, 3000, 'linear');
-			}else{
-				$('#ulwrap-populatechangeconnection3').stop();
-			}
-		});
-
-		$('#button-right-populateconnections1').bind('mousedown mouseup touchstart touchend', function(event){
-			if ((event.type == 'mousedown') || (event.type == 'touchstart')){
-				$('#ulwrap-populateconnections1').animate({"scrollLeft": "+=2000px"}, 3000, 'linear');
-			}else{
-				$('#ulwrap-populateconnections1').stop();
-			}
-		});
-		$('#button-left-populateconnections1').bind('mousedown mouseup touchstart touchend', function(event){
-			if ((event.type == 'mousedown') || (event.type == 'touchstart')){
-				$('#ulwrap-populateconnections1').animate({"scrollLeft": "-=2000px"}, 3000, 'linear');
-			}else{
-				$('#ulwrap-populateconnections1').stop();
-			}
-		});
-
-		$('#button-right-populateconnections2').bind('mousedown mouseup touchstart touchend', function(event){
-			if ((event.type == 'mousedown') || (event.type == 'touchstart')){
-				$('#ulwrap-populateconnections2').animate({"scrollLeft": "+=2000px"}, 3000, 'linear');
-			}else{
-				$('#ulwrap-populateconnections2').stop();
-			}
-		});
-		$('#button-left-populateconnections2').bind('mousedown mouseup touchstart touchend', function(event){
-			if ((event.type == 'mousedown') || (event.type == 'touchstart')){
-				$('#ulwrap-populateconnections2').animate({"scrollLeft": "-=2000px"}, 3000, 'linear');
-			}else{
-				$('#ulwrap-populateconnections2').stop();
-			}
-		});
-
-		$('#button-right-populateconnections3').bind('mousedown mouseup touchstart touchend', function(event){
-			if ((event.type == 'mousedown') || (event.type == 'touchstart')){
-				$('#ulwrap-populateconnections3').animate({"scrollLeft": "+=2000px"}, 3000, 'linear');
-			}else{
-				$('#ulwrap-populateconnections3').stop();
-			}
-		});
-		$('#button-left-populateconnections3').bind('mousedown mouseup touchstart touchend', function(event){
-			if ((event.type == 'mousedown') || (event.type == 'touchstart')){
-				$('#ulwrap-populateconnections3').animate({"scrollLeft": "-=2000px"}, 3000, 'linear');
-			}else{
-				$('#ulwrap-populateconnections3').stop();
-			}
-		});
 
 		$(window).resize(function() {
 			setGalleryHeight();
@@ -254,7 +111,7 @@ function rand(min, max) {
 				
 			} else{
 				$('#selectconnection1-fieldset').removeClass('hideElement');
-				getConnections("populateconnections1");
+				getConnections(connectionGallery1);
 				if(galleryId >= 2){
 					$('#selectgallery1fieldset').removeClass('hideElement');
 					$('#selectgallery2fieldset').removeClass('hideElement');
@@ -267,14 +124,14 @@ function rand(min, max) {
 					$('#selectgallery3fieldset').removeClass('hideElement');
 					$('#selectgallery4fieldset').addClass('hideElement');
 					$('#selectconnection2-fieldset').removeClass('hideElement');
-					getConnections("populateconnections2");
+					getConnections(connectionGallery2);
 					$('#selectconnection3-fieldset').addClass('hideElement');
 				
 				}
 				if(galleryId > 3){
 					$('#selectgallery4fieldset').removeClass('hideElement');
 					$('#selectconnection3-fieldset').removeClass('hideElement');
-					getConnections("populateconnections3");
+					getConnections(connectionGallery3);
 				}
 				var createGameMessage = $('<h2>To enable game creation, give non-empty game name and select galleries and connection</h2>');
 				$('#create-game-message').append(createGameMessage);
@@ -333,7 +190,7 @@ function rand(min, max) {
 		
 
 		
-	$('#selectedgamegallery1').on('click', 'li', function() { // id of clicked li by directly accessing DOMElement property
+	$('#edit'+selectGalleryTile1).on('click', 'li', function() { // id of clicked li by directly accessing DOMElement property
 		if($(this).hasClass("active")){
 			$(this).removeClass("active");
 		} else {
@@ -343,7 +200,7 @@ function rand(min, max) {
 		enableCreateLevelButton();
 	});
 
-	$('#selectedgamegallery2').on('click', 'li', function() { // id of clicked li by directly accessing DOMElement property
+	$('#edit'+selectGalleryTile2).on('click', 'li', function() { // id of clicked li by directly accessing DOMElement property
 		//$('#create-gallery-message').text("");
 		if($(this).hasClass("active")){
 			$(this).removeClass("active");
@@ -354,7 +211,7 @@ function rand(min, max) {
 		enableCreateLevelButton();
 	});
 
-	$('#selectedgamegallery3').on('click', 'li', function() { // id of clicked li by directly accessing DOMElement property
+	$('#edit'+selectGalleryTile3).on('click', 'li', function() { // id of clicked li by directly accessing DOMElement property
 	//	$('#create-gallery-message').text("");
 	if($(this).hasClass("active")){
 		$(this).removeClass("active");
@@ -365,7 +222,7 @@ function rand(min, max) {
 	enableCreateLevelButton();
 });
 
-	$('#selectedgamegallery4').on('click', 'li', function() { // id of clicked li by directly accessing DOMElement property
+	$('#edit'+selectGalleryTile4).on('click', 'li', function() { // id of clicked li by directly accessing DOMElement property
 		//$('#create-gallery-message').text("");
 		if($(this).hasClass("active")){
 			$(this).removeClass("active");
@@ -376,7 +233,7 @@ function rand(min, max) {
 		enableCreateLevelButton();
 	});
 
-	$('#changeconnection1').on('click', 'li', function() { // id of clicked li by directly accessing DOMElement property
+	$('#edit'+setConnection1).on('click', 'li', function() { // id of clicked li by directly accessing DOMElement property
 		$('#changeConnectionMessage').text("");
 		if($(this).hasClass("active")){
 			$(this).removeClass("active");
@@ -392,7 +249,7 @@ function rand(min, max) {
 
 	});
 
-	$('#changeconnection2').on('click', 'li', function() { // id of clicked li by directly accessing DOMElement property
+	$('#edit'+setConnection2).on('click', 'li', function() { // id of clicked li by directly accessing DOMElement property
 		$('#changeConnectionMessage').text("");
 		if($(this).hasClass("active")){
 			$(this).removeClass("active");
@@ -408,7 +265,7 @@ function rand(min, max) {
 
 	});
 
-	$('#changeconnection3').on('click', 'li', function() { // id of clicked li by directly accessing DOMElement property
+	$('#edit'+setConnection3).on('click', 'li', function() { // id of clicked li by directly accessing DOMElement property
 		$('#changeConnectionMessage').text("");
 		if($(this).hasClass("active")){
 			$(this).removeClass("active");
@@ -425,7 +282,7 @@ function rand(min, max) {
 	});
 
 	
-		$('#editconnection1').on('click', 'li', function() { // id of clicked li by directly accessing DOMElement property
+		$('#edit'+connectionGallery1).on('click', 'li', function() { // id of clicked li by directly accessing DOMElement property
 			
 			if($(this).hasClass("active")){
 				$(this).removeClass("active");
@@ -438,7 +295,7 @@ function rand(min, max) {
 
 		});
 
-		$('#editconnection2').on('click', 'li', function() { // id of clicked li by directly accessing DOMElement property
+		$('#edit'+connectionGallery2).on('click', 'li', function() { // id of clicked li by directly accessing DOMElement property
 			
 			if($(this).hasClass("active")){
 				$(this).removeClass("active");
@@ -451,7 +308,7 @@ function rand(min, max) {
 
 		});
 
-		$('#editconnection3').on('click', 'li', function() { // id of clicked li by directly accessing DOMElement property
+		$('#edit'+connectionGallery3).on('click', 'li', function() { // id of clicked li by directly accessing DOMElement property
 			
 			if($(this).hasClass("active")){
 				$(this).removeClass("active");
@@ -487,14 +344,14 @@ function rand(min, max) {
 			$('#add-level-message').append(addLevelMessage);
 			$('#editgamesection').removeClass('hideElement');
 			var gameGallery1 = $('option:selected', $('#selectgame')).attr('gameGallery1');
-			getGalleryTiles(gameGallery1,"populategamegallery1");
+			getGalleryTiles(gameGallery1,selectGalleryTile1);
 			var gameGallery2 = $('option:selected', $('#selectgame')).attr('gameGallery2');
-			getGalleryTiles(gameGallery2,"populategamegallery2");
+			getGalleryTiles(gameGallery2,selectGalleryTile2);
 			var gameGallery3 = $('option:selected', $('#selectgame')).attr('gameGallery3');
 			var gameGallery4 = $('option:selected', $('#selectgame')).attr('gameGallery4');
 			NUMBER_OF_GALLERIES = 2;
 			var activeConnection1 = $('option:selected', $('#selectgame')).attr('gameConnection1');
-			getGameConnections("populatechangeconnection1",activeConnection1);
+			getGameConnections(setConnection1,activeConnection1);
 			if(gameGallery3 !=""){
 				NUMBER_OF_GALLERIES = 3;
 				$('#gamegallery3-fieldset').removeClass('hideElement');
@@ -502,9 +359,9 @@ function rand(min, max) {
 				$('#edithideslot2').removeClass('hideElement');
 				$('#editwrapperslot2').css("display","block");
 				$('#changeconnection2-fieldset').removeClass('hideElement');
-				getGalleryTiles(gameGallery3,"populategamegallery3");
+				getGalleryTiles(gameGallery3,selectGalleryTile3);
 				var activeConnection2 = $('option:selected', $('#selectgame')).attr('gameConnection2');
-				getGameConnections("populatechangeconnection2",activeConnection2);
+				getGameConnections(setConnection2,activeConnection2);
 			}else{
 				$('#gamegallery3-fieldset').addClass('hideElement');
 				$('#changeconnection2-fieldset').addClass('hideElement');
@@ -519,9 +376,9 @@ function rand(min, max) {
 				$('#edithideslot3').removeClass('hideElement');
 				$('#editwrapperslot3').css("display","block");
 				$('#changeconnection3-fieldset').removeClass('hideElement');
-				getGalleryTiles(gameGallery4,"populategamegallery4");
+				getGalleryTiles(gameGallery4,selectGalleryTile4);
 				var activeConnection3 = $('option:selected', $('#selectgame')).attr('gameConnection3');
-				getGameConnections("populatechangeconnection3",activeConnection3);
+				getGameConnections(setConnection3,activeConnection3);
 			}else{
 				$('#gamegallery4-fieldset').addClass('hideElement');
 				$('#changeconnection3-fieldset').addClass('hideElement');
@@ -537,7 +394,7 @@ function rand(min, max) {
 						if(id == value.galleryId){
 							$('#editheader-slot'+j).empty().append(value.galleryName);
 							$('#editheader-gallery'+j).empty().append(value.galleryName);
-							$('#header-populategamegallery'+i).empty().append(value.galleryName);
+							$('#header-selectGalleryTile'+i).empty().append(value.galleryName);
 						}
 					}
 
@@ -684,6 +541,10 @@ function rand(min, max) {
 			$('#selectconnection3-fieldset').addClass('hideElement');
 			$('#create-game-button').find('*').prop('disabled',true);
 			$('#create-game-button').find('*').addClass('ui-disabled');
+
+			$('#header-'+connectionGallery1).empty().append("Select Connection 1");
+			$('#header-'+connectionGallery2).empty().append("Select Connection 2");
+			$('#header-'+connectionGallery3).empty().append("Select Connection 3");
 			getGalleriesList2("selectgallery1");
 			getGalleriesList2("selectgallery2");
 			getGalleriesList2("selectgallery3");
@@ -717,21 +578,21 @@ function rand(min, max) {
 			var gallery4Val = $('select[name=selectgallery4]').val();
 			var validSelector = "false";
 			if(galleryCountVal == 2){
-				if(gallery1Val != 0 && gallery2Val != 0 && $('#editconnection1').find('*').hasClass("active")){
+				if(gallery1Val != 0 && gallery2Val != 0 && $('#edit'+connectionGallery1).find('*').hasClass("active")){
 					validSelector = "true";
 				}else{
 					validSelector = "false";
 				}
 			}
 			if(galleryCountVal == 3){
-				if(gallery1Val != 0 && gallery2Val != 0 && gallery3Val != 0 && $('#editconnection1').find('*').hasClass("active") && $('#editconnection2').find('*').hasClass("active")){
+				if(gallery1Val != 0 && gallery2Val != 0 && gallery3Val != 0 && $('#edit'+connectionGallery1).find('*').hasClass("active") && $('#edit'+connectionGallery2).find('*').hasClass("active")){
 					validSelector = "true";
 				}else{
 					validSelector = "false";
 				}
 			}
 			if(galleryCountVal == 4){
-				if(gallery1Val != 0 && gallery2Val != 0 && gallery3Val != 0 && gallery4Val != 0 && $('#editconnection1').find('*').hasClass("active") && $('#editconnection2').find('*').hasClass("active") && $('#editconnection3').find('*').hasClass("active")){
+				if(gallery1Val != 0 && gallery2Val != 0 && gallery3Val != 0 && gallery4Val != 0 && $('#edit'+connectionGallery1).find('*').hasClass("active") && $('#edit'+connectionGallery2).find('*').hasClass("active") && $('#edit'+connectionGallery3).find('*').hasClass("active")){
 					validSelector = "true";
 				}else{
 					validSelector = "false";
@@ -745,7 +606,7 @@ function rand(min, max) {
 				var createGameMessage = $('<h2>Click on "Create" to create the game</h2>');
 				$('#create-game-message').append(createGameMessage);
 			}else{
-				var createGameMessage = $('<h2>To enable game creation, give non-empty game name and select galleries and connection</h2>');
+				var createGameMessage = $('<h2>To enable game creation, give non-empty game name and select galleries and connections</h2>');
 				$('#create-game-message').append(createGameMessage);
 				$('#create-game-button').find('*').prop('disabled',true);
 				$('#create-game-button').find('*').addClass('ui-disabled');
@@ -760,20 +621,20 @@ function rand(min, max) {
 			var gameGallery3 = $('option:selected', $('#selectgame')).attr('gameGallery3');
 			var gameGallery4 = $('option:selected', $('#selectgame')).attr('gameGallery4');
 			if(gameGallery3 != ""){
-				if($('#selectedgamegallery3').find('*').hasClass("active")){
+				if($('#edit'+selectGalleryTile3).find('*').hasClass("active")){
 					valid = "true";
 				}else{
 					valid = "false";
 				}
 			}
 			if(gameGallery4 != ""){
-				if($('#selectedgamegallery3').find('*').hasClass("active") && $('#selectedgamegallery4').find('*').hasClass("active")){
+				if($('#edit'+selectGalleryTile3).find('*').hasClass("active") && $('#edit'+selectGalleryTile4).find('*').hasClass("active")){
 					valid = "true";
 				}else{
 					valid = "false";
 				}
 			}
-			if($('#selectedgamegallery1').find('*').hasClass("active") && $('#selectedgamegallery2').find('*').hasClass("active") && valid == "true"){
+			if($('#edit'+selectGalleryTile1).find('*').hasClass("active") && $('#edit'+selectGalleryTile2).find('*').hasClass("active") && valid == "true"){
 				$('#add-level-message').text("");
 				var addLevelMessage = $('<h2>Click on the \'Add Level\' button to add the level to the game</h2>');
 				$('#add-level-message').append(addLevelMessage);
@@ -863,7 +724,7 @@ function rand(min, max) {
 				formdata = new FormData();
 			}
 			var gameId = $('select[name=selectgame]').val();
-			var connectionSrc1 = $('#changeconnection1').find(".active").find(".imgfocus")[0].alt;
+			var connectionSrc1 = $('#edit'+setConnection1).find(".active").find(".imgfocus")[0].alt;
 			formdata.append("gameId",gameId);
 			formdata.append("connectionSrc1",connectionSrc1);
 			if(formdata){
@@ -891,7 +752,7 @@ function rand(min, max) {
 				formdata = new FormData();
 			}
 			var gameId = $('select[name=selectgame]').val();
-			var connectionSrc2 = $('#changeconnection2').find(".active").find(".imgfocus")[0].alt;
+			var connectionSrc2 = $('#edit'+setConnection2).find(".active").find(".imgfocus")[0].alt;
 			formdata.append("gameId",gameId);
 			formdata.append("connectionSrc2",connectionSrc2);
 			if(formdata){
@@ -919,7 +780,7 @@ function rand(min, max) {
 				formdata = new FormData();
 			}
 			var gameId = $('select[name=selectgame]').val();
-			var connectionSrc3 = $('#changeconnection3').find(".active").find(".imgfocus")[0].alt;
+			var connectionSrc3 = $('#edit'+setConnection3).find(".active").find(".imgfocus")[0].alt;
 			formdata.append("gameId",gameId);
 			formdata.append("connectionSrc3",connectionSrc3);
 			if(formdata){
@@ -1074,14 +935,14 @@ function rand(min, max) {
 			var gallery2Id = $('select[name=selectgallery2]').val();
 			var gallery3Id = $('select[name=selectgallery3]').val();
 			var gallery4Id = $('select[name=selectgallery4]').val();
-			var connectionSrc1 = $('#editconnection1').find(".active").find(".imgfocus")[0].alt;
+			var connectionSrc1 = $('#edit'+connectionGallery1).find(".active").find(".imgfocus")[0].alt;
 			var connectionSrc2 = "";
-			if($('#editconnection2').find(".active").length != 0){
-				connectionSrc2 = $('#editconnection2').find(".active").find(".imgfocus")[0].alt;
+			if($('#edit'+connectionGallery2).find(".active").length != 0){
+				connectionSrc2 = $('#edit'+connectionGallery2).find(".active").find(".imgfocus")[0].alt;
 			}
 			var connectionSrc3 = "";
-			if($('#editconnection3').find(".active").length != 0){
-				connectionSrc3 = $('#editconnection3').find(".active").find(".imgfocus")[0].alt;
+			if($('#edit'+connectionGallery3).find(".active").length != 0){
+				connectionSrc3 = $('#edit'+connectionGallery3).find(".active").find(".imgfocus")[0].alt;
 			}
 			formdata = false;
 			if (window.FormData) {
@@ -1139,8 +1000,8 @@ function rand(min, max) {
 			var eLearningLink = $.trim($('#newELearningLink')[0].value);
 			var moreInformation = $.trim($('#newMoreInformationLink')[0].value);
 			var gameId = $('select[name=selectgame]').val();
-			var gallery1src = $('#selectedgamegallery1').find(".active").find(".imgfocus")[0].alt;
-			var gallery2src = $('#selectedgamegallery2').find(".active").find(".imgfocus")[0].alt;
+			var gallery1src = $('#edit'+selectGalleryTile1).find(".active").find(".imgfocus")[0].alt;
+			var gallery2src = $('#edit'+selectGalleryTile2).find(".active").find(".imgfocus")[0].alt;
 
 			var gameGallery3 = $('option:selected', $('#selectgame')).attr('gameGallery3');
 			var gameGallery4 = $('option:selected', $('#selectgame')).attr('gameGallery4');
@@ -1153,13 +1014,13 @@ function rand(min, max) {
 			formdata.append("gallery2src",gallery2src);
 			
 			if(gameGallery3 != ""){
-				var gallery3src = $('#selectedgamegallery3').find(".active").find(".imgfocus")[0].alt;
+				var gallery3src = $('#edit'+selectGalleryTile3).find(".active").find(".imgfocus")[0].alt;
 				formdata.append("gallery3src",gallery3src);
 			}else{
 				formdata.append("gallery3src","");
 			}
 			if(gameGallery4 != ""){
-				var gallery4src = $('#selectedgamegallery4').find(".active").find(".imgfocus")[0].alt;
+				var gallery4src = $('#edit'+selectGalleryTile4).find(".active").find(".imgfocus")[0].alt;
 				formdata.append("gallery4src",gallery4src);
 			}else{
 				formdata.append("gallery4src","");
@@ -1266,45 +1127,45 @@ function rand(min, max) {
 
 		function setGalleryWidth() {
 			
-			var connWidth1 = $('#populateconnections1').width();
-			$('#ulwrap-populateconnections1').width(connWidth1-75);
+			var connWidth1 = $('#'+connectionGallery1).width();
+			$('#ulwrap-'+connectionGallery1).width(connWidth1-75);
 			CONNECTIONS1ul.width((102 * CONNECTIONS1ul.children().length));
 
-			var connWidth2 = $('#populateconnections2').width();
-			$('#ulwrap-populateconnections2').width(connWidth2-75);
+			var connWidth2 = $('#'+connectionGallery2).width();
+			$('#ulwrap-'+connectionGallery2).width(connWidth2-75);
 			CONNECTIONS2ul.width((102 * CONNECTIONS2ul.children().length));
 
-			var connWidth3 = $('#populateconnections3').width();
-			$('#ulwrap-populateconnections3').width(connWidth3-75);
+			var connWidth3 = $('#'+connectionGallery3).width();
+			$('#ulwrap-'+connectionGallery3).width(connWidth3-75);
 			CONNECTIONS3ul.width((102 * CONNECTIONS3ul.children().length));
 
 			
-			var gameGal1Width = $('#populategamegallery1').width();
-			$('#ulwrap-populategamegallery1').width(gameGal1Width-75);
+			var gameGal1Width = $('#'+selectGalleryTile1).width();
+			$('#ulwrap-'+selectGalleryTile1).width(gameGal1Width-75);
 			GAMEGALLERY1ul.width((102 * GAMEGALLERY1ul.children().length));
 
-			var gameGal2Width = $('#populategamegallery2').width();
-			$('#ulwrap-populategamegallery2').width(gameGal2Width-75);
+			var gameGal2Width = $('#'+selectGalleryTile2).width();
+			$('#ulwrap-'+selectGalleryTile2).width(gameGal2Width-75);
 			GAMEGALLERY2ul.width((102 * GAMEGALLERY2ul.children().length));
 
-			var gameGal3Width = $('#populategamegallery3').width();
-			$('#ulwrap-populategamegallery3').width(gameGal3Width-75);
+			var gameGal3Width = $('#'+selectGalleryTile3).width();
+			$('#ulwrap-'+selectGalleryTile3).width(gameGal3Width-75);
 			GAMEGALLERY3ul.width((102 * GAMEGALLERY3ul.children().length));
 
-			var gameGal4Width = $('#populategamegallery4').width();
-			$('#ulwrap-populategamegallery4').width(gameGal4Width-75);
+			var gameGal4Width = $('#'+selectGalleryTile4).width();
+			$('#ulwrap-'+selectGalleryTile4).width(gameGal4Width-75);
 			GAMEGALLERY4ul.width((102 * GAMEGALLERY4ul.children().length));
 
-			var changeConnectionWidth1 = $('#populatechangeconnection1').width();
-			$('#ulwrap-populatechangeconnection1').width(changeConnectionWidth1-75);
+			var changeConnectionWidth1 = $('#'+setConnection1).width();
+			$('#ulwrap-'+setConnection1).width(changeConnectionWidth1-75);
 			CHANGECONNECTION1ul.width((102 * CHANGECONNECTION1ul.children().length));
 
-			var changeConnectionWidth2 = $('#populatechangeconnection2').width();
-			$('#ulwrap-populatechangeconnection2').width(changeConnectionWidth2-75);
+			var changeConnectionWidth2 = $('#'+setConnection2).width();
+			$('#ulwrap-'+setConnection2).width(changeConnectionWidth2-75);
 			CHANGECONNECTION2ul.width((102 * CHANGECONNECTION2ul.children().length));
 
-			var changeConnectionWidth3 = $('#populatechangeconnection3').width();
-			$('#ulwrap-populatechangeconnection3').width(changeConnectionWidth3-75);
+			var changeConnectionWidth3 = $('#'+setConnection3).width();
+			$('#ulwrap-'+setConnection3).width(changeConnectionWidth3-75);
 			CHANGECONNECTION3ul.width((102 * CHANGECONNECTION3ul.children().length));
 
 		}

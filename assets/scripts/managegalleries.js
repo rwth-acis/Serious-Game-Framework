@@ -20,29 +20,16 @@ function rand(min, max) {
 			setGalleryWidth();
 		});
 
-		var POPULATEGALLERY = $("#populategallery"),
+		var galleryElementName = "manageGallery";
+
+		var POPULATEGALLERY = $("#"+galleryElementName),
 		POPULATEGALLERYul = $("ul", POPULATEGALLERY);
 
 		var GALLERYNAMES;
 
-		$('#button-right-populategallery').bind('mousedown mouseup touchstart touchend', function(event){
-			if ((event.type == 'mousedown') || (event.type == 'touchstart')){
-				$('#ulwrap-populategallery').animate({"scrollLeft": "+=2000px"}, 3000, 'linear');
-			}else{
-				$('#ulwrap-populategallery').stop();
-			}
-		});
-
-		$('#button-left-populategallery').bind('mousedown mouseup touchstart touchend', function(event){
-			if ((event.type == 'mousedown') || (event.type == 'touchstart')){
-				$('#ulwrap-populategallery').animate({"scrollLeft": "-=2000px"}, 3000, 'linear');
-			}else{
-				$('#ulwrap-populategallery').stop();
-			}
-		});
-
+		
 		$('#editgallerieslink').click(function() { 
-			resetEditGalleryView();
+			resetGalleryView();
 		});
 
 		$('#select-gallery').change(function(){
@@ -52,8 +39,8 @@ function rand(min, max) {
 			var description = $('option:selected', this).attr('description');
 			var galleryDescMessage = $('<h2>'+description+'</h2>');
 			$('#gallery-description-message').append(galleryDescMessage);
-			$('#populategallery' + ' ul').children().remove();
-			$('#populategallerywrapper').find('*').prop('disabled',true);
+			$('#'+galleryElementName + ' ul').children().remove();
+			$('#'+galleryElementName+'wrapper').find('*').prop('disabled',true);
 			$('#tile-delete-button').find('*').prop('disabled',true);
 			$('#tile-delete-button').find('*').addClass('ui-disabled');
 			$('#uploadTiles').prop('disabled',true);
@@ -76,8 +63,8 @@ function rand(min, max) {
 		});
 
 		$('#button-edit-gallery').click(function() {
-			$('#populategallerywrapper').find('*').prop('disabled',false);
-			$('#populategallerywrapper').find('*').removeClass('ui-disabled');
+			$('#'+galleryElementName+'wrapper').find('*').prop('disabled',false);
+			$('#'+galleryElementName+'wrapper').find('*').removeClass('ui-disabled');
 			$('#uploadTiles').prop('disabled',false);
 			$('.fileinput-button').css('opacity','1');
 			$('#gallery-saved-message').text("");
@@ -85,7 +72,7 @@ function rand(min, max) {
 			$('#tile-delete-button').find('*').prop('disabled',true);
 			$('#tile-delete-button').find('*').addClass('ui-disabled');
 			var galleryId = $('select[name=select-gallery]').val();
-			getGalleryTiles(galleryId,"populategallery");
+			getGalleryTiles(galleryId,galleryElementName);
 			
 		});
 
@@ -111,7 +98,7 @@ function rand(min, max) {
 			}
 		});
 
-	$('#editgallery').on('click', 'li', function() { // id of clicked li by directly accessing DOMElement property
+	$('#edit'+galleryElementName).on('click', 'li', function() { // id of clicked li by directly accessing DOMElement property
 		$('#create-gallery-message').text("");
 		$('#gallery-saved-message').text("");
 
@@ -132,7 +119,7 @@ function rand(min, max) {
 
 		$('#create-gallery-message').text("");
 		$('#gallery-saved-message').text("");
-		var filename = $('#editgallery').find(".active").find(".imgfocus")[0].alt;
+		var filename = $('#edit'+galleryElementName).find(".active").find(".imgfocus")[0].alt;
 		deleteTile(filename);		
 
 	});
@@ -166,10 +153,10 @@ function rand(min, max) {
 			});
 	}
 
-	function resetEditGalleryView(){
+	function resetGalleryView(){
 		$('#select-gallery').children().remove();
-		$('#populategallery' + ' ul').children().remove();
-		$('#populategallerywrapper').find('*').prop('disabled',true);
+		$('#'+galleryElementName + ' ul').children().remove();
+		$('#'+galleryElementName+'wrapper').find('*').prop('disabled',true);
 		$('#tile-delete-button').find('*').prop('disabled',true);
 		$('#tile-delete-button').find('*').addClass('ui-disabled');
 		$('#uploadTiles').prop('disabled',true);
@@ -187,6 +174,24 @@ function rand(min, max) {
 		$('#delete-button-gallery').find('*').addClass('ui-disabled');
 		getGalleriesList();
 
+	}
+
+	function resetEditGalleryView(){
+		$('#select-gallery').children().remove();
+		$('#'+galleryElementName + ' ul').children().remove();
+		$('#'+galleryElementName+'wrapper').find('*').prop('disabled',true);
+		$('#tile-delete-button').find('*').prop('disabled',true);
+		$('#tile-delete-button').find('*').addClass('ui-disabled');
+		$('#uploadTiles').prop('disabled',true);
+		$('.fileinput-button').css('opacity','0.3');
+		$('#create-gallery-message').text("");
+		$('#gallery-saved-message').text("");
+		$('#gallery-description-message').text("");
+		$('#edit-gallery-button').find('*').prop('disabled',true);
+		$('#edit-gallery-button').find('*').addClass('ui-disabled');
+		$('#delete-button-gallery').find('*').prop('disabled',true);
+		$('#delete-button-gallery').find('*').addClass('ui-disabled');
+		getGalleriesList();
 	}
 
 	function createGalleryList(data){
@@ -255,7 +260,7 @@ function rand(min, max) {
 				contentType: false,
 				success: function(data){
 					//alert('success');
-					$('#editgallery').find(".active").remove();
+					$('#edit'+galleryElementName).find(".active").remove();
 					var gallerySavedMessage = $('<h2>Changes to the gallery "'+galleryName+'" are saved successfully!</h2>');
 					$('#gallery-saved-message').append(gallerySavedMessage);
 
@@ -282,9 +287,10 @@ function rand(min, max) {
 				contentType: false,
 				success: function(data){
 					//alert('success');
+					resetEditGalleryView();
 					var gallerySavedMessage = $('<h2>Gallery "'+galleryName+'" deleted successfully!</h2>');
 					$('#gallery-saved-message').append(gallerySavedMessage);
-					getGalleriesList();
+					
 				}
 			});
 		}
@@ -344,7 +350,7 @@ function rand(min, max) {
 				processData: false,
 				contentType: false,
 				success: function(data){
-					resetEditGalleryView();
+					resetGalleryView();
 					var createGalleryMessage = $('<h2>Gallery with name "'+galleryName+'" is created successfully! Select the gallery from dropdown menu to add tiles to the gallery.</h2>');
 					$('#create-gallery-message').append(createGalleryMessage);
 
@@ -359,7 +365,7 @@ function rand(min, max) {
 		if(files != null){
 			$.each(files, function(index, value) {
 				var image1 = $('<li class="ui-widget-content ui-corner-tr piece"><a href="#"><img src="' + TEMP + value + '" alt="' +  value + '" width="94" height="68" id="piece-id-'+index+'" piece-id="' + index + '" piece-count="1" class="imgfocus"/></a></li>');
-				rand(0,1) ? $('#populategallery' + ' ul').prepend(image1) : $('#populategallery' + ' ul').append(image1);
+				rand(0,1) ? $('#'+galleryElementName + ' ul').prepend(image1) : $('#'+galleryElementName + ' ul').append(image1);
 			});
 			setGalleryWidth();
 		}
@@ -381,8 +387,8 @@ function rand(min, max) {
 
 
 	function setGalleryWidth() {
-		var galWidth = $('#populategallery').width();
-		$('#ulwrap-populategallery').width(galWidth-75);
+		var galWidth = $('#'+galleryElementName).width();
+		$('#ulwrap-'+galleryElementName).width(galWidth-75);
 		POPULATEGALLERYul.width((102 * POPULATEGALLERYul.children().length));
 
 	}

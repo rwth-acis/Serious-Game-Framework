@@ -1,5 +1,6 @@
 //var UPLOADPATH = "uploads/";
 var TEMP = "tmp/";
+ 
 
 function rand(min, max) {
 	if (!DEBUG) {
@@ -11,6 +12,15 @@ function rand(min, max) {
 	}
 
 	$(document).ready(function() {
+
+		var galleryElement = "connectionsManage";
+		var deleteButtonDiv = "connectionManage-delete-button";
+		var deleteButton = "button-delete-connectionManage";
+		var galleryTileId = "editconnectionsManage";
+		var uploadButtonId = "uploadConnections";
+		var showConnectionsButton = "show-connections-Manage";
+
+
 		setGalleryHeight();
 		$('.select').find('option').css("height","20px");
 
@@ -19,66 +29,66 @@ function rand(min, max) {
 			setGalleryWidth();
 		});
 
-		var CONNECTIONS = $("#populateconnections"),
+		var CONNECTIONS = $("#"+galleryElement),
 		CONNECTIONSul = $("ul", CONNECTIONS);
-		$('#button-right-populateconnections').bind('mousedown mouseup touchstart touchend', function(event){
+		$('#button-right-'+galleryElement).bind('mousedown mouseup touchstart touchend', function(event){
 			if ((event.type == 'mousedown') || (event.type == 'touchstart')){
-				$('#ulwrap-populateconnections').animate({"scrollLeft": "+=2000px"}, 3000, 'linear');
+				$('#ulwrap-'+galleryElement).animate({"scrollLeft": "+=2000px"}, 3000, 'linear');
 			}else{
-				$('#ulwrap-populateconnections').stop();
+				$('#ulwrap-'+galleryElement).stop();
 			}
 		});
-		$('#button-left-populateconnections').bind('mousedown mouseup touchstart touchend', function(event){
+		$('#button-left-'+galleryElement).bind('mousedown mouseup touchstart touchend', function(event){
 			if ((event.type == 'mousedown') || (event.type == 'touchstart')){
-				$('#ulwrap-populateconnections').animate({"scrollLeft": "-=2000px"}, 3000, 'linear');
+				$('#ulwrap-'+galleryElement).animate({"scrollLeft": "-=2000px"}, 3000, 'linear');
 			}else{
-				$('#ulwrap-populateconnections').stop();
+				$('#ulwrap-'+galleryElement).stop();
 			}
 		});
 
 		$('#editconnectionslink').click(function() { 
 			resetEditConnectionsView();
 		});
-		$('#editconnection').on('click', 'li', function() { // id of clicked li by directly accessing DOMElement property
+		$('#'+galleryTileId).on('click', 'li', function() { // id of clicked li by directly accessing DOMElement property
 			$('#connection-saved-message').text("");
 
 			if($(this).hasClass("active")){
 				$(this).removeClass("active");
-				$('#connection-delete-button').find('*').prop('disabled',true);
-				$('#connection-delete-button').find('*').addClass('ui-disabled');
+				$('#'+deleteButtonDiv).find('*').prop('disabled',true);
+				$('#'+deleteButtonDiv).find('*').addClass('ui-disabled');
 			} else {
 				$(this).addClass("active");
-				$('#connection-delete-button').find('*').prop('disabled',false);
-				$('#connection-delete-button').find('*').removeClass('ui-disabled');
-				$('#connection-delete-button').css('opacity','1');
+				$('#'+deleteButtonDiv).find('*').prop('disabled',false);
+				$('#'+deleteButtonDiv).find('*').removeClass('ui-disabled');
+				$('#'+deleteButtonDiv).css('opacity','1');
 			}
 			$(this).siblings().removeClass("active");
 
 		});
 
 
-		$('#button-delete-connection').click(function(){
+		$('#'+deleteButton).click(function(){
 			$('#connection-saved-message').text("");
-			var filename = $('#editconnection').find(".active").find(".imgfocus")[0].alt;
+			var filename = $('#'+galleryTileId).find(".active").find(".imgfocus")[0].alt;
 			deleteConnection(filename);		
 		});
 
 
-		$('input[id=uploadConnections]').on('change', uploadConnections);
-		$('input[id=uploadConnections]').click(function(){
+		$('input[id='+uploadButtonId+']').on('change', uploadConnections);
+		$('input[id='+uploadButtonId+']').click(function(){
 			$('#connection-saved-message').text("");
 		});
 
-		$('#show-connection').click(function(){
-			$('#populateconnections' + ' ul').children().remove();
-			getConnections("populateconnections");
+		$('#'+showConnectionsButton).click(function(){
+			$('#'+galleryElement + ' ul').children().remove();
+			getConnections(galleryElement);
 		});
 
 
 		function resetEditConnectionsView(){
-			$('#populateconnections' + ' ul').children().remove();
-			$('#connection-delete-button').find('*').prop('disabled',true);
-			$('#connection-delete-button').find('*').addClass('ui-disabled');
+			$('#'+galleryElement + ' ul').children().remove();
+			$('#'+deleteButtonDiv).find('*').prop('disabled',true);
+			$('#'+deleteButtonDiv).find('*').addClass('ui-disabled');
 			$('#connection-saved-message').text("");
 			$('.fileinput-button').css('opacity',1);
 		}
@@ -118,9 +128,9 @@ function rand(min, max) {
 					contentType: false,
 					success: function(data){
 					//alert('success');
-					$('#editconnection').find(".active").remove();
-					$('#connection-delete-button').find('*').prop('disabled',true);
-					$('#connection-delete-button').find('*').addClass('ui-disabled');
+					$('#'+galleryTileId).find(".active").remove();
+					$('#'+deleteButtonDiv).find('*').prop('disabled',true);
+					$('#'+deleteButtonDiv).find('*').addClass('ui-disabled');
 					var connectionSavedMessage = $('<h2>Changes to the connections are saved successfully!</h2>');
 					$('#connection-saved-message').append(connectionSavedMessage);
 
@@ -144,7 +154,7 @@ function rand(min, max) {
 					continue;
 				}
 				if (formdata) {
-					formdata.append("uploadConnections[]", file);
+					formdata.append(uploadButtonId+"[]", file);
 				}
 			}
 
@@ -175,7 +185,7 @@ function rand(min, max) {
 			if(files != null){
 				$.each(files, function(index, value) {
 					var image1 = $('<li class="ui-widget-content ui-corner-tr piece"><a href="#"><img src="' + TEMP + value + '" alt="' +  value + '" width="94" height="68" id="piece-id-'+index+'" piece-id="' + index + '" piece-count="1" class="imgfocus"/></a></li>');
-					rand(0,1) ? $('#populateconnections' + ' ul').prepend(image1) : $('#populateconnections' + ' ul').append(image1);
+					rand(0,1) ? $('#'+galleryElement + ' ul').prepend(image1) : $('#'+galleryElement + ' ul').append(image1);
 				});
 				setGalleryWidth();
 			}
@@ -196,8 +206,8 @@ function rand(min, max) {
 		}
 
 		function setGalleryWidth() {
-			var connWidth = $('#populateconnections').width();
-			$('#ulwrap-populateconnections').width(connWidth-75);
+			var connWidth = $('#'+galleryElement).width();
+			$('#ulwrap-'+galleryElement).width(connWidth-75);
 			CONNECTIONSul.width((102 * CONNECTIONSul.children().length));
 			
 		}
