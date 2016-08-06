@@ -1,6 +1,6 @@
 <?php
 include 'config.php';
-$sql = "INSERT INTO game_galleries_connections (gameName, gameDescription, gameDescriptionText, gameDesignerName, gameDesignerInstitution, gameDesignerEmail, gallery1Id, gallery2Id, gallery3Id, gallery4Id, connection1Id, connection2Id, connection3Id) VALUES ";
+$sql = "INSERT INTO game_galleries_connections (gameName, gameCategory, gameDescription, gameDescriptionText, gameDesignerName, gameDesignerInstitution, gameDesignerEmail, gallery1Id, gallery2Id, gallery3Id, gallery4Id, connection1Id, connection2Id, connection3Id, oidcEmail) VALUES ";
 
 $gameName = $_POST['gameName'];
 $gameDescription = $_POST['gameDescription'];
@@ -15,7 +15,9 @@ $gallery4Id = $_POST['gallery4Id'];
 $connection1Id = $_POST['connectionSrc1'];
 $connection2Id = $_POST['connectionSrc2'];
 $connection3Id = $_POST['connectionSrc3'];
-$sql .= "('".$gameName."', '".$gameDescription."', '".$gameDescriptionText."', '".$gameDesignerName."', '".$gameDesignerInstitution."', '".$gameDesignerEmail."', '".$gallery1Id."', '".$gallery2Id."', '".$gallery3Id."', '".$gallery4Id."', '".$connection1Id."', '".$connection2Id."', '".$connection3Id."')";
+$gameCategory = $_POST['gameCategory'];
+$oidcEmail = $_POST['oidcEmail'];
+$sql .= "('".$gameName."', '".$gameCategory."', '".$gameDescription."', '".$gameDescriptionText."', '".$gameDesignerName."', '".$gameDesignerInstitution."', '".$gameDesignerEmail."', '".$gallery1Id."', '".$gallery2Id."', '".$gallery3Id."', '".$gallery4Id."', '".$connection1Id."', '".$connection2Id."', '".$connection3Id."', '".$oidcEmail."')";
 $result = $conn->query($sql);
 $conn->close();
 ?>

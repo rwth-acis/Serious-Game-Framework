@@ -1,6 +1,6 @@
 //var UPLOADPATH = "uploads/";
 var TEMP = "tmp/";
-
+var oidc_userinfo;
 function rand(min, max) {
 	if (!DEBUG) {
 		return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -72,6 +72,7 @@ function rand(min, max) {
 		var GAMENAMES;
 		var GAMELEVELS;
 		var NUMBER_OF_GALLERIES;
+		var GAMECATEGORIES;
 
 		$('.select').find('option').css("height","20px"); 
 
@@ -175,12 +176,30 @@ function rand(min, max) {
 			enableCreateGameButton();
 		});
 
+		$('#gameCategory').change(function(){
+
+			if($('select[name=gameCategory]').val() != "0"){
+				$('#game-new-category')[0].value = "";
+				$("#game-new-category").attr('disabled','disabled');
+				$("#game-new-category").parent().css( "background-color", "lightgrey" );
+			}else{
+				$("#game-new-category").removeAttr('disabled');
+				$("#game-new-category").parent().css( "background-color", "" );
+			}
+			enableCreateGameButton();
+			
+		});
+
 		
 		$('#create-game-button').click(function() {
 			createGame();
 		});
 
 		$('#game-name').on('change keyup paste',function() { 
+			enableCreateGameButton();
+		});
+
+		$('#game-new-category').on('change keyup paste',function() { 
 			enableCreateGameButton();
 		});
 
@@ -522,6 +541,21 @@ function rand(min, max) {
 			});
 		}
 
+		function getCategoriesList(){
+			$.ajax({
+				url: "lib/database/get_categories.php",
+				type: "GET",
+				contentType: false,
+				success: function(data){
+					//alert(data);
+					GAMECATEGORIES = data;
+					if(GAMECATEGORIES != 'NULL'){
+						createCategoriesList(GAMECATEGORIES);
+					}
+				}
+			});
+		}
+
 		
 		function resetGameCreationView(){
 			$('#game-name')[0].value = "";
@@ -549,12 +583,15 @@ function rand(min, max) {
 			getGalleriesList2("selectgallery2");
 			getGalleriesList2("selectgallery3");
 			getGalleriesList2("selectgallery4");
+			getCategoriesList();
 			$('#create-game-message').text("");
 			var createGameMessage = $('<h2>To enable game creation, give non-empty game name and select the number of galleries to be added in the game</h2>');
 			$('#create-game-message').append(createGameMessage);
 			var myselect = $("select#gallerycount");
 			myselect[0].selectedIndex = 0;
 			myselect.selectmenu("refresh");
+			
+
 			
 		}
 
@@ -576,6 +613,7 @@ function rand(min, max) {
 			var gallery2Val = $('select[name=selectgallery2]').val();
 			var gallery3Val = $('select[name=selectgallery3]').val();
 			var gallery4Val = $('select[name=selectgallery4]').val();
+			var gameCategory = $('select[name=gameCategory]').val();
 			var validSelector = "false";
 			if(galleryCountVal == 2){
 				if(gallery1Val != 0 && gallery2Val != 0 && $('#edit'+connectionGallery1).find('*').hasClass("active")){
@@ -598,6 +636,14 @@ function rand(min, max) {
 					validSelector = "false";
 				}
 			}
+			if(gameCategory == "0"){
+				gameCategory = $.trim($('#game-new-category')[0].value);
+			}
+
+			if(gameCategory == ""){
+				validSelector = "false";
+			}
+
 			$('#create-game-message').text("");
 			var val = $.trim($('#game-name')[0].value);
 			if(val != "" && validSelector == "true"){
@@ -691,6 +737,23 @@ function rand(min, max) {
 			$('#delete-button-game').find('*').addClass('ui-disabled');
 
 			var myselect1 = $("select#selectgame");
+			myselect1[0].selectedIndex = 0;
+			myselect1.selectmenu("refresh");
+		}
+
+		function createCategoriesList(data){
+			$('#gameCategory').children().remove();
+			$('#gameCategory').append('<option value="'+ 0 +'">--Select Category or Create New Below--</option>');
+			jsondata = JSON.parse(data);
+			if(jsondata != null){
+				$.each(jsondata, function(index, value) {
+					if(value.gameCategory != null){
+						$('#gameCategory').append('<option value="'+ index+1 +'">' + value.gameCategory + '</option>');
+					}
+				});
+			}
+			
+			var myselect1 = $("select#gameCategory");
 			myselect1[0].selectedIndex = 0;
 			myselect1.selectmenu("refresh");
 		}
@@ -944,6 +1007,10 @@ function rand(min, max) {
 			if($('#edit'+connectionGallery3).find(".active").length != 0){
 				connectionSrc3 = $('#edit'+connectionGallery3).find(".active").find(".imgfocus")[0].alt;
 			}
+			var gameCategory = $('select[name=gameCategory]').val();
+			if(gameCategory == "0"){
+				gameCategory = $.trim($('#game-new-category')[0].value);
+			}
 			formdata = false;
 			if (window.FormData) {
 				formdata = new FormData();
@@ -956,6 +1023,8 @@ function rand(min, max) {
 			formdata.append("gameDesignerEmail",gameDesignerEmail);
 			formdata.append("gallery1Id",gallery1Id);
 			formdata.append("gallery2Id",gallery2Id);
+			formdata.append("gameCategory",gameCategory);
+			formdata.append("oidcEmail",oidc_userinfo.email);
 			if(gallery3Id != 0){
 				formdata.append("gallery3Id",gallery3Id);
 			}else{
@@ -1192,4 +1261,3 @@ function rand(min, max) {
 	}
 
 });	
-

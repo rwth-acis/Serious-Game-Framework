@@ -145,17 +145,22 @@ $(document).ready(function() {
 		}
 	}
 
-	function createTextInput(elementId, elementText, appendFactor, elementAppend){
+	function createTextInput(elementId, elementText, placeHolderText, Required, appendFactor, elementAppend){
 		var $inner1 = $("<fieldset/>", {class:"ui-grid-b sideByside"}),
 		$inner2 = $("<div/>", {class:"ui-block-a"}),
 		$inner3 = $("<fieldset/>", {"data-role":"fieldcontain"}),
 		$inner4a = $("<label/>", {"for":elementId,text:elementText}),
-		$inner4b = $("<input/>", {name:elementId, id:elementId, value:""});
+		$inner4a5 = $("<span/>",{style:"color:red;",text:"*"}),
+		$inner4c = $("<input/>", {name:elementId, id:elementId, value:"", placeholder:placeHolderText});
+		
+		if(Required != "true"){
+			$inner4a5 = "<!--Not Required Field-->";
+		}
 
 		if(appendFactor){
-			$inner1.append($inner2.append($inner3.append($inner4a,$inner4b))).appendTo(elementAppend);
+			$inner1.append($inner2.append($inner3.append($inner4a.append($inner4a5),$inner4c))).appendTo(elementAppend);
 		}else{
-			$inner1.append($inner2.append($inner3.append($inner4a,$inner4b))).prependTo(elementAppend);
+			$inner1.append($inner2.append($inner3.append($inner4a.append($inner4a5),$inner4c))).prependTo(elementAppend);
 		}
 
 	}
@@ -175,17 +180,22 @@ $(document).ready(function() {
 
 	}
 
-	function createSelect(elementId, elementText, appendFactor, elementAppend){
+	function createSelect(elementId, elementText, Required, appendFactor, elementAppend){
 		var $inner1 = $("<div/>", {class:"ui-block-a"}),
 		$inner2 = $("<fieldset/>", {"data-role":"fieldcontain"}),
 		$inner3a = $("<label/>", {"for":elementId, class:"select"}),
 		$inner3a4 = $("<p/>", {text: elementText}),
+		$inner4 = $("<span/>",{style:"color:red;",text:"*"}),
 		$inner3b = $("<select/>", {name:elementId, id:elementId});
 
+		if(Required != "true"){
+			$inner4 = "<!--Not Required Field-->";
+		}
+
 		if(appendFactor){
-			$inner1.append($inner2.append($inner3a.append($inner3a4),$inner3b)).appendTo(elementAppend);
+			$inner1.append($inner2.append($inner3a.append($inner3a4.append($inner4)),$inner3b)).appendTo(elementAppend);
 		}else{
-			$inner1.append($inner2.append($inner3a.append($inner3a4),$inner3b)).prependTo(elementAppend);
+			$inner1.append($inner2.append($inner3a.append($inner3a4.append($inner4)),$inner3b)).prependTo(elementAppend);
 		}
 
 	}
@@ -279,14 +289,14 @@ $(document).ready(function() {
 	function createGalleriesUI(){
 	
 
-		createTextInput("gallery-name","Create New Gallery: ",false,"#galleryInputFields");
-		createTextInput("gallery-desc","Description of the gallery: ",true,"#galleryInputFields");
+		createTextInput("gallery-name","Create New Gallery: ","Gallery Name, Ex: Origin","true",false,"#galleryInputFields");
+		createTextInput("gallery-desc","Description of the gallery: ","Ex: Origin of the hormone","false",true,"#galleryInputFields");
 
 		var $inner1 = $("<fieldset/>", {"data-role":"fieldcontain"});
 		createButton("create-gallery-button","button-create-gallery", "Create", true, $inner1);
 		$inner1.appendTo("#galleryInputFields");
 
-		createSelect("select-gallery", "Select Gallery to Edit:", false, "#galleriesSelectEditDelete");
+		createSelect("select-gallery", "Select Gallery to Edit:","false", false, "#galleriesSelectEditDelete");
 		createEditDelete("edit-gallery-button","delete-button-gallery", "button-edit-gallery", "button-delete-gallery", "Edit Gallery", "Delete Gallery", true, "#galleriesSelectEditDelete");
 
 		createHorizontalGalleryUI("manageGallery", false, "#manageGalleriesblocka");
@@ -309,31 +319,35 @@ $(document).ready(function() {
 
 	function createGamesUI(){
 		
-		createTextInput("game-designer-name","Name:",false, "#gamedesignerdetails");
-		createTextInput("game-designer-institution","Institution:",true, "#gamedesignerdetails");
-		createTextInput("game-designer-email","EMail:",true, "#gamedesignerdetails");
-		createTextInput("game-name","Game Name:",false, "#gamedetails");
-		createTextInput("game-desc","Description of the game:",true, "#gamedetails");
-		createTextArea("game-desc-text","Description Text of the game:",true, "#gamedetails");
+		createTextInput("game-designer-name","Name:","Info shown on the game description page","false",false, "#gamedesignerdetails");
+		createTextInput("game-designer-institution","Institution:","Info shown on the game description page","false",true, "#gamedesignerdetails");
+		createTextInput("game-designer-email","EMail:","Info shown on the game description page","false",true,"#gamedesignerdetails");
+		createTextInput("game-name","Game Name:","Ex. Hormones","true",false, "#gamedetails");
+		$inner1 = $("<fieldset/>", {class:"ui-grid-b sideByside"});
+		createSelect("gameCategory", "Select Game Category:","true", false, $inner1);
+		$inner1.appendTo("#gamedetails");
+		createTextInput("game-new-category","Create New Category:","Ex. Biology","false",true, "#gamedetails");
+		createTextInput("game-desc","Description of the game:","Ex. Hormones and their effects on organs","false",true, "#gamedetails");
+		createTextArea("game-desc-text","Detail Description of the game:",true, "#gamedetails");
 
 		var $inner1 = $("<fieldset/>", {class:"ui-grid-b sideByside"});
-		createSelect("gallerycount", "Number of Galleries:", true, $inner1);
+		createSelect("gallerycount", "Number of Galleries:","true", true, $inner1);
 		$inner1.appendTo("#gamedetails");
 
 		$inner1 = $("<fieldset/>", {id:"selectgallery1fieldset", class:"hideElement ui-grid-b sideByside"});
-		createSelect("selectgallery1", "Select Gallery 1:", true, $inner1);
+		createSelect("selectgallery1", "Select Gallery 1:","true", true, $inner1);
 		$inner1.appendTo("#gamedetails");
 
 		$inner1 = $("<fieldset/>", {id:"selectgallery2fieldset", class:"hideElement ui-grid-b sideByside"});
-		createSelect("selectgallery2", "Select Gallery 2:", true, $inner1);
+		createSelect("selectgallery2", "Select Gallery 2:","true", true, $inner1);
 		$inner1.appendTo("#gamedetails");
 
 		$inner1 = $("<fieldset/>", {id:"selectgallery3fieldset", class:"hideElement ui-grid-b sideByside"});
-		createSelect("selectgallery3", "Select Gallery 3:", true, $inner1);
+		createSelect("selectgallery3", "Select Gallery 3:","true", true, $inner1);
 		$inner1.appendTo("#gamedetails");
 
 		$inner1 = $("<fieldset/>", {id:"selectgallery4fieldset", class:"hideElement ui-grid-b sideByside"});
-		createSelect("selectgallery4", "Select Gallery 4:", true, $inner1);
+		createSelect("selectgallery4", "Select Gallery 4:","true", true, $inner1);
 		$inner1.appendTo("#gamedetails");
 
 		$inner1 = $("<fieldset/>", {id:"selectconnection1-fieldset", class:"hideElement ui-grid-solo sideByside"});
@@ -385,8 +399,8 @@ $(document).ready(function() {
 		createHorizontalGalleryUI("selectGalleryTile4", true, $inner2);
 		$inner1.append($inner2).appendTo("#gameEditGalleries");
 
-		createTextInput("newELearningLink","eLearning Link:",true,"#gameEditGalleries");
-		createTextInput("newMoreInformationLink","More Information Link:",true,"#gameEditGalleries");
+		createTextInput("newELearningLink","eLearning Link:","Ex. http://www.google.com","false",true,"#gameEditGalleries");
+		createTextInput("newMoreInformationLink","More Information Link:","Ex. http://www.google.com","false",true,"#gameEditGalleries");
 
 		$inner1 = $("<fieldset/>", {"data-role":"fieldcontain"});
 		createButton("create-level-button","button-create-level", "Add Level", true, $inner1);
@@ -405,12 +419,15 @@ $(document).ready(function() {
 		$inner.appendTo("#editGameSlots");
 		createSlot("editwrapperslot2","editslot2",true,"#editGameSlots");
 		$inner = $("<td/>");
+		$inner.appendTo("#editGameSlots");
+		createSlot("editwrapperslot3","editslot3",true,"#editGameSlots");
+
 		createButton("previous-level-button","button-previous-level","Previous",true,$inner);
 		createButton("next-level-button","button-next-level","Next",true,$inner);
 		$inner.appendTo("#editGameSlots");
 
-		createTextInput("eLearningLink","eLearning Link:", false, "#editLevelInfo");
-		createTextInput("moreInformationLink","More Information Link:", true, "#editLevelInfo");
+		createTextInput("eLearningLink","eLearning Link:", "Ex. http://www.google.com","false",false, "#editLevelInfo");
+		createTextInput("moreInformationLink","More Information Link:","Ex. http://www.google.com","false", true, "#editLevelInfo");
 		$inner1 = $("<fieldset/>", {"data-role":"fieldcontain"});
 		createButton("level-delete-button","button-delete-level", "Delete Level", true, $inner1);
 		$inner1.appendTo("#editLevelInfo");
@@ -453,10 +470,10 @@ $(document).ready(function() {
 
 	function createExperienceRulesUI(){
 
-		createTextInput("experience-badge-name","Experience Badge Name:",false,"#experienceBadgeBlock");
-		createTextInput("experience-badge-desc","Experience Badge Description:",true,"#experienceBadgeBlock");
-		createTextInput("experience-badge-feedback","Feedback Message:",true,"#experienceBadgeBlock");
-		createTextInput("experience-badge-points","Required Points:",true,"#experienceBadgeBlock");
+		createTextInput("experience-badge-name","Experience Badge Name:","Ex. Level 3","true",false,"#experienceBadgeBlock");
+		createTextInput("experience-badge-desc","Experience Badge Description:","Ex. Advanced level","false",true,"#experienceBadgeBlock");
+		createTextInput("experience-badge-feedback","Feedback Message:","Ex. You are a professional now!","false",true,"#experienceBadgeBlock");
+		createTextInput("experience-badge-points","Required Points:","Ex. 400","true",true,"#experienceBadgeBlock");
 		createSingleUploadButton("uploadExperienceBadge","Add Experience Badge",false,"#AddExperienceBadgeBlock");
 		createButton("showexperiencebadges","show-experience-badges","Show Existing Badges",true,"#AddExperienceBadgeBlock");
 		createHorizontalGalleryUI("experienceBadgeGallery", false, "#badgeGallery");
@@ -464,11 +481,11 @@ $(document).ready(function() {
 		createButton("edit-experience-badge-button","button-edit-experience-badge","Edit Badge",false,"#badgeEditDelete");
 		createButton("experience-badge-delete-button","button-delete-experience-badge","Delete Badge",true,"#badgeEditDelete");
 
-		createTextInput("experience-highscore","Highscore * :",false,"#experienceRules");
-		createTextInput("experience-elearning","No. of eLearning clicks * :",true,"#experienceRules");
-		createTextInput("experience-badges","No. of Badges * :",true,"#experienceRules");
-		createTextInput("experience-gamesDesigned","No. of Games Designed *:",true,"#experienceRules");
-		createTextInput("experience-login","No. of times Logged in:",true,"#experienceRules");	
+		createTextInput("experience-highscore","Highscore * :","Ex. 1","false",false,"#experienceRules");
+		createTextInput("experience-elearning","No. of eLearning clicks * :","Ex. 3","false",true,"#experienceRules");
+		createTextInput("experience-badges","No. of Badges * :","Ex. 10","false",true,"#experienceRules");
+		createTextInput("experience-gamesDesigned","No. of Games Designed *:","Ex. 100","false",true,"#experienceRules");
+		createTextInput("experience-login","No. of times Logged in:","Ex. 0.5","false",true,"#experienceRules");	
 		var $inner1 = $("<fieldset/>", {"data-role":"fieldcontain", class:"ui-block-b"});
 		createButton("experience-save-rules","button-save-experience-rules", "Save Rules", true, $inner1);
 		$inner1.appendTo("#experienceRules");	
@@ -478,21 +495,21 @@ $(document).ready(function() {
 	function createHighscoreRulesUI(){
 		createSelect("select-highscore", "Select Highscore Version to Edit: ", false, "#editHighscoreBlock");
 		createEditDelete("edit-highscore-button","delete-button-highscore", "button-edit-highscore", "button-delete-highscore", "Edit Highscore Version", "Delete Highscore Version", true, "#editHighscoreBlock");
-		createTextInput("highscore-version","Highscore Version :",false,"#highscoreCalBlock");
-		createTextInput("highscore-correct","Points for correct answer :",true,"#highscoreCalBlock");
-		createTextInput("highscore-wrong","Points for wrong answer :",true,"#highscoreCalBlock");
-		createTextInput("highscore-show","Points for clicking 'Show me' button :",true,"#highscoreCalBlock");
-		createTextInput("highscore-tryagain","Points for clicking 'Try Again' button :",true,"#highscoreCalBlock");
-		createTextInput("highscore-hint","Points for clicking 'Hint' button :",true,"#highscoreCalBlock");
+		createTextInput("highscore-version","Highscore Version :","Ex. 1.3","false",false,"#highscoreCalBlock");
+		createTextInput("highscore-correct","Points for correct answer :","Ex. 5","true",true,"#highscoreCalBlock");
+		createTextInput("highscore-wrong","Points for wrong answer :","Ex. -2","true",true,"#highscoreCalBlock");
+		createTextInput("highscore-show","Points for clicking 'Show me' button :","Ex. 0","true",true,"#highscoreCalBlock");
+		createTextInput("highscore-tryagain","Points for clicking 'Try Again' button :","Ex. 2","true",true,"#highscoreCalBlock");
+		createTextInput("highscore-hint","Points for clicking 'Hint' button :","Ex. 0.5","true",true,"#highscoreCalBlock");
 		var $inner1 = $("<fieldset/>", {"data-role":"fieldcontain", class:"ui-block-b"});
 		createButton("highscore-create-rules","button-create-highscore-rules", "Create New Version", true, $inner1);
 		$inner1.appendTo("#highscoreCalBlock");	
 	}
 
 	function createBadgeRulesUI(){
-		createTextInput("game-badge-name","Badge Name:",false,"#BadgeDetailsBlock");
-		createTextInput("game-badge-desc","Badge Description:",true,"#BadgeDetailsBlock");
-		createTextInput("game-badge-feedback","Feedback Message:",true,"#BadgeDetailsBlock");
+		createTextInput("game-badge-name","Badge Name:","Ex. Correctamundo","true",false,"#BadgeDetailsBlock");
+		createTextInput("game-badge-desc","Badge Description:","Ex. Ten correct answers","false",true,"#BadgeDetailsBlock");
+		createTextInput("game-badge-feedback","Feedback Message:","Ex. You have answered 10 levels correctly!","false",true,"#BadgeDetailsBlock");
 		createSingleUploadButton("uploadGameBadge","Add Badge",false,"#uploadBadgeBlock");
 		createButton("showgamebadges","show-game-badges","Show Existing Badges",true,"#uploadBadgeBlock");
 		createHorizontalGalleryUI("gameBadgeGallery", false, "#gameBadgeGalBlock");
