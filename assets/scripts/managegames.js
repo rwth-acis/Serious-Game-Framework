@@ -840,9 +840,9 @@ function rand(min, max) {
 			jsondata = data;
 			if(jsondata != null && jsondata != undefined && jsondata.length != 0){
 				$.each(jsondata, function(index, value) {
-					//if(value.gameName != "Tutorial"){
+					if(value.gameName != "Tutorial" && value.oidcEmail == oidc_userinfo.email){
 						$('#selectgame').append('<option value="'+ value.gameId +'" gameIndex="'+index+'" description="'+value.gameDescription+'" gameGallery1="'+value.gallery1Id+'" gameGallery2="'+value.gallery2Id+'" gameGallery3="'+value.gallery3Id+'" gameGallery4="'+value.gallery4Id+'" gameConnection1="'+value.connection1Id+'" gameConnection2="'+value.connection2Id+'" gameConnection3="'+value.connection3Id+'">' + value.gameName + '</option>');
-					//}
+					}
 				});
 			}
 			$('#game-description-message').text("");
