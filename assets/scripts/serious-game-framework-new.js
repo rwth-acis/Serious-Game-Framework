@@ -206,7 +206,7 @@ $(document).ready(function() {
 	});
 
 	$('#wrapper-tryagain').click(function() {
-	tryAgain();
+		tryAgain();
 
 
 		// Send trace for using the show_me button
@@ -392,18 +392,70 @@ $(document).ready(function() {
 			}
 		}
 	}
-	
+	function addToCategory(gameCategory, index, data, exists){
+		var game = $('<li><a href="#game" id="game-id-'+ data.gameId + '" game-id="' + data.gameId + '" gameIndex="' + index +'" class="gamelink"><h3>' + data.gameName + '</h3><p>' + data.gameDescription + '</p></a></li>');
+		
+		if(exists == "false"){
+
+			var	$inner1 = $("<div/>" , {id:gameCategory, "data-role":"page", class:"ui-helper-clearfix bodywrapper"}),
+			$inner2 = 	$("<div/>" , {"data-role":"content"}),
+			$inner3 = $("<ul/>" , {id:"game-"+gameCategory, "data-role":"listview", "data-inset":"true", class:"game"+gameCategory});
+
+			$inner1.append($inner2.append($inner3.append(game))).appendTo("body");	
+			createHeader("Play Games",false,$inner1);
+		}else{
+			$('#game-'+gameCategory).append(game);
+		}
+	}
+	function createHeader(headerName, appendFactor, elementAppend){
+		
+		var $inner1 = $("<div/>", {"data-role":"header", "data-theme":"b"}),
+		$inner2a = $("<a/>", {href:"#", "data-icon":"arrow-l", class:"ui-btn-left", "data-iconpos":"notext", "data-rel":"back", text:"Home"}),
+		$inner2b = $("<h2/>", {text:headerName});
+
+		if(appendFactor){
+			$inner1.append($inner2a,$inner2b).appendTo(elementAppend);
+		}else{
+			$inner1.append($inner2a,$inner2b).prependTo(elementAppend);
+		}
+
+	}
 	function fillGamesList(gamesData) {
+		var categoryCounter = new Array();
+
 		if(gamesData != null){
 			$.each(gamesData, function(i, data) {
-			// i: gameID
-			// data: gameData
-			//alert(i + " - " + data.name);
-			//var game = $('<a class="ui-btn ui-shadow ui-btn-corner-all ui-btn-icon-right ui-btn-up-c" game-id="' + i + '" data-transition="slide" data-iconpos="right" data-icon="arrow-r" data-role="button" href="#game" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="c">' + data.name + '</a>');
+			
+				var game = "";
+				if(data.gameName != "Tutorial"){
 
-			var game = $('<li><a href="#game" id="game-id-'+ data.gameId + '" game-id="' + data.gameId + '" gameIndex="' + i +'" class="gamelink"><h3>' + data.gameName + '</h3><p>' + data.gameDescription + '</p></a></li>');
-			$('.gameslist').append(game);
-		});
+					if(data.gameCategory == null){
+						data.gameCategory = "Other";
+					}
+					
+
+					if(categoryCounter[data.gameCategory]){
+						addToCategory("category-"+data.gameCategory,i,data,"true");
+					}else{
+						game = $('<li><a href="#category-'+data.gameCategory +'" class="gamelink"><h3>' + data.gameCategory + '</h3><p>Games under ' + data.gameCategory + ' category</p></a></li>');
+						addToCategory("category-"+data.gameCategory,i,data,"false");
+						categoryCounter[data.gameCategory] = 1;
+					}
+				
+				}else{
+					game = $('<li><a href="#game" id="game-id-'+ data.gameId + '" game-id="' + data.gameId + '" gameIndex="' + i +'" class="gamelink"><h3>' + data.gameName + '</h3><p>' + data.gameDescription + '</p></a></li>');
+				}
+
+				if(game != ""){
+					if(data.gameName == "Tutorial"){
+						$('.gameslist').prepend(game);
+					}else{
+						$('.gameslist').append(game);
+					}
+				}
+			
+			
+			});
 
 			if ( $('.gameslist').hasClass('ui-listview')) {
 				$('.gameslist').listview('refresh');
@@ -850,7 +902,7 @@ function loadGame(gameIndex, gameID) {
 				var tmpres = findBestFittingLevels();
 				//alert(tmpres);
 			//	if (tmpres.length == 1) {
-					res = tmpres[0];
+				res = tmpres[0];
 				//} else {
 				//	res = -1;
 				//}
@@ -1274,7 +1326,7 @@ function loadGame(gameIndex, gameID) {
 							// Tell the user that the solution is correct
 							$('#wrapper-tryagain').fadeOut();
 							if(!HINT){
-							$('#level-verification-correct').show();
+								$('#level-verification-correct').show();
 							}
 							$('#level-verification-wrong').hide();
 							$('#wrapper-hint').fadeOut();
@@ -1302,7 +1354,7 @@ function loadGame(gameIndex, gameID) {
 							var slotPieceID = $('img', slot).attr('piece-id');
 							if (slotPieceID) {
 								var piece = $('img[piece-id="' + slotPieceID + '"]', slot).parent().attr("testattr","hier");
-									piece.css("opacity","1");
+								piece.css("opacity","1");
 								var block = function(p) {
 									blockPiece(p);
 								}(piece);
@@ -1326,10 +1378,10 @@ function loadGame(gameIndex, gameID) {
 						{
 
 							for (var i = 0; i < NUMBER_OF_GALLERIES; i++) {
-									var piece = $('li', '#slot' + i);
-									if (piece.length) {
-										piece.css("opacity","1");
-									}
+								var piece = $('li', '#slot' + i);
+								if (piece.length) {
+									piece.css("opacity","1");
+								}
 							}	
 							$('#leveldone').fadeIn();
 							$('#leveldone').empty().append('All levels done.');
@@ -1493,40 +1545,40 @@ function loadGame(gameIndex, gameID) {
 				var slot = $('#slot' + i);
 				var piece = $('li', '#slot' + i);
 			//	blockPiece(piece);
-				var k = i + 1;
-				var id= "gallery"+k+"src";
-		
-				if (slot.hasClass('slot-red')) {
-					var move = function(j, level, p, s){
-						
-						if (selected[i] != "") {
-							movePieceToGallery( p, j );
-						}
-						unblockPiece(p);
-						unblockSlot(slot);
-						setSlotColor(slot,"none");
-						
-					}(i, l, piece, slot);
-				} else if (slot.hasClass('slot-green')) {
-					blockSlot(slot,false);
-				}
+			var k = i + 1;
+			var id= "gallery"+k+"src";
+
+			if (slot.hasClass('slot-red')) {
+				var move = function(j, level, p, s){
+
+					if (selected[i] != "") {
+						movePieceToGallery( p, j );
+					}
+					unblockPiece(p);
+					unblockSlot(slot);
+					setSlotColor(slot,"none");
+
+				}(i, l, piece, slot);
+			} else if (slot.hasClass('slot-green')) {
+				blockSlot(slot,false);
 			}
 		}
+	}
 	GAMESTATE = "playing";
 
-		}
-	
+}
+
 function hint(){
 
-		var l = CURRENTLEVEL;
-		
-		var selected = [];
-		var correct = true;
-		for(var i=0;i<NUMBER_OF_GALLERIES;i++){
-			selected[i] = $("img", "#slot"+i).attr('piece-id');
-		}
-		
-		if (l > -1) {
+	var l = CURRENTLEVEL;
+
+	var selected = [];
+	var correct = true;
+	for(var i=0;i<NUMBER_OF_GALLERIES;i++){
+		selected[i] = $("img", "#slot"+i).attr('piece-id');
+	}
+
+	if (l > -1) {
 			//alert("level > -1");
 			HINT = true;
 			for (var i = 0; i < NUMBER_OF_GALLERIES && correct; i++) {
@@ -1584,7 +1636,7 @@ function hint(){
 		}
 
 
-}
+	}
 	/**
 	  * Returns true if all slots are filled.
 	  * NOT REALLY NEEDED ANYMORE
