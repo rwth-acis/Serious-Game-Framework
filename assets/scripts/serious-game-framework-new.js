@@ -117,6 +117,7 @@ $(document).ready(function() {
 		
 		$('#playgameslink').click(function() { 
 			$('.gameslist').empty();
+			$("[id^='category-']").remove();
 			if(GAMESDATA != undefined && GAMESDATA.length != 0){
 				fillGamesList(GAMESDATA);
 			}
@@ -399,7 +400,7 @@ $(document).ready(function() {
 
 			var	$inner1 = $("<div/>" , {id:gameCategory, "data-role":"page", class:"ui-helper-clearfix bodywrapper"}),
 			$inner2 = 	$("<div/>" , {"data-role":"content"}),
-			$inner3 = $("<ul/>" , {id:"game-"+gameCategory, "data-role":"listview", "data-inset":"true", class:"game"+gameCategory});
+			$inner3 = $("<ul/>" , {id:"game-"+gameCategory, "data-role":"listview", "data-inset":"true", class:"listOfGames"});
 
 			$inner1.append($inner2.append($inner3.append(game))).appendTo("body");	
 			createHeader("Play Games",false,$inner1);
@@ -433,7 +434,6 @@ $(document).ready(function() {
 						data.gameCategory = "Other";
 					}
 					
-
 					if(categoryCounter[data.gameCategory]){
 						addToCategory("category-"+data.gameCategory,i,data,"true");
 					}else{
