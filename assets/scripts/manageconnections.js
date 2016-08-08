@@ -1,6 +1,6 @@
 //var UPLOADPATH = "uploads/";
 var TEMP = "tmp/";
- 
+var oidc_userinfo;
 
 function rand(min, max) {
 	if (!DEBUG) {
@@ -19,6 +19,9 @@ function rand(min, max) {
 		var galleryTileId = "editconnectionsManage";
 		var uploadButtonId = "uploadConnections";
 		var showConnectionsButton = "show-connections-Manage";
+		var color="#9b319b";
+
+		var LAST_DELETED_CONNECTION_SRC = ""; 
 
 
 		setGalleryHeight();
@@ -31,57 +34,56 @@ function rand(min, max) {
 
 		var CONNECTIONS = $("#"+galleryElement),
 		CONNECTIONSul = $("ul", CONNECTIONS);
-		$('#button-right-'+galleryElement).bind('mousedown mouseup touchstart touchend', function(event){
-			if ((event.type == 'mousedown') || (event.type == 'touchstart')){
-				$('#ulwrap-'+galleryElement).animate({"scrollLeft": "+=2000px"}, 3000, 'linear');
-			}else{
-				$('#ulwrap-'+galleryElement).stop();
-			}
-		});
-		$('#button-left-'+galleryElement).bind('mousedown mouseup touchstart touchend', function(event){
-			if ((event.type == 'mousedown') || (event.type == 'touchstart')){
-				$('#ulwrap-'+galleryElement).animate({"scrollLeft": "-=2000px"}, 3000, 'linear');
-			}else{
-				$('#ulwrap-'+galleryElement).stop();
-			}
-		});
-
+		
 		$('#editconnectionslink').click(function() { 
 			resetEditConnectionsView();
 		});
+
 		$('#'+galleryTileId).on('click', 'li', function() { // id of clicked li by directly accessing DOMElement property
-			$('#connection-saved-message').text("");
+			$('#undo-delete-connection-button').fadeOut();
+			if($(this).attr('email') == oidc_userinfo.email){
+				$('#connection-saved-message').text("");
 
-			if($(this).hasClass("active")){
-				$(this).removeClass("active");
-				$('#'+deleteButtonDiv).find('*').prop('disabled',true);
-				$('#'+deleteButtonDiv).find('*').addClass('ui-disabled');
-			} else {
-				$(this).addClass("active");
-				$('#'+deleteButtonDiv).find('*').prop('disabled',false);
-				$('#'+deleteButtonDiv).find('*').removeClass('ui-disabled');
-				$('#'+deleteButtonDiv).css('opacity','1');
+				if($(this).hasClass("active")){
+					$(this).removeClass("active");
+					$('#'+deleteButtonDiv).find('*').prop('disabled',true);
+					$('#'+deleteButtonDiv).find('*').addClass('ui-disabled');
+				} else {
+					$(this).addClass("active");
+					$('#'+deleteButtonDiv).find('*').prop('disabled',false);
+					$('#'+deleteButtonDiv).find('*').removeClass('ui-disabled');
+					$('#'+deleteButtonDiv).css('opacity','1');
+				}
+				$(this).siblings().removeClass("active");
 			}
-			$(this).siblings().removeClass("active");
-
 		});
 
 
 		$('#'+deleteButton).click(function(){
 			$('#connection-saved-message').text("");
+			$('#undo-delete-connection-button').fadeOut();
 			var filename = $('#'+galleryTileId).find(".active").find(".imgfocus")[0].alt;
 			deleteConnection(filename);		
+		});
+
+		$('#undo-delete-connection-button').click(function(){
+			$('#connection-saved-message').text("");
+			$('#undo-delete-connection-button').fadeOut();
+			undoDeleteConnection();		
 		});
 
 
 		$('input[id='+uploadButtonId+']').on('change', uploadConnections);
 		$('input[id='+uploadButtonId+']').click(function(){
 			$('#connection-saved-message').text("");
+			$('#undo-delete-connection-button').fadeOut();
 		});
 
 		$('#'+showConnectionsButton).click(function(){
 			$('#'+galleryElement + ' ul').children().remove();
+			$('#undo-delete-connection-button').fadeOut();
 			getConnections(galleryElement);
+
 		});
 
 
@@ -91,7 +93,22 @@ function rand(min, max) {
 			$('#'+deleteButtonDiv).find('*').addClass('ui-disabled');
 			$('#connection-saved-message').text("");
 			$('.fileinput-button').css('opacity',1);
+			$('#undo-delete-connection-button').fadeOut();
+			setButtonColor($('#showconnectionsManage'));
+			setButtonColor($('#'+deleteButtonDiv));
+			setButtonColor($('#undo-delete-connection-button'));
 		}
+
+		function setButtonColor(divName){
+			if (divName.find('*').hasClass('ui-btn-inner')) {
+				divName.find('*').css("color",color);
+			} 
+			else {
+				divName.trigger('create');
+				divName.find('*').css("color",color);
+			}
+		}
+
 		function getConnections(element){
 
 			formdata = false;
@@ -119,25 +136,58 @@ function rand(min, max) {
 				formdata = new FormData();
 			}
 			formdata.append("connectionSrc",connectionSrc);
+			formdata.append("deleted","true");
+			LAST_DELETED_CONNECTION_SRC = connectionSrc;
 			if(formdata){
 				$.ajax({
-					url: "lib/database/deleteConnection.php",
+					url: "lib/database/deleteUndoConnection.php",
 					type: "POST",
 					data: formdata,
 					processData: false,
 					contentType: false,
 					success: function(data){
 					//alert('success');
+					$('#undo-delete-connection-button').fadeIn();
 					$('#'+galleryTileId).find(".active").remove();
 					$('#'+deleteButtonDiv).find('*').prop('disabled',true);
 					$('#'+deleteButtonDiv).find('*').addClass('ui-disabled');
-					var connectionSavedMessage = $('<h2>Changes to the connections are saved successfully!</h2>');
+					$('#connection-saved-message').text("");
+					var connectionSavedMessage = $('<h2 style="color:'+color+';">Connection deleted successfully!</h2>');
 					$('#connection-saved-message').append(connectionSavedMessage);
 
 				}
 			});
 			}
+		}
 
+			function undoDeleteConnection(){
+			formdata = false;
+			if (window.FormData) {
+				formdata = new FormData();
+			}
+			formdata.append("connectionSrc",LAST_DELETED_CONNECTION_SRC);
+			formdata.append("deleted","false");
+			if(formdata){
+				$.ajax({
+					url: "lib/database/deleteUndoConnection.php",
+					type: "POST",
+					data: formdata,
+					processData: false,
+					contentType: false,
+					success: function(data){
+					//alert('success');
+					$('#undo-delete-connection-button').fadeOut();
+					
+					var image1 = $('<li email="' +  oidc_userinfo.email + '" class="ui-widget-content ui-corner-tr piece"><a href="#"><img src="' + TEMP + LAST_DELETED_CONNECTION_SRC + '" alt="' +  LAST_DELETED_CONNECTION_SRC + '" width="94" height="68" id="piece-id-'+0+'" piece-id="' + 0 + '" piece-count="1" class="imgfocus"/></a></li>');
+					$('#'+galleryElement + ' ul').prepend(image1);
+
+					$('#connection-saved-message').text("");
+					var connectionSavedMessage = $('<h2 style="color:'+color+';">Connection restored successfully!</h2>');
+					$('#connection-saved-message').append(connectionSavedMessage);
+
+				}
+			});
+			}
 		}
 
 		function uploadConnections(){
@@ -155,6 +205,7 @@ function rand(min, max) {
 				}
 				if (formdata) {
 					formdata.append(uploadButtonId+"[]", file);
+					formdata.append("oidcEmail",oidc_userinfo.email);
 				}
 			}
 
@@ -168,7 +219,7 @@ function rand(min, max) {
 					success: function(data){
 					//alert('success');
 					addConnections(data);
-					var connectionSavedMessage = $('<h2>Changes to the connections are saved successfully!</h2>');
+					var connectionSavedMessage = $('<h2 style="color:'+color+';">Changes to the connections are saved successfully!</h2>');
 					$('#connection-saved-message').append(connectionSavedMessage);
 
 				}
@@ -184,7 +235,7 @@ function rand(min, max) {
 			}
 			if(files != null){
 				$.each(files, function(index, value) {
-					var image1 = $('<li class="ui-widget-content ui-corner-tr piece"><a href="#"><img src="' + TEMP + value + '" alt="' +  value + '" width="94" height="68" id="piece-id-'+index+'" piece-id="' + index + '" piece-count="1" class="imgfocus"/></a></li>');
+					var image1 = $('<li email="' +  oidc_userinfo.email + '" class="ui-widget-content ui-corner-tr piece"><a href="#"><img src="' + TEMP + value + '" alt="' +  value + '" width="94" height="68" id="piece-id-'+index+'" piece-id="' + index + '" piece-count="1" class="imgfocus"/></a></li>');
 					rand(0,1) ? $('#'+galleryElement + ' ul').prepend(image1) : $('#'+galleryElement + ' ul').append(image1);
 				});
 				setGalleryWidth();
@@ -198,7 +249,7 @@ function rand(min, max) {
 			length = files.length;
 			if(files != null){
 				$.each(files, function(index, value) {
-					var image1 = $('<li class="ui-widget-content ui-corner-tr piece"><a href="#"><img src="' + TEMP + value.connectionSrc + '" alt="' +  value.connectionSrc + '" width="94" height="68" id="piece-id-'+index+'" piece-id="' + index + '" piece-count="1" class="imgfocus"/></a></li>');
+					var image1 = $('<li email="' +  value.oidcEmail + '" class="ui-widget-content ui-corner-tr piece"><a href="#"><img src="' + TEMP + value.connectionSrc + '" alt="' +  value.connectionSrc + '" width="94" height="68" id="piece-id-'+index+'" piece-id="' + index + '" piece-count="1" class="imgfocus"/></a></li>');
 					rand(0,1) ? $('#'+element + ' ul').prepend(image1) : $('#'+element + ' ul').append(image1);
 				});
 				setGalleryWidth();

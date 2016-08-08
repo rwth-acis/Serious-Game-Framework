@@ -1,7 +1,7 @@
 <?php
 include 'config.php';
 $myArray = [];
-if($result = $conn->query("SELECT connectionSrc FROM connections")){
+if($result = $conn->query("SELECT connectionSrc,oidcEmail FROM connections WHERE deleted='false'")){
 
 	while($row = $result->fetch_array(MYSQL_ASSOC)) {
             $myArray[] = $row;

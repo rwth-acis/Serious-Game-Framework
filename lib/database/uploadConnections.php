@@ -1,8 +1,9 @@
 <?php
 include 'config.php';
-$sql = "INSERT INTO connections (connectionName,connectionSrc) VALUES ";
+$sql = "INSERT INTO connections (connectionName,connectionSrc,oidcEmail) VALUES ";
 $allowed = array('png', 'jpg', 'gif');
 $length = count($_FILES['uploadConnections']['name']);
+$oidcEmail = $_POST['oidcEmail'];
 
 for ($i=0; $i<$length; $i++) { 
 	if ($_FILES['uploadConnections']['error'][$i] == 4) {
@@ -28,9 +29,9 @@ for ($i=0; $i<$length; $i++) {
 	    		if ($i > 0)
 	    		{
 	    			$sql .= "; ";
-	    			$sql .= "INSERT INTO connections (connectionName, connectionSrc) VALUES ";
+	    			$sql .= "INSERT INTO connections (connectionName, connectionSrc, oidcEmail) VALUES ";
 	    		}
-	    		$sql .= "('".$tilename."', '".$filename."')";
+	    		$sql .= "('".$tilename."', '".$filename."', '".$oidcEmail."')";
 	    	}
 	    }
 	    if($i == $length - 1){

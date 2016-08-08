@@ -117,7 +117,7 @@ $(document).ready(function() {
 		
 		$('#playgameslink').click(function() { 
 			$('.gameslist').empty();
-			if(GAMESDATA != null){
+			if(GAMESDATA != undefined && GAMESDATA.length != 0){
 				fillGamesList(GAMESDATA);
 			}
 			
@@ -462,7 +462,7 @@ function loadGame(gameIndex, gameID) {
 				$('#connection2').css("display","none");
 				$('#wrapperslot3').css("display","none");
 			}
-			if(GALLERYNAMES != null){
+			if(GALLERYNAMES != undefined || GALLERYNAMES.length != 0){
 				$.each(GALLERYNAMES, function(index, value) {
 					for (var i = 1; i <= NUMBER_OF_GALLERIES; i++) {
 						var id="gallery"+i+"Id";
@@ -1764,7 +1764,7 @@ insertExperience = function() {
 
 insertPlayerStatistics = function() {
 	// Insert SelectOptions for each game besides Tutorial
-	if(GAMESDATA != null){
+	if(GAMESDATA != undefined && GAMESDATA.length != 0){
 		$.each(GAMESDATA, function(i, game) {
 			var game_name = GAMESDATA[i].gameName.toLowerCase();
 			var game_id = GAMESDATA[i].gameId;
@@ -1841,7 +1841,7 @@ insertGameDesignerStatistics = function(designed_games) {
 insertAdminStatistics = function() {
 	$('div.stats#admin').show();
 	// Insert SelectOptions for each game besides Tutorial
-	if(GAMESDATA != null){
+	if(GAMESDATA != undefined && GAMESDATA.length != 0){
 		$.each(GAMESDATA, function(i, game) {
 			if(game.name !== 'Tutorial') {
 				$('#admin-stats-game-select').append('<option value="'+ i +'">' + game.name + '</option>');

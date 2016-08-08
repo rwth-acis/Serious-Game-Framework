@@ -1,6 +1,6 @@
 //var UPLOADPATH = "uploads/";
 var TEMP = "tmp/";
-
+var oidc_userinfo;
 
 function rand(min, max) {
 	if (!DEBUG) {
@@ -20,12 +20,19 @@ function rand(min, max) {
 			setGalleryWidth();
 		});
 
+		$("#dialog").dialog({
+			autoOpen: false,
+			modal: true
+		});
+
 		var galleryElementName = "manageGallery";
+		var color = "#333399";
 
 		var POPULATEGALLERY = $("#"+galleryElementName),
 		POPULATEGALLERYul = $("ul", POPULATEGALLERY);
 
-		var GALLERYNAMES;
+		var LAST_DELETED_GALLERY_ID="";
+		var LAST_DELETED_TILE_SRC = "";
 
 		
 		$('#editgallerieslink').click(function() { 
@@ -37,21 +44,38 @@ function rand(min, max) {
 			$('#gallery-description-message').text("");
 			$('#gallery-saved-message').text("");
 			var description = $('option:selected', this).attr('description');
-			var galleryDescMessage = $('<h2>'+description+'</h2>');
-			$('#gallery-description-message').append(galleryDescMessage);
+			var galleryDescMessage = $('<h2 style="color:'+color+';">'+description+'</h2>');
+			var galleryId = $('select[name=select-gallery]').val();
+			if(galleryId == 0){
+				$('#gallery-description-message').append(galleryDescMessage);
+			}
 			$('#'+galleryElementName + ' ul').children().remove();
 			$('#'+galleryElementName+'wrapper').find('*').prop('disabled',true);
 			$('#tile-delete-button').find('*').prop('disabled',true);
 			$('#tile-delete-button').find('*').addClass('ui-disabled');
 			$('#uploadTiles').prop('disabled',true);
 			$('.fileinput-button').css('opacity','0.3');
-			var galleryId = $('select[name=select-gallery]').val();
+			$('#edit-gallery-name')[0].value = "";
+			$("#edit-gallery-name").attr('disabled','disabled');
+			$("#edit-gallery-name").parent().css( "background-color", "#e7e7e7" );
+			$('#undo-delete-gallery-button').fadeOut();
+			$('#undo-delete-tile-button').fadeOut();
+			
+			$('#edit-gallery-desc')[0].value = "";
+			$("#edit-gallery-desc").attr('disabled','disabled');
+			$("#edit-gallery-desc").parent().css( "background-color", "#e7e7e7" );
+			
+			$('#save-gallery-button').find('*').prop('disabled',true);
+			$('#save-gallery-button').find('*').addClass('ui-disabled');
+			
 			if(galleryId == 0){
 				$('#edit-gallery-button').find('*').prop('disabled',true);
 				$('#edit-gallery-button').find('*').addClass('ui-disabled');
 
 				$('#delete-button-gallery').find('*').prop('disabled',true);
 				$('#delete-button-gallery').find('*').addClass('ui-disabled');
+
+				
 			}
 			else{
 				$('#edit-gallery-button').find('*').prop('disabled',false);
@@ -71,7 +95,14 @@ function rand(min, max) {
 			$('#create-gallery-message').text("");
 			$('#tile-delete-button').find('*').prop('disabled',true);
 			$('#tile-delete-button').find('*').addClass('ui-disabled');
+			$('#save-gallery-button').find('*').prop('disabled',false);
+			$('#save-gallery-button').find('*').removeClass('ui-disabled');
+			$('#undo-delete-gallery-button').fadeOut();
+			$('#undo-delete-tile-button').fadeOut();
 			var galleryId = $('select[name=select-gallery]').val();
+			var galleryName = $('#select-gallery :selected').text();
+			var galleryDescription = $('#select-gallery :selected').attr('description');
+			getGalleryDetails(galleryName,galleryDescription);
 			getGalleryTiles(galleryId,galleryElementName);
 			
 		});
@@ -80,9 +111,38 @@ function rand(min, max) {
 		$('#create-gallery-button').click(function() {
 			var galleryName = $.trim($('#gallery-name')[0].value);
 			var galleryDescription = $.trim($('#gallery-desc')[0].value);
+			$('#undo-delete-gallery-button').fadeOut();
+			$('#undo-delete-tile-button').fadeOut();
 			if(galleryName !=""){
 				createGallery(galleryName,galleryDescription);
 			}
+		});
+
+		$('#button-undo-delete-tile').click(function() {
+			$('#undo-delete-gallery-button').fadeOut();
+			$('#undo-delete-tile-button').fadeOut();
+			undoDeleteTile();
+		});
+
+		$('#button-undo-delete-gallery').click(function() {
+			$('#undo-delete-gallery-button').fadeOut();
+			$('#undo-delete-tile-button').fadeOut();
+			undoDeleteGallery();
+		});
+
+		$('#save-gallery-button').click(function() {
+			$('#undo-delete-gallery-button').fadeOut();
+			$('#undo-delete-tile-button').fadeOut();
+			var galleryName = $.trim($('#edit-gallery-name')[0].value);
+			var galleryDescription = $.trim($('#edit-gallery-desc')[0].value);
+			var galleryId = $('select[name=select-gallery]').val();
+			if(galleryName !=""){
+				saveGallery(galleryName,galleryDescription,galleryId);
+			}
+		});
+
+		$('#reset-gallery-button').click(function() {
+			resetGalleryView();
 		});
 
 		$('#gallery-name').on('change keyup paste',function() { 
@@ -101,6 +161,8 @@ function rand(min, max) {
 	$('#edit'+galleryElementName).on('click', 'li', function() { // id of clicked li by directly accessing DOMElement property
 		$('#create-gallery-message').text("");
 		$('#gallery-saved-message').text("");
+		$('#undo-delete-gallery-button').fadeOut();
+		$('#undo-delete-tile-button').fadeOut();
 
 		if($(this).hasClass("active")){
 			$(this).removeClass("active");
@@ -116,6 +178,8 @@ function rand(min, max) {
 
 	});
 	$('#button-delete-gallery-tile').click(function(){
+		$('#undo-delete-gallery-button').fadeOut();
+		$('#undo-delete-tile-button').fadeOut();
 
 		$('#create-gallery-message').text("");
 		$('#gallery-saved-message').text("");
@@ -126,6 +190,8 @@ function rand(min, max) {
 
 
 	$('#button-delete-gallery').click(function(){
+		$('#undo-delete-gallery-button').fadeOut();
+		$('#undo-delete-tile-button').fadeOut();
 		$('#gallery-description-message').text("");
 		$('#create-gallery-message').text("");
 		$('#gallery-saved-message').text("");
@@ -134,6 +200,8 @@ function rand(min, max) {
 
 	$('input[id=uploadTiles]').on('change', uploadFile);
 	$('input[id=uploadTiles]').click(function(){
+		$('#undo-delete-gallery-button').fadeOut();
+		$('#undo-delete-tile-button').fadeOut();
 		$('#gallery-saved-message').text("");
 		$('#create-gallery-message').text("");
 	});
@@ -145,10 +213,9 @@ function rand(min, max) {
 			contentType: false,
 			success: function(data){
 					//alert(data);
-					GALLERYNAMES = data;
-					if(GALLERYNAMES != 'NULL'){
-						createGalleryList(GALLERYNAMES);
-					}
+					GALLERYNAMES = JSON.parse(data);
+					createGalleryList(GALLERYNAMES);
+					
 				}
 			});
 	}
@@ -172,11 +239,45 @@ function rand(min, max) {
 		$('#edit-gallery-button').find('*').addClass('ui-disabled');
 		$('#delete-button-gallery').find('*').prop('disabled',true);
 		$('#delete-button-gallery').find('*').addClass('ui-disabled');
+
+		$('#edit-gallery-name')[0].value = "";
+		$("#edit-gallery-name").attr('disabled','disabled');
+		$("#edit-gallery-name").parent().css( "background-color", "#e7e7e7" );
+		
+		$('#edit-gallery-desc')[0].value = "";
+		$("#edit-gallery-desc").attr('disabled','disabled');
+		$("#edit-gallery-desc").parent().css( "background-color", "#e7e7e7" );
+		
+		$('#save-gallery-button').find('*').prop('disabled',true);
+		$('#save-gallery-button').find('*').addClass('ui-disabled');
+
+		$('#undo-delete-gallery-button').fadeOut();
+		$('#undo-delete-tile-button').fadeOut();
+
+		setButtonColor($('#tile-delete-button'));
+		setButtonColor($('#edit-gallery-button'));
+		setButtonColor($('#create-gallery-button'));
+		setButtonColor($('#delete-button-gallery'));
+		setButtonColor($('#reset-gallery-button'));
+		setButtonColor($('#save-gallery-button'));
+		setButtonColor($('#undo-delete-gallery-button'));
+		setButtonColor($('#undo-delete-tile-button'));
+		
 		getGalleriesList();
 
 	}
 
-	function resetEditGalleryView(){
+	function setButtonColor(divName){
+		if (divName.find('*').hasClass('ui-btn-inner')) {
+			divName.find('*').css("color",color);
+		} 
+		else {
+			divName.trigger('create');
+			divName.find('*').css("color",color);
+		}
+	}
+
+	/*function resetEditGalleryView(){
 		$('#select-gallery').children().remove();
 		$('#'+galleryElementName + ' ul').children().remove();
 		$('#'+galleryElementName+'wrapper').find('*').prop('disabled',true);
@@ -192,32 +293,54 @@ function rand(min, max) {
 		$('#delete-button-gallery').find('*').prop('disabled',true);
 		$('#delete-button-gallery').find('*').addClass('ui-disabled');
 		getGalleriesList();
-	}
+	}*/
 
 	function createGalleryList(data){
 		$('#select-gallery').children().remove();
 		$('#select-gallery').append('<option value="'+ 0 +'" description="Select a gallery from the dropdown and click on \'Edit Gallery\' to edit the gallery tiles">--Select Gallery--</option>');
-		jsondata = JSON.parse(data);
-		if(jsondata != null){
+		jsondata = data;
+		
+		if(jsondata != null && jsondata != undefined && jsondata.length != 0){
 			$.each(jsondata, function(index, value) {
-				//if(value.galleryName != "1" && value.galleryName != "2" && value.galleryName != "3" && value.galleryName != "4"){
+				if(value.oidcEmail == oidc_userinfo.email && value.galleryName != "1" && value.galleryName != "2" && value.galleryName != "3" && value.galleryName != "4"){
 					$('#select-gallery').append('<option value="'+ value.galleryId +'" description="'+value.galleryDescription+'">' + value.galleryName + '</option>');
-				//}
+				}
 			});
 		}
+		setButtonColor($("#select-gallery").parent());
 		var myselect = $("select#select-gallery");
 		myselect[0].selectedIndex = 0;
 		myselect.selectmenu("refresh");
 		$('#gallery-description-message').text("");
 		var description = $('option:selected', $('#select-gallery')).attr('description');
-		var galleryDescMessage = $('<h2>'+description+'</h2>');
+		var galleryDescMessage = $('<h2 style="color:'+color+';">'+description+'</h2>');
 		$('#gallery-description-message').append(galleryDescMessage);
 		$('#edit-gallery-button').find('*').prop('disabled',true);
 		$('#edit-gallery-button').find('*').addClass('ui-disabled');
 
 		$('#delete-button-gallery').find('*').prop('disabled',true);
 		$('#delete-button-gallery').find('*').addClass('ui-disabled');
+		
 	}
+
+	function getGalleryDetails(galleryName,galleryDescription){
+
+		$('#edit-gallery-name').parent().parent().find('*').removeAttr('disabled');
+		$('#edit-gallery-name').parent().parent().find('*').removeClass('ui-disabled');
+		$('#edit-gallery-name').parent().parent().find('*').removeClass('ui-state-disabled');
+		$("#edit-gallery-name").parent().parent().find('*').css( "background-color", "" );
+		
+		$('#edit-gallery-desc').parent().parent().find('*').removeAttr('disabled');
+		$('#edit-gallery-desc').parent().parent().find('*').removeClass('ui-disabled');
+		$('#edit-gallery-desc').parent().parent().find('*').removeClass('ui-state-disabled');
+		$("#edit-gallery-desc").parent().parent().find('*').css( "background-color", "" );
+
+
+		$('#edit-gallery-name')[0].value = galleryName;
+		$('#edit-gallery-desc')[0].value = galleryDescription;
+
+	}
+
 
 	function getGalleryTiles(galleryId,galleryElement){
 
@@ -247,21 +370,58 @@ function rand(min, max) {
 		if (window.FormData) {
 			formdata = new FormData();
 		}
-		var galleryId = $('select[name=select-gallery]').val();
+		//var galleryId = $('select[name=select-gallery]').val();
 		var galleryName = $('#select-gallery :selected').text();
-		formdata.append("galleryId",galleryId);
+		formdata.append("deleted","true");
 		formdata.append("tileSrc",tileSrc);
+		LAST_DELETED_TILE_SRC = tileSrc;
 		if(formdata){
 			$.ajax({
-				url: "lib/database/deleteTile.php",
+				url: "lib/database/deleteUndoGalleryTile.php",
 				type: "POST",
 				data: formdata,
 				processData: false,
 				contentType: false,
 				success: function(data){
 					//alert('success');
+					
+					$('#undo-delete-tile-button').fadeIn();
 					$('#edit'+galleryElementName).find(".active").remove();
-					var gallerySavedMessage = $('<h2>Changes to the gallery "'+galleryName+'" are saved successfully!</h2>');
+					$('#gallery-saved-message').text("");
+					var gallerySavedMessage = $('<h2 style="color:'+color+';">Changes to the gallery "'+galleryName+'" are saved successfully!</h2>');
+					$('#gallery-saved-message').append(gallerySavedMessage);
+
+				}
+			});
+		}
+
+	}
+
+	function undoDeleteTile(){
+		formdata = false;
+		if (window.FormData) {
+			formdata = new FormData();
+		}
+		//var galleryId = $('select[name=select-gallery]').val();
+		var galleryName = $('#select-gallery :selected').text();
+		formdata.append("deleted","false");
+		formdata.append("tileSrc",LAST_DELETED_TILE_SRC);
+		if(formdata){
+			$.ajax({
+				url: "lib/database/deleteUndoGalleryTile.php",
+				type: "POST",
+				data: formdata,
+				processData: false,
+				contentType: false,
+				success: function(data){
+					//alert('success');
+					
+					$('#undo-delete-tile-button').fadeOut();
+					var image1 = $('<li class="ui-widget-content ui-corner-tr piece"><a href="#"><img src="' + TEMP + LAST_DELETED_TILE_SRC + '" alt="' +  LAST_DELETED_TILE_SRC + '" width="94" height="68" id="piece-id-'+0+'" piece-id="' + 1 + '" piece-count="1" class="imgfocus"/></a></li>');
+					$('#'+galleryElementName + ' ul').prepend(image1);
+					
+					$('#gallery-saved-message').text("");
+					var gallerySavedMessage = $('<h2 style="color:'+color+';">Changes to the gallery "'+galleryName+'" are saved successfully!</h2>');
 					$('#gallery-saved-message').append(gallerySavedMessage);
 
 				}
@@ -275,20 +435,52 @@ function rand(min, max) {
 		if (window.FormData) {
 			formdata = new FormData();
 		}
-		var galleryId = $('select[name=select-gallery]').val();
 		var galleryName = $('#select-gallery :selected').text();
+		var galleryId = $('select[name=select-gallery]').val();
+		LAST_DELETED_GALLERY_NAME = $('#select-gallery :selected').text();
+		LAST_DELETED_GALLERY_ID = galleryId;
 		formdata.append("galleryId",galleryId);
+		formdata.append("deleted","true");
 		if(formdata){
 			$.ajax({
-				url: "lib/database/deleteGallery.php",
+				url: "lib/database/deleteUndoGallery.php",
 				type: "POST",
 				data: formdata,
 				processData: false,
 				contentType: false,
 				success: function(data){
-					//alert('success');
-					resetEditGalleryView();
-					var gallerySavedMessage = $('<h2>Gallery "'+galleryName+'" deleted successfully!</h2>');
+					
+					resetGalleryView();
+					$('#gallery-saved-message').text("");
+					var gallerySavedMessage = $('<h2 style="color:'+color+';">Gallery "'+galleryName+'" deleted successfully!</h2>');
+					$('#gallery-saved-message').append(gallerySavedMessage);
+					$('#undo-delete-gallery-button').fadeIn();
+				}
+			});
+		}
+	}
+
+	function undoDeleteGallery(){
+		formdata = false;
+		if (window.FormData) {
+			formdata = new FormData();
+		}
+		var galleryName = $('#select-gallery :selected').text();
+		var galleryId = $('select[name=select-gallery]').val();
+		formdata.append("galleryId",LAST_DELETED_GALLERY_ID);
+		formdata.append("deleted","false");
+		if(formdata){
+			$.ajax({
+				url: "lib/database/deleteUndoGallery.php",
+				type: "POST",
+				data: formdata,
+				processData: false,
+				contentType: false,
+				success: function(data){
+					$('#undo-delete-gallery-button').fadeOut();
+					resetGalleryView();
+					$('#gallery-saved-message').text("");
+					var gallerySavedMessage = $('<h2 style="color:'+color+';">Gallery "'+LAST_DELETED_GALLERY_NAME+'" restored successfully!</h2>');
 					$('#gallery-saved-message').append(gallerySavedMessage);
 					
 				}
@@ -327,7 +519,8 @@ function rand(min, max) {
 				success: function(data){
 					//alert('success');
 					addTiles(data);
-					var gallerySavedMessage = $('<h2>Changes to the gallery "'+galleryName+'" are saved successfully!</h2>');
+					$('#gallery-saved-message').text("");
+					var gallerySavedMessage = $('<h2 style="color:'+color+';">Changes to the gallery "'+galleryName+'" are saved successfully!</h2>');
 					$('#gallery-saved-message').append(gallerySavedMessage);
 					
 				}
@@ -336,12 +529,63 @@ function rand(min, max) {
 	}
 
 	function createGallery(galleryName,galleryDescription){
+
+		var duplicate = "false";
+
+		if(GALLERYNAMES != null && GALLERYNAMES != undefined && GALLERYNAMES.length != 0){
+			$.each(GALLERYNAMES, function(index, value) {
+				if(value.galleryName == galleryName){
+					duplicate = "true";
+					var ans = confirm("Gallery with name "+galleryName+ " already exists. Do you still want to proceed?");
+					if (ans == true) {
+						createGalleryConfirm(galleryName,galleryDescription);
+					}
+				}
+				
+			});
+		}
+
+		if(duplicate == "false"){
+			createGalleryConfirm(galleryName,galleryDescription);
+		}
+
+	}
+
+	function saveGallery(galleryName,galleryDescription,galleryId){
+
 		formdata = false;
 		if (window.FormData) {
 			formdata = new FormData();
 		}
 		formdata.append("galleryName",galleryName);
 		formdata.append("galleryDescription",galleryDescription);
+		formdata.append("galleryId",galleryId);
+		if(formdata){
+			$.ajax({
+				url: "lib/database/update_gallery.php",
+				type: "POST",
+				data: formdata,
+				processData: false,
+				contentType: false,
+				success: function(data){
+					resetGalleryView();
+					var saveGalleryMessage = $('<h2 style="color:'+color+';">Gallery "'+galleryName+'" is saved successfully!</h2>');
+					$('#gallery-saved-message').append(saveGalleryMessage);
+
+				}
+			});
+		}
+
+	}
+
+	function createGalleryConfirm(galleryName,galleryDescription){
+		formdata = false;
+		if (window.FormData) {
+			formdata = new FormData();
+		}
+		formdata.append("galleryName",galleryName);
+		formdata.append("galleryDescription",galleryDescription);
+		formdata.append("oidcEmail",oidc_userinfo.email);
 		if(formdata){
 			$.ajax({
 				url: "lib/database/create_gallery.php",
@@ -351,7 +595,7 @@ function rand(min, max) {
 				contentType: false,
 				success: function(data){
 					resetGalleryView();
-					var createGalleryMessage = $('<h2>Gallery with name "'+galleryName+'" is created successfully! Select the gallery from dropdown menu to add tiles to the gallery.</h2>');
+					var createGalleryMessage = $('<h2 style="color:'+color+';">Gallery with name "'+galleryName+'" is created successfully! Select the gallery from dropdown menu to add tiles to the gallery.</h2>');
 					$('#create-gallery-message').append(createGalleryMessage);
 
 				}
@@ -385,6 +629,12 @@ function rand(min, max) {
 		}
 	}
 
+	function refreshGamesAndGalleries(){
+		var url = "assets/scripts/loadData.js";
+		$.getScript( url, function() {
+			resetGalleryView();
+		});
+	}
 
 	function setGalleryWidth() {
 		var galWidth = $('#'+galleryElementName).width();

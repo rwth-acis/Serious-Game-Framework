@@ -10,6 +10,14 @@ table {
 
 body { list-style: none; }
 
+.voilet{
+  background: #c1acca; 
+}
+
+.green{
+  color: #b5c588; 
+}
+
 /* #gallery0wrapper { position:absolute; left:8px; top:0px; bottom:0; heigth: 100%; background-color:#ffffff; display: table; } */
 /* #gallery0wrapper { position: absolute; left: 10px; top: 15%; bottom:10%; width: 120px; } */
 #gallery0wrapper { position: absolute; left: 10px; top: 0px; bottom: 0px; vertical-align: middle; display: table-cell; }

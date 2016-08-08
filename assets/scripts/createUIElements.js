@@ -110,9 +110,9 @@ $(document).ready(function() {
 
 	}	
 
-	function createMultipleUploadButton(elementName,elementText, appendFactor, elementAppend){
+	function createMultipleUploadButton(elementName,elementText, textColor, appendFactor, elementAppend){
 		var $inner1 = $("<span/>", {class:"fileinput-button", "data-role":"button", "data-icon":"plus"}),
-		$inner2a = $("<span/>", {text:elementText}),
+		$inner2a = $("<span/>", {style:"color:"+textColor+";",text:elementText}),
 		$inner2b = $("<input/>", {type:"file", id:elementName, name:elementName+"[]", "data-role":"none", multiple:""});
 
 		if(appendFactor){
@@ -122,9 +122,9 @@ $(document).ready(function() {
 		}
 	}
 
-	function createSingleUploadButton(elementName,elementText, appendFactor, elementAppend){
+	function createSingleUploadButton(elementName,elementText, textColor, appendFactor, elementAppend){
 		var $inner1 = $("<span/>", {class:"fileinput-button", "data-role":"button", "data-icon":"plus"}),
-		$inner2a = $("<span/>", {text:elementText}),
+		$inner2a = $("<span/>", {style:"color:"+textColor+";",text:elementText}),
 		$inner2b = $("<input/>", {type:"file", id:elementName, name:elementName, "data-role":"none"});
 
 		if(appendFactor){
@@ -134,7 +134,7 @@ $(document).ready(function() {
 		}
 	}
 
-	function createButton(divName, elementName, elementText, appendFactor, elementAppend){
+	function createButton(divName, elementName, elementText, textColor, appendFactor, elementAppend){
 		var $inner1 = $("<div/>", { id:divName}),
 		$inner2 = $("<button/>", {id:elementName, "data-inline":"true", text:elementText});
 
@@ -143,13 +143,14 @@ $(document).ready(function() {
 		}else{
 			$inner1.append($inner2).prependTo(elementAppend);
 		}
+
 	}
 
-	function createTextInput(elementId, elementText, placeHolderText, Required, appendFactor, elementAppend){
+	function createTextInput(elementId, elementText, placeHolderText, Required, textColor, appendFactor, elementAppend){
 		var $inner1 = $("<fieldset/>", {class:"ui-grid-b sideByside"}),
 		$inner2 = $("<div/>", {class:"ui-block-a"}),
 		$inner3 = $("<fieldset/>", {"data-role":"fieldcontain"}),
-		$inner4a = $("<label/>", {"for":elementId,text:elementText}),
+		$inner4a = $("<label/>", {"for":elementId, style:"color:"+textColor+";",text:elementText}),
 		$inner4a5 = $("<span/>",{style:"color:red;",text:"*"}),
 		$inner4c = $("<input/>", {name:elementId, id:elementId, value:"", placeholder:placeHolderText});
 		
@@ -165,11 +166,11 @@ $(document).ready(function() {
 
 	}
 
-	function createTextArea(elementId, elementText, appendFactor, elementAppend){
+	function createTextArea(elementId, elementText, textColor, appendFactor, elementAppend){
 		var $inner1 = $("<fieldset/>", {class:"ui-grid-b sideByside"}),
 		$inner2 = $("<div/>", {class:"ui-block-a"}),
 		$inner3 = $("<fieldset/>", {"data-role":"fieldcontain"}),
-		$inner4a = $("<label/>", {"for":elementId,text:elementText}),
+		$inner4a = $("<label/>", {"for":elementId,style:"color:"+textColor+";",text:elementText}),
 		$inner4b = $("<textarea/>", {name:elementId, id:elementId, value:"", type:"text"});
 
 		if(appendFactor){
@@ -180,11 +181,11 @@ $(document).ready(function() {
 
 	}
 
-	function createSelect(elementId, elementText, Required, appendFactor, elementAppend){
+	function createSelect(elementId, elementText, Required, textColor, appendFactor, elementAppend){
 		var $inner1 = $("<div/>", {class:"ui-block-a"}),
 		$inner2 = $("<fieldset/>", {"data-role":"fieldcontain"}),
 		$inner3a = $("<label/>", {"for":elementId, class:"select"}),
-		$inner3a4 = $("<p/>", {text: elementText}),
+		$inner3a4 = $("<p/>", {style:"color:"+textColor+";",text: elementText}),
 		$inner4 = $("<span/>",{style:"color:red;",text:"*"}),
 		$inner3b = $("<select/>", {name:elementId, id:elementId});
 
@@ -200,13 +201,13 @@ $(document).ready(function() {
 
 	}
 
-	function createEditDelete(editDivName, delDivName, editElementName, deleteElementName, editElementText, deleteElementText, appendFactor, elementAppend){
+	function createEditDelete(editDivName, delDivName, editElementName, deleteElementName, editElementText, deleteElementText,textColor, appendFactor, elementAppend){
 		var $inner1 = $("<div/>", {class:"ui-block-b"}),
 		$inner2 = $("<fieldset/>", {"data-role":"fieldcontain", class:"ui-block-b"});
 
-		createButton(editDivName,editElementName,editElementText,false,$inner2);
-		createButton(delDivName,deleteElementName,deleteElementText,true,$inner2);
-
+		createButton(editDivName,editElementName,editElementText,textColor, false,$inner2);
+		createButton(delDivName,deleteElementName,deleteElementText,textColor, true,$inner2);
+		
 		if(appendFactor){
 			$inner1.append($inner2).appendTo(elementAppend);
 		}else{
@@ -288,68 +289,116 @@ $(document).ready(function() {
 
 	function createGalleriesUI(){
 	
-
-		createTextInput("gallery-name","Create New Gallery: ","Gallery Name, Ex: Origin","true",false,"#galleryInputFields");
-		createTextInput("gallery-desc","Description of the gallery: ","Ex: Origin of the hormone","false",true,"#galleryInputFields");
+		var color = "#333399";
+		createTextInput("gallery-name","Create New Gallery: ","Gallery Name, Ex: Origin","true",color,false,"#galleryInputFields");
+		createTextInput("gallery-desc","Description of the gallery: ","Ex: Origin of the hormone","false",color,true,"#galleryInputFields");
 
 		var $inner1 = $("<fieldset/>", {"data-role":"fieldcontain"});
-		createButton("create-gallery-button","button-create-gallery", "Create", true, $inner1);
+		createButton("create-gallery-button","button-create-gallery", "Create",color, true, $inner1);
 		$inner1.appendTo("#galleryInputFields");
 
-		createSelect("select-gallery", "Select Gallery to Edit:","false", false, "#galleriesSelectEditDelete");
-		createEditDelete("edit-gallery-button","delete-button-gallery", "button-edit-gallery", "button-delete-gallery", "Edit Gallery", "Delete Gallery", true, "#galleriesSelectEditDelete");
+		$inner1 = $("<fieldset/>", {"data-role":"fieldcontain"});
+		createButton("reset-gallery-button","button-reset-gallery", "Reset",color, true, $inner1);
+		$inner1.appendTo("#galleryInputFields");
+
+		createSelect("select-gallery", "Select Gallery to Edit:","false",color, false, "#galleriesSelectEditDelete");
+		createEditDelete("edit-gallery-button","delete-button-gallery", "button-edit-gallery", "button-delete-gallery", "Edit Gallery", "Delete Gallery",color, true, "#galleriesSelectEditDelete");
+
+		
+		createButton("undo-delete-gallery-button","button-undo-delete-gallery", "Undo Gallery Deletion",color, true, "#galleriesSelectEditDelete");
+		
+
+		createTextInput("edit-gallery-name","Gallery Name: ","","true",color,false,"#gallery-description");
+		createTextInput("edit-gallery-desc","Gallery Description: ","","false",color,true,"#gallery-description");
+
+		$inner1 = $("<fieldset/>", {"data-role":"fieldcontain"});
+		createButton("save-gallery-button","button-save-gallery", "Save",color, true, $inner1);
+		$inner1.appendTo("#gallery-description");
 
 		createHorizontalGalleryUI("manageGallery", false, "#manageGalleriesblocka");
 		createMouseEventsGallery("manageGallery");
 
-		createButton("tile-delete-button","button-delete-gallery-tile","Delete Tile",false,"#manageGalleriesblockb");
-		createMultipleUploadButton("uploadTiles","Add Tiles",true,"#manageGalleriesblockb");
-
+		createButton("tile-delete-button","button-delete-gallery-tile","Delete Tile",color,false,"#manageGalleriesblockb");
+		createMultipleUploadButton("uploadTiles","Add Tiles",color,true,"#manageGalleriesblockb");
+		createButton("undo-delete-tile-button","button-undo-delete-tile", "Undo Tile Deletion",color, true, "#manageGalleriesblockb");
+		
 	}
 
 
 	function createConnectionsUI(){
-		
-		createButton("showconnectionsManage","show-connections-Manage","Show Existing Connections",false,"#connectionsBlockMain");
+
+		var color = "#9b319b";
+		createButton("showconnectionsManage","show-connections-Manage","Show Existing Connections",color,false,"#connectionsBlockMain");
 		createHorizontalGalleryUI("connectionsManage",true,"#connectionsblocka");
-		createButton("connectionManage-delete-button","button-delete-connectionManage","Delete Connection",false,"#connectionsblockb");
-		createMultipleUploadButton("uploadConnections","Add Connections",true,"#connectionsblockb");
+		createMouseEventsGallery("connectionsManage");
+		createButton("connectionManage-delete-button","button-delete-connectionManage","Delete Connection",color,false,"#connectionsblockb");
+		createButton("undo-delete-connection-button","button-undo-delete-connection", "Undo Connection Deletion",color, true, "#connectionsblockb");
+		createMultipleUploadButton("uploadConnections","Add Connections",color,true,"#connectionsblockb");
 	
 	}
 
 	function createGamesUI(){
 		
-		createTextInput("game-designer-name","Name:","Info shown on the game description page","false",false, "#gamedesignerdetails");
-		createTextInput("game-designer-institution","Institution:","Info shown on the game description page","false",true, "#gamedesignerdetails");
-		createTextInput("game-designer-email","EMail:","Info shown on the game description page","false",true,"#gamedesignerdetails");
-		createTextInput("game-name","Game Name:","Ex. Hormones","true",false, "#gamedetails");
+		var color = "#990033";
+		createTextInput("game-designer-name","Name:","Info shown on the game description page","false",color,false, "#gamedesignerdetails");
+		createTextInput("game-designer-institution","Institution:","Info shown on the game description page","false",color,true, "#gamedesignerdetails");
+		createTextInput("game-designer-email","EMail:","Info shown on the game description page","false",color,true,"#gamedesignerdetails");
+		createTextInput("game-name","Game Name:","Ex. Hormones","true",color,false, "#gamedetails");
+		
 		$inner1 = $("<fieldset/>", {class:"ui-grid-b sideByside"});
-		createSelect("gameCategory", "Select Game Category:","true", false, $inner1);
+		createSelect("gameCategory", "Select Game Category:","false",color, false, $inner1);
 		$inner1.appendTo("#gamedetails");
-		createTextInput("game-new-category","Create New Category:","Ex. Biology","false",true, "#gamedetails");
-		createTextInput("game-desc","Description of the game:","Ex. Hormones and their effects on organs","false",true, "#gamedetails");
-		createTextArea("game-desc-text","Detail Description of the game:",true, "#gamedetails");
+		createTextInput("game-new-category","Create New Category:","Ex. Biology","false",color,true, "#gamedetails");
+		createTextInput("game-desc","Description of the game:","Ex. Hormones and their effects on organs","false",color,true, "#gamedetails");
+		createTextArea("game-desc-text","Detail Description of the game:",color,true, "#gamedetails");
 
 		var $inner1 = $("<fieldset/>", {class:"ui-grid-b sideByside"});
-		createSelect("gallerycount", "Number of Galleries:","true", true, $inner1);
+		createSelect("gallerycount", "Number of Galleries:","true",color, true, $inner1);
 		$inner1.appendTo("#gamedetails");
 
 		$inner1 = $("<fieldset/>", {id:"selectgallery1fieldset", class:"hideElement ui-grid-b sideByside"});
-		createSelect("selectgallery1", "Select Gallery 1:","true", true, $inner1);
+		createSelect("selectgallery1", "Select Gallery 1:","true", color, true, $inner1);
+
+	/*	$inner2 = $("<div/>", {class:"ui-block-b"}),
+		$inner3 = $("<fieldset/>", {"data-role":"fieldcontain", class:"ui-block-b"});
+		createButton("view-gallery1-button","button-view-gallery1","View Gallery",color, true,$inner3);
+		$inner2.append($inner3).appendTo($inner1);*/
+
 		$inner1.appendTo("#gamedetails");
 
 		$inner1 = $("<fieldset/>", {id:"selectgallery2fieldset", class:"hideElement ui-grid-b sideByside"});
-		createSelect("selectgallery2", "Select Gallery 2:","true", true, $inner1);
+		createSelect("selectgallery2", "Select Gallery 2:","true",color, true, $inner1);
+
+		/*$inner2 = $("<div/>", {class:"ui-block-b"}),
+		$inner3 = $("<fieldset/>", {"data-role":"fieldcontain", class:"ui-block-b"});
+
+		createButton("view-gallery2-button","button-view-gallery2","View Gallery",color, true,$inner3);
+		$inner2.append($inner3).appendTo($inner1);*/
 		$inner1.appendTo("#gamedetails");
 
 		$inner1 = $("<fieldset/>", {id:"selectgallery3fieldset", class:"hideElement ui-grid-b sideByside"});
-		createSelect("selectgallery3", "Select Gallery 3:","true", true, $inner1);
+		createSelect("selectgallery3", "Select Gallery 3:","true", color, true, $inner1);
+		/*$inner2 = $("<div/>", {class:"ui-block-b"}),
+		$inner3 = $("<fieldset/>", {"data-role":"fieldcontain", class:"ui-block-b"});
+
+		createButton("view-gallery3-button","button-view-gallery3","View Gallery",color, true,$inner3);
+		$inner2.append($inner3).appendTo($inner1);*/
+
 		$inner1.appendTo("#gamedetails");
+
 
 		$inner1 = $("<fieldset/>", {id:"selectgallery4fieldset", class:"hideElement ui-grid-b sideByside"});
-		createSelect("selectgallery4", "Select Gallery 4:","true", true, $inner1);
+		createSelect("selectgallery4", "Select Gallery 4:","true",color, true, $inner1);
+
+		/*$inner2 = $("<div/>", {class:"ui-block-b"}),
+		$inner3 = $("<fieldset/>", {"data-role":"fieldcontain", class:"ui-block-b"});
+
+		createButton("view-gallery4-button","button-view-gallery4","View Gallery",color, true,$inner3);
+		$inner2.append($inner3).appendTo($inner1);*/
+
 		$inner1.appendTo("#gamedetails");
 
+		
 		$inner1 = $("<fieldset/>", {id:"selectconnection1-fieldset", class:"hideElement ui-grid-solo sideByside"});
 		$inner2 = $("<div/>", {class:"ui-block-a"})
 		createHorizontalGalleryUI("selectConnections1",true, $inner2);
@@ -366,7 +415,7 @@ $(document).ready(function() {
 		$inner1.append($inner2).appendTo("#gamedetails");
 
 		$inner1 = $("<fieldset/>", {"data-role":"fieldcontain"});
-		createButton("create-game-button","button-create-game", "Create", true, $inner1);
+		createButton("create-game-button","button-create-game", "Create",color, true, $inner1);
 		$inner1.appendTo("#gamedetails");
 
 		createMouseEventsGallery("selectConnections1");
@@ -376,8 +425,28 @@ $(document).ready(function() {
 	}
 
 	function editGamesUI(){
-		createSelect("selectgame", "Select Game:", false, "#gameSelectEditDelete");
-		createEditDelete("edit-game-button","delete-button-game", "button-edit-game", "button-delete-game", "Edit Game", "Delete Game", true, "#gameSelectEditDelete");
+
+		var color = "brown";
+		createSelect("selectgame", "Select Game:", "false", color, false, "#gameSelectEditDelete");
+		createEditDelete("edit-game-button","delete-button-game", "button-edit-game", "button-delete-game", "Edit Game", "Delete Game",color, true, "#gameSelectEditDelete");
+		createButton("game-undo-delete-button","button-undo-delete-game", "Undo Game Deletion",color, true, "#gameSelectEditDelete");
+
+		createTextInput("edit-game-designer-name","Name:","","false",color,false, "#editGameDesignerDetails");
+		createTextInput("edit-game-designer-institution","Institution:","","false",color,true, "#editGameDesignerDetails");
+		createTextInput("edit-game-designer-email","EMail:","","false",color,true,"#editGameDesignerDetails");
+		
+		createTextInput("edit-game-name","Game Name:","","false",color,false, "#editGameDetails");
+		
+		$inner1 = $("<fieldset/>", {class:"ui-grid-b sideByside"});
+		createSelect("editGameCategory", "Select Game Category:","false",color, false, $inner1);
+		$inner1.appendTo("#editGameDetails");
+		createTextInput("edit-game-new-category","Create New Category:","","false",color,true, "#editGameDetails");
+		createTextInput("edit-game-desc","Description of the game:","","false",color,true, "#editGameDetails");
+		createTextArea("edit-game-desc-text","Detail Description of the game:",color,true, "#editGameDetails");
+
+		$inner1 = $("<fieldset/>", {"data-role":"fieldcontain"});
+		createButton("save-game-button","button-save-game", "Save",color, true, $inner1);
+		$inner1.appendTo("#editGameDetails");
 
 		var $inner1 = $("<fieldset/>", {id:"gamegallery1-fieldset", class:"ui-grid-solo sideByside"}),
 		$inner2 = $("<div/>", {class:"ui-block-a"});
@@ -399,11 +468,11 @@ $(document).ready(function() {
 		createHorizontalGalleryUI("selectGalleryTile4", true, $inner2);
 		$inner1.append($inner2).appendTo("#gameEditGalleries");
 
-		createTextInput("newELearningLink","eLearning Link:","Ex. http://www.google.com","false",true,"#gameEditGalleries");
-		createTextInput("newMoreInformationLink","More Information Link:","Ex. http://www.google.com","false",true,"#gameEditGalleries");
+		createTextInput("newELearningLink","eLearning Link:","Ex. http://www.google.com","false",color, true,"#gameEditGalleries");
+		createTextInput("newMoreInformationLink","More Information Link:","Ex. http://www.google.com","false",color, true,"#gameEditGalleries");
 
 		$inner1 = $("<fieldset/>", {"data-role":"fieldcontain"});
-		createButton("create-level-button","button-create-level", "Add Level", true, $inner1);
+		createButton("create-level-button","button-create-level", "Add Level",color, true, $inner1);
 		$inner1.appendTo("#gameEditGalleries");
 
 		createMouseEventsGallery("selectGalleryTile1");
@@ -422,17 +491,20 @@ $(document).ready(function() {
 		$inner.appendTo("#editGameSlots");
 		createSlot("editwrapperslot3","editslot3",true,"#editGameSlots");
 
-		createButton("previous-level-button","button-previous-level","Previous",true,$inner);
-		createButton("next-level-button","button-next-level","Next",true,$inner);
+		createButton("previous-level-button","button-previous-level","Previous",color,true,$inner);
+		createButton("next-level-button","button-next-level","Next",color,true,$inner);
 		$inner.appendTo("#editGameSlots");
 
-		createTextInput("eLearningLink","eLearning Link:", "Ex. http://www.google.com","false",false, "#editLevelInfo");
-		createTextInput("moreInformationLink","More Information Link:","Ex. http://www.google.com","false", true, "#editLevelInfo");
+		createTextInput("eLearningLink","eLearning Link:", "Ex. http://www.google.com","false",color,false, "#editLevelInfo");
+		createTextInput("moreInformationLink","More Information Link:","Ex. http://www.google.com","false",color, true, "#editLevelInfo");
 		$inner1 = $("<fieldset/>", {"data-role":"fieldcontain"});
-		createButton("level-delete-button","button-delete-level", "Delete Level", true, $inner1);
+		createButton("level-delete-button","button-delete-level", "Delete Level",color, true, $inner1);
 		$inner1.appendTo("#editLevelInfo");
 		$inner1 = $("<fieldset/>", {"data-role":"fieldcontain"});
-		createButton("save-level-button","button-save-level", "Save", true, $inner1);
+		createButton("level-undo-delete-button","button-undo-delete-level", "Undo Level Deletion",color, true, $inner1);
+		$inner1.appendTo("#editLevelInfo");
+		$inner1 = $("<fieldset/>", {"data-role":"fieldcontain"});
+		createButton("save-level-button","button-save-level", "Save",color, true, $inner1);
 		$inner1.appendTo("#editLevelInfo");
 
 		$inner1 = $("<div/>", {class:"ui-block-a"});
@@ -441,7 +513,7 @@ $(document).ready(function() {
 
 		$inner1 = $("<div/>", {class:"ui-block-b"});
 		$inner2 = $("<fieldset/>", {"data-role":"fieldcontain", class:"ui-block-b"});
-		createButton("change-connection-button1","button-change-connection1", "Set Connection 1", true, $inner2);
+		createButton("change-connection-button1","button-change-connection1", "Set Connection 1",color, true, $inner2);
 		$inner1.append($inner2).appendTo("#changeconnection1-fieldset");
 
 		$inner1 = $("<div/>", {class:"ui-block-a"});
@@ -450,7 +522,7 @@ $(document).ready(function() {
 
 		$inner1 = $("<div/>", {class:"ui-block-b"});
 		$inner2 = $("<fieldset/>", {"data-role":"fieldcontain", class:"ui-block-b"});
-		createButton("change-connection-button2","button-change-connection2", "Set Connection 2", true, $inner2);
+		createButton("change-connection-button2","button-change-connection2", "Set Connection 2", color,true, $inner2);
 		$inner1.append($inner2).appendTo("#changeconnection2-fieldset");
 
 		$inner1 = $("<div/>", {class:"ui-block-a"});
@@ -459,7 +531,7 @@ $(document).ready(function() {
 
 		$inner1 = $("<div/>", {class:"ui-block-b"});
 		$inner2 = $("<fieldset/>", {"data-role":"fieldcontain", class:"ui-block-b"});
-		createButton("change-connection-button3","button-change-connection3", "Set Connection 3", true, $inner2);
+		createButton("change-connection-button3","button-change-connection3", "Set Connection 3",color, true, $inner2);
 		$inner1.append($inner2).appendTo("#changeconnection3-fieldset");
 
 		createMouseEventsGallery("setConnection1");
@@ -493,7 +565,7 @@ $(document).ready(function() {
 	}
 
 	function createHighscoreRulesUI(){
-		createSelect("select-highscore", "Select Highscore Version to Edit: ", false, "#editHighscoreBlock");
+		createSelect("select-highscore", "Select Highscore Version to Edit: ", "false",false, "#editHighscoreBlock");
 		createEditDelete("edit-highscore-button","delete-button-highscore", "button-edit-highscore", "button-delete-highscore", "Edit Highscore Version", "Delete Highscore Version", true, "#editHighscoreBlock");
 		createTextInput("highscore-version","Highscore Version :","Ex. 1.3","false",false,"#highscoreCalBlock");
 		createTextInput("highscore-correct","Points for correct answer :","Ex. 5","true",true,"#highscoreCalBlock");
@@ -520,7 +592,7 @@ $(document).ready(function() {
 
 	function createGameRulesUI(){
 		var $inner1 = $("<fieldset/>", {class:"ui-grid-b sideByside"});
-		createSelect("select-game-assessment","Select Game:",false,$inner1);
+		createSelect("select-game-assessment","Select Game:","false",false,$inner1);
 
 		var $inner2 = $("<div/>",{class:"ui-block-b"}),
 		$inner3 = $("<fieldset/>",{"data-role":"fieldcontain", class:"ui-block-b"});
@@ -530,7 +602,7 @@ $(document).ready(function() {
 		$inner1.prependTo("#SelectGameRulesBlock");
 
 		$inner1 = $("<fieldset/>", {class:"ui-grid-b sideByside"});
-		createSelect("select-highscore-assessment","Select Highscore Version:",false,$inner1);
+		createSelect("select-highscore-assessment","Select Highscore Version:","false",false,$inner1);
 
 		$inner1.appendTo("#SelectGameRulesBlock");
 

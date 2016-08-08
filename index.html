@@ -95,9 +95,9 @@
 		<script src="data/tutorials.json"></script>  
 
 		<!-- include own JavaScript library -->
+		<script type="text/javascript" src="assets/scripts/loadData.js"></script>
 		<script type="text/javascript" src="assets/scripts/createUIElements.js"></script>
 		<script type="text/javascript" src="assets/scripts/setGalleryHeightWidth.js"></script>
-		<script type="text/javascript" src="assets/scripts/loadData.js"></script>
 		<script type="text/javascript" src="assets/scripts/managegalleries.js"></script>
 		<script type="text/javascript" src="assets/scripts/managebadges.js"></script>
 		<script type="text/javascript" src="assets/scripts/manageconnections.js"></script>
@@ -381,9 +381,9 @@
 		<div id="gameDesignerView" data-role="page" class="ui-helper-clearfix bodywrapper">
 			<div data-role="content">
 				<ul data-role="listview" data-inset="true">
-					<li><a href="#editgalleries" id="editgallerieslink"><h3>Manage Galleries</h3><p>Create new Pieces or galleries and delete existing ones.</p></a></li>
-					<li><a href="#connections" id="editconnectionslink"><h3>Manage Connections</h3><p>Create new Connections and delete existing ones.</p></a></li>
-					<li><a href="#games"><h3>Manage Games</h3><p>Create new games or edit existing ones.</p></a></li>
+					<li><a href="#editgalleries" id="editgallerieslink"><h3 style="color: #333399;">Manage Galleries</h3><p style="color: #333399;">Create new Pieces or galleries and delete existing ones.</p></a></li>
+					<li><a href="#connections" id="editconnectionslink"><h3 style="color: #9b319b;">Manage Connections</h3><p style="color: #9b319b;">Create new Connections and delete existing ones.</p></a></li>
+					<li><a href="#games"><h3 style="color: #990033;">Manage Games</h3><p style="color: #990033;">Create new games or edit existing ones.</p></a></li>
 					<!-- <li><a href="#badges" id="editbadgeslink"><h3>Manage Badges</h3><p>Create new Badges and delete existing ones.</p></a></li> -->
 				</ul>
 			</div>
@@ -392,14 +392,21 @@
 			<!-- Header Filled by createUIElements.js -->
 			<div data-role="content">
 				<div class="ui-content">
+				<h2 style="color:#333399;">Create Gallery</h2>
 					<div id="galleryInputFields">
 						<!-- Input Fields Filled by createUIElements.js -->
 					</div>
 					<div id="create-gallery-message"></div>
+					<h2 style="color:#333399;">Edit Gallery</h2>
 					<fieldset id="galleriesSelectEditDelete" class="ui-grid-b sideByside">
 						<!-- Select, Edit and Delete Fields Filled by createUIElements.js -->
 					</fieldset>
+					<div id="gallery-saved-message"></div>
 					<div id="gallery-description-message"></div>
+
+					<div id="gallery-description">
+						
+					</div>
 					<fieldset id="galleriesfieldset" class="ui-grid-solo sideByside">
 						<div id="manageGalleriesblocka" class="ui-block-a">
 							<!-- Gallery Filled by createUIElements.js -->
@@ -410,7 +417,7 @@
 							</fieldset>
 						</div>
 					</fieldset>
-					<div id="gallery-saved-message"></div>
+					
 				</div>
 			</div>
 		</div>
@@ -437,19 +444,19 @@
 		<div id="games" data-role="page" class="ui-helper-clearfix bodywrapper">
 			<div data-role="content">
 				<ul data-role="listview" data-inset="true">
-					<li><a href="#creategames" id="creategameslink"><h3>Create Games</h3><p>Create new games</p></a></li>
-					<li><a href="#editgames" id="editgameslink"><h3>Edit Games</h3><p>Edit existing games.</p></a></li>
+					<li><a href="#creategames" id="creategameslink"><h3 style="color: brown;">Create Games</h3><p style="color: brown;">Create new games</p></a></li>
+					<li><a href="#editgames" id="editgameslink"><h3 style="color: brown;">Edit Games</h3><p style="color: brown;">Edit existing games.</p></a></li>
 				</ul>
 			</div>
 		</div>
 		<div id="creategames" data-role="page" class="ui-helper-clearfix bodywrapper">
 			<div data-role="content">
 				<div class="ui-content">
-					<h2>Game Designer Details</h2>
+					<h2 style="color:brown;">Game Designer Details</h2>
 					<div id="gamedesignerdetails">
 						<!-- Input Fields Filled by createUIElements.js -->
 					</div>
-					<h2>Game Details</h2>
+					<h2 style="color: brown;">Game Details</h2>
 					<div id="gamedetails">
 						<!-- Input Fields, Galleries and buttons Filled by createUIElements.js -->
 					</div>
@@ -466,12 +473,24 @@
 					</fieldset>
 					<div id="game-description-message"></div>
 					<div id="editgamesection" class="hideElement">
-						<h2 id="addLevelsHeader">Add Levels</h2>
+						<h2 style="color:brown;" id="editGameDesignerDetailsHeader">Edit Game Designer Details</h2>
+						<div id="editGameDesignerDetails">
+							<!-- Game details Filled by createUIElements.js -->
+						</div>
+						
+						<h2 style="color:brown;" id="editGameDetailsHeader">Edit Game Details</h2>
+						<div id="editGameDetails">
+							<!-- Game details Filled by createUIElements.js -->
+						</div>
+						<div id="edit-game-details-message"></div>
+
+						<h2 style="color:brown;" id="addLevelsHeader">Add Levels</h2>
 						<div id="gameEditGalleries">
 							<!-- Galleries and buttons Filled by createUIElements.js -->
 						</div>
 						<div id="add-level-message"></div>
-						<h2 id="deleteLevelsHeader">Edit Levels</h2>
+
+						<h2 style="color:brown;" id="deleteLevelsHeader">Edit Levels</h2>
 						<fieldset id="editlevels-fieldset" class="ui-grid-b sideByside">
 							<div  class="ui-block-a">
 								<span id="editgameboard" levelNo="0" class="gameboard ui-widget-content">
@@ -674,7 +693,7 @@
 <script type="text/javascript">
 	function signinCallback(result) {
 			// TODO MARKO result === "success"
-			if(true) {
+			if(oidc_userinfo != undefined) {
 	      // after successful sign in, display a welcome string for the user
 	      console.log("Hello, " + oidc_userinfo.name + "!");
 	      var profile =	$('<li>' +
@@ -693,13 +712,13 @@
 	      	'</li>');
 	      $('.menulist').append(gamedesignerview);
 
-	      var assessmentsystemview =	$('<li>' +
+	     /* var assessmentsystemview =	$('<li>' +
 	      	'<a href="#assessmentSystemView" id="assessmentsystemlink">' +
 	      	'<h3>Assessment System</h3>' +
 	      	'<p>Create or Edit Assessment rules!</p>' +
 	      	'</a>' +
 	      	'</li>');
-	      $('.menulist').append(assessmentsystemview);
+	      $('.menulist').append(assessmentsystemview);*/
 
 	      $('.menulist').listview('refresh');
 	      $('#profilelink').click(function() { showProfile() });

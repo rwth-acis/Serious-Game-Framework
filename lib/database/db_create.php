@@ -15,17 +15,38 @@ if(!($result = $conn->query("SELECT moreInformation FROM levels"))){
 	$query = "ALTER TABLE levels ADD moreInformation varchar(255) COLLATE utf8_unicode_ci NULL DEFAULT NULL";
 	$result = $conn->query($query);
 }
+
+if(!($result = $conn->query("SELECT dateOfEntry FROM levels"))){
+	$query = "ALTER TABLE levels ADD dateOfEntry datetime NOT NULL DEFAULT CURRENT_TIMESTAMP";
+	$result = $conn->query($query);
+}
+
+if(!($result = $conn->query("SELECT deleted FROM levels"))){
+	$query = "ALTER TABLE levels ADD deleted varchar(25) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'false'";
+	$result = $conn->query($query);
+}
 //echo "query executed";
 $query="CREATE TABLE IF NOT EXISTS galleries(
-		galleryId int(11) NOT NULL AUTO_INCREMENT,
+		id int(11) NOT NULL AUTO_INCREMENT,
+		galleryId int(11) NOT NULL,
 		galleryName varchar(255) COLLATE utf8_unicode_ci NULL DEFAULT NULL,
 		galleryDescription varchar(255) COLLATE utf8_unicode_ci NULL DEFAULT NULL,
-		PRIMARY KEY (galleryId)
+		PRIMARY KEY (id)
 	) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=0";
 $result = $conn->query($query);
 
 if(!($result = $conn->query("SELECT oidcEmail FROM galleries"))){
 	$query = "ALTER TABLE galleries ADD oidcEmail varchar(255) COLLATE utf8_unicode_ci NULL DEFAULT NULL";
+	$result = $conn->query($query);
+}
+
+if(!($result = $conn->query("SELECT deleted FROM galleries"))){
+	$query = "ALTER TABLE galleries ADD deleted varchar(25) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'false'";
+	$result = $conn->query($query);
+}
+
+if(!($result = $conn->query("SELECT dateOfEntry FROM galleries"))){
+	$query = "ALTER TABLE galleries ADD dateOfEntry datetime NOT NULL DEFAULT CURRENT_TIMESTAMP";
 	$result = $conn->query($query);
 }
 
@@ -37,6 +58,16 @@ $query="CREATE TABLE IF NOT EXISTS gallery_tiles(
 		PRIMARY KEY (id)
 	) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=0";
 $result = $conn->query($query);
+
+if(!($result = $conn->query("SELECT dateOfEntry FROM gallery_tiles"))){
+	$query = "ALTER TABLE gallery_tiles ADD dateOfEntry datetime NOT NULL DEFAULT CURRENT_TIMESTAMP";
+	$result = $conn->query($query);
+}
+
+if(!($result = $conn->query("SELECT deleted FROM gallery_tiles"))){
+	$query = "ALTER TABLE gallery_tiles ADD deleted varchar(25) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'false'";
+	$result = $conn->query($query);
+}
 //echo "table galleries created";
 $query="CREATE TABLE IF NOT EXISTS game_galleries_connections(
 		gameId int(11) NOT NULL AUTO_INCREMENT,
@@ -78,6 +109,16 @@ if(!($result = $conn->query("SELECT oidcEmail FROM game_galleries_connections"))
 	$result = $conn->query($query);
 }
 
+if(!($result = $conn->query("SELECT dateOfEntry FROM game_galleries_connections"))){
+	$query = "ALTER TABLE game_galleries_connections ADD dateOfEntry datetime NOT NULL DEFAULT CURRENT_TIMESTAMP";
+	$result = $conn->query($query);
+}
+
+if(!($result = $conn->query("SELECT deleted FROM game_galleries_connections"))){
+	$query = "ALTER TABLE game_galleries_connections ADD deleted varchar(25) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'false'";
+	$result = $conn->query($query);
+}
+
 $query="CREATE TABLE IF NOT EXISTS connections(
 		connectionId int(11) NOT NULL AUTO_INCREMENT,
 		connectionName varchar(255) COLLATE utf8_unicode_ci NULL DEFAULT NULL,
@@ -88,6 +129,16 @@ $result = $conn->query($query);
 
 if(!($result = $conn->query("SELECT oidcEmail FROM connections"))){
 	$query = "ALTER TABLE connections ADD oidcEmail varchar(255) COLLATE utf8_unicode_ci NULL DEFAULT NULL";
+	$result = $conn->query($query);
+}
+
+if(!($result = $conn->query("SELECT dateOfEntry FROM connections"))){
+	$query = "ALTER TABLE connections ADD dateOfEntry datetime NOT NULL DEFAULT CURRENT_TIMESTAMP";
+	$result = $conn->query($query);
+}
+
+if(!($result = $conn->query("SELECT deleted FROM connections"))){
+	$query = "ALTER TABLE connections ADD deleted varchar(25) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'false'";
 	$result = $conn->query($query);
 }
 
@@ -116,6 +167,16 @@ if(!($result = $conn->query("SELECT oidcEmail FROM experience_badges"))){
 	$result = $conn->query($query);
 }
 
+if(!($result = $conn->query("SELECT dateOfEntry FROM experience_badges"))){
+	$query = "ALTER TABLE experience_badges ADD dateOfEntry datetime NOT NULL DEFAULT CURRENT_TIMESTAMP";
+	$result = $conn->query($query);
+}
+
+if(!($result = $conn->query("SELECT deleted FROM experience_badges"))){
+	$query = "ALTER TABLE experience_badges ADD deleted varchar(25) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'false'";
+	$result = $conn->query($query);
+}
+
 $query="CREATE TABLE IF NOT EXISTS game_statistics_badges(
 		badgeId int(11) NOT NULL AUTO_INCREMENT,
 		badgeName varchar(255) COLLATE utf8_unicode_ci NULL DEFAULT NULL,
@@ -130,6 +191,16 @@ $result = $conn->query($query);
 
 if(!($result = $conn->query("SELECT oidcEmail FROM game_statistics_badges"))){
 	$query = "ALTER TABLE game_statistics_badges ADD oidcEmail varchar(255) COLLATE utf8_unicode_ci NULL DEFAULT NULL";
+	$result = $conn->query($query);
+}
+
+if(!($result = $conn->query("SELECT dateOfEntry FROM game_statistics_badges"))){
+	$query = "ALTER TABLE game_statistics_badges ADD dateOfEntry datetime NOT NULL DEFAULT CURRENT_TIMESTAMP";
+	$result = $conn->query($query);
+}
+
+if(!($result = $conn->query("SELECT deleted FROM game_statistics_badges"))){
+	$query = "ALTER TABLE game_statistics_badges ADD deleted varchar(25) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'false'";
 	$result = $conn->query($query);
 }
 
@@ -166,6 +237,16 @@ if(!($result = $conn->query("SELECT oidcEmail FROM highscore_rules"))){
 	$result = $conn->query($query);
 }
 
+if(!($result = $conn->query("SELECT dateOfEntry FROM highscore_rules"))){
+	$query = "ALTER TABLE highscore_rules ADD dateOfEntry datetime NOT NULL DEFAULT CURRENT_TIMESTAMP";
+	$result = $conn->query($query);
+}
+
+if(!($result = $conn->query("SELECT deleted FROM highscore_rules"))){
+	$query = "ALTER TABLE highscore_rules ADD deleted varchar(25) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'false'";
+	$result = $conn->query($query);
+}
+
 $query="CREATE TABLE IF NOT EXISTS game_rules(
 		id int(11) NOT NULL AUTO_INCREMENT,
 		gameId int(11) NOT NULL,
@@ -177,6 +258,15 @@ $result = $conn->query($query);
 
 if(!($result = $conn->query("SELECT oidcEmail FROM game_rules"))){
 	$query = "ALTER TABLE game_rules ADD oidcEmail varchar(255) COLLATE utf8_unicode_ci NULL DEFAULT NULL";
+	$result = $conn->query($query);
+}
+if(!($result = $conn->query("SELECT dateOfEntry FROM game_rules"))){
+	$query = "ALTER TABLE game_rules ADD dateOfEntry datetime NOT NULL DEFAULT CURRENT_TIMESTAMP";
+	$result = $conn->query($query);
+}
+
+if(!($result = $conn->query("SELECT deleted FROM game_rules"))){
+	$query = "ALTER TABLE game_rules ADD deleted varchar(25) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'false'";
 	$result = $conn->query($query);
 }
 
