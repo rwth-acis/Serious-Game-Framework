@@ -3,13 +3,15 @@ $(document).ready(function() {
 	function createHeader(headerName, appendFactor, elementAppend){
 		
 		var $inner1 = $("<div/>", {"data-role":"header", "data-theme":"b"}),
-		$inner2a = $("<a/>", {href:"#", "data-icon":"arrow-l", class:"ui-btn-left", "data-iconpos":"notext", "data-rel":"back", text:"Home"}),
+		$inner2a = $("<div>", {"data-inline":"true"}),
+		$inner3a = $("<a/>", {href:"https://goo.gl/forms/CqFAHaOIkC1GPHwi2", target:"_blank", class:"ui-btn-right", "data-inline":"true", "data-role":"button", text:"Feedback"}),
+		$inner3b = $("<a/>", {href:"#", "data-icon":"arrow-l", class:"ui-btn-left", "data-inline":"true", "data-role":"button", "data-iconpos":"notext", "data-rel":"back", text:"Home"}),
 		$inner2b = $("<h2/>", {text:headerName});
 
 		if(appendFactor){
-			$inner1.append($inner2a,$inner2b).appendTo(elementAppend);
+			$inner1.append($inner2a.append($inner3a,$inner3b),$inner2b).appendTo(elementAppend);
 		}else{
-			$inner1.append($inner2a,$inner2b).prependTo(elementAppend);
+			$inner1.append($inner2a.append($inner3a,$inner3b),$inner2b).prependTo(elementAppend);
 		}
 
 	}
