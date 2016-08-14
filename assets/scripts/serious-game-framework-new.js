@@ -467,7 +467,7 @@ $(document).ready(function() {
 					}
 				
 				}else{
-					game = $('<li><a href="#gameDescriptionPage" id="game-id-'+ data.gameId + '" game-id="' + data.gameId + '" gameIndex="' + i +'" class="gamelink"><h3>' + data.gameName + '</h3><p>' + data.gameDescription + '</p></a></li>');
+					game = $('<li><a href="#game" id="game-id-'+ data.gameId + '" game-id="' + data.gameId + '" gameIndex="' + i +'" class="gamelink"><h3>' + data.gameName + '</h3><p>' + data.gameDescription + '</p></a></li>');
 				}
 
 				if(game != ""){
