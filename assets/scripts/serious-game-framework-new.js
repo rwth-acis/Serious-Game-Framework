@@ -21,6 +21,9 @@ var GAMELEVELS;
 var NUMBER_OF_GALLERIES;
 var GAMELEVELSSTATS;
 var GAME_DESCRIPTION_TEXT;
+var GAME_DESIGNER_NAME;
+var GAME_DESIGNER_EMAIL;
+var GAME_DESIGNER_INSTITUTION;
 
 var GOTDATA = false;
 //var GAMESDATA;
@@ -130,9 +133,16 @@ $(document).ready(function() {
 			var gameIndex = $(this).attr('gameIndex');
 			GAMEID = parseInt(gameID);
 			GAMEINDEX = parseInt(gameIndex);
+			
 			GAME_DESCRIPTION_TEXT = $.trim(GAMESDATA[GAMEINDEX]["gameDescriptionText"]);
+			GAME_DESIGNER_NAME = $.trim(GAMESDATA[GAMEINDEX]["gameDesignerName"]);
+			GAME_DESIGNER_INSTITUTION = $.trim(GAMESDATA[GAMEINDEX]["gameDesignerInstitution"]);
+			GAME_DESIGNER_EMAIL = $.trim(GAMESDATA[GAMEINDEX]["gameDesignerEmail"]);
+
+			GAME_DESCRIPTION_TEXT = GAME_DESCRIPTION_TEXT + "\n" + "\n" + "Game Designer Name: " + GAME_DESIGNER_NAME + "\n" + "Institution: " + GAME_DESIGNER_INSTITUTION + "\n" + "Contact: " + GAME_DESIGNER_EMAIL;
+
 			GAME_DESCRIPTION_TEXT = GAME_DESCRIPTION_TEXT.replace(/\n/g, "<br />");
-			var descriptionText = $('<h4>'+GAME_DESCRIPTION_TEXT+'</h4>');
+			var descriptionText = $('<h4 style="text-align:justify;" >'+GAME_DESCRIPTION_TEXT+'</h4>');
 			$('#descriptionTextDiv').text("");
 			$('#descriptionTextDiv').append(descriptionText);
 			loadGame(GAMEINDEX,GAMEID);
