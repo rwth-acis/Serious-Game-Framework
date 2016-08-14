@@ -92,6 +92,10 @@ if(!($result = $conn->query("SELECT gameDescriptionText FROM game_galleries_conn
 	$query = "ALTER TABLE game_galleries_connections ADD gameDescriptionText varchar(255) COLLATE utf8_unicode_ci NULL DEFAULT NULL";
 	$result = $conn->query($query);
 }
+
+$query = "ALTER TABLE game_galleries_connections MODIFY COLUMN gameDescriptionText TEXT NULL DEFAULT NULL";
+$result = $conn->query($query);
+
 if(!($result = $conn->query("SELECT gameDesignerName FROM game_galleries_connections"))){
 	$query = "ALTER TABLE game_galleries_connections ADD gameDesignerName varchar(255) COLLATE utf8_unicode_ci NULL DEFAULT NULL";
 	$result = $conn->query($query);

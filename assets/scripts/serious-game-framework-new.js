@@ -20,6 +20,7 @@ var GALLERYNAMES;
 var GAMELEVELS;
 var NUMBER_OF_GALLERIES;
 var GAMELEVELSSTATS;
+var GAME_DESCRIPTION_TEXT;
 
 var GOTDATA = false;
 //var GAMESDATA;
@@ -129,12 +130,25 @@ $(document).ready(function() {
 			var gameIndex = $(this).attr('gameIndex');
 			GAMEID = parseInt(gameID);
 			GAMEINDEX = parseInt(gameIndex);
+			GAME_DESCRIPTION_TEXT = $.trim(GAMESDATA[GAMEINDEX]["gameDescriptionText"]);
+			GAME_DESCRIPTION_TEXT = GAME_DESCRIPTION_TEXT.replace(/\n/g, "<br />");
+			var descriptionText = $('<h4>'+GAME_DESCRIPTION_TEXT+'</h4>');
+			$('#descriptionTextDiv').text("");
+			$('#descriptionTextDiv').append(descriptionText);
 			loadGame(GAMEINDEX,GAMEID);
 
+
+		// Send trace for starting a game
+		//gleaner_tracker.trackTrace(oidc_userinfo, "game_start",
+		//	{gameID: GAMEID});
+	});
+		$(document).on('click', '.playGameLink', function () {
+			
 		// Send trace for starting a game
 		gleaner_tracker.trackTrace(oidc_userinfo, "game_start",
 			{gameID: GAMEID});
 	});
+		
 		/*$('.gamelink').on('click',function(){
 			var gameID = $(this).attr('game-id');
 			var gameIndex = $(this).attr('gameIndex');
@@ -394,7 +408,7 @@ $(document).ready(function() {
 		}
 	}
 	function addToCategory(gameCategory, index, data, exists){
-		var game = $('<li><a href="#game" id="game-id-'+ data.gameId + '" game-id="' + data.gameId + '" gameIndex="' + index +'" class="gamelink"><h3>' + data.gameName + '</h3><p>' + data.gameDescription + '</p></a></li>');
+		var game = $('<li><a href="#gameDescriptionPage" id="game-id-'+ data.gameId + '" game-id="' + data.gameId + '" gameIndex="' + index +'" class="gamelink"><h3>' + data.gameName + '</h3><p>' + data.gameDescription + '</p></a></li>');
 		
 		if(exists == "false"){
 
@@ -443,7 +457,7 @@ $(document).ready(function() {
 					}
 				
 				}else{
-					game = $('<li><a href="#game" id="game-id-'+ data.gameId + '" game-id="' + data.gameId + '" gameIndex="' + i +'" class="gamelink"><h3>' + data.gameName + '</h3><p>' + data.gameDescription + '</p></a></li>');
+					game = $('<li><a href="#gameDescriptionPage" id="game-id-'+ data.gameId + '" game-id="' + data.gameId + '" gameIndex="' + i +'" class="gamelink"><h3>' + data.gameName + '</h3><p>' + data.gameDescription + '</p></a></li>');
 				}
 
 				if(game != ""){

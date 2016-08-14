@@ -236,6 +236,7 @@ $(document).ready(function() {
 
 	function createHeaders(){
 		createHeader("Game Categories", false, "#playgames");
+		createHeader("Game Description", false, "#gameDescriptionPage");
 		createHeader("Profile", false, "#profile");
 		createHeader("Game Designer View", false, "#gameDesignerView");
 		createHeader("Manage Galleries", false, "#editgalleries");
