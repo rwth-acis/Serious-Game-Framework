@@ -465,8 +465,7 @@ function rand(min, max) {
 		if (window.FormData) {
 			formdata = new FormData();
 		}
-		var galleryName = $('#select-gallery :selected').text();
-		var galleryId = $('select[name=select-gallery]').val();
+		
 		formdata.append("galleryId",LAST_DELETED_GALLERY_ID);
 		formdata.append("deleted","false");
 		if(formdata){

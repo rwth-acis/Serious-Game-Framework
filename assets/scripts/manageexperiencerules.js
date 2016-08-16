@@ -52,7 +52,7 @@ function rand(min, max) {
 			$('#create-experience-badge-message').text("");
 			$('#experience-badge-saved-message').text("");
 			if(!$.isNumeric($.trim($('#experience-badge-points')[0].value))){
-				var createBadgeMessage = $('<h2 style="color:'+color+';">Enter numeric value in \'Required Points\' field</h2>');
+				var createBadgeMessage = $('<h2 style="color:#025814;">Enter numeric value in \'Required Points\' field</h2>');
 				$('#create-experience-badge-message').append(createBadgeMessage);
 			}
 			enableBadgeCreation();
@@ -69,7 +69,7 @@ function rand(min, max) {
 			$('#create-experience-badge-message').text("");
 			$('#experience-badge-saved-message').text("");
 			if(!$.isNumeric($.trim($('#edit-experience-badge-points')[0].value))){
-				var saveBadgeMessage = $('<h2 style="color:'+color+';">Enter numeric value in \'Required Points\' field</h2>');
+				var saveBadgeMessage = $('<h2 style="color:#025814;">Enter numeric value in \'Required Points\' field</h2>');
 				$('#experience-badge-saved-message').append(saveBadgeMessage);
 			}
 			enableSaveButton();
@@ -321,7 +321,7 @@ function rand(min, max) {
 					success: function(data){
 					getExperienceBadges();
 					$('#create-experience-badge-message').text("");
-					var createBadgeMessage = $('<h2 style="color:'+color+';">New Badge added successfully!</h2>');
+					var createBadgeMessage = $('<h2 style="color:#025814;">New Badge added successfully!</h2>');
 					$('#create-experience-badge-message').append(createBadgeMessage);
 					$('#experience-badge-saved-message').text("");
 					$('#uploadExperienceBadge').prop('disabled',true);
@@ -368,7 +368,7 @@ function rand(min, max) {
 					EXPERIENCE_BADGES[BADGE_INDEX]["badgeFeedbackMessage"] = badgeFeedbackMessage ;
 					EXPERIENCE_BADGES[BADGE_INDEX]["score"] = score;
 					$('#experience-badge-saved-message').text("");
-					var saveBadgeMessage = $('<h2 style="color:'+color+';">Badge Details saved successfully!</h2>');
+					var saveBadgeMessage = $('<h2 style="color:#025814;">Badge Details saved successfully!</h2>');
 					$('#experience-badge-saved-message').append(saveBadgeMessage);
 					$('#create-experience-badge-message').text("");
 
@@ -389,7 +389,7 @@ function rand(min, max) {
 
 			if(!($.isNumeric(highscore) && $.isNumeric(elearning) && $.isNumeric(moreInfo) && $.isNumeric(badges) && $.isNumeric(gamesDesigned) && $.isNumeric(noOfLogins))){
 				$('#save-experience-rules-message').text("");
-					var saveRulesMessage = $('<h2 style="color:'+color+';">Please enter only numerical values and save again</h2>');
+					var saveRulesMessage = $('<h2 style="color:#025814;">Please enter only numerical values and save again</h2>');
 					$('#save-experience-rules-message').append(saveRulesMessage);
 			}else{
 
@@ -416,7 +416,7 @@ function rand(min, max) {
 					success: function(data){
 					getExperienceRules();
 					$('#save-experience-rules-message').text("");
-					var saveRulesMessage = $('<h2 style="color:'+color+';">Experience Rules saved successfully!</h2>');
+					var saveRulesMessage = $('<h2 style="color:#025814;">Experience Rules saved successfully!</h2>');
 					$('#save-experience-rules-message').append(saveRulesMessage);
 					
 				}
@@ -495,7 +495,7 @@ function rand(min, max) {
 					$('#experience-badge-delete-button').find('*').prop('disabled',true);
 					$('#experience-badge-delete-button').find('*').addClass('ui-disabled');
 					$('#experience-badge-saved-message').text("");
-					var connectionSavedMessage = $('<h2 style="color:'+color+';">Badge deleted successfully!</h2>');
+					var connectionSavedMessage = $('<h2 style="color:#025814;">Badge deleted successfully!</h2>');
 					$('#experience-badge-saved-message').append(connectionSavedMessage);
 
 				}
@@ -526,7 +526,7 @@ function rand(min, max) {
 				//	addExperienceBadge(LAST_DELETED_EXPERIENCE_BADGE_SRC);
 				getExperienceBadges();
 				$('#experience-badge-saved-message').text("");
-				var badgeSavedMessage = $('<h2 style="color:'+color+';">Badge restored successfully!</h2>');
+				var badgeSavedMessage = $('<h2 style="color:#025814;">Badge restored successfully!</h2>');
 				$('#experience-badge-saved-message').append(badgeSavedMessage);
 
 			}

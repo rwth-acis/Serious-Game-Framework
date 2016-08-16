@@ -103,6 +103,7 @@
 		<script type="text/javascript" src="assets/scripts/manageconnections.js"></script>
 		<script type="text/javascript" src="assets/scripts/managegames.js"></script>
 		<script type="text/javascript" src="assets/scripts/manageexperiencerules.js"></script>
+		<script type="text/javascript" src="assets/scripts/manageHighscoreRules.js"></script>
 		<script type="text/javascript" src="assets/scripts/serious-game-framework-new.js"></script>
 
 		<!-- Configuration for mobile devices -->
@@ -138,7 +139,7 @@
 		</div>
 		<div data-role="content">
 			<ul data-role="listview" data-inset="true" class="menulist">
-				<li><a href="#playgames" id="playgameslink"><h3>Play Games</h3><p>Tutorial and Games</p></a></li>
+				<li><a href="#playgames" id="playgameslink"><h3 style="color:#0456a2;">Play Games</h3><p style="color:#0456a2;">Tutorial and Games</p></a></li>
 				<!-- filled dynamically -->
 				<!-- <li><a href="#game" class="gamelink" game-id="0"><h3>Test</h3><p>Test.</p></a></li> -->
 			</ul>
@@ -609,10 +610,11 @@
 					<div id="experience-badge-saved-message"></div>
 					<h2 style="color: #308f44">Experience Calculation Rules</h2>
 					<div id="experienceRulesFormula"></div>
+					<div id="save-experience-rules-message"></div>	
 					<div id=experienceRules>
 					
 					</div>	
-					<div id="save-experience-rules-message"></div>	
+					
 				</div>
 			</div>
 		</div>
@@ -626,11 +628,12 @@
 					
 					</fieldset>	
 					<div id="highscore-desc-message"></div>
+					<div id="save-highscore-rules-message"></div>
 					<h2 style="color: #c37719">Highscore Calculation Rules</h2>
 					<div id="highscoreCalBlock">
 					
 					</div>
-					<div id="save-highscore-rules-message"></div>
+					
 				</div>
 			</div>
 		</div>
@@ -730,24 +733,24 @@
 	      console.log("Hello, " + oidc_userinfo.name + "!");
 	      var profile =	$('<li>' +
 	      	'<a href="#profile" id="profilelink">' +
-	      	'<h3>Profile</h3>' +
-	      	'<p>Check your stats and badges!</p>' +
+	      	'<h3 style="color:#0456a2;">Profile</h3>' +
+	      	'<p style="color:#0456a2;">Check your stats and badges!</p>' +
 	      	'</a>' +
 	      	'</li>');
 	      $('.menulist').prepend(profile);
 
 	      var gamedesignerview =	$('<li>' +
 	      	'<a href="#gameDesignerView" id="gamedesignerlink">' +
-	      	'<h3>Design Games</h3>' +
-	      	'<p>Create or Edit games!</p>' +
+	      	'<h3 style="color:#0456a2;">Design Games</h3>' +
+	      	'<p style="color:#0456a2;">Create or Edit games!</p>' +
 	      	'</a>' +
 	      	'</li>');
 	      $('.menulist').append(gamedesignerview);
 
-	     /* var assessmentsystemview =	$('<li>' +
+	    /*  var assessmentsystemview =	$('<li>' +
 	      	'<a href="#assessmentSystemView" id="assessmentsystemlink">' +
-	      	'<h3>Assessment System</h3>' +
-	      	'<p>Create or Edit Assessment rules!</p>' +
+	      	'<h3 style="color:#0456a2;">Assessment System</h3>' +
+	      	'<p style="color:#0456a2;">Create or Edit Assessment rules!</p>' +
 	      	'</a>' +
 	      	'</li>');
 	      $('.menulist').append(assessmentsystemview);*/

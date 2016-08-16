@@ -418,7 +418,7 @@ $(document).ready(function() {
 		}
 	}
 	function addToCategory(gameCategory, index, data, exists){
-		var game = $('<li><a href="#gameDescriptionPage" id="game-id-'+ data.gameId + '" game-id="' + data.gameId + '" gameIndex="' + index +'" class="gamelink"><h3>' + data.gameName + '</h3><p>' + data.gameDescription + '</p></a></li>');
+		var game = $('<li><a href="#gameDescriptionPage" id="game-id-'+ data.gameId + '" game-id="' + data.gameId + '" gameIndex="' + index +'" class="gamelink"><h3 style="color:#0456a2;">' + data.gameName + '</h3><p style="color:#0456a2;">' + data.gameDescription + '</p></a></li>');
 		
 		if(exists == "false"){
 
@@ -463,13 +463,13 @@ $(document).ready(function() {
 					if(categoryCounter[data.gameCategory]){
 						addToCategory("category-"+data.gameCategory,i,data,"true");
 					}else{
-						game = $('<li><a href="#category-'+data.gameCategory +'" class="gamelink"><h3>' + data.gameCategory + '</h3><p>Games under ' + data.gameCategory + ' category</p></a></li>');
+						game = $('<li><a href="#category-'+data.gameCategory +'" class="gamelink"><h3 style="color:#0456a2;">' + data.gameCategory + '</h3><p style="color:#0456a2;">Games under ' + data.gameCategory + ' category</p></a></li>');
 						addToCategory("category-"+data.gameCategory,i,data,"false");
 						categoryCounter[data.gameCategory] = 1;
 					}
 				
 				}else{
-					game = $('<li><a href="#game" id="game-id-'+ data.gameId + '" game-id="' + data.gameId + '" gameIndex="' + i +'" class="gamelink"><h3>' + data.gameName + '</h3><p>' + data.gameDescription + '</p></a></li>');
+					game = $('<li><a href="#game" id="game-id-'+ data.gameId + '" game-id="' + data.gameId + '" gameIndex="' + i +'" class="gamelink"><h3 style="color:#0456a2;">' + data.gameName + '</h3><p style="color:#0456a2;">' + data.gameDescription + '</p></a></li>');
 				}
 
 				if(game != ""){

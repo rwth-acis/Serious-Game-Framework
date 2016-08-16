@@ -580,6 +580,7 @@ $(document).ready(function() {
 		createSelect("select-highscore", "Select Highscore Version to Edit: ", "false",color,false, "#editHighscoreBlock");
 		createEditDelete("edit-highscore-button","delete-button-highscore", "button-edit-highscore", "button-delete-highscore", "Edit Highscore Version", "Delete Highscore Version",color, true, "#editHighscoreBlock");
 		createButton("highscore-undo-delete-button","button-undo-delete-highscore","Undo Version Deletion",color,true,"#editHighscoreBlock");
+		createButton("highscore-reset-button","button-reset-highscore","Reset",color,true,"#editHighscoreBlock");
 		createTextInput("highscore-correct","Points for correct answer :","Ex. 5","true",color,false,"#highscoreCalBlock");
 		createTextInput("highscore-wrong","Points for wrong answer :","Ex. -2","true",color,true,"#highscoreCalBlock");
 		createTextInput("highscore-show","Points for clicking 'Show me' button :","Ex. 0","true",color,true,"#highscoreCalBlock");
