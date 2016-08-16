@@ -215,11 +215,11 @@ $result = $conn->query($query);
 
 $query="CREATE TABLE IF NOT EXISTS highscore_rules(
 		highscoreId int(11) NOT NULL AUTO_INCREMENT,
-		correct decimal(15,2) NOT NULL,
-		wrong decimal(15,2) NOT NULL,
-		showMe decimal(15,2) NOT NULL,
-		tryAgain decimal(15,2) NOT NULL,
-		hint decimal(15,2) NOT NULL,
+		correct decimal(15,2) NOT NULL DEFAULT 5,
+		wrong decimal(15,2) NOT NULL DEFAULT 2,
+		showMe decimal(15,2) NOT NULL DEFAULT 0,
+		tryAgain decimal(15,2) NOT NULL DEFAULT 1,
+		hint decimal(15,2) NOT NULL DEFAULT 0.5,
 		oidcEmail varchar(255) COLLATE utf8_unicode_ci NULL DEFAULT NULL,
 		dateOfEntry datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
 		deleted varchar(25) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'false',
