@@ -17,7 +17,7 @@ if(!($result = $conn->query("SELECT moreInformation FROM levels"))){
 }
 
 if(!($result = $conn->query("SELECT dateOfEntry FROM levels"))){
-	$query = "ALTER TABLE levels ADD dateOfEntry datetime NOT NULL DEFAULT CURRENT_TIMESTAMP";
+	$query = "ALTER TABLE levels ADD dateOfEntry TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP";
 	$result = $conn->query($query);
 }
 
@@ -46,7 +46,7 @@ if(!($result = $conn->query("SELECT deleted FROM galleries"))){
 }
 
 if(!($result = $conn->query("SELECT dateOfEntry FROM galleries"))){
-	$query = "ALTER TABLE galleries ADD dateOfEntry datetime NOT NULL DEFAULT CURRENT_TIMESTAMP";
+	$query = "ALTER TABLE galleries ADD dateOfEntry TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP";
 	$result = $conn->query($query);
 }
 
@@ -60,7 +60,7 @@ $query="CREATE TABLE IF NOT EXISTS gallery_tiles(
 $result = $conn->query($query);
 
 if(!($result = $conn->query("SELECT dateOfEntry FROM gallery_tiles"))){
-	$query = "ALTER TABLE gallery_tiles ADD dateOfEntry datetime NOT NULL DEFAULT CURRENT_TIMESTAMP";
+	$query = "ALTER TABLE gallery_tiles ADD dateOfEntry TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP";
 	$result = $conn->query($query);
 }
 
@@ -114,7 +114,7 @@ if(!($result = $conn->query("SELECT oidcEmail FROM game_galleries_connections"))
 }
 
 if(!($result = $conn->query("SELECT dateOfEntry FROM game_galleries_connections"))){
-	$query = "ALTER TABLE game_galleries_connections ADD dateOfEntry datetime NOT NULL DEFAULT CURRENT_TIMESTAMP";
+	$query = "ALTER TABLE game_galleries_connections ADD dateOfEntry TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP";
 	$result = $conn->query($query);
 }
 
@@ -137,7 +137,7 @@ if(!($result = $conn->query("SELECT oidcEmail FROM connections"))){
 }
 
 if(!($result = $conn->query("SELECT dateOfEntry FROM connections"))){
-	$query = "ALTER TABLE connections ADD dateOfEntry datetime NOT NULL DEFAULT CURRENT_TIMESTAMP";
+	$query = "ALTER TABLE connections ADD dateOfEntry TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP";
 	$result = $conn->query($query);
 }
 
@@ -163,11 +163,16 @@ $query="CREATE TABLE IF NOT EXISTS experience_badges(
 		badgeFeedbackMessage varchar(255) COLLATE utf8_unicode_ci NULL DEFAULT NULL,
 		score decimal(15,2) NOT NULL,
 		oidcEmail varchar(255) COLLATE utf8_unicode_ci NULL DEFAULT NULL,
-		dateOfEntry datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+		dateOfEntry TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 		deleted varchar(25) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'false',
 		PRIMARY KEY (badgeId)
 	) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=0";
 $result = $conn->query($query);
+
+if(!($result = $conn->query("SELECT dateOfEntry FROM gallery_tiles"))){
+	$query = "ALTER TABLE gallery_tiles ADD dateOfEntry datetime NOT NULL DEFAULT CURRENT_TIMESTAMP";
+	$result = $conn->query($query);
+}
 
 $query="CREATE TABLE IF NOT EXISTS game_statistics_badges(
 		badgeId int(11) NOT NULL AUTO_INCREMENT,
@@ -178,7 +183,7 @@ $query="CREATE TABLE IF NOT EXISTS game_statistics_badges(
 		badgeRequirementId int(11) NOT NULL,
 		requirementValue decimal(15,2) NOT NULL,
 		oidcEmail varchar(255) COLLATE utf8_unicode_ci NULL DEFAULT NULL,
-		dateOfEntry datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+		dateOfEntry TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 		deleted varchar(25) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'false',
 		PRIMARY KEY (badgeId)
 	) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=0";
@@ -209,6 +214,7 @@ $query="CREATE TABLE IF NOT EXISTS experience_rules_fixed(
 		gamesDesignedFactor decimal(15,2) NULL DEFAULT 50,
 		loginFactor decimal(15,2) NULL DEFAULT 0.5,
 		oidcEmail varchar(255) COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+		dateOfEntry TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 		PRIMARY KEY (ruleId)
 	) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=0";
 $result = $conn->query($query);
@@ -221,7 +227,7 @@ $query="CREATE TABLE IF NOT EXISTS highscore_rules(
 		tryAgain decimal(15,2) NOT NULL DEFAULT 1,
 		hint decimal(15,2) NOT NULL DEFAULT 0.5,
 		oidcEmail varchar(255) COLLATE utf8_unicode_ci NULL DEFAULT NULL,
-		dateOfEntry datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+		dateOfEntry TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 		deleted varchar(25) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'false',
 		PRIMARY KEY (highscoreId)
 	) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=0";
@@ -233,7 +239,7 @@ $query="CREATE TABLE IF NOT EXISTS game_rules(
 		highscoreId int(11) NOT NULL,
 		gameCompletionBadgeSrc varchar(255) COLLATE utf8_unicode_ci NULL DEFAULT NULL,
 		oidcEmail varchar(255) COLLATE utf8_unicode_ci NULL DEFAULT NULL,
-		dateOfEntry datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+		dateOfEntry TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 		deleted varchar(25) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'false',
 		PRIMARY KEY (id)
 	) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=0";
