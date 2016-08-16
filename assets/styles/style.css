@@ -105,6 +105,10 @@ body { list-style: none; }
 #ulwrap-setConnection3 { overflow:hidden; width: 500px; float: left; }
 #setConnection3 ul { height: 100px; width: 500px; float: left; overflow:visible; }
 
+#experienceBadgeGallery { height: 110px; margin:0 0px 0 0px; z-index: 1002 }
+#ulwrap-experienceBadgeGallery { overflow:hidden; width: 500px; float: left; }
+#experienceBadgeGallery ul { height: 100px; width: 500px; float: left; overflow:visible; }
+
 
 .button-left { float: left; }
 .button-right { float: right; }
@@ -126,6 +130,7 @@ body { list-style: none; }
 #setConnection1 li { margin: 0px 2px 0px 2px; }
 #setConnection2 li { margin: 0px 2px 0px 2px; }
 #setConnection3 li { margin: 0px 2px 0px 2px; }
+#experienceBadgeGallery li { margin: 0px 2px 0px 2px; }
 
 /* #wrappergameboard {position: absolute; top: 110px; left: 140px; bottom:110px; right:140px; text-align: center; vertical-align: middle;} */
 #wrappergameboard { position: absolute; top: 35%; left: 15%; bottom:25%; right:15%; }

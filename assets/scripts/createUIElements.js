@@ -544,75 +544,89 @@ $(document).ready(function() {
 	}
 
 	function createExperienceRulesUI(){
-
-		createTextInput("experience-badge-name","Experience Badge Name:","Ex. Level 3","true",false,"#experienceBadgeBlock");
-		createTextInput("experience-badge-desc","Experience Badge Description:","Ex. Advanced level","false",true,"#experienceBadgeBlock");
-		createTextInput("experience-badge-feedback","Feedback Message:","Ex. You are a professional now!","false",true,"#experienceBadgeBlock");
-		createTextInput("experience-badge-points","Required Points:","Ex. 400","true",true,"#experienceBadgeBlock");
-		createSingleUploadButton("uploadExperienceBadge","Add Experience Badge",false,"#AddExperienceBadgeBlock");
-		createButton("showexperiencebadges","show-experience-badges","Show Existing Badges",true,"#AddExperienceBadgeBlock");
+		var color = "#308f44";
+		createTextInput("experience-badge-name","Experience Badge Name:","Ex. Level 3","true",color,false,"#experienceBadgeBlock");
+		createTextInput("experience-badge-desc","Experience Badge Description:","Ex. Advanced level","false",color,true,"#experienceBadgeBlock");
+		createTextInput("experience-badge-feedback","Feedback Message:","Ex. You are a professional now!","false",color,true,"#experienceBadgeBlock");
+		createTextInput("experience-badge-points","Required Points:","Ex. 400","true",color,true,"#experienceBadgeBlock");
+		createSingleUploadButton("uploadExperienceBadge","Add Experience Badge",color,false,"#AddExperienceBadgeBlock");
+		createButton("showexperiencebadges","show-experience-badges","Show Existing Badges",color,true,"#AddExperienceBadgeBlock");
 		createHorizontalGalleryUI("experienceBadgeGallery", false, "#badgeGallery");
 		createMouseEventsGallery("experienceBadgeGallery");
-		createButton("edit-experience-badge-button","button-edit-experience-badge","Edit Badge",false,"#badgeEditDelete");
-		createButton("experience-badge-delete-button","button-delete-experience-badge","Delete Badge",true,"#badgeEditDelete");
+		createButton("edit-experience-badge-button","button-edit-experience-badge","Edit Badge",color,false,"#badgeEditDelete");
+		createButton("experience-badge-delete-button","button-delete-experience-badge","Delete Badge",color,true,"#badgeEditDelete");
+		createButton("experience-badge-undo-delete-button","button-undo-delete-experience-badge","Undo Badge Deletion",color,true,"#badgeEditDelete");
 
-		createTextInput("experience-highscore","Highscore * :","Ex. 1","false",false,"#experienceRules");
-		createTextInput("experience-elearning","No. of eLearning clicks * :","Ex. 3","false",true,"#experienceRules");
-		createTextInput("experience-badges","No. of Badges * :","Ex. 10","false",true,"#experienceRules");
-		createTextInput("experience-gamesDesigned","No. of Games Designed *:","Ex. 100","false",true,"#experienceRules");
-		createTextInput("experience-login","No. of times Logged in:","Ex. 0.5","false",true,"#experienceRules");	
+		createTextInput("edit-experience-badge-name","Experience Badge Name:","","true",color,false,"#editExperienceBadgeBlock");
+		createTextInput("edit-experience-badge-desc","Experience Badge Description:","","false",color,true,"#editExperienceBadgeBlock");
+		createTextInput("edit-experience-badge-feedback","Feedback Message:","","false",color,true,"#editExperienceBadgeBlock");
+		createTextInput("edit-experience-badge-points","Required Points:","","true",color,true,"#editExperienceBadgeBlock");
+		createButton("experience-badge-save-button","button-save-experience-badge","Save",color,true,"#editExperienceBadgeBlock");
+
+		createTextInput("experience-highscore","Highscore: ","Ex. 1","false",color,false,"#experienceRules");
+		createTextInput("experience-elearning","No. of eLearning clicks  :","Ex. 3","false",color,true,"#experienceRules");
+		createTextInput("experience-moreInfo","No. of more Information clicks  :","Ex. 3","false",color,true,"#experienceRules");
+		createTextInput("experience-badges","No. of Badges  :","Ex. 10","false",color,true,"#experienceRules");
+		createTextInput("experience-gamesDesigned","No. of Games Designed :","Ex. 100","false",color,true,"#experienceRules");
+		createTextInput("experience-login","No. of times Logged in:","Ex. 0.5","false",color,true,"#experienceRules");	
 		var $inner1 = $("<fieldset/>", {"data-role":"fieldcontain", class:"ui-block-b"});
-		createButton("experience-save-rules","button-save-experience-rules", "Save Rules", true, $inner1);
+		createButton("experience-save-rules","button-save-experience-rules", "Save Rules",color, true, $inner1);
 		$inner1.appendTo("#experienceRules");	
 
 	}
 
 	function createHighscoreRulesUI(){
-		createSelect("select-highscore", "Select Highscore Version to Edit: ", "false",false, "#editHighscoreBlock");
-		createEditDelete("edit-highscore-button","delete-button-highscore", "button-edit-highscore", "button-delete-highscore", "Edit Highscore Version", "Delete Highscore Version", true, "#editHighscoreBlock");
-		createTextInput("highscore-version","Highscore Version :","Ex. 1.3","false",false,"#highscoreCalBlock");
-		createTextInput("highscore-correct","Points for correct answer :","Ex. 5","true",true,"#highscoreCalBlock");
-		createTextInput("highscore-wrong","Points for wrong answer :","Ex. -2","true",true,"#highscoreCalBlock");
-		createTextInput("highscore-show","Points for clicking 'Show me' button :","Ex. 0","true",true,"#highscoreCalBlock");
-		createTextInput("highscore-tryagain","Points for clicking 'Try Again' button :","Ex. 2","true",true,"#highscoreCalBlock");
-		createTextInput("highscore-hint","Points for clicking 'Hint' button :","Ex. 0.5","true",true,"#highscoreCalBlock");
+		var color = "#c37719";
+		createSelect("select-highscore", "Select Highscore Version to Edit: ", "false",color,false, "#editHighscoreBlock");
+		createEditDelete("edit-highscore-button","delete-button-highscore", "button-edit-highscore", "button-delete-highscore", "Edit Highscore Version", "Delete Highscore Version",color, true, "#editHighscoreBlock");
+		createButton("highscore-undo-delete-button","button-undo-delete-highscore","Undo Version Deletion",color,true,"#editHighscoreBlock");
+		createTextInput("highscore-correct","Points for correct answer :","Ex. 5","true",color,false,"#highscoreCalBlock");
+		createTextInput("highscore-wrong","Points for wrong answer :","Ex. -2","true",color,true,"#highscoreCalBlock");
+		createTextInput("highscore-show","Points for clicking 'Show me' button :","Ex. 0","true",color,true,"#highscoreCalBlock");
+		createTextInput("highscore-tryagain","Points for clicking 'Try Again' button :","Ex. 2","true",color,true,"#highscoreCalBlock");
+		createTextInput("highscore-hint","Points for clicking 'Hint' button :","Ex. 0.5","true",color,true,"#highscoreCalBlock");
 		var $inner1 = $("<fieldset/>", {"data-role":"fieldcontain", class:"ui-block-b"});
-		createButton("highscore-create-rules","button-create-highscore-rules", "Create New Version", true, $inner1);
+		createButton("highscore-create-rules","button-create-highscore-rules", "Create New Version",color, true, $inner1);
+		$inner1.appendTo("#highscoreCalBlock");	
+		$inner1 = $("<fieldset/>", {"data-role":"fieldcontain", class:"ui-block-b"});
+		createButton("highscore-save-rules","button-save-highscore-rules", "Save",color, true, $inner1);
 		$inner1.appendTo("#highscoreCalBlock");	
 	}
 
 	function createBadgeRulesUI(){
-		createTextInput("game-badge-name","Badge Name:","Ex. Correctamundo","true",false,"#BadgeDetailsBlock");
-		createTextInput("game-badge-desc","Badge Description:","Ex. Ten correct answers","false",true,"#BadgeDetailsBlock");
-		createTextInput("game-badge-feedback","Feedback Message:","Ex. You have answered 10 levels correctly!","false",true,"#BadgeDetailsBlock");
-		createSingleUploadButton("uploadGameBadge","Add Badge",false,"#uploadBadgeBlock");
-		createButton("showgamebadges","show-game-badges","Show Existing Badges",true,"#uploadBadgeBlock");
+		var color = "#069090";
+		createTextInput("game-badge-name","Badge Name:","Ex. Correctamundo","true",color,false,"#BadgeDetailsBlock");
+		createTextInput("game-badge-desc","Badge Description:","Ex. Ten correct answers","false",color,true,"#BadgeDetailsBlock");
+		createTextInput("game-badge-feedback","Feedback Message:","Ex. You have answered 10 levels correctly!","false",color,true,"#BadgeDetailsBlock");
+		createSingleUploadButton("uploadGameBadge","Add Badge",color,false,"#uploadBadgeBlock");
+		createButton("showgamebadges","show-game-badges","Show Existing Badges",color,true,"#uploadBadgeBlock");
 		createHorizontalGalleryUI("gameBadgeGallery", false, "#gameBadgeGalBlock");
 		createMouseEventsGallery("gameBadgeGallery");
-		createButton("edit-game-badge-button","button-edit-game-badge","Edit Badge",false,"#editDeleteGameBadgeBlock");
-		createButton("game-badge-delete-button","button-delete-game-badge","Delete Badge",true,"#editDeleteGameBadgeBlock");
+		createButton("edit-game-badge-button","button-edit-game-badge","Edit Badge",color,false,"#editDeleteGameBadgeBlock");
+		createButton("game-badge-delete-button","button-delete-game-badge","Delete Badge",color,true,"#editDeleteGameBadgeBlock");
 	}
 
 	function createGameRulesUI(){
+		var color = "#5f0e88";
 		var $inner1 = $("<fieldset/>", {class:"ui-grid-b sideByside"});
-		createSelect("select-game-assessment","Select Game:","false",false,$inner1);
+		createSelect("select-game-assessment","Select Game:","false",color,false,$inner1);
 
 		var $inner2 = $("<div/>",{class:"ui-block-b"}),
 		$inner3 = $("<fieldset/>",{"data-role":"fieldcontain", class:"ui-block-b"});
-		createButton("edit-game-rules-button","button-edit-game-rules","Edit",true,$inner3);
+		createButton("edit-game-rules-button","button-edit-game-rules","Edit",color,true,$inner3);
 		$inner2.append($inner3).appendTo($inner1);
 		
 		$inner1.prependTo("#SelectGameRulesBlock");
 
 		$inner1 = $("<fieldset/>", {class:"ui-grid-b sideByside"});
-		createSelect("select-highscore-assessment","Select Highscore Version:","false",false,$inner1);
+		createSelect("select-highscore-assessment","Select Highscore Version:","false",color,false,$inner1);
 
 		$inner1.appendTo("#SelectGameRulesBlock");
 
 		createHorizontalGalleryUI("gameCompletionBadgeGallery", false, "#gameBadgeSelectBlock");
 		createMouseEventsGallery("gameCompletionBadgeGallery");
 
-		createButton("game-save-rules","button-save-game-rules","Save",true,"#saveGameRules");
+		createButton("game-save-rules","button-save-game-rules","Save",color,true,"#saveGameRules");
 
 	}
 

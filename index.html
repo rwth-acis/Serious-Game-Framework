@@ -102,6 +102,7 @@
 		<script type="text/javascript" src="assets/scripts/managebadges.js"></script>
 		<script type="text/javascript" src="assets/scripts/manageconnections.js"></script>
 		<script type="text/javascript" src="assets/scripts/managegames.js"></script>
+		<script type="text/javascript" src="assets/scripts/manageexperiencerules.js"></script>
 		<script type="text/javascript" src="assets/scripts/serious-game-framework-new.js"></script>
 
 		<!-- Configuration for mobile devices -->
@@ -562,8 +563,8 @@
 		<div id="assessmentSystemView" data-role="page" class="ui-helper-clearfix bodywrapper">
 			<div data-role="content">
 				<ul data-role="listview" data-inset="true">
-					<li><a href="#assessmentrules " id="assessmentruleslink"><h3>Manage Assessment Rules</h3><p>Create or Edit Assessment Rules.</p></a></li>
-					<li><a href="#gamesrules" id="gamesruleslink"><h3>Game Assessment Rules</h3><p>Set Assessment Rules to Games.</p></a></li>
+					<li><a href="#assessmentrules " id="assessmentruleslink"><h3 style="color: #0e8866;">Manage Assessment Rules</h3><p style="color: #0e8866;">Create or Edit Assessment Rules.</p></a></li>
+					<li><a href="#gamesrules" id="gamesruleslink"><h3 style="color: #5f0e88;">Game Assessment Rules</h3><p style="color: #5f0e88;">Set Assessment Rules to Games.</p></a></li>
 				</ul>
 			</div>
 		</div>
@@ -571,9 +572,9 @@
 		<div id="assessmentrules" data-role="page" class="ui-helper-clearfix bodywrapper">
 			<div data-role="content">
 				<ul data-role="listview" data-inset="true">
-					<li><a href="#experiencerules " id="experienceruleslink"><h3>Manage Experience Rules</h3><p>Edit Experience Rules.</p></a></li>
-					<li><a href="#highscorerules" id="highscoreruleslink"><h3>Manage Highscore Rules</h3><p>Create or Edit Highscore rules.</p></a></li>
-					<li><a href="#badgerules" id="badgeruleslink"><h3>Manage Badge Rules</h3><p>Create or Edit Badge Rules.</p></a></li>
+					<li><a href="#experiencerules " id="experienceruleslink"><h3 style="color: #308f44">Manage Experience Rules</h3><p style="color: #308f44">Edit Experience Rules.</p></a></li>
+					<li><a href="#highscorerules" id="highscoreruleslink"><h3 style="color: #c37719">Manage Highscore Rules</h3><p style="color: #c37719">Create or Edit Highscore rules.</p></a></li>
+					<li><a href="#badgerules" id="badgeruleslink"><h3 style="color: #069090">Manage Badge Rules</h3><p style="color: #069090">Create or Edit Badge Rules.</p></a></li>
 				</ul>
 			</div>
 		</div>
@@ -581,6 +582,7 @@
 		<div id="experiencerules" data-role="page" class="ui-helper-clearfix bodywrapper">
 			<div data-role="content">
 				<div class="ui-content">
+				<h2 style="color: #308f44">Create Experience Badge</h2>
 				<div id="experienceBadgeBlock">
 					
 					</div>
@@ -600,12 +602,17 @@
 							</fieldset>
 						</div>
 					</fieldset>
-
+					<h2 style="color: #308f44">Edit Experience Badge</h2>
+					<div id="editExperienceBadgeBlock">
+					
+					</div>
 					<div id="experience-badge-saved-message"></div>
-					<h2>Experience Calculation Rules</h2>
+					<h2 style="color: #308f44">Experience Calculation Rules</h2>
+					<div id="experienceRulesFormula"></div>
 					<div id=experienceRules>
 					
-					</div>		
+					</div>	
+					<div id="save-experience-rules-message"></div>	
 				</div>
 			</div>
 		</div>
@@ -614,14 +621,16 @@
 		<div id="highscorerules" data-role="page" class="ui-helper-clearfix bodywrapper">
 			<div data-role="content">
 				<div class="ui-content">
-					<h2>Edit Existing Highscore Versions</h2>
+					<h2 style="color: #c37719">Edit Existing Highscore Versions</h2>
 					<fieldset id="editHighscoreBlock" class="ui-grid-b sideByside">
 					
 					</fieldset>	
-					<h2>Highscore Calculation Rules</h2>
+					<div id="highscore-desc-message"></div>
+					<h2 style="color: #c37719">Highscore Calculation Rules</h2>
 					<div id="highscoreCalBlock">
 					
 					</div>
+					<div id="save-highscore-rules-message"></div>
 				</div>
 			</div>
 		</div>
@@ -636,7 +645,7 @@
 					<fieldset class="ui-grid-c sideByside">
 						<div class="ui-block-a">
 							<fieldset data-role="fieldcontain">
-								<label for="select-badge-requirement" class="select"> <p>Select Badge Requirement: </p></label>
+								<label for="select-badge-requirement" class="select"> <p style="color: #069090">Select Badge Requirement: </p></label>
 								<select name="select-badge-requirement" id="select-badge-requirement">
 									<option value='0' selected=true>--Select Criteria--</option>
 									<option value='1'>Game Completion Badge</option>
@@ -683,7 +692,7 @@
 					<div id="SelectGameRulesBlock">
 					
 					</div>
-					<h2>Select Game Completion Badge</h2>
+					<h2 style="color: #5f0e88;">Select Game Completion Badge</h2>
 					<fieldset class="ui-grid-solo sideByside">
 						<div  id="gameBadgeSelectBlock" class="ui-block-a">
 						</div>
