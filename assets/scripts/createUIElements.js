@@ -209,6 +209,22 @@ $(document).ready(function() {
 
 		createButton(editDivName,editElementName,editElementText,textColor, false,$inner2);
 		createButton(delDivName,deleteElementName,deleteElementText,textColor, true,$inner2);
+	
+		if(appendFactor){
+			$inner1.append($inner2).appendTo(elementAppend);
+		}else{
+			$inner1.append($inner2).prependTo(elementAppend);
+		}
+
+	}
+
+	function createEditDeleteShow(editDivName, delDivName, showDivName, editElementName, deleteElementName, showElementName, editElementText, deleteElementText,textColor, appendFactor, elementAppend){
+		var $inner1 = $("<div/>", {class:"ui-block-b"}),
+		$inner2 = $("<fieldset/>", {"data-role":"fieldcontain", class:"ui-block-b"});
+
+		createButton(editDivName,editElementName,editElementText,textColor, false,$inner2);
+		createButton(delDivName,deleteElementName,deleteElementText,textColor, true,$inner2);
+		createButton(showDivName,showElementName,"Show",textColor, true,$inner2);
 		
 		if(appendFactor){
 			$inner1.append($inner2).appendTo(elementAppend);
@@ -305,7 +321,7 @@ $(document).ready(function() {
 		$inner1.appendTo("#galleryInputFields");
 
 		createSelect("select-gallery", "Select Gallery to Edit:","false",color, false, "#galleriesSelectEditDelete");
-		createEditDelete("edit-gallery-button","delete-button-gallery", "button-edit-gallery", "button-delete-gallery", "Edit Gallery", "Delete Gallery",color, true, "#galleriesSelectEditDelete");
+		createEditDeleteShow("edit-gallery-button","delete-button-gallery","show-gallery-button", "button-edit-gallery", "button-delete-gallery", "button-show-gallery", "Edit Gallery", "Delete Gallery",color, true, "#galleriesSelectEditDelete");
 
 		
 		createButton("undo-delete-gallery-button","button-undo-delete-gallery", "Undo Gallery Deletion",color, true, "#galleriesSelectEditDelete");
@@ -555,7 +571,9 @@ $(document).ready(function() {
 		createMouseEventsGallery("experienceBadgeGallery");
 		createButton("edit-experience-badge-button","button-edit-experience-badge","Edit Badge",color,false,"#badgeEditDelete");
 		createButton("experience-badge-delete-button","button-delete-experience-badge","Delete Badge",color,true,"#badgeEditDelete");
+		createButton("show-experience-badge-button","button-show-experience-badge","Show Details",color,false,"#badgeEditDelete");
 		createButton("experience-badge-undo-delete-button","button-undo-delete-experience-badge","Undo Badge Deletion",color,true,"#badgeEditDelete");
+
 
 		createTextInput("edit-experience-badge-name","Experience Badge Name:","","true",color,false,"#editExperienceBadgeBlock");
 		createTextInput("edit-experience-badge-desc","Experience Badge Description:","","false",color,true,"#editExperienceBadgeBlock");
@@ -578,7 +596,7 @@ $(document).ready(function() {
 	function createHighscoreRulesUI(){
 		var color = "#c37719";
 		createSelect("select-highscore", "Select Highscore Version to Edit: ", "false",color,false, "#editHighscoreBlock");
-		createEditDelete("edit-highscore-button","delete-button-highscore", "button-edit-highscore", "button-delete-highscore", "Edit Highscore Version", "Delete Highscore Version",color, true, "#editHighscoreBlock");
+		createEditDeleteShow("edit-highscore-button","delete-button-highscore","show-highscore-button", "button-edit-highscore", "button-delete-highscore","button-show-highscore", "Edit Highscore Version", "Delete Highscore Version",color, true, "#editHighscoreBlock");
 		createButton("highscore-undo-delete-button","button-undo-delete-highscore","Undo Version Deletion",color,true,"#editHighscoreBlock");
 		createButton("highscore-reset-button","button-reset-highscore","Reset",color,true,"#editHighscoreBlock");
 		createTextInput("highscore-correct","Points for correct answer :","Ex. 5","true",color,false,"#highscoreCalBlock");

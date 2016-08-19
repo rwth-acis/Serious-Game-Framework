@@ -104,6 +104,9 @@ if($result = $conn->query("SELECT highscoreId FROM highscore_rules WHERE deleted
 
 		$result1 = $conn->query("UPDATE game_rules SET highscoreId='$defaultHighscore' WHERE highscoreId='$highscoreId'");
 
+		$sql2 = "DELETE FROM highscore_rules WHERE highscoreId='$highscoreId'";
+		$result2 = $conn->query($sql2);
+
 	}
 }
 		

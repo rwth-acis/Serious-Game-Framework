@@ -20,7 +20,7 @@ function rand(min, max) {
 
 		$('.select').find('option').css("height","20px");
 
-				
+		
 		$('#highscoreruleslink').click(function() { 
 			reloadDataFromDatabase();
 		});
@@ -41,21 +41,39 @@ function rand(min, max) {
 
 			$('#highscore-save-rules').find('*').prop('disabled',true);
 			$('#highscore-save-rules').find('*').addClass('ui-disabled');
-			
+
+			var check  = true;
 			if(highscoreId == -1){
-				$('#edit-highscore-button').find('*').prop('disabled',true);
-				$('#edit-highscore-button').find('*').addClass('ui-disabled');
-
-				$('#delete-button-highscore').find('*').prop('disabled',true);
-				$('#delete-button-highscore').find('*').addClass('ui-disabled');
-
+				check = false;
+				$('#show-highscore-button').find('*').prop('disabled',true);
+				$('#show-highscore-button').find('*').addClass('ui-disabled');
+			}else{
+				var email = $('option:selected', $('#select-highscore')).attr('email');
+				if(email != oidc_userinfo.email){
+					check = false;
+					$('#show-highscore-button').find('*').prop('disabled',false);
+					$('#show-highscore-button').find('*').removeClass('ui-disabled');
+				}else{
+					$('#show-highscore-button').find('*').prop('disabled',true);
+					$('#show-highscore-button').find('*').addClass('ui-disabled');
+				}
+				
 			}
-			else{
+			
+			if(check){
 				$('#edit-highscore-button').find('*').prop('disabled',false);
 				$('#edit-highscore-button').find('*').removeClass('ui-disabled');
 
 				$('#delete-button-highscore').find('*').prop('disabled',false);
 				$('#delete-button-highscore').find('*').removeClass('ui-disabled');
+			}
+			else{
+				$('#edit-highscore-button').find('*').prop('disabled',true);
+				$('#edit-highscore-button').find('*').addClass('ui-disabled');
+
+				$('#delete-button-highscore').find('*').prop('disabled',true);
+				$('#delete-button-highscore').find('*').addClass('ui-disabled');
+				
 			}
 		});
 
@@ -65,6 +83,23 @@ function rand(min, max) {
 			
 			$('#highscore-save-rules').find('*').prop('disabled',false);
 			$('#highscore-save-rules').find('*').removeClass('ui-disabled');
+
+			$('#highscore-create-rules').find('*').prop('disabled',true);
+			$('#highscore-create-rules').find('*').addClass('ui-disabled');
+			
+			$('#highscore-undo-delete-button').fadeOut();
+			var highscoreIndex = $('select[name=select-highscore]').val();
+			getHighscoreVersionDetails(highscoreIndex);
+			
+			
+		});
+
+		$('#button-show-highscore').click(function() {
+			
+			$('#save-highscore-rules-message').text("");
+			
+			$('#highscore-save-rules').find('*').prop('disabled',true);
+			$('#highscore-save-rules').find('*').addClass('ui-disabled');
 
 			$('#highscore-create-rules').find('*').prop('disabled',true);
 			$('#highscore-create-rules').find('*').addClass('ui-disabled');
@@ -110,6 +145,9 @@ function rand(min, max) {
 			$('#delete-button-highscore').find('*').prop('disabled',true);
 			$('#delete-button-highscore').find('*').addClass('ui-disabled');
 
+			$('#show-highscore-button').find('*').prop('disabled',true);
+			$('#show-highscore-button').find('*').addClass('ui-disabled');
+
 			$('#highscore-save-rules').find('*').prop('disabled',true);
 			$('#highscore-save-rules').find('*').addClass('ui-disabled');
 
@@ -131,6 +169,7 @@ function rand(min, max) {
 			setButtonColor($('#highscore-create-rules'));
 			setButtonColor($('#highscore-save-rules'));
 			setButtonColor($('#highscore-reset-button'));
+			setButtonColor($('#show-highscore-button'));
 		}
 
 		function setButtonColor(divName){
@@ -164,9 +203,7 @@ function rand(min, max) {
 
 			if(jsondata != null && jsondata != undefined && jsondata.length != 0){
 				$.each(jsondata, function(index, value) {
-					if(value.oidcEmail == oidc_userinfo.email){
-						$('#select-highscore').append('<option value="'+ index +'" description="">' + value.highscoreId + '</option>');
-					}
+					$('#select-highscore').append('<option value="'+ index +'" email="'+value.oidcEmail+'" description="">' + value.highscoreId + '</option>');
 				});
 			}
 			setButtonColor($("#select-highscore").parent());
@@ -209,37 +246,37 @@ function rand(min, max) {
 				$('#save-highscore-rules-message').append(saveHighscoreMessage);
 			} else{
 
-			formdata = false;
-			if (window.FormData) {
-				formdata = new FormData();
+				formdata = false;
+				if (window.FormData) {
+					formdata = new FormData();
+				}
+
+				var highscoreVersion = $('#select-highscore :selected').text();
+
+				formdata.append("highscoreId",highscoreVersion);
+				formdata.append("correct",correct);
+				formdata.append("wrong",wrong);
+				formdata.append("showMe",showMe);
+				formdata.append("tryAgain",tryAgain);
+				formdata.append("hint",hint);
+
+				if(formdata){
+					$.ajax({
+						url: "lib/database/update_highscore.php",
+						type: "POST",
+						data: formdata,
+						processData: false,
+						contentType: false,
+						success: function(data){
+							resetHighscoreRulesView();
+							$('#save-highscore-rules-message').text("");
+							var saveHighscoreMessage = $('<h2 style="color:#794b06;">Highscore version "'+highscoreVersion+'" is saved successfully!</h2>');
+							$('#save-highscore-rules-message').append(saveHighscoreMessage);
+
+						}
+					});
+				}
 			}
-
-			var highscoreVersion = $('#select-highscore :selected').text();
-
-			formdata.append("highscoreId",highscoreVersion);
-			formdata.append("correct",correct);
-			formdata.append("wrong",wrong);
-			formdata.append("showMe",showMe);
-			formdata.append("tryAgain",tryAgain);
-			formdata.append("hint",hint);
-
-			if(formdata){
-				$.ajax({
-					url: "lib/database/update_highscore.php",
-					type: "POST",
-					data: formdata,
-					processData: false,
-					contentType: false,
-					success: function(data){
-						resetHighscoreRulesView();
-						$('#save-highscore-rules-message').text("");
-						var saveHighscoreMessage = $('<h2 style="color:#794b06;">Highscore version "'+highscoreVersion+'" is saved successfully!</h2>');
-						$('#save-highscore-rules-message').append(saveHighscoreMessage);
-
-					}
-				});
-			}
-		}
 
 		}
 
@@ -280,7 +317,7 @@ function rand(min, max) {
 						contentType: false,
 						success: function(data){
 							resetHighscoreRulesView();
-							var saveHighscoreMessage = $('<h2 style="color:#794b06;">Highscore version created successfully!</h2>');
+							var saveHighscoreMessage = $('<h2 style="color:#794b06;">Highscore version \''+data+'\' is created successfully!</h2>');
 							$('#save-highscore-rules-message').append(saveHighscoreMessage);
 
 						}

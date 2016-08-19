@@ -37,7 +37,7 @@ if($result = $conn->query("SELECT gameId FROM game_galleries_connections ORDER B
 } else {
     echo "0 results";
 }
-	if($max == NULL) $max = 0;
+	if($max == NULL) $max = 1;
 }
 
 $sql = "INSERT INTO game_rules (gameId, gameName, gameDescription, highscoreId, oidcEmail) VALUES ";

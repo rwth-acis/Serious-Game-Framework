@@ -77,28 +77,45 @@ function rand(min, max) {
 		$('#edit'+galleryElementName).on('click', 'li', function() {
 			$('#experience-badge-undo-delete-button').fadeOut();
 			resetEditView();
-			if($(this).attr('email') == oidc_userinfo.email){
-				BADGE_INDEX = $(this).attr('badgeIndex');
-				$('#create-experience-badge-message').text("");
-				$('#experience-badge-saved-message').text("");
+			
+			BADGE_INDEX = $(this).attr('badgeIndex');
+			$('#create-experience-badge-message').text("");
+			$('#experience-badge-saved-message').text("");
 
-				if($(this).hasClass("active")){
-					$(this).removeClass("active");
+			if($(this).hasClass("active")){
+				$(this).removeClass("active");
+				
 					$('#edit-experience-badge-button').find('*').prop('disabled',true);
 					$('#edit-experience-badge-button').find('*').addClass('ui-disabled');
 					$('#experience-badge-delete-button').find('*').prop('disabled',true);
 					$('#experience-badge-delete-button').find('*').addClass('ui-disabled');
-				} else {
-					$(this).addClass("active");
+					$('#show-experience-badge-button').find('*').prop('disabled',true);
+					$('#show-experience-badge-button').find('*').addClass('ui-disabled');
+				
+
+			} else {
+				$(this).addClass("active");
+				if($(this).attr('email') == oidc_userinfo.email){
 					$('#edit-experience-badge-button').find('*').prop('disabled',false);
 					$('#edit-experience-badge-button').find('*').removeClass('ui-disabled');
 					$('#edit-experience-badge-button').css('opacity','1');
 					$('#experience-badge-delete-button').find('*').prop('disabled',false);
 					$('#experience-badge-delete-button').find('*').removeClass('ui-disabled');
 					$('#experience-badge-delete-button').css('opacity','1');
+					$('#show-experience-badge-button').find('*').prop('disabled',true);
+					$('#show-experience-badge-button').find('*').addClass('ui-disabled');
+				}else{
+					$('#edit-experience-badge-button').find('*').prop('disabled',true);
+					$('#edit-experience-badge-button').find('*').addClass('ui-disabled');
+					$('#experience-badge-delete-button').find('*').prop('disabled',true);
+					$('#experience-badge-delete-button').find('*').addClass('ui-disabled');
+					$('#show-experience-badge-button').find('*').prop('disabled',false);
+					$('#show-experience-badge-button').find('*').removeClass('ui-disabled');
+					$('#show-experience-badge-button').css('opacity','1');
 				}
-				$(this).siblings().removeClass("active");
 			}
+			$(this).siblings().removeClass("active");
+			
 		});
 		$('#button-delete-experience-badge').click(function(){
 			$('#experience-badge-undo-delete-button').fadeOut();
@@ -114,7 +131,21 @@ function rand(min, max) {
 			$('#create-experience-badge-message').text("");
 			$('#experience-badge-saved-message').text("");
 
-			activateEditView();
+			activateEditView(true);
+
+			$('#edit-experience-badge-name')[0].value = EXPERIENCE_BADGES[BADGE_INDEX]["badgeName"];
+			$('#edit-experience-badge-desc')[0].value = EXPERIENCE_BADGES[BADGE_INDEX]["badgeDescription"];
+			$('#edit-experience-badge-feedback')[0].value = EXPERIENCE_BADGES[BADGE_INDEX]["badgeFeedbackMessage"];
+			$('#edit-experience-badge-points')[0].value = EXPERIENCE_BADGES[BADGE_INDEX]["score"];		
+
+		});
+
+		$('#button-show-experience-badge').click(function(){
+			$('#experience-badge-undo-delete-button').fadeOut();
+			$('#create-experience-badge-message').text("");
+			$('#experience-badge-saved-message').text("");
+
+			activateEditView(false);
 
 			$('#edit-experience-badge-name')[0].value = EXPERIENCE_BADGES[BADGE_INDEX]["badgeName"];
 			$('#edit-experience-badge-desc')[0].value = EXPERIENCE_BADGES[BADGE_INDEX]["badgeDescription"];
@@ -154,6 +185,12 @@ function rand(min, max) {
 		$('#show-experience-badges').click(function(){
 			$('#experience-badge-undo-delete-button').fadeOut();
 			$('#'+galleryElementName + ' ul').children().remove();
+			$('#edit-experience-badge-button').find('*').prop('disabled',true);
+			$('#edit-experience-badge-button').find('*').addClass('ui-disabled');
+			$('#experience-badge-delete-button').find('*').prop('disabled',true);
+			$('#experience-badge-delete-button').find('*').addClass('ui-disabled');
+			$('#show-experience-badge-button').find('*').prop('disabled',true);
+			$('#show-experience-badge-button').find('*').addClass('ui-disabled');
 			getExperienceBadges();
 		});
 
@@ -164,6 +201,8 @@ function rand(min, max) {
 			$('#edit-experience-badge-button').find('*').addClass('ui-disabled');
 			$('#experience-badge-delete-button').find('*').prop('disabled',true);
 			$('#experience-badge-delete-button').find('*').addClass('ui-disabled');
+			$('#show-experience-badge-button').find('*').prop('disabled',true);
+			$('#show-experience-badge-button').find('*').addClass('ui-disabled');
 			$('#uploadExperienceBadge').prop('disabled',true);
 			$('.fileinput-button').css('opacity','0.3');
 			$('#experience-badge-name')[0].value = "";
@@ -182,6 +221,7 @@ function rand(min, max) {
 			setButtonColor($('#experience-save-rules'));
 			setButtonColor($('#experience-badge-undo-delete-button'));
 			setButtonColor($('#experience-badge-save-button'));
+			setButtonColor($('#show-experience-badge-button'));
 
 		}
 
@@ -189,7 +229,7 @@ function rand(min, max) {
 			$('#edit-experience-badge-name')[0].value = "";
 			$("#edit-experience-badge-name").attr('disabled','disabled');
 			$("#edit-experience-badge-name").parent().css( "background-color", "#e7e7e7" );
-		
+
 			$('#edit-experience-badge-desc')[0].value = "";
 			$("#edit-experience-badge-desc").attr('disabled','disabled');
 			$("#edit-experience-badge-desc").parent().css( "background-color", "#e7e7e7" );
@@ -201,17 +241,17 @@ function rand(min, max) {
 			$('#edit-experience-badge-points')[0].value = "";
 			$("#edit-experience-badge-points").attr('disabled','disabled');
 			$("#edit-experience-badge-points").parent().css( "background-color", "#e7e7e7" );
-		
+
 			$('#experience-badge-save-button').find('*').prop('disabled',true);
 			$('#experience-badge-save-button').find('*').addClass('ui-disabled');
 		}
 
-		function activateEditView(){
+		function activateEditView(boolean){
 			$('#edit-experience-badge-name').parent().parent().find('*').removeAttr('disabled');
 			$('#edit-experience-badge-name').parent().parent().find('*').removeClass('ui-disabled');
 			$('#edit-experience-badge-name').parent().parent().find('*').removeClass('ui-state-disabled');
 			$("#edit-experience-badge-name").parent().parent().find('*').css( "background-color", "" );
-		
+
 			$('#edit-experience-badge-desc').parent().parent().find('*').removeAttr('disabled');
 			$('#edit-experience-badge-desc').parent().parent().find('*').removeClass('ui-disabled');
 			$('#edit-experience-badge-desc').parent().parent().find('*').removeClass('ui-state-disabled');
@@ -226,7 +266,7 @@ function rand(min, max) {
 			$('#edit-experience-badge-points').parent().parent().find('*').removeClass('ui-disabled');
 			$('#edit-experience-badge-points').parent().parent().find('*').removeClass('ui-state-disabled');
 			$("#edit-experience-badge-points").parent().parent().find('*').css( "background-color", "" );
-			enableSaveButton();
+			enableSaveButton(boolean);
 			
 		}
 
@@ -251,13 +291,13 @@ function rand(min, max) {
 			}
 		}
 
-		function enableSaveButton(){
-			if($.trim($('#edit-experience-badge-name')[0].value)!= "" && $.isNumeric($.trim($('#edit-experience-badge-points')[0].value))){
+		function enableSaveButton(boolean){
+			if($.trim($('#edit-experience-badge-name')[0].value)!= "" && $.isNumeric($.trim($('#edit-experience-badge-points')[0].value)) && boolean){
 				$('#experience-badge-save-button').find('*').prop('disabled',false);
-			$('#experience-badge-save-button').find('*').removeClass('ui-disabled');
+				$('#experience-badge-save-button').find('*').removeClass('ui-disabled');
 			} else{
-			$('#experience-badge-save-button').find('*').prop('disabled',true);
-			$('#experience-badge-save-button').find('*').addClass('ui-disabled');
+				$('#experience-badge-save-button').find('*').prop('disabled',true);
+				$('#experience-badge-save-button').find('*').addClass('ui-disabled');
 			}
 		}
 
@@ -317,25 +357,25 @@ function rand(min, max) {
 					processData: false,
 					contentType: false,
 					success: function(data){
-					getExperienceBadges();
-					$('#create-experience-badge-message').text("");
-					var createBadgeMessage = $('<h2 style="color:#025814;">New Badge added successfully!</h2>');
-					$('#create-experience-badge-message').append(createBadgeMessage);
-					$('#experience-badge-saved-message').text("");
-					$('#uploadExperienceBadge').prop('disabled',true);
-					$('.fileinput-button').css('opacity','0.3');
-					$('#experience-badge-name')[0].value = "";
-					$('#experience-badge-desc')[0].value = "";
-					$('#experience-badge-feedback')[0].value = "";
-					$('#experience-badge-points')[0].value = "";
+						getExperienceBadges();
+						$('#create-experience-badge-message').text("");
+						var createBadgeMessage = $('<h2 style="color:#025814;">New Badge added successfully!</h2>');
+						$('#create-experience-badge-message').append(createBadgeMessage);
+						$('#experience-badge-saved-message').text("");
+						$('#uploadExperienceBadge').prop('disabled',true);
+						$('.fileinput-button').css('opacity','0.3');
+						$('#experience-badge-name')[0].value = "";
+						$('#experience-badge-desc')[0].value = "";
+						$('#experience-badge-feedback')[0].value = "";
+						$('#experience-badge-points')[0].value = "";
 
-				}
-			});
+					}
+				});
 			}
 		}
 
 		function saveExperienceBadge(badgeSrc){
-				
+
 			var badgeName = $.trim($('#edit-experience-badge-name')[0].value);
 			var badgeDescription = $.trim($('#edit-experience-badge-desc')[0].value);
 			var badgeFeedbackMessage = $.trim($('#edit-experience-badge-feedback')[0].value);
@@ -360,18 +400,18 @@ function rand(min, max) {
 					processData: false,
 					contentType: false,
 					success: function(data){
-					
-					EXPERIENCE_BADGES[BADGE_INDEX]["badgeName"] = badgeName;
-					EXPERIENCE_BADGES[BADGE_INDEX]["badgeDescription"] = badgeDescription;
-					EXPERIENCE_BADGES[BADGE_INDEX]["badgeFeedbackMessage"] = badgeFeedbackMessage ;
-					EXPERIENCE_BADGES[BADGE_INDEX]["score"] = score;
-					$('#experience-badge-saved-message').text("");
-					var saveBadgeMessage = $('<h2 style="color:#025814;">Badge Details saved successfully!</h2>');
-					$('#experience-badge-saved-message').append(saveBadgeMessage);
-					$('#create-experience-badge-message').text("");
 
-				}
-			});
+						EXPERIENCE_BADGES[BADGE_INDEX]["badgeName"] = badgeName;
+						EXPERIENCE_BADGES[BADGE_INDEX]["badgeDescription"] = badgeDescription;
+						EXPERIENCE_BADGES[BADGE_INDEX]["badgeFeedbackMessage"] = badgeFeedbackMessage ;
+						EXPERIENCE_BADGES[BADGE_INDEX]["score"] = score;
+						$('#experience-badge-saved-message').text("");
+						var saveBadgeMessage = $('<h2 style="color:#025814;">Badge Details saved successfully!</h2>');
+						$('#experience-badge-saved-message').append(saveBadgeMessage);
+						$('#create-experience-badge-message').text("");
+
+					}
+				});
 			}
 			
 		}
@@ -387,41 +427,41 @@ function rand(min, max) {
 
 			if(!($.isNumeric(highscore) && $.isNumeric(elearning) && $.isNumeric(moreInfo) && $.isNumeric(badges) && $.isNumeric(gamesDesigned) && $.isNumeric(noOfLogins))){
 				$('#save-experience-rules-message').text("");
-					var saveRulesMessage = $('<h2 style="color:#025814;">Please enter only numerical values and save again</h2>');
-					$('#save-experience-rules-message').append(saveRulesMessage);
+				var saveRulesMessage = $('<h2 style="color:#025814;">Please enter only numerical values and save again</h2>');
+				$('#save-experience-rules-message').append(saveRulesMessage);
 			}else{
 
-			formdata = false;
-			if (window.FormData) {
-				formdata = new FormData();
-			}
-			formdata.append("ruleId",RULE_ID);
-			formdata.append("highscoreFactor",highscore);
-			formdata.append("eLearningLinkFactor",elearning);
-			formdata.append("moreInformationLinkFactor",moreInfo);
-			formdata.append("badgeFactor",badges);
-			formdata.append("gamesDesignedFactor",gamesDesigned);
-			formdata.append("loginFactor",noOfLogins);
-			formdata.append("oidcEmail",oidc_userinfo.email);
+				formdata = false;
+				if (window.FormData) {
+					formdata = new FormData();
+				}
+				formdata.append("ruleId",RULE_ID);
+				formdata.append("highscoreFactor",highscore);
+				formdata.append("eLearningLinkFactor",elearning);
+				formdata.append("moreInformationLinkFactor",moreInfo);
+				formdata.append("badgeFactor",badges);
+				formdata.append("gamesDesignedFactor",gamesDesigned);
+				formdata.append("loginFactor",noOfLogins);
+				formdata.append("oidcEmail",oidc_userinfo.email);
 
 				if(formdata){
-				$.ajax({
-					url: "lib/database/update_experience_rules.php",
-					type: "POST",
-					data: formdata,
-					processData: false,
-					contentType: false,
-					success: function(data){
-					getExperienceRules();
-					$('#save-experience-rules-message').text("");
-					var saveRulesMessage = $('<h2 style="color:#025814;">Experience Rules saved successfully!</h2>');
-					$('#save-experience-rules-message').append(saveRulesMessage);
-					
+					$.ajax({
+						url: "lib/database/update_experience_rules.php",
+						type: "POST",
+						data: formdata,
+						processData: false,
+						contentType: false,
+						success: function(data){
+							getExperienceRules();
+							$('#save-experience-rules-message').text("");
+							var saveRulesMessage = $('<h2 style="color:#025814;">Experience Rules saved successfully!</h2>');
+							$('#save-experience-rules-message').append(saveRulesMessage);
+
+						}
+					});
 				}
-			});
+
 			}
-			
-		}
 		}
 
 		function getExperienceRules(){
