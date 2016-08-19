@@ -18,18 +18,11 @@ function rand(min, max) {
 		var LAST_DELETED_VERSION = ""; 
 		var HIGHSCORE_VERSIONS = "";
 
-
-		setGalleryHeight();
 		$('.select').find('option').css("height","20px");
 
-		$(window).resize(function() {
-			setGalleryHeight();
-			setGalleryWidth();
-		});
-
-		
+				
 		$('#highscoreruleslink').click(function() { 
-			resetHighscoreRulesView();
+			reloadDataFromDatabase();
 		});
 
 		$('#select-highscore').change(function(){
@@ -108,7 +101,7 @@ function rand(min, max) {
 		function resetHighscoreRulesView(){
 			$('#select-highscore').children().remove();
 			getHighscoreVersionsList();
-
+			
 			$('#save-highscore-rules-message').text("");
 			$('#highscore-desc-message').text("");
 			$('#edit-highscore-button').find('*').prop('disabled',true);
@@ -354,36 +347,11 @@ function rand(min, max) {
 			}
 		}
 
-		function setGalleryWidth() {
-			var connWidth = $('#'+galleryElement).width();
-			$('#ulwrap-'+galleryElement).width(connWidth-75);
-			CONNECTIONSul.width((102 * CONNECTIONSul.children().length));
-			
+		function reloadDataFromDatabase(){
+			var url = "assets/scripts/loadData.js";
+			$.getScript( url, function() {
+				resetHighscoreRulesView();
+			});
 		}
-		function setGalleryHeight() {
-			var myWidth = 0, myHeight = 0;
-			if( typeof( window.innerWidth ) == 'number' ) {
-			//Non-IE
-			myWidth = window.innerWidth;
-			myHeight = window.innerHeight;
-		} else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
-			//IE 6+ in 'standards compliant mode'
-			myWidth = document.documentElement.clientWidth;
-			myHeight = document.documentElement.clientHeight;
-		} else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
-			//IE 4 compatible
-			myWidth = document.body.clientWidth;
-			myHeight = document.body.clientHeight;
-		}
-		//alert("height: " + myHeight);
-		var galHeight = myHeight*0.6;
-		var wrapperHeight = galHeight+110;
-	/*	$('#populateeditlevelswrapper').height(myHeight);
-		$('#populateeditlevels').height(wrapperHeight);
-		$('#populateeditlevels ul').height(galHeight);*/
-		
-		//var galWidth = myWidth-280;
-		
-	}
 
-});	
+	});	

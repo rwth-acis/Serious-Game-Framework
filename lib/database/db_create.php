@@ -236,6 +236,8 @@ $result = $conn->query($query);
 $query="CREATE TABLE IF NOT EXISTS game_rules(
 		id int(11) NOT NULL AUTO_INCREMENT,
 		gameId int(11) NOT NULL,
+		gameName varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+		gameDescription varchar(255) COLLATE utf8_unicode_ci NULL DEFAULT NULL,
 		highscoreId int(11) NOT NULL,
 		gameCompletionBadgeSrc varchar(255) COLLATE utf8_unicode_ci NULL DEFAULT NULL,
 		oidcEmail varchar(255) COLLATE utf8_unicode_ci NULL DEFAULT NULL,

@@ -36,7 +36,7 @@ function rand(min, max) {
 		CONNECTIONSul = $("ul", CONNECTIONS);
 		
 		$('#editconnectionslink').click(function() { 
-			resetEditConnectionsView();
+			reloadDataFromDatabase();
 		});
 
 		$('#'+galleryTileId).on('click', 'li', function() { // id of clicked li by directly accessing DOMElement property
@@ -254,6 +254,13 @@ function rand(min, max) {
 				});
 				setGalleryWidth();
 			}
+		}
+
+		function reloadDataFromDatabase(){
+			var url = "assets/scripts/loadData.js";
+			$.getScript( url, function() {
+				resetEditConnectionsView();
+			});
 		}
 
 		function setGalleryWidth() {

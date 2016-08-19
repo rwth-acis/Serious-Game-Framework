@@ -19,5 +19,33 @@ $gameCategory = $_POST['gameCategory'];
 $oidcEmail = $_POST['oidcEmail'];
 $sql .= "('".$gameName."', '".$gameCategory."', '".$gameDescription."', '".$gameDescriptionText."', '".$gameDesignerName."', '".$gameDesignerInstitution."', '".$gameDesignerEmail."', '".$gallery1Id."', '".$gallery2Id."', '".$gallery3Id."', '".$gallery4Id."', '".$connection1Id."', '".$connection2Id."', '".$connection3Id."', '".$oidcEmail."')";
 $result = $conn->query($sql);
+
+
+$max = 0;
+if($result = $conn->query("SELECT gameId FROM game_galleries_connections ORDER BY gameId DESC LIMIT 1")){
+
+	/*while($row = $result->fetch_array(MYSQL_ASSOC)) {
+		$myArray[] = $row;
+	}*/
+	if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+       
+        $max = $row["gameId"];
+    }
+    echo $max;
+} else {
+    echo "0 results";
+}
+	if($max == NULL) $max = 0;
+}
+
+$sql = "INSERT INTO game_rules (gameId, gameName, gameDescription, highscoreId, oidcEmail) VALUES ";
+
+$highscoreId = 1;
+
+$sql .= "(".$max.", '".$gameName."', '".$gameDescription."', ".$highscoreId.", '".$oidcEmail."')";
+$result = $conn->query($sql);
+
 $conn->close();
 ?>

@@ -142,7 +142,7 @@ function rand(min, max) {
 		});
 
 		$('#reset-gallery-button').click(function() {
-			resetGalleryView();
+			reloadDataFromDatabase();
 		});
 
 		$('#gallery-name').on('change keyup paste',function() { 
@@ -634,6 +634,13 @@ function rand(min, max) {
 			resetGalleryView();
 		});
 	}
+
+	function reloadDataFromDatabase(){
+			var url = "assets/scripts/loadData.js";
+			$.getScript( url, function() {
+				resetGalleryView();
+			});
+		}
 
 	function setGalleryWidth() {
 		var galWidth = $('#'+galleryElementName).width();

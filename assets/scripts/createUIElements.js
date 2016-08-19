@@ -605,6 +605,11 @@ $(document).ready(function() {
 		createMouseEventsGallery("gameBadgeGallery");
 		createButton("edit-game-badge-button","button-edit-game-badge","Edit Badge",color,false,"#editDeleteGameBadgeBlock");
 		createButton("game-badge-delete-button","button-delete-game-badge","Delete Badge",color,true,"#editDeleteGameBadgeBlock");
+		createButton("game-badge-undo-delete-button","button-undo-delete-game-badge","Undo Badge Deletion",color,true,"#editDeleteGameBadgeBlock");
+		createTextInput("edit-game-badge-name","Badge Name:","Ex. Correctamundo","true",color,false,"#EditBadgeDetailsBlock");
+		createTextInput("edit-game-badge-desc","Badge Description:","Ex. Ten correct answers","false",color,true,"#EditBadgeDetailsBlock");
+		createTextInput("edit-game-badge-feedback","Feedback Message:","Ex. You have answered 10 levels correctly!","false",color,true,"#EditBadgeDetailsBlock");
+		createButton("game-badge-save-button","button-save-game-badge","Save",color,true,"#gameBadgeSaveButtonDiv");
 	}
 
 	function createGameRulesUI(){
@@ -622,7 +627,7 @@ $(document).ready(function() {
 		$inner1 = $("<fieldset/>", {class:"ui-grid-b sideByside"});
 		createSelect("select-highscore-assessment","Select Highscore Version:","false",color,false,$inner1);
 
-		$inner1.appendTo("#SelectGameRulesBlock");
+		$inner1.appendTo("#EditGameRulesBlock");
 
 		createHorizontalGalleryUI("gameCompletionBadgeGallery", false, "#gameBadgeSelectBlock");
 		createMouseEventsGallery("gameCompletionBadgeGallery");

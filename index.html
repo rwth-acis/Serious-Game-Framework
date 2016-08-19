@@ -104,6 +104,8 @@
 		<script type="text/javascript" src="assets/scripts/managegames.js"></script>
 		<script type="text/javascript" src="assets/scripts/manageexperiencerules.js"></script>
 		<script type="text/javascript" src="assets/scripts/manageHighscoreRules.js"></script>
+		<script type="text/javascript" src="assets/scripts/manageBadgeRules.js"></script>
+		<script type="text/javascript" src="assets/scripts/manageGameRules.js"></script>
 		<script type="text/javascript" src="assets/scripts/serious-game-framework-new.js"></script>
 
 		<!-- Configuration for mobile devices -->
@@ -642,13 +644,14 @@
 		<div id="badgerules" data-role="page" class="ui-helper-clearfix bodywrapper">
 			<div data-role="content">
 				<div class="ui-content">
+				<h2 style="color: #069090">Create Badge</h2>
 				<div id="BadgeDetailsBlock">
 					
 					</div>
 					<fieldset class="ui-grid-c sideByside">
 						<div class="ui-block-a">
 							<fieldset data-role="fieldcontain">
-								<label for="select-badge-requirement" class="select"> <p style="color: #069090">Select Badge Requirement: </p></label>
+								<label for="select-badge-requirement" class="select"> <p style="color: #069090">Select Badge Requirement: <span id="required1">*</span></p></label>
 								<select name="select-badge-requirement" id="select-badge-requirement">
 									<option value='0' selected=true>--Select Criteria--</option>
 									<option value='1'>Game Completion Badge</option>
@@ -666,11 +669,11 @@
 						</div>
 
 					</fieldset>	
+					<div id="game-badge-error-message"></div>
 					<fieldset id="uploadBadgeBlock" data-role="fieldcontain">
 						
 					</fieldset>
-					<div id="create-game-badge-message"></div>
-
+					
 					<fieldset class="ui-grid-solo sideByside">
 						<div  id="gameBadgeGalBlock" class="ui-block-a">
 							
@@ -683,7 +686,32 @@
 					</fieldset>
 
 					<div id="game-badge-saved-message"></div>
+					<h2 style="color: #069090">Edit Badge Details</h2>
+					<div id="EditBadgeDetailsBlock">
 					
+					</div>
+					<fieldset class="ui-grid-c sideByside">
+						<div class="ui-block-a">
+							<fieldset data-role="fieldcontain">
+								<label for="edit-select-badge-requirement" class="select"> <p style="color: #069090">Select Badge Requirement: <span id="required2">*</span></p></label>
+								<select name="edit-select-badge-requirement" id="edit-select-badge-requirement">
+									<option value='0' selected=true>--Select Criteria--</option>
+									<option value='1'>Game Completion Badge</option>
+									<option value='2'>No. of Correct Levels</option>
+									<option value='3'>No. of times 'eLearning' link is used</option>
+									<option value='4'>No. of times 'More Information' link is used</option>
+									<option value='5'>No. of times 'Try Again' is used</option>
+								</select>
+							</fieldset>
+						</div>
+						<div  class="ui-block-b">
+							<fieldset data-role="fieldcontain">
+								<input name="edit-game-badge-points" id="edit-game-badge-points" value="" type="text">
+							</fieldset>
+						</div>
+
+					</fieldset>	
+					<div id="gameBadgeSaveButtonDiv"></div>
 				</div>
 			</div>
 		</div>
@@ -693,6 +721,11 @@
 			<div data-role="content">
 				<div class="ui-content">
 					<div id="SelectGameRulesBlock">
+					
+					</div>
+					<div id="rule_gameDescriptionText"></div>
+					<div id="editgamerulessection" class="hideElement">
+					<div id="EditGameRulesBlock">
 					
 					</div>
 					<h2 style="color: #5f0e88;">Select Game Completion Badge</h2>
@@ -705,7 +738,7 @@
 						
 					</fieldset>	
 					<div id="game-assessment-saved-message"></div>
-					
+					</div>
 				</div>
 			</div>
 		</div>
@@ -747,7 +780,7 @@
 	      	'</li>');
 	      $('.menulist').append(gamedesignerview);
 
-	    /*  var assessmentsystemview =	$('<li>' +
+	    /* var assessmentsystemview =	$('<li>' +
 	      	'<a href="#assessmentSystemView" id="assessmentsystemlink">' +
 	      	'<h3 style="color:#0456a2;">Assessment System</h3>' +
 	      	'<p style="color:#0456a2;">Create or Edit Assessment rules!</p>' +

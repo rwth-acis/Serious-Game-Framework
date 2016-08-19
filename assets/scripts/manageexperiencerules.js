@@ -1,8 +1,6 @@
 //var UPLOADPATH = "uploads/";
 var TEMP = "tmp/";
 var oidc_userinfo;
-var EXPERIENCE_BADGES;
-var EXPERIENCE_RULES;
 
 function rand(min, max) {
 	if (!DEBUG) {
@@ -39,7 +37,7 @@ function rand(min, max) {
 		getExperienceRules();
 		
 		$('#experienceruleslink').click(function() { 
-			resetExperienceRulesView();
+			reloadDataFromDatabase();
 		});
 
 		$('#experience-badge-name').on('change keyup paste',function() { 
@@ -545,6 +543,13 @@ function rand(min, max) {
 
 				setGalleryWidth();
 			}
+		}
+
+		function reloadDataFromDatabase(){
+			var url = "assets/scripts/loadData.js";
+			$.getScript( url, function() {
+				resetExperienceRulesView();
+			});
 		}
 
 		function setGalleryWidth() {

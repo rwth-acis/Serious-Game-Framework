@@ -12,24 +12,6 @@ function rand(min, max) {
 
 	$(document).ready(function() {
 
-		$.ajax({
-			url: "lib/database/db_create.php",
-			type: "GET",
-			contentType: false,
-			success: function(data){
-					//alert(data);
-				}
-			});
-
-		$.ajax({
-			url: "lib/database/deleteOldData.php",
-			type: "GET",
-			contentType: false,
-			success: function(data){
-					//alert(data);
-				}
-			});
-
 		setGalleryHeight();
 
 		var connectionGallery1 = "selectConnections1";
@@ -101,11 +83,11 @@ function rand(min, max) {
 			$('#game-designer-name')[0].value = "";
 			$('#game-designer-institution')[0].value = "";
 			$('#game-designer-email')[0].value = "";
-			resetGameCreationView();
+			reloadDataFromDatabase1();
 		});
 
 		$('#editgameslink').click(function() { 
-			resetEditGameView();
+			reloadDataFromDatabase2();
 		});
 
 		$('#gallerycount').change(function(){
@@ -160,24 +142,27 @@ function rand(min, max) {
 			$('#edit-game-details-message').text("");
 			$('#game-undo-delete-button').fadeOut();
 			//var description = $('option:selected', this).attr('description');
-			var gameIndex = $('option:selected', this).attr('gameIndex');
-			var description = GAMESDATA[gameIndex].gameDescription;
-			var gameDescMessage = $('<h2 style="color:'+color+';">Game Description: '+description+'</h2>');
 			$('#game-description-message').text("");
-			$('#game-description-message').append(gameDescMessage);
-			var galleryId = $('select[name=selectgame]').val();
-			if(galleryId != 0){
+			var gameId = $('select[name=selectgame]').val();
+			var description = "";
+			if(gameId != 0){
 				$('#edit-game-button').find('*').prop('disabled',false);
 				$('#edit-game-button').find('*').removeClass('ui-disabled');
 				$('#delete-button-game').find('*').prop('disabled',false);
 				$('#delete-button-game').find('*').removeClass('ui-disabled');
+				var gameIndex = $('option:selected', this).attr('gameIndex');
+				description = GAMESDATA[gameIndex].gameDescription;
+				var gameDescMessage = $('<h2 style="color:'+color+';">Game Description: '+description+'</h2>');
+				$('#game-description-message').append(gameDescMessage);
 			}else{
 				$('#edit-game-button').find('*').prop('disabled',true);
 				$('#edit-game-button').find('*').addClass('ui-disabled');
 				$('#delete-button-game').find('*').prop('disabled',true);
 				$('#delete-button-game').find('*').addClass('ui-disabled');
+			//	description = $('option:selected', this).attr('description');
 				resetEditGameView();
 			}
+			
 			$('#editgamesection').addClass('hideElement');
 
 		});
@@ -615,10 +600,10 @@ function rand(min, max) {
 					if(type == "delete"){
 					$('#game-undo-delete-button').fadeIn();
 					
-					 gameDescMessage = $('<h2 style="color:'+color+';">Game "'+gameName+'" deleted successfully!</h2>');
+					 gameDescMessage = $('<h2 style="color:#630303;">Game "'+gameName+'" deleted successfully!</h2>');
 					
 					}else{
-						gameDescMessage = $('<h2 style="color:'+color+';">Game "'+gameName+'" restored successfully!</h2>');
+						gameDescMessage = $('<h2 style="color:#630303;">Game "'+gameName+'" restored successfully!</h2>');
 					}
 					$('#game-description-message').append(gameDescMessage);
 				}
@@ -921,7 +906,7 @@ function rand(min, max) {
 					success: function(data){
 						refreshGamesAndGalleries();
 						$('#changeConnectionMessage').text("");
-						var changeConnectionMessage = $('<h2 style="color:'+color+';">Connection changed successfully</h2>');
+						var changeConnectionMessage = $('<h2 style="color:#630303;">Connection changed successfully</h2>');
 						$('#changeConnectionMessage').append(changeConnectionMessage);
 					}
 				});
@@ -949,7 +934,7 @@ function rand(min, max) {
 					success: function(data){
 						refreshGamesAndGalleries();
 						$('#changeConnectionMessage').text("");
-						var changeConnectionMessage = $('<h2 style="color:'+color+';">Connection changed successfully</h2>');
+						var changeConnectionMessage = $('<h2 style="color:#630303;">Connection changed successfully</h2>');
 						$('#changeConnectionMessage').append(changeConnectionMessage);
 					}
 				});
@@ -977,7 +962,7 @@ function rand(min, max) {
 					success: function(data){
 						refreshGamesAndGalleries();
 						$('#changeConnectionMessage').text("");
-						var changeConnectionMessage = $('<h2 style="color:'+color+';">Connection changed successfully</h2>');
+						var changeConnectionMessage = $('<h2 style="color:#630303;">Connection changed successfully</h2>');
 						$('#changeConnectionMessage').append(changeConnectionMessage);
 					}
 				});
@@ -1045,7 +1030,7 @@ function rand(min, max) {
 					success: function(data){
 						clearSlots();
 						$('#editLevelMessage').text("");
-						var editLevelMessage = $('<h2 style="color:'+color+';">Level deleted successfully!</h2>');
+						var editLevelMessage = $('<h2 style="color:#630303;">Level deleted successfully!</h2>');
 						delete GAMELEVELS[levelNo];
 						changeLevels("next");
 						$('#editLevelMessage').append(editLevelMessage);
@@ -1074,7 +1059,7 @@ function rand(min, max) {
 						clearSlots();
 						getGameLevels($('select[name=selectgame]').val());
 						$('#editLevelMessage').text("");
-						var editLevelMessage = $('<h2 style="color:'+color+';">Level restored successfully!</h2>');
+						var editLevelMessage = $('<h2 style="color:#630303;">Level restored successfully!</h2>');
 						$('#editLevelMessage').append(editLevelMessage);
 					}
 				});
@@ -1206,7 +1191,7 @@ function rand(min, max) {
 						$('#game-description-message').append(gameDescMessage);
 
 						$('#edit-game-details-message').text("");
-						var saveGameDetailsMessage = $('<h2 style="color:'+color+';">Game Details saved successfully!</h2>');
+						var saveGameDetailsMessage = $('<h2 style="color:#630303;">Game Details saved successfully!</h2>');
 						$('#edit-game-details-message').append(saveGameDetailsMessage);
 					}
 				});
@@ -1281,7 +1266,7 @@ function rand(min, max) {
 					success: function(data){
 						refreshGamesAndGalleries();
 						resetGameCreationView();
-						var createGameMessage = $('<h2 style="color:'+color+';">Game with name "'+gameName+'" is created successfully! Go to \'Edit Games\' menu to add levels to the game.</h2>');
+						var createGameMessage = $('<h2 style="color:#630303;">Game with name "'+gameName+'" is created successfully! Go to \'Edit Games\' menu to add levels to the game.</h2>');
 						$('#create-game-message').append(createGameMessage);
 						
 					}
@@ -1296,6 +1281,22 @@ function rand(min, max) {
 
 			});
 		}
+
+		function reloadDataFromDatabase1(){
+			var url = "assets/scripts/loadData.js";
+			$.getScript( url, function() {
+				resetGameCreationView();
+			});
+		}
+
+		function reloadDataFromDatabase2(){
+			var url = "assets/scripts/loadData.js";
+			$.getScript( url, function() {
+				resetEditGameView();
+			});
+		}
+
+
 
 		function createLevel(){
 			
@@ -1348,7 +1349,7 @@ function rand(min, max) {
 						}*/
 						/*$('#create-level-button').find('*').prop('disabled',true);
 						$('#create-level-button').find('*').addClass('ui-disabled');*/
-						var createLevelMessage = $('<h2 style="color:'+color+';">New Level is added to the game.</h2>');
+						var createLevelMessage = $('<h2 style="color:#630303;">New Level is added to the game.</h2>');
 						$('#add-level-message').append(createLevelMessage);
 						
 						getGameLevels(gameId);
