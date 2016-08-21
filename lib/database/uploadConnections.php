@@ -23,7 +23,7 @@ for ($i=0; $i<$length; $i++) {
 	    	}
 	    	$tilename = $conn->real_escape_string($_FILES["uploadConnections"]["name"][$i]);
 	    	$filename = uniqid().$i.'_'.$tilename;
-	    	$newfilename = $path.$filename;
+	    	$newfilename = $tiles_connections_path.$filename;
 	    	$fileNames[] = $filename;
 	    	if(move_uploaded_file($_FILES['uploadConnections']['tmp_name'][$i], $newfilename)){
 	    		if ($i > 0)
