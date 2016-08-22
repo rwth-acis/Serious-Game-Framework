@@ -58,7 +58,7 @@ function rand(min, max) {
 		$('#edit-experience-badge-name').on('change keyup paste',function() { 
 			$('#create-experience-badge-message').text("");
 			$('#experience-badge-saved-message').text("");
-			enableSaveButton();
+			enableSaveButton(true);
 		});
 
 		$('#edit-experience-badge-points').on('change keyup paste',function() { 
@@ -68,7 +68,7 @@ function rand(min, max) {
 				var saveBadgeMessage = $('<h2 style="color:#025814;">Enter numeric value in \'Required Points\' field</h2>');
 				$('#experience-badge-saved-message').append(saveBadgeMessage);
 			}
-			enableSaveButton();
+			enableSaveButton(true);
 			
 		});
 
