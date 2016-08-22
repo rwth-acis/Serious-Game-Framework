@@ -134,7 +134,9 @@ function rand(min, max) {
 			$('#edit-experience-badge-name')[0].value = EXPERIENCE_BADGES[BADGE_INDEX]["badgeName"];
 			$('#edit-experience-badge-desc')[0].value = EXPERIENCE_BADGES[BADGE_INDEX]["badgeDescription"];
 			$('#edit-experience-badge-feedback')[0].value = EXPERIENCE_BADGES[BADGE_INDEX]["badgeFeedbackMessage"];
-			$('#edit-experience-badge-points')[0].value = EXPERIENCE_BADGES[BADGE_INDEX]["score"];		
+			$('#edit-experience-badge-points')[0].value = EXPERIENCE_BADGES[BADGE_INDEX]["score"];	
+			$('#experience-badge-save-button').find('*').prop('disabled',false);
+			$('#experience-badge-save-button').find('*').removeClass('ui-disabled');	
 
 		});
 
