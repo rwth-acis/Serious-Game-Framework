@@ -1966,20 +1966,26 @@ insertExperience = function(userHighscore) {
 	}
 	insertPlayerStatistics = function() {
 	// Insert SelectOptions for each game besides Tutorial
+	var myselect = $("select#stats-game-select");
+	
+
 	if(GAMESDATA != undefined && GAMESDATA.length != 0){
+		//$('#stats-game-select').append('<option value="'+ -1 +'">--Select Game--</option>');
 		$.each(GAMESDATA, function(i, game) {
 			var game_name = GAMESDATA[i].gameName.toLowerCase();
 			var game_id = GAMESDATA[i].gameId;
-			if(game_name !== 'Tutorial') {
+			if(game_name !== 'tutorial') {
+				myselect[0].selectedIndex = i;
 				$('#stats-game-select').append('<option value="'+ game_id +'" gameIndex="'+ i +'">' + game_name + '</option>');
 			}
 		});
 	}
 	// TODO MARKO Remove this testgame, which is for showcasing only
-	$('#stats-game-select').append('<option value="2">Test Game 2</option>');
+	//$('#stats-game-select').append('<option value="2">Test Game 2</option>');
 
 	// Query statistics for Hormones game
 	//var game = GAMEID;
+	myselect.selectmenu("refresh");
 	var game_id = $('select[name=stats-game-select]').val();
 	var game_index = $('option:selected', $('#stats-game-select')).attr('gameIndex');
 	getGameLevelsForStats(game_id,"pie", "player-",game_index);
