@@ -1,5 +1,3 @@
-//var UPLOADPATH = "uploads/";
-var TEMP = "tmp/";
 var oidc_userinfo;
 
 function rand(min, max) {
@@ -178,7 +176,7 @@ function rand(min, max) {
 					//alert('success');
 					$('#undo-delete-connection-button').fadeOut();
 					
-					var image1 = $('<li email="' +  oidc_userinfo.email + '" class="ui-widget-content ui-corner-tr piece"><a href="#"><img src="' + TEMP + LAST_DELETED_CONNECTION_SRC + '" alt="' +  LAST_DELETED_CONNECTION_SRC + '" width="94" height="68" id="piece-id-'+0+'" piece-id="' + 0 + '" piece-count="1" class="imgfocus"/></a></li>');
+					var image1 = $('<li email="' +  oidc_userinfo.email + '" class="ui-widget-content ui-corner-tr piece"><a href="#"><img src="' + TILES_CONNECTIONS_PATH + LAST_DELETED_CONNECTION_SRC + '" alt="' +  LAST_DELETED_CONNECTION_SRC + '" width="94" height="68" id="piece-id-'+0+'" piece-id="' + 0 + '" piece-count="1" class="imgfocus"/></a></li>');
 					$('#'+galleryElement + ' ul').prepend(image1);
 
 					$('#connection-saved-message').text("");
@@ -197,9 +195,11 @@ function rand(min, max) {
 				formdata = new FormData();
 			}
 			var i = 0, len = filedata.files.length, img, reader, file;
+			var check = true;
 			for (; i < len; i++) {
 				file = filedata.files[i];
 				if(!file.type.match(/image.*/)){
+					check = false;
 					alert(file.fileName +' is not a valid image!');
 					continue;
 				}
@@ -208,7 +208,7 @@ function rand(min, max) {
 					formdata.append("oidcEmail",oidc_userinfo.email);
 				}
 			}
-
+			if(check && file){
 			if(formdata){
 				$.ajax({
 					url: "lib/database/uploadConnections.php",
@@ -217,13 +217,16 @@ function rand(min, max) {
 					processData: false,
 					contentType: false,
 					success: function(data){
-					//alert('success');
+					document.getElementById("uploadConnections").FileList = {};
 					addConnections(data);
 					var connectionSavedMessage = $('<h2 style="color:'+color+';">Changes to the connections are saved successfully!</h2>');
 					$('#connection-saved-message').append(connectionSavedMessage);
 
 				}
 			});
+			}
+		}else{
+				document.getElementById("uploadConnections").FileList = {};
 			}
 		}
 
@@ -235,7 +238,7 @@ function rand(min, max) {
 			}
 			if(files != null){
 				$.each(files, function(index, value) {
-					var image1 = $('<li email="' +  oidc_userinfo.email + '" class="ui-widget-content ui-corner-tr piece"><a href="#"><img src="' + TEMP + value + '" alt="' +  value + '" width="94" height="68" id="piece-id-'+index+'" piece-id="' + index + '" piece-count="1" class="imgfocus"/></a></li>');
+					var image1 = $('<li email="' +  oidc_userinfo.email + '" class="ui-widget-content ui-corner-tr piece"><a href="#"><img src="' + TILES_CONNECTIONS_PATH + value + '" alt="' +  value + '" width="94" height="68" id="piece-id-'+index+'" piece-id="' + index + '" piece-count="1" class="imgfocus"/></a></li>');
 					rand(0,1) ? $('#'+galleryElement + ' ul').prepend(image1) : $('#'+galleryElement + ' ul').append(image1);
 				});
 				setGalleryWidth();
@@ -249,7 +252,7 @@ function rand(min, max) {
 			length = files.length;
 			if(files != null){
 				$.each(files, function(index, value) {
-					var image1 = $('<li email="' +  value.oidcEmail + '" class="ui-widget-content ui-corner-tr piece"><a href="#"><img src="' + TEMP + value.connectionSrc + '" alt="' +  value.connectionSrc + '" width="94" height="68" id="piece-id-'+index+'" piece-id="' + index + '" piece-count="1" class="imgfocus"/></a></li>');
+					var image1 = $('<li email="' +  value.oidcEmail + '" class="ui-widget-content ui-corner-tr piece"><a href="#"><img src="' + TILES_CONNECTIONS_PATH + value.connectionSrc + '" alt="' +  value.connectionSrc + '" width="94" height="68" id="piece-id-'+index+'" piece-id="' + index + '" piece-count="1" class="imgfocus"/></a></li>');
 					rand(0,1) ? $('#'+element + ' ul').prepend(image1) : $('#'+element + ' ul').append(image1);
 				});
 				setGalleryWidth();

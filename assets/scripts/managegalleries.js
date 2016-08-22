@@ -1,5 +1,3 @@
-//var UPLOADPATH = "uploads/";
-var TEMP = "tmp/";
 var oidc_userinfo;
 
 function rand(min, max) {
@@ -465,7 +463,7 @@ function rand(min, max) {
 					//alert('success');
 					
 					$('#undo-delete-tile-button').fadeOut();
-					var image1 = $('<li class="ui-widget-content ui-corner-tr piece"><a href="#"><img src="' + TEMP + LAST_DELETED_TILE_SRC + '" alt="' +  LAST_DELETED_TILE_SRC + '" width="94" height="68" id="piece-id-'+0+'" piece-id="' + 1 + '" piece-count="1" class="imgfocus"/></a></li>');
+					var image1 = $('<li class="ui-widget-content ui-corner-tr piece"><a href="#"><img src="' + TILES_CONNECTIONS_PATH + LAST_DELETED_TILE_SRC + '" alt="' +  LAST_DELETED_TILE_SRC + '" width="94" height="68" id="piece-id-'+0+'" piece-id="' + 1 + '" piece-count="1" class="imgfocus"/></a></li>');
 					$('#'+galleryElementName + ' ul').prepend(image1);
 					
 					$('#gallery-saved-message').text("");
@@ -544,9 +542,11 @@ function rand(min, max) {
 			formdata = new FormData();
 		}
 		var i = 0, len = filedata.files.length, img, reader, file;
+		var check = true;
 		for (; i < len; i++) {
 			file = filedata.files[i];
 			if(!file.type.match(/image.*/)){
+				check = false;
 				alert(file.fileName +' is not a valid image!');
 				continue;
 			}
@@ -554,6 +554,7 @@ function rand(min, max) {
 				formdata.append("uploadTiles[]", file);
 			}
 		}
+		if(check && file){
 		formdata.append("galleryId",galleryId);
 
 		if(formdata){
@@ -564,7 +565,7 @@ function rand(min, max) {
 				processData: false,
 				contentType: false,
 				success: function(data){
-					//alert('success');
+					document.getElementById("uploadTiles").FileList = {};
 					addTiles(data);
 					$('#gallery-saved-message').text("");
 					var gallerySavedMessage = $('<h2 style="color:'+color+';">Changes to the gallery "'+galleryName+'" are saved successfully!</h2>');
@@ -573,6 +574,9 @@ function rand(min, max) {
 				}
 			});
 		}
+	}else{
+				document.getElementById("uploadTiles").FileList = {};
+			}
 	}
 
 	function createGallery(galleryName,galleryDescription){
@@ -655,7 +659,7 @@ function rand(min, max) {
 		files = JSON.parse(filesdata);
 		if(files != null){
 			$.each(files, function(index, value) {
-				var image1 = $('<li class="ui-widget-content ui-corner-tr piece"><a href="#"><img src="' + TEMP + value + '" alt="' +  value + '" width="94" height="68" id="piece-id-'+index+'" piece-id="' + index + '" piece-count="1" class="imgfocus"/></a></li>');
+				var image1 = $('<li class="ui-widget-content ui-corner-tr piece"><a href="#"><img src="' + TILES_CONNECTIONS_PATH + value + '" alt="' +  value + '" width="94" height="68" id="piece-id-'+index+'" piece-id="' + index + '" piece-count="1" class="imgfocus"/></a></li>');
 				rand(0,1) ? $('#'+galleryElementName + ' ul').prepend(image1) : $('#'+galleryElementName + ' ul').append(image1);
 			});
 			setGalleryWidth();
@@ -668,7 +672,7 @@ function rand(min, max) {
 		files = JSON.parse(filesdata);
 		if(files != null){
 			$.each(files, function(index, value) {
-				var image1 = $('<li class="ui-widget-content ui-corner-tr piece"><a href="#"><img src="' + TEMP + value.tileSrc + '" alt="' +  value.tileSrc + '" width="94" height="68" id="piece-id-'+index+'" piece-id="' + index + '" piece-count="1" class="imgfocus"/></a></li>');
+				var image1 = $('<li class="ui-widget-content ui-corner-tr piece"><a href="#"><img src="' + TILES_CONNECTIONS_PATH + value.tileSrc + '" alt="' +  value.tileSrc + '" width="94" height="68" id="piece-id-'+index+'" piece-id="' + index + '" piece-count="1" class="imgfocus"/></a></li>');
 				rand(0,1) ? $('#'+element + ' ul').prepend(image1) : $('#'+element + ' ul').append(image1);
 			});
 

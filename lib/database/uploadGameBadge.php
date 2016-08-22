@@ -28,7 +28,7 @@ $oidcEmail = $_POST['oidcEmail'];
 	    	}
 	    	$filename = $conn->real_escape_string($_FILES["uploadGameBadge"]["name"]);
 	    	$filename = uniqid().'_'.$filename;
-	    	$newfilename = $path.$filename;
+	    	$newfilename = $game_badges_path.$filename;
 	    	$fileNames[] = $filename;
 	    	if(move_uploaded_file($_FILES['uploadGameBadge']['tmp_name'], $newfilename)){
 	    		

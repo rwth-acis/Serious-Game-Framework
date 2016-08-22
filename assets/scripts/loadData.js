@@ -8,6 +8,9 @@ var GAME_BADGES;
 var GAME_RULES_DATA;
 var EXPERIENCE_BADGES;
 var EXPERIENCE_RULES;
+var TILES_CONNECTIONS_PATH = "tiles_connections/";
+var EXPERIENCE_BADGES_PATH = "experience_badges/";
+var GAME_BADGES_PATH = "game_badges/";
 //var GAMELEVELS;
 $(document).ready(function() {
 
@@ -22,7 +25,15 @@ $(document).ready(function() {
 					//alert(data);
 				}
 			});
-	
+
+		$.ajax({
+		url: "lib/database/create_default_highscore.php",
+		type: "GET",
+		contentType: false,
+		success: function(data){
+					//alert(data);
+				}
+			});
 
 	function deleteOldData(){
 	$.ajax({

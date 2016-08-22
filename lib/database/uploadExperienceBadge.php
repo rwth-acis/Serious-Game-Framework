@@ -27,7 +27,7 @@ $oidcEmail = $_POST['oidcEmail'];
 	    	}
 	    	$filename = $conn->real_escape_string($_FILES["uploadExperienceBadge"]["name"]);
 	    	$filename = uniqid().'_'.$filename;
-	    	$newfilename = $path.$filename;
+	    	$newfilename = $experience_badges_path.$filename;
 	    	$fileNames[] = $filename;
 	    	if(move_uploaded_file($_FILES['uploadExperienceBadge']['tmp_name'], $newfilename)){
 	    		

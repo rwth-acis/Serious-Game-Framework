@@ -1,4 +1,3 @@
-var TEMP = "tmp/";
 var oidc_userinfo;
 
 function rand(min, max) {

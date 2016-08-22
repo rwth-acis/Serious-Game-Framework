@@ -25,6 +25,9 @@ var GAME_DESIGNER_NAME;
 var GAME_DESIGNER_EMAIL;
 var GAME_DESIGNER_INSTITUTION;
 
+var CURRENT_GAME_HIGHSCORE;
+var CURRENT_GAME_BADGES;
+
 var GOTDATA = false;
 //var GAMESDATA;
 //var LEVELDATA;
@@ -42,6 +45,7 @@ var CURRENTLEVEL = -1;
 var SELECTEDITEMS = [];
 var GAMESTATE = "leveldone";
 var GAMEINDEX;
+var GAME_BADGES_INDEX;
 
 // TODO MARKO add real oidc_userinfo
 //var oidc_userinfo = {name: "Marko Kajzer", preferred_username: "marko.kajzer", email: "marko.kajzer@hotmail.de"};
@@ -51,6 +55,7 @@ var gleaner_url = GLEANER_URL; // TODO ADD REAL LOCATION HERE
 var correct = 0;
 var wrong = 0;
 var elearning = 0;
+var moreInformation = 0;
 
 var badge_asserter = new BadgeAsserter();
 var gleaner_tracker = new GleanerTracker();
@@ -122,32 +127,38 @@ $(document).ready(function() {
 		$('#playgameslink').click(function() { 
 			$('.gameslist').empty();
 			$("[id^='category-']").remove();
-			if(GAMESDATA != undefined && GAMESDATA.length != 0){
-				fillGamesList(GAMESDATA);
-			}
-			
+
+			var url = "assets/scripts/loadData.js";
+			$.getScript( url, function() {
+				if(GAMESDATA != undefined && GAMESDATA.length != 0){
+					fillGamesList(GAMESDATA);
+				}
+			});
+
 		});
 
 		$(document).on('click', '.gamelink', function () {
 			var gameID = $(this).attr('game-id');
 			var gameIndex = $(this).attr('gameIndex');
-			GAMEID = parseInt(gameID);
-			GAMEINDEX = parseInt(gameIndex);
-			
-			GAME_DESCRIPTION_TEXT = $.trim(GAMESDATA[GAMEINDEX]["gameDescriptionText"]);
-			GAME_DESIGNER_NAME = $.trim(GAMESDATA[GAMEINDEX]["gameDesignerName"]);
-			GAME_DESIGNER_INSTITUTION = $.trim(GAMESDATA[GAMEINDEX]["gameDesignerInstitution"]);
-			GAME_DESIGNER_EMAIL = $.trim(GAMESDATA[GAMEINDEX]["gameDesignerEmail"]);
 
-			GAME_DESCRIPTION_TEXT = GAME_DESCRIPTION_TEXT + "\n" + "\n" + "Game Designer Name: " + GAME_DESIGNER_NAME + "\n" + "Institution: " + GAME_DESIGNER_INSTITUTION + "\n" + "Contact: " + GAME_DESIGNER_EMAIL;
+			if(gameIndex != undefined){
+				GAMEID = parseInt(gameID);
+				GAMEINDEX = parseInt(gameIndex);
 
-			GAME_DESCRIPTION_TEXT = GAME_DESCRIPTION_TEXT.replace(/\n/g, "<br />");
-			var descriptionText = $('<h4 style="text-align:justify;" >'+GAME_DESCRIPTION_TEXT+'</h4>');
-			$('#descriptionTextDiv').text("");
-			$('#descriptionTextDiv').append(descriptionText);
-			loadGame(GAMEINDEX,GAMEID);
+				GAME_DESCRIPTION_TEXT = $.trim(GAMESDATA[GAMEINDEX]["gameDescriptionText"]);
+				GAME_DESIGNER_NAME = $.trim(GAMESDATA[GAMEINDEX]["gameDesignerName"]);
+				GAME_DESIGNER_INSTITUTION = $.trim(GAMESDATA[GAMEINDEX]["gameDesignerInstitution"]);
+				GAME_DESIGNER_EMAIL = $.trim(GAMESDATA[GAMEINDEX]["gameDesignerEmail"]);
 
+				GAME_DESCRIPTION_TEXT = GAME_DESCRIPTION_TEXT + "\n" + "\n" + "Game Designer Name: " + GAME_DESIGNER_NAME + "\n" + "Institution: " + GAME_DESIGNER_INSTITUTION + "\n" + "Contact: " + GAME_DESIGNER_EMAIL;
 
+				GAME_DESCRIPTION_TEXT = GAME_DESCRIPTION_TEXT.replace(/\n/g, "<br />");
+				var descriptionText = $('<h4 style="text-align:justify;" >'+GAME_DESCRIPTION_TEXT+'</h4>');
+				$('#descriptionTextDiv').text("");
+				$('#descriptionTextDiv').append(descriptionText);
+				loadGame(GAMEINDEX,GAMEID);
+
+			}
 		// Send trace for starting a game
 		//gleaner_tracker.trackTrace(oidc_userinfo, "game_start",
 		//	{gameID: GAMEID});
@@ -156,7 +167,7 @@ $(document).ready(function() {
 			
 		// Send trace for starting a game
 		gleaner_tracker.trackTrace(oidc_userinfo, "game_start",
-			{gameID: GAMEID});
+			{gameID: GAMEID, configure : "new"});
 	});
 		
 		/*$('.gamelink').on('click',function(){
@@ -179,7 +190,13 @@ $(document).ready(function() {
 			elearning++;
 		// Send trace for clicking an eLearning link
 		gleaner_tracker.trackTrace(oidc_userinfo, "elearning",
-			{gameID: GAMEID, levelID: CURRENTLEVEL});
+			{gameID: GAMEID, levelID: CURRENTLEVEL, configure : "new"});
+	});
+		$('#moreInformation').click(function() {
+			moreInformation++;
+		// Send trace for clicking an eLearning link
+		gleaner_tracker.trackTrace(oidc_userinfo, "moreInformation",
+			{gameID: GAMEID, levelID: CURRENTLEVEL, configure : "new"});
 	});
 
 	// Functions for Player Statistics
@@ -227,7 +244,7 @@ $(document).ready(function() {
 
 		// Send trace for using the show_me button
 		gleaner_tracker.trackTrace(oidc_userinfo, "level_completion",
-			{gameID: GAMEID, levelID: CURRENTLEVEL, result: "show_me"});
+			{gameID: GAMEID, levelID: CURRENTLEVEL, result: "show_me", configure : "new"});
 	});
 
 	$('#wrapper-tryagain').click(function() {
@@ -236,7 +253,7 @@ $(document).ready(function() {
 
 		// Send trace for using the show_me button
 		gleaner_tracker.trackTrace(oidc_userinfo, "level_completion",
-			{gameID: GAMEID, levelID: CURRENTLEVEL, result: "try_again"});
+			{gameID: GAMEID, levelID: CURRENTLEVEL, result: "try_again", configure : "new"});
 	});
 
 	$('#wrapper-hint').click(function() {
@@ -244,7 +261,7 @@ $(document).ready(function() {
 
 		// Send trace for using the show_me button
 		gleaner_tracker.trackTrace(oidc_userinfo, "level_completion",
-			{gameID: GAMEID, levelID: CURRENTLEVEL, result: "hint"});
+			{gameID: GAMEID, levelID: CURRENTLEVEL, result: "hint", configure : "new"});
 	});
 
 	$('#wrapper-level-tutorial').click(function(){
@@ -360,6 +377,17 @@ $(document).ready(function() {
 
 					TUTORIAL = false;
 					addTutorialTexts();
+
+					for(var i=0;i<GAME_RULES_DATA.length;i++){
+						if(GAME_RULES_DATA[i].gameId == gameId){
+							for(var j=0;j<GAME_BADGES.length;j++){
+								if(GAME_RULES_DATA[i].gameCompletionBadgeSrc == GAME_BADGES[j].badgeSrc){
+									GAME_BADGES_INDEX = j;
+									break;
+								}
+							}
+						}
+					}
 			// Show the tutorial, if the game is marked as tutorial
 			if (TUTORIAL) {
 				$('#levelcontrol').fadeIn();
@@ -371,7 +399,8 @@ $(document).ready(function() {
 		}
 	});
 	}
-	
+
+
 	function setGalleryHeight() {
 		var myWidth = 0, myHeight = 0;
 		if( typeof( window.innerWidth ) == 'number' ) {
@@ -452,7 +481,7 @@ $(document).ready(function() {
 
 		if(gamesData != null){
 			$.each(gamesData, function(i, data) {
-			
+
 				var game = "";
 				if(data.gameName != "Tutorial"){
 
@@ -467,7 +496,7 @@ $(document).ready(function() {
 						addToCategory("category-"+data.gameCategory,i,data,"false");
 						categoryCounter[data.gameCategory] = 1;
 					}
-				
+
 				}else{
 					game = $('<li><a href="#game" id="game-id-'+ data.gameId + '" game-id="' + data.gameId + '" gameIndex="' + i +'" class="gamelink"><h3 style="color:#0456a2;">' + data.gameName + '</h3><p style="color:#0456a2;">' + data.gameDescription + '</p></a></li>');
 				}
@@ -479,8 +508,8 @@ $(document).ready(function() {
 						$('.gameslist').append(game);
 					}
 				}
-			
-			
+
+
 			});
 
 			if ( $('.gameslist').hasClass('ui-listview')) {
@@ -503,6 +532,8 @@ function loadGame(gameIndex, gameID) {
 		$('#wrapper-next').fadeOut();
 		$('#elearning').empty();
 		$('#elearning').fadeOut();
+		$('#moreInformation').empty();
+		$('#moreInformation').fadeOut();
 		$('#leveldone').fadeOut();
 		$('#levelcontrol').fadeOut();
 
@@ -562,7 +593,6 @@ function loadGame(gameIndex, gameID) {
 			clearGalleries();
 			initializeLevelState();
 			getGameLevels(gameID,gameIndex);
-			
 		}
 	}
 	
@@ -577,6 +607,9 @@ function loadGame(gameIndex, gameID) {
 		$('#elearning').empty();
 		$('#elearning').fadeIn();
 		$('#elearning').append('<a href="' + GAMELEVELS[0]["eLearningLink"] + '" target="_blank">E-Learning Link</a>');
+		$('#moreInformation').empty();
+		$('#moreInformation').fadeIn();
+		$('#moreInformation').append('<a href="' + GAMELEVELS[0]["moreInformation"] + '" target="_blank">More Information Link</a>');
 		TUTORIALSTARTED = true;
 	}
 	
@@ -667,7 +700,7 @@ function loadGame(gameIndex, gameID) {
 	  					$('img[piece-id="' + p + '"]', '#gallery' + i + ' ul').attr('piece-count',pieceCounter[distinct]);
 
 	  				} else {
-	  					var image = $('<li class="ui-widget-content ui-corner-tr piece" draggable="true"><img src="' + TEMP + p + '" alt="' +  p + '" width="94" height="68" id="piece-id-'+i+'" piece-id="' + p + '" piece-count="1"/></li>');
+	  					var image = $('<li class="ui-widget-content ui-corner-tr piece" draggable="true"><img src="' + TILES_CONNECTIONS_PATH + p + '" alt="' +  p + '" width="94" height="68" id="piece-id-'+i+'" piece-id="' + p + '" piece-count="1"/></li>');
 	  					rand(0,1) ? $('#gallery' + i + ' ul').prepend(image) : $('#gallery' + i + ' ul').append(image);
 	  					pieceCounter[distinct] = 1;
 	  				}
@@ -1085,6 +1118,7 @@ function loadGame(gameIndex, gameID) {
 			$('#wrapper-next').fadeOut();
 			$('.level-verification').fadeOut();
 			$('#elearning').fadeOut().empty();
+			$('#moreInformation').fadeOut().empty();
 			$('#wrapper-level-tutorial').fadeOut();
 			$('#levelcontrol').fadeOut();
 			
@@ -1186,7 +1220,7 @@ function loadGame(gameIndex, gameID) {
 					var id= "connection"+k+"Id";
 				//alert(c);
 				if (c > -1) {
-					var connection = $('<img src="' + TEMP + GAMESDATA[GAMEINDEX][id]+ '" alt="' + GAMESDATA[GAMEINDEX][id] + '" width="32" height="32" connection-id="' + c + '" />');
+					var connection = $('<img src="' + TILES_CONNECTIONS_PATH + GAMESDATA[GAMEINDEX][id]+ '" alt="' + GAMESDATA[GAMEINDEX][id] + '" width="32" height="32" connection-id="' + c + '" />');
 					$('#connection' + i).append(connection);
 				}
 			}
@@ -1256,6 +1290,11 @@ function loadGame(gameIndex, gameID) {
 					$('#elearning').fadeIn();
 					if (GAMELEVELS[l]["eLearningLink"]) {
 						$('#elearning').append('<a href="' + GAMELEVELS[l]["eLearningLink"] + '" target="_blank">E-Learning Link</a>');
+					}
+					$('#moreInformation').empty();
+					$('#moreInformation').fadeIn();
+					if (GAMELEVELS[l]["moreInformation"]) {
+						$('#moreInformation').append('<a href="' + GAMELEVELS[l]["moreInformation"] + '" target="_blank">More Information Link</a>');
 					}
 
 					GAMESTATE = "leveldone";
@@ -1333,6 +1372,11 @@ function loadGame(gameIndex, gameID) {
 						if (GAMELEVELS[l]["eLearningLink"]) {
 							$('#elearning').append('<a href="' + GAMELEVELS[l]["eLearningLink"] + '" target="_blank">E-Learning Link</a>');
 						}
+						$('#moreInformation').empty();
+						$('#moreInformation').fadeIn();
+						if (GAMELEVELS[l]["moreInformation"]) {
+							$('#moreInformation').append('<a href="' + GAMELEVELS[l]["moreInformation"] + '" target="_blank">More Information Link</a>');
+						}
 
 						if (!correct) {
 							logLevel(l, "wrong");
@@ -1345,7 +1389,7 @@ function loadGame(gameIndex, gameID) {
 								$('#wrapper-tryagain').fadeIn();
 								wrong++;
 								gleaner_tracker.trackTrace(oidc_userinfo, "level_completion",
-									{gameID: GAMEID, levelID: CURRENTLEVEL, result: "wrong"});
+									{gameID: GAMEID, levelID: CURRENTLEVEL, result: "wrong", configure : "new"});
 							}
 						} else {
 							logLevel(l, "correct");
@@ -1361,7 +1405,7 @@ function loadGame(gameIndex, gameID) {
 							if(!TUTORIAL) {
 								correct++;
 								gleaner_tracker.trackTrace(oidc_userinfo, "level_completion",
-									{gameID: GAMEID, levelID: CURRENTLEVEL, result: "correct"});
+									{gameID: GAMEID, levelID: CURRENTLEVEL, result: "correct", configure : "new"});
 							}
 						}
 						for (var i = 0; i < NUMBER_OF_GALLERIES; i++) {
@@ -1416,7 +1460,7 @@ function loadGame(gameIndex, gameID) {
 							// here all levels have been completed -> award badge of this game
 							var game_name = GAMESDATA[GAMEINDEX].gameName.toLowerCase();
 							// console.log(game_name);
-							this.badge_asserter.assertBadge(game_name, oidc_userinfo, "");
+							this.badge_asserter.assertBadgeConfigured(game_name, oidc_userinfo, GAME_BADGES[GAME_BADGES_INDEX].badgeName, GAME_BADGES[GAME_BADGES_INDEX].badgeSrc);
 						}
 						else
 						{
@@ -1744,6 +1788,7 @@ showProfile = function() {
 	$('div#user_phone').text(oidc_userinfo.phone_number);
 
 	// Query profile
+
 	$.ajax({
 		url: gleaner_url + "collect/profiles",
 		dataType: "json",
@@ -1767,34 +1812,105 @@ showProfile = function() {
     }
 });
 
-	insertExperience();
 
-	insertHighScores();
+	getAllGamesHighscore();
 
 	insertPlayerStatistics();
+}
+
+function getAllGamesHighscore(){
+	formdata = false;
+	if (window.FormData) {
+		formdata = new FormData();
+	}
+
+	$.ajax({
+		url: "lib/database/get_all_game_highscore_data.php",
+		type: "POST",
+		data: formdata,
+		processData: false,
+		contentType: false,
+		success: function(data){
+					//alert(data);
+					GAME_HIGHSCORE_DATA = JSON.parse(data);
+					insertHighScores();
+				}
+			});
 }
 
 insertBadges = function(profile) {
 	for(var i = 0; i < profile.earnedBadges.length; i++) {
 		var badge = $('<span class="badge-img">' +
-			'<img class="badge-img" src="data/badges/' + profile.earnedBadges[i].path + '-badge.png">' +
+			'<img id="badgeImage'+i+'" class="badge-img" onerror="removeImage(this);" src="game_badges/' + profile.earnedBadges[i].path + '">' +
 			'<span class="badge-awarded">x'+ profile.earnedBadges[i].awarded +'</span>' +
 			'</span>');
 		$('div#badges-container').append(badge);
+		
 	}
 }
+function removeImage(element){
+	$(element).parent().remove();
+}
+insertHighScores = function() {
+	// Query HighScore Ladder for this user
 
-insertExperience = function() {
+	var jsonobject = {
+		"email" :  oidc_userinfo.email,
+		"highscoredata": GAME_HIGHSCORE_DATA
+	};
+
+	$.ajax({
+	  url: gleaner_url + "collect/highscore_configure/", // TODO MARKO add real url
+	  dataType: "json",
+	  headers: {
+	  	'jsonobject': JSON.stringify(jsonobject)
+	  },
+	  success: function(result) {
+    	// If everything went ok, write results
+    	var userHighscore = 0;
+    	$.each(result, function(i, entry) {
+    		if(entry.user == oidc_userinfo.email){
+    			userHighscore = entry.score;
+    		}
+    		$('#high-score-table tbody').prepend(
+    			'<tr>' +
+    			'<td>' + entry.rank + '</td>' +
+    			'<td>' + entry.user + '</td>' +
+    			'<td>' + entry.score + '</td>' +
+    			'</tr>'
+    			)
+    	});
+
+    	getExperienceData(userHighscore);
+    },
+    error: function(err) {
+    	console.log(err);
+    	console.log("Can't get traces. Server down?");
+    }
+});
+}
+
+function getExperienceData(userHighscore){
+	insertExperience(userHighscore);
+}
+insertExperience = function(userHighscore) {
+
+	var jsonobject = {
+		"email" :  oidc_userinfo.email,
+		"highscorevalue" : userHighscore,
+		"experiencerules" : EXPERIENCE_RULES,
+		"experiencelevels" : EXPERIENCE_BADGES
+	};
 		// Query experience
 		$.ajax({
-			url: gleaner_url + "collect/experience",
+			url: gleaner_url + "collect/experience_configure",
 			dataType: "json",
 			headers: {
-				'Email': oidc_userinfo.email
+				'jsonobject': JSON.stringify(jsonobject)
 			},
 			success: function(result) {
 	    	// Insert experience progress bar
-	    	$('#experience-badge').attr("src","assets/images/experience/level" + result.level + ".png");
+	    	$('#experience-badge').attr("src",EXPERIENCE_BADGES_PATH + EXPERIENCE_BADGES[result.index].badgeSrc);
 
 	    	$('#level-name').text("Level " + result.level + " - " + result.level_name);
 
@@ -1812,35 +1928,7 @@ insertExperience = function() {
 	    }
 	});
 	}
-
-	insertHighScores = function() {
-	// Query HighScore Ladder for this user
-	$.ajax({
-	  url: gleaner_url + "collect/highscore/", // TODO MARKO add real url
-	  dataType: "json",
-	  headers: {
-	  	'Email': oidc_userinfo.email
-	  },
-	  success: function(result) {
-    	// If everything went ok, write results
-    	$.each(result, function(i, entry) {
-    		$('#high-score-table tbody').prepend(
-    			'<tr>' +
-    			'<td>' + entry.rank + '</td>' +
-    			'<td>' + entry.user + '</td>' +
-    			'<td>' + entry.score + '</td>' +
-    			'</tr>'
-    			)
-    	});
-    },
-    error: function(err) {
-    	console.log(err);
-    	console.log("Can't get traces. Server down?");
-    }
-});
-}
-
-insertPlayerStatistics = function() {
+	insertPlayerStatistics = function() {
 	// Insert SelectOptions for each game besides Tutorial
 	if(GAMESDATA != undefined && GAMESDATA.length != 0){
 		$.each(GAMESDATA, function(i, game) {

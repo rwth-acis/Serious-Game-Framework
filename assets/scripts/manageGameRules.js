@@ -1,4 +1,3 @@
-var TEMP = "tmp/";
 var oidc_userinfo;
 var GAME_RULES_DATA;
 
@@ -150,7 +149,7 @@ $(document).ready(function() {
 			jsondata = GAME_RULES_DATA;
 			if(jsondata != null && jsondata != undefined && jsondata.length != 0){
 				$.each(jsondata, function(index, value) {
-					if(value.gameName != "Tutorial" && value.oidcEmail == oidc_userinfo.email){
+					if(value.oidcEmail == oidc_userinfo.email){
 						$('#select-game-assessment').append('<option value="'+ value.gameId +'" gameIndex="'+index+'" description="'+value.gameDescription+'">' + value.gameName + '</option>');
 					}
 				});
@@ -214,8 +213,8 @@ $(document).ready(function() {
 			length = files.length;
 			if(files != null){
 				$.each(files, function(index, value) {
-					if(value.badgeRequirementId == 1){
-					var image1 = $('<li class="ui-widget-content ui-corner-tr piece"><a href="#"><img src="' + TEMP + value.badgeSrc + '" alt="' +  value.badgeSrc + '" width="94" height="68" id="piece-id-'+index+'" piece-id="' + index + '" piece-count="1" class="imgfocus"/></a></li>');
+					if(value.badgeRequirementId == 1 || value.badgeRequirementId == 7){
+					var image1 = $('<li class="ui-widget-content ui-corner-tr piece"><a href="#"><img src="' + GAME_BADGES_PATH + value.badgeSrc + '" alt="' +  value.badgeSrc + '" width="94" height="68" id="piece-id-'+index+'" piece-id="' + index + '" piece-count="1" class="imgfocus"/></a></li>');
 					rand(0,1) ? $('#'+element + ' ul').prepend(image1) : $('#'+element + ' ul').append(image1);
 					if(value.badgeSrc == activeli){
 						image1.addClass('active');

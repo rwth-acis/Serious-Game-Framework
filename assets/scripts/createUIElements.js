@@ -562,7 +562,7 @@ $(document).ready(function() {
 	function createExperienceRulesUI(){
 		var color = "#308f44";
 		createTextInput("experience-badge-name","Experience Badge Name:","Ex. Level 3","true",color,false,"#experienceBadgeBlock");
-		createTextInput("experience-badge-desc","Experience Badge Description:","Ex. Advanced level","false",color,true,"#experienceBadgeBlock");
+		createTextInput("experience-badge-desc","Experience Level Description:","Ex. Advanced level","false",color,true,"#experienceBadgeBlock");
 		createTextInput("experience-badge-feedback","Feedback Message:","Ex. You are a professional now!","false",color,true,"#experienceBadgeBlock");
 		createTextInput("experience-badge-points","Required Points:","Ex. 400","true",color,true,"#experienceBadgeBlock");
 		createSingleUploadButton("uploadExperienceBadge","Add Experience Badge",color,false,"#AddExperienceBadgeBlock");
@@ -576,17 +576,17 @@ $(document).ready(function() {
 
 
 		createTextInput("edit-experience-badge-name","Experience Badge Name:","","true",color,false,"#editExperienceBadgeBlock");
-		createTextInput("edit-experience-badge-desc","Experience Badge Description:","","false",color,true,"#editExperienceBadgeBlock");
+		createTextInput("edit-experience-badge-desc","Experience Level Description:","","false",color,true,"#editExperienceBadgeBlock");
 		createTextInput("edit-experience-badge-feedback","Feedback Message:","","false",color,true,"#editExperienceBadgeBlock");
 		createTextInput("edit-experience-badge-points","Required Points:","","true",color,true,"#editExperienceBadgeBlock");
 		createButton("experience-badge-save-button","button-save-experience-badge","Save",color,true,"#editExperienceBadgeBlock");
 
-		createTextInput("experience-highscore","Highscore: ","Ex. 1","false",color,false,"#experienceRules");
-		createTextInput("experience-elearning","No. of eLearning clicks  :","Ex. 3","false",color,true,"#experienceRules");
-		createTextInput("experience-moreInfo","No. of more Information clicks  :","Ex. 3","false",color,true,"#experienceRules");
-		createTextInput("experience-badges","No. of Badges  :","Ex. 10","false",color,true,"#experienceRules");
-		createTextInput("experience-gamesDesigned","No. of Games Designed :","Ex. 100","false",color,true,"#experienceRules");
-		createTextInput("experience-login","No. of times Logged in:","Ex. 0.5","false",color,true,"#experienceRules");	
+		createTextInput("experience-highscore","Highscore factor: ","Ex. 1","false",color,false,"#experienceRules");
+		createTextInput("experience-elearning","eLearning clicks factor  :","Ex. 3","false",color,true,"#experienceRules");
+		createTextInput("experience-moreInfo","More Information clicks factor :","Ex. 3","false",color,true,"#experienceRules");
+		createTextInput("experience-badges","Badges factor :","Ex. 10","false",color,true,"#experienceRules");
+		createTextInput("experience-gamesDesigned","Games Designed factor:","Ex. 100","false",color,true,"#experienceRules");
+		createTextInput("experience-login","Login factor:","Ex. 0.5","false",color,true,"#experienceRules");	
 		var $inner1 = $("<fieldset/>", {"data-role":"fieldcontain", class:"ui-block-b"});
 		createButton("experience-save-rules","button-save-experience-rules", "Save Rules",color, true, $inner1);
 		$inner1.appendTo("#experienceRules");	

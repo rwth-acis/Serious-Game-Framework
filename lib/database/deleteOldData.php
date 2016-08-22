@@ -15,7 +15,7 @@ if($result = $conn->query("SELECT galleryId FROM galleries WHERE deleted='true'"
 		if($result2 = $conn->query("SELECT tileSrc FROM gallery_tiles WHERE galleryId='$galleryId'")){
 
 			while($row = $result2->fetch_array(MYSQL_ASSOC)) {
-				$filename = $path.$row["tileSrc"];
+				$filename = $tiles_connections_path.$row["tileSrc"];
 				if(!unlink($filename)){
 					echo "Error deleting ".$filename;
 				}
@@ -32,7 +32,7 @@ if($result = $conn->query("SELECT galleryId FROM galleries WHERE deleted='true'"
 if($result = $conn->query("SELECT connectionSrc FROM connections WHERE deleted='true'")){
 
 	while($row = $result->fetch_array(MYSQL_ASSOC)) {
-		$filename = $path.$row["connectionSrc"];
+		$filename = $tiles_connections_path.$row["connectionSrc"];
 			if(!unlink($filename)){
 				echo "Error deleting ".$filename;
 			}
@@ -45,7 +45,7 @@ $result = $conn->query($sql);
 if($result = $conn->query("SELECT badgeSrc FROM experience_badges WHERE deleted='true'")){
 
 	while($row = $result->fetch_array(MYSQL_ASSOC)) {
-		$filename = $path.$row["badgeSrc"];
+		$filename = $experience_badges_path.$row["badgeSrc"];
 			if(!unlink($filename)){
 				echo "Error deleting ".$filename;
 			}
@@ -58,7 +58,7 @@ $result = $conn->query($sql);
 if($result = $conn->query("SELECT badgeSrc FROM game_statistics_badges WHERE deleted='true'")){
 
 	while($row = $result->fetch_array(MYSQL_ASSOC)) {
-		$filename = $path.$row["badgeSrc"];
+		$filename = $game_badges_path.$row["badgeSrc"];
 			if(!unlink($filename)){
 				echo "Error deleting ".$filename;
 			}

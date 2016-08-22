@@ -1,5 +1,3 @@
-//var UPLOADPATH = "uploads/";
-var TEMP = "tmp/";
 var oidc_userinfo;
 function rand(min, max) {
 	if (!DEBUG) {
@@ -1365,7 +1363,7 @@ function rand(min, max) {
 			files = JSON.parse(filesdata);
 			if(files != null){
 				$.each(files, function(index, value) {
-					var image1 = $('<li class="ui-widget-content ui-corner-tr piece"><a href="#"><img src="' + TEMP + value.tileSrc + '" alt="' +  value.tileSrc + '" width="94" height="68" id="piece-id-'+index+'" piece-id="' + index + '" piece-count="1" class="imgfocus"/></a></li>');
+					var image1 = $('<li class="ui-widget-content ui-corner-tr piece"><a href="#"><img src="' + TILES_CONNECTIONS_PATH + value.tileSrc + '" alt="' +  value.tileSrc + '" width="94" height="68" id="piece-id-'+index+'" piece-id="' + index + '" piece-count="1" class="imgfocus"/></a></li>');
 					rand(0,1) ? $('#'+element + ' ul').prepend(image1) : $('#'+element + ' ul').append(image1);
 				});
 
@@ -1379,7 +1377,7 @@ function rand(min, max) {
 				for(var i=0;i<NUMBER_OF_GALLERIES;i++){
 					var j = i+1;
 					var id= "gallery"+j+"src";
-					var image = $('<li class="ui-widget-content ui-corner-tr piece"><img src="' + TEMP + GAMELEVELS[index][id] + '" alt="' +  GAMELEVELS[index][id] + '" width="94" height="68" id="piece-id-'+i+'" piece-id="' + i + '" piece-count="1" class="imgfocus"/></li>');
+					var image = $('<li class="ui-widget-content ui-corner-tr piece"><img src="' + TILES_CONNECTIONS_PATH + GAMELEVELS[index][id] + '" alt="' +  GAMELEVELS[index][id] + '" width="94" height="68" id="piece-id-'+i+'" piece-id="' + i + '" piece-count="1" class="imgfocus"/></li>');
 					var slot = $('#editslot' + i);
 					slot.children().remove();
 					image.appendTo(slot);
@@ -1405,7 +1403,7 @@ function rand(min, max) {
 			length = files.length;
 			if(files != null){
 				$.each(files, function(index, value) {
-					var image1 = $('<li class="ui-widget-content ui-corner-tr piece"><a href="#"><img src="' + TEMP + value.connectionSrc + '" alt="' +  value.connectionSrc + '" width="94" height="68" id="piece-id-'+index+'" piece-id="' + index + '" piece-count="1" class="imgfocus"/></a></li>');
+					var image1 = $('<li class="ui-widget-content ui-corner-tr piece"><a href="#"><img src="' + TILES_CONNECTIONS_PATH + value.connectionSrc + '" alt="' +  value.connectionSrc + '" width="94" height="68" id="piece-id-'+index+'" piece-id="' + index + '" piece-count="1" class="imgfocus"/></a></li>');
 					rand(0,1) ? $('#'+element + ' ul').prepend(image1) : $('#'+element + ' ul').append(image1);
 				});
 				setGalleryWidth();
@@ -1418,7 +1416,7 @@ function rand(min, max) {
 			length = files.length;
 			if(files != null){
 				$.each(files, function(index, value) {
-					var image1 = $('<li class="ui-widget-content ui-corner-tr piece"><a href="#"><img src="' + TEMP + value.connectionSrc + '" alt="' +  value.connectionSrc + '" width="94" height="68" id="piece-id-'+index+'" piece-id="' + index + '" piece-count="1" class="imgfocus"/></a></li>');
+					var image1 = $('<li class="ui-widget-content ui-corner-tr piece"><a href="#"><img src="' + TILES_CONNECTIONS_PATH + value.connectionSrc + '" alt="' +  value.connectionSrc + '" width="94" height="68" id="piece-id-'+index+'" piece-id="' + index + '" piece-count="1" class="imgfocus"/></a></li>');
 					rand(0,1) ? $('#'+element + ' ul').prepend(image1) : $('#'+element + ' ul').append(image1);
 					if(value.connectionSrc == activeli){
 						image1.addClass('active');

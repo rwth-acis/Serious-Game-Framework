@@ -658,7 +658,9 @@
 									<option value='2'>No. of Correct Levels</option>
 									<option value='3'>No. of times 'eLearning' link is used</option>
 									<option value='4'>No. of times 'More Information' link is used</option>
-									<option value='4'>No. of times 'Try Again' is used</option>
+									<option value='5'>No. of times 'Try Again' is used</option>
+									<option value='6'>Poor Performance</option>
+									<option value='7'>Tutorial Badge</option>
 								</select>
 							</fieldset>
 						</div>
@@ -701,6 +703,8 @@
 									<option value='3'>No. of times 'eLearning' link is used</option>
 									<option value='4'>No. of times 'More Information' link is used</option>
 									<option value='5'>No. of times 'Try Again' is used</option>
+									<option value='6'>Poor Performance</option>
+									<option value='7'>Tutorial Badge</option>
 								</select>
 							</fieldset>
 						</div>
@@ -772,7 +776,7 @@
 	      	'</li>');
 	      $('.menulist').prepend(profile);
 
-	      var gamedesignerview =	$('<li>' +
+	     /* var gamedesignerview =	$('<li>' +
 	      	'<a href="#gameDesignerView" id="gamedesignerlink">' +
 	      	'<h3 style="color:#0456a2;">Design Games</h3>' +
 	      	'<p style="color:#0456a2;">Create or Edit games!</p>' +
@@ -786,10 +790,16 @@
 	      	'<p style="color:#0456a2;">Create or Edit Assessment rules!</p>' +
 	      	'</a>' +
 	      	'</li>');
-	      $('.menulist').append(assessmentsystemview);
+	      $('.menulist').append(assessmentsystemview);*/
 
-	      $('.menulist').listview('refresh');
-	      $('#profilelink').click(function() { showProfile() });
+	      if ( $('.menulist').hasClass('ui-listview')) {
+				$('.menulist').listview('refresh');
+			} 
+			else {
+				$('.menulist').trigger('create');
+			}
+	     // $('.menulist').listview('refresh');
+	      $('#profilelink').click(function() { loadDataFromDatabase() });
 	      startTracking();
 	  } else {
 	      // if sign in was not successful, log the cause of the error on the console
@@ -797,6 +807,13 @@
 	      // TODO MARKO
 				// alert('Please log in with the button on the top left, so we can track your progress!');
 			}
+		}
+
+		function loadDataFromDatabase(){
+			var url = "assets/scripts/loadData.js";
+			$.getScript( url, function() {
+				showProfile();
+			});
 		}
 	</script>
 

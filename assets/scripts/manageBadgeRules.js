@@ -1,5 +1,3 @@
-//var UPLOADPATH = "uploads/";
-var TEMP = "tmp/";
 var oidc_userinfo;
 
 function rand(min, max) {
@@ -47,7 +45,7 @@ function rand(min, max) {
 		$('#select-badge-requirement').change(function(){
 			$('#game-badge-saved-message').text("");
 			var badgeRequirementId = $('select[name=select-badge-requirement]').val();
-			if(badgeRequirementId == 0 || badgeRequirementId == 1){
+			if(badgeRequirementId == 0 || badgeRequirementId == 1 || badgeRequirementId == 6 || badgeRequirementId == 7){
 				$('#game-badge-points')[0].value = "";
 			$("#game-badge-points").attr('disabled','disabled');
 			$("#game-badge-points").parent().css( "background-color", "#e7e7e7" );
@@ -64,7 +62,7 @@ function rand(min, max) {
 		$('#edit-select-badge-requirement').change(function(){
 			$('#game-badge-saved-message').text("");
 			var badgeRequirementId = $('select[name=edit-select-badge-requirement]').val();
-			if(badgeRequirementId == 0 || badgeRequirementId == 1){
+			if(badgeRequirementId == 0 || badgeRequirementId == 1 || badgeRequirementId == 6 || badgeRequirementId == 7){
 				$('#edit-game-badge-points')[0].value = "";
 			$("#edit-game-badge-points").attr('disabled','disabled');
 			$("#edit-game-badge-points").parent().css( "background-color", "#e7e7e7" );
@@ -283,7 +281,7 @@ function rand(min, max) {
 
 			if($('select[name=select-badge-requirement]').val() != 0){
 
-				if($('select[name=select-badge-requirement]').val() == 1){
+				if($('select[name=select-badge-requirement]').val() == 1 || $('select[name=select-badge-requirement]').val() == 6 || $('select[name=select-badge-requirement]').val() == 7){
 					check = true;
 				}else if($.isNumeric($.trim($('#game-badge-points')[0].value))){
 					check = true;
@@ -307,7 +305,7 @@ function rand(min, max) {
 
 			if($('select[name=edit-select-badge-requirement]').val() != 0){
 
-				if($('select[name=edit-select-badge-requirement]').val() == 1){
+				if($('select[name=edit-select-badge-requirement]').val() == 1 || $('select[name=edit-select-badge-requirement]').val() == 6 || $('select[name=edit-select-badge-requirement]').val() == 7){
 					check = true;
 				}else if($.isNumeric($.trim($('#edit-game-badge-points')[0].value))){
 					check = true;
@@ -362,16 +360,21 @@ function rand(min, max) {
 				formdata = new FormData();
 			}
 			var i = 0, len = filedata.files.length, img, reader, file;
+			var check = true;
 			for (; i < len; i++) {
 				file = filedata.files[i];
+								
 				if(!file.type.match(/image.*/)){
+					check = false;
 					alert(file.fileName +' is not a valid image!');
 					continue;
 				}
+				i
 				if (formdata) {
 					formdata.append("uploadGameBadge", file);
 				}
 			}
+			if(check && file){
 			formdata.append("badgeName",badgeName);
 			formdata.append("badgeDescription",badgeDescription);
 			formdata.append("badgeFeedbackMessage",badgeFeedbackMessage);
@@ -387,6 +390,7 @@ function rand(min, max) {
 					processData: false,
 					contentType: false,
 					success: function(data){
+					document.getElementById("uploadGameBadge").FileList = {};
 					getGameBadges();
 					$('#game-badge-saved-message').text("");
 					var createBadgeMessage = $('<h2 style="color:#036363;">New Badge added successfully!</h2>');
@@ -405,6 +409,9 @@ function rand(min, max) {
 
 				}
 			});
+			}
+			}else{
+				document.getElementById("uploadGameBadge").FileList = {};
 			}
 		}
 
@@ -459,7 +466,7 @@ function rand(min, max) {
 		function addGameBadge(value){
 
 			var length = GAME_BADGES.length - 1;
-			var image1 = $('<li email="' +  oidc_userinfo.email + '" class="ui-widget-content ui-corner-tr piece"><a href="#"><img src="' + TEMP + value + '" alt="' +  value + '" width="94" height="68" badgeIndex="'+length+'" id="piece-id-'+index+'" piece-id="' + index + '" piece-count="1" class="imgfocus"/></a></li>');
+			var image1 = $('<li email="' +  oidc_userinfo.email + '" class="ui-widget-content ui-corner-tr piece"><a href="#"><img src="' + GAME_BADGES_PATH + value + '" alt="' +  value + '" width="94" height="68" badgeIndex="'+length+'" id="piece-id-'+index+'" piece-id="' + index + '" piece-count="1" class="imgfocus"/></a></li>');
 			$('#'+galleryElementName + ' ul').prepend(image1);
 			GAME_BADGES[length]["badgeSrc"] = value;
 			setGalleryWidth();
@@ -535,7 +542,7 @@ function rand(min, max) {
 			files = JSON.parse(filesdata);
 			if(files != null){
 				$.each(files, function(index, value) {
-					var image1 = $('<li email="' +  value.oidcEmail + '" badgeIndex="'+index+'" class="ui-widget-content ui-corner-tr piece"><a href="#"><img src="' + TEMP + value.badgeSrc + '" alt="' +  value.badgeSrc + '" width="94" height="68" badgeIndex="'+index+'" id="piece-id-'+index+'" piece-id="' + index + '" piece-count="1" class="imgfocus"/></a></li>');
+					var image1 = $('<li email="' +  value.oidcEmail + '" badgeIndex="'+index+'" class="ui-widget-content ui-corner-tr piece"><a href="#"><img src="' + GAME_BADGES_PATH + value.badgeSrc + '" alt="' +  value.badgeSrc + '" width="94" height="68" badgeIndex="'+index+'" id="piece-id-'+index+'" piece-id="' + index + '" piece-count="1" class="imgfocus"/></a></li>');
 					rand(0,1) ? $('#'+galleryElementName + ' ul').prepend(image1) : $('#' + galleryElementName + ' ul').append(image1);
 				});
 

@@ -1,5 +1,3 @@
-//var UPLOADPATH = "uploads/";
-var TEMP = "tmp/";
 var oidc_userinfo;
 
 function rand(min, max) {
@@ -333,9 +331,11 @@ function rand(min, max) {
 				formdata = new FormData();
 			}
 			var i = 0, len = filedata.files.length, img, reader, file;
+			var check = true;
 			for (; i < len; i++) {
 				file = filedata.files[i];
 				if(!file.type.match(/image.*/)){
+					check = false;
 					alert(file.fileName +' is not a valid image!');
 					continue;
 				}
@@ -343,6 +343,7 @@ function rand(min, max) {
 					formdata.append("uploadExperienceBadge", file);
 				}
 			}
+			if(check && file){
 			formdata.append("badgeName",badgeName);
 			formdata.append("badgeDescription",badgeDescription);
 			formdata.append("badgeFeedbackMessage",badgeFeedbackMessage);
@@ -357,6 +358,7 @@ function rand(min, max) {
 					processData: false,
 					contentType: false,
 					success: function(data){
+						document.getElementById("uploadExperienceBadge").FileList = {};
 						getExperienceBadges();
 						$('#create-experience-badge-message').text("");
 						var createBadgeMessage = $('<h2 style="color:#025814;">New Badge added successfully!</h2>');
@@ -371,6 +373,9 @@ function rand(min, max) {
 
 					}
 				});
+			}
+		}else{
+				document.getElementById("uploadExperienceBadge").FileList = {};
 			}
 		}
 
@@ -490,7 +495,7 @@ function rand(min, max) {
 							RULE_ID = 1;
 						}
 						$('#experienceRulesFormula').text("");
-						var rulesMessage = $('<h3 style="color:'+color+';">Experience = Highscore &times; ' +$('#experience-highscore')[0].value+' + eLearningLink Clicks &times; '+$('#experience-elearning')[0].value+' + moreInformation Clicks &times; '+$('#experience-moreInfo')[0].value+' + Badges &times; '+$('#experience-badges')[0].value+' + Games Designed &times; '+$('#experience-gamesDesigned')[0].value+' + Login &times; '+$('#experience-login')[0].value+' </h3>');
+						var rulesMessage = $('<h3 style="color:'+color+';">Experience = Highscore &times; ' +$('#experience-highscore')[0].value+' + No. of eLearningLink Clicks &times; '+$('#experience-elearning')[0].value+' + No. of moreInformation Clicks &times; '+$('#experience-moreInfo')[0].value+' + No. of Badges &times; '+$('#experience-badges')[0].value+' + No. of Games Designed &times; '+$('#experience-gamesDesigned')[0].value+' + No. of times Logged in &times; '+$('#experience-login')[0].value+' </h3>');
 						$('#experienceRulesFormula').append(rulesMessage);
 						
 					}
@@ -501,7 +506,7 @@ function rand(min, max) {
 		function addExperienceBadge(value){
 
 			var length = EXPERIENCE_BADGES.length - 1;
-			var image1 = $('<li email="' +  oidc_userinfo.email + '" class="ui-widget-content ui-corner-tr piece"><a href="#"><img src="' + TEMP + value + '" alt="' +  value + '" width="94" height="68" badgeIndex="'+length+'" id="piece-id-'+index+'" piece-id="' + index + '" piece-count="1" class="imgfocus"/></a></li>');
+			var image1 = $('<li email="' +  oidc_userinfo.email + '" class="ui-widget-content ui-corner-tr piece"><a href="#"><img src="' + EXPERIENCE_BADGES_PATH + value + '" alt="' +  value + '" width="94" height="68" badgeIndex="'+length+'" id="piece-id-'+index+'" piece-id="' + index + '" piece-count="1" class="imgfocus"/></a></li>');
 			$('#'+galleryElementName + ' ul').prepend(image1);
 			EXPERIENCE_BADGES[length]["badgeSrc"] = value;
 			setGalleryWidth();
@@ -577,7 +582,7 @@ function rand(min, max) {
 			files = JSON.parse(filesdata);
 			if(files != null){
 				$.each(files, function(index, value) {
-					var image1 = $('<li email="' +  value.oidcEmail + '" badgeIndex="'+index+'" class="ui-widget-content ui-corner-tr piece"><a href="#"><img src="' + TEMP + value.badgeSrc + '" alt="' +  value.badgeSrc + '" width="94" height="68" badgeIndex="'+index+'" id="piece-id-'+index+'" piece-id="' + index + '" piece-count="1" class="imgfocus"/></a></li>');
+					var image1 = $('<li email="' +  value.oidcEmail + '" badgeIndex="'+index+'" class="ui-widget-content ui-corner-tr piece"><a href="#"><img src="' + EXPERIENCE_BADGES_PATH + value.badgeSrc + '" alt="' +  value.badgeSrc + '" width="94" height="68" badgeIndex="'+index+'" id="piece-id-'+index+'" piece-id="' + index + '" piece-count="1" class="imgfocus"/></a></li>');
 					rand(0,1) ? $('#'+galleryElementName + ' ul').prepend(image1) : $('#' + galleryElementName + ' ul').append(image1);
 				});
 
