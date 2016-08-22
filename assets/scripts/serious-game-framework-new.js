@@ -25,7 +25,6 @@ var GAME_DESIGNER_NAME;
 var GAME_DESIGNER_EMAIL;
 var GAME_DESIGNER_INSTITUTION;
 
-var CURRENT_GAME_HIGHSCORE;
 var CURRENT_GAME_BADGES;
 
 var GOTDATA = false;
@@ -46,6 +45,13 @@ var SELECTEDITEMS = [];
 var GAMESTATE = "leveldone";
 var GAMEINDEX;
 var GAME_BADGES_INDEX;
+var CURRENT_HIGHSCORE;
+var CURRENT_HIGHSCORE_DATA_INDEX;
+var CORRECT_FACTOR;
+var WRONG_FACTOR;
+var SHOWME_FACTOR;
+var TRYAGAIN_FACTOR;
+var HINT_FACTOR;
 
 // TODO MARKO add real oidc_userinfo
 //var oidc_userinfo = {name: "Marko Kajzer", preferred_username: "marko.kajzer", email: "marko.kajzer@hotmail.de"};
@@ -131,6 +137,7 @@ $(document).ready(function() {
 			var url = "assets/scripts/loadData.js";
 			$.getScript( url, function() {
 				if(GAMESDATA != undefined && GAMESDATA.length != 0){
+					getAllGamesHighscore();
 					fillGamesList(GAMESDATA);
 				}
 			});
@@ -245,6 +252,9 @@ $(document).ready(function() {
 		// Send trace for using the show_me button
 		gleaner_tracker.trackTrace(oidc_userinfo, "level_completion",
 			{gameID: GAMEID, levelID: CURRENTLEVEL, result: "show_me", configure : "new"});
+		CURRENT_HIGHSCORE = parseFloat(CURRENT_HIGHSCORE).toFixed(2);
+		CURRENT_HIGHSCORE = CURRENT_HIGHSCORE - SHOWME_FACTOR;
+		$('.score').empty().append(" Highscore: "+ parseFloat(CURRENT_HIGHSCORE).toFixed(2));
 	});
 
 	$('#wrapper-tryagain').click(function() {
@@ -254,6 +264,10 @@ $(document).ready(function() {
 		// Send trace for using the show_me button
 		gleaner_tracker.trackTrace(oidc_userinfo, "level_completion",
 			{gameID: GAMEID, levelID: CURRENTLEVEL, result: "try_again", configure : "new"});
+
+		CURRENT_HIGHSCORE = parseFloat(CURRENT_HIGHSCORE).toFixed(2);
+		CURRENT_HIGHSCORE = CURRENT_HIGHSCORE - TRYAGAIN_FACTOR;
+		$('.score').empty().append(" Highscore: "+ parseFloat(CURRENT_HIGHSCORE).toFixed(2));
 	});
 
 	$('#wrapper-hint').click(function() {
@@ -262,6 +276,9 @@ $(document).ready(function() {
 		// Send trace for using the show_me button
 		gleaner_tracker.trackTrace(oidc_userinfo, "level_completion",
 			{gameID: GAMEID, levelID: CURRENTLEVEL, result: "hint", configure : "new"});
+		CURRENT_HIGHSCORE = parseFloat(CURRENT_HIGHSCORE).toFixed(2);
+		CURRENT_HIGHSCORE = CURRENT_HIGHSCORE - HINT_FACTOR;
+		$('.score').empty().append(" Highscore: "+ parseFloat(CURRENT_HIGHSCORE).toFixed(2));
 	});
 
 	$('#wrapper-level-tutorial').click(function(){
@@ -383,6 +400,19 @@ $(document).ready(function() {
 							for(var j=0;j<GAME_BADGES.length;j++){
 								if(GAME_RULES_DATA[i].gameCompletionBadgeSrc == GAME_BADGES[j].badgeSrc){
 									GAME_BADGES_INDEX = j;
+									break;
+								}
+							}
+						}
+						if(GAME_RULES_DATA[i].gameId == gameId){
+							for(var k=0;k<HIGHSCORE_VERSIONS.length;k++){
+								if(GAME_RULES_DATA[i].highscoreId == HIGHSCORE_VERSIONS[k].highscoreId){
+									CURRENT_HIGHSCORE_DATA_INDEX = k;
+									CORRECT_FACTOR = -parseFloat( HIGHSCORE_VERSIONS[k].correct).toFixed(2);
+									WRONG_FACTOR = -parseFloat( HIGHSCORE_VERSIONS[k].wrong).toFixed(2);
+									SHOWME_FACTOR = -parseFloat( HIGHSCORE_VERSIONS[k].showMe).toFixed(2);
+									TRYAGAIN_FACTOR = -parseFloat( HIGHSCORE_VERSIONS[k].tryAgain).toFixed(2);
+									HINT_FACTOR = -parseFloat( HIGHSCORE_VERSIONS[k].hint).toFixed(2);
 									break;
 								}
 							}
@@ -536,9 +566,9 @@ function loadGame(gameIndex, gameID) {
 		$('#moreInformation').fadeOut();
 		$('#leveldone').fadeOut();
 		$('#levelcontrol').fadeOut();
-
+						
 		$('.gametitle').empty().append(GAMESDATA[gameIndex].gameName);
-
+		$('.score').empty().append(" Highscore: "+ CURRENT_HIGHSCORE);
 			// set the gallery and slot titles if available
 			NUMBER_OF_GALLERIES = 2;
 			if(GAMESDATA[gameIndex].gallery3Id != ""){
@@ -1390,6 +1420,9 @@ function loadGame(gameIndex, gameID) {
 								wrong++;
 								gleaner_tracker.trackTrace(oidc_userinfo, "level_completion",
 									{gameID: GAMEID, levelID: CURRENTLEVEL, result: "wrong", configure : "new"});
+								CURRENT_HIGHSCORE = parseFloat(CURRENT_HIGHSCORE).toFixed(2);
+								CURRENT_HIGHSCORE = CURRENT_HIGHSCORE - WRONG_FACTOR;
+								$('.score').empty().append(" Highscore: "+ parseFloat(CURRENT_HIGHSCORE).toFixed(2));
 							}
 						} else {
 							logLevel(l, "correct");
@@ -1402,10 +1435,13 @@ function loadGame(gameIndex, gameID) {
 							$('#wrapper-hint').fadeOut();
 
 							// Send traces with result = "correct", do not track in Tutorial
-							if(!TUTORIAL) {
+							if(!TUTORIAL && !TRYAGAIN) {
 								correct++;
 								gleaner_tracker.trackTrace(oidc_userinfo, "level_completion",
 									{gameID: GAMEID, levelID: CURRENTLEVEL, result: "correct", configure : "new"});
+								CURRENT_HIGHSCORE = parseFloat(CURRENT_HIGHSCORE).toFixed(2);
+								CURRENT_HIGHSCORE = CURRENT_HIGHSCORE - CORRECT_FACTOR;
+								$('.score').empty().append(" Highscore: "+ parseFloat(CURRENT_HIGHSCORE).toFixed(2));
 							}
 						}
 						for (var i = 0; i < NUMBER_OF_GALLERIES; i++) {
@@ -1880,7 +1916,7 @@ insertHighScores = function() {
     			'</tr>'
     			)
     	});
-
+    	CURRENT_HIGHSCORE = userHighscore;
     	getExperienceData(userHighscore);
     },
     error: function(err) {
