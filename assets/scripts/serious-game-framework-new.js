@@ -137,7 +137,12 @@ $(document).ready(function() {
 			var url = "assets/scripts/loadData.js";
 			$.getScript( url, function() {
 				if(GAMESDATA != undefined && GAMESDATA.length != 0){
-					getAllGamesHighscore();
+					if(oidc_userinfo != undefined){
+						getAllGamesHighscore();
+					}else{
+						CURRENT_HIGHSCORE = 0;
+					}
+					
 					fillGamesList(GAMESDATA);
 				}
 			});
@@ -247,20 +252,21 @@ $(document).ready(function() {
 	});
 
 	$('#wrapper-showme').click(function() {
-		showMe();
-
+		
+		if(!SHOWME){
 		// Send trace for using the show_me button
 		gleaner_tracker.trackTrace(oidc_userinfo, "level_completion",
 			{gameID: GAMEID, levelID: CURRENTLEVEL, result: "show_me", configure : "new"});
 		CURRENT_HIGHSCORE = parseFloat(CURRENT_HIGHSCORE).toFixed(2);
 		CURRENT_HIGHSCORE = CURRENT_HIGHSCORE - SHOWME_FACTOR;
 		$('.score').empty().append(" Highscore: "+ parseFloat(CURRENT_HIGHSCORE).toFixed(2));
+	}
+		showMe();
 	});
 
 	$('#wrapper-tryagain').click(function() {
-		tryAgain();
-
-
+		
+		if(!TRYAGAIN){
 		// Send trace for using the show_me button
 		gleaner_tracker.trackTrace(oidc_userinfo, "level_completion",
 			{gameID: GAMEID, levelID: CURRENTLEVEL, result: "try_again", configure : "new"});
@@ -268,6 +274,8 @@ $(document).ready(function() {
 		CURRENT_HIGHSCORE = parseFloat(CURRENT_HIGHSCORE).toFixed(2);
 		CURRENT_HIGHSCORE = CURRENT_HIGHSCORE - TRYAGAIN_FACTOR;
 		$('.score').empty().append(" Highscore: "+ parseFloat(CURRENT_HIGHSCORE).toFixed(2));
+		}
+		tryAgain();
 	});
 
 	$('#wrapper-hint').click(function() {
@@ -418,6 +426,7 @@ $(document).ready(function() {
 							}
 						}
 					}
+				
 			// Show the tutorial, if the game is marked as tutorial
 			if (TUTORIAL) {
 				$('#levelcontrol').fadeIn();
@@ -1417,12 +1426,14 @@ function loadGame(gameIndex, gameID) {
 							// Send traces with result = "wrong", do not track in Tutorial
 							if(!TUTORIAL) {
 								$('#wrapper-tryagain').fadeIn();
+								if(!TRYAGAIN){
 								wrong++;
 								gleaner_tracker.trackTrace(oidc_userinfo, "level_completion",
 									{gameID: GAMEID, levelID: CURRENTLEVEL, result: "wrong", configure : "new"});
 								CURRENT_HIGHSCORE = parseFloat(CURRENT_HIGHSCORE).toFixed(2);
 								CURRENT_HIGHSCORE = CURRENT_HIGHSCORE - WRONG_FACTOR;
 								$('.score').empty().append(" Highscore: "+ parseFloat(CURRENT_HIGHSCORE).toFixed(2));
+							}
 							}
 						} else {
 							logLevel(l, "correct");
