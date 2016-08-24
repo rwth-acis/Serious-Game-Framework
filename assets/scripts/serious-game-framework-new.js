@@ -139,7 +139,8 @@ $(document).ready(function() {
 				if(GAMESDATA != undefined && GAMESDATA.length != 0){
 					if(oidc_userinfo != undefined){
 						getAllGamesHighscore();
-					}else{
+					}
+					if(CURRENT_HIGHSCORE == undefined){
 						CURRENT_HIGHSCORE = 0;
 					}
 					

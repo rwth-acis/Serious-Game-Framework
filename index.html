@@ -124,8 +124,8 @@
 			<div data-role="header" data-theme="b">
 				<h1>Serious Game Framework</h1>
 				<div data-inline="true" class="ui-btn-right">
-				<a href="https://goo.gl/forms/CqFAHaOIkC1GPHwi2" target="_blank" data-role="button" data-inline="true" data-rel="dialog">Feedback</a>
-				<a href="#options" data-icon="gear" data-role="button" class="options-button" data-inline="true" data-rel="dialog">Options</a>
+					<a href="https://goo.gl/forms/CqFAHaOIkC1GPHwi2" target="_blank" data-role="button" data-inline="true" data-rel="dialog">Feedback</a>
+					<a href="#options" data-icon="gear" data-role="button" class="options-button" data-inline="true" data-rel="dialog">Options</a>
 				</div>
 				<span data-role="button" data-inline="true" data-corners="true" class="ui-btn-left">
 					<span class="oidc-signin"
@@ -178,8 +178,8 @@
 		<div id="game-header" data-role="header" data-theme="b">
 			<a href="#" data-icon="arrow-l" id="game-header-home" class="ui-btn-left" data-iconpos="notext"  data-rel="back">Home</a>
 			<div style="margin-left:50%;margin-bottom: 10px;margin-top:10px;">
-			<h2 style="display: inline;padding-right: 20%;" class="gametitle"></h2>
-			<h2 style="display: inline;padding-left: 20%;" class="score"></h2>
+				<h2 style="display: inline;padding-right: 20%;" class="gametitle"></h2>
+				<h2 style="display: inline;padding-left: 10%;padding-right: 10%;" class="score"></h2>
 			</div>
 			<div data-inline="true" class="ui-btn-right">
 				<a href="https://goo.gl/forms/CqFAHaOIkC1GPHwi2" target="_blank" data-role="button" data-inline="true" data-rel="dialog">Feedback</a>
@@ -411,6 +411,7 @@
 		<div id="gameDesignerView" data-role="page" class="ui-helper-clearfix bodywrapper">
 			<div data-role="content">
 				<ul data-role="listview" data-inset="true">
+					<li style="background: #5f98c5;"><a href="#gameDesignerTutorial" id="gameDesignerTutoriallink"><h3 style="color: white;text-shadow: none;">Game Designer Tutorial</h3><p style="color: white;text-shadow: none;">Tutorial.</p></a></li>
 					<li><a href="#editgalleries" id="editgallerieslink"><h3 style="color: #333399;">Manage Galleries</h3><p style="color: #333399;">Create new Pieces or galleries and delete existing ones.</p></a></li>
 					<li><a href="#connections" id="editconnectionslink"><h3 style="color: #9b319b;">Manage Connections</h3><p style="color: #9b319b;">Create new Connections and delete existing ones.</p></a></li>
 					<li><a href="#games"><h3 style="color: #990033;">Manage Games</h3><p style="color: #990033;">Create new games or edit existing ones.</p></a></li>
@@ -418,11 +419,75 @@
 				</ul>
 			</div>
 		</div>
+
+		<div id="gameDesignerTutorial" data-role="page" class="ui-helper-clearfix bodywrapper">
+			<!-- Header Filled by createUIElements.js -->
+			<div data-role="content">
+				<div class="ui-content">
+
+					<div data-role="collapsible-set" data-theme="b" data-content-theme="b"  data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d">
+
+						<div data-role="collapsible" data-collapsed="false">
+							<h3>Game Designer Overview</h3>
+							<img src="game_designer_tutorial/game_designer_overview.png" alt="Concept Map" style="max-width:100%;max-height:100%;">
+						</div>
+						<div data-role="collapsible">
+							<h3>Steps to Create a Game</h3>
+							<h2>Game Designer View:</h2>
+							<div style="display: inline;">
+							<img src="game_designer_tutorial/game_designer_view.png" alt="Game Designer View" style="max-width:100%;max-height:100%;">
+							<img src="game_designer_tutorial/managegames.png" alt="Manage Games View" style="max-width:100%;max-height:100%;">
+							</div>
+							<h2>Steps to Create a Game:</h2>
+							<h3>Step 1: To create a game, we need the game components - Galleries and Connections.</h3>
+							<h3>Step 2: Galleries can be created in 'Manage Galleries' view. Check 'How to Manage Galleries' section for details.</h3>
+							<h3>Step 3: Connections can be created in 'Manage Connections' view. Check 'How to Manage Connections' section for details.</h3>
+							<h3>Step 4: After creating the game components, a new game can be created in 'Create Games' in 'Manage Games' view.</h3>
+							<h3>Step 5: In 'Create Games' view, select the desired galleries and connections. Check 'How to Create Games' section for details.</h3>
+							<h3>Step 6: In 'Edit Games' view, create levels of the game. Check 'How to Edit Games' section for details.</h3>
+						</div>
+						<div data-role="collapsible">
+							<h3>How to Manage Galleries</h3>
+							<h3>1. Create a new gallery by giving gallery name (non empty) and description of the gallery. Gallery name is required to enable the 'Create' button</h3>
+							<img src="game_designer_tutorial/creategallery.png" alt="Create Gallery" style="max-width:100%;max-height:100%;">
+							
+							<h3>2. Click on the 'Create' button to create the gallery. This gallery will be added to the list of galleries in the 'Select Gallery to Edit' dropdown.</h3>
+							<h3>3. Select the gallery from the dropdown to enable 'Edit Gallery' and 'Delete Gallery' buttons. If you want to view other galleries created by other users, select the gallery and 'Show' button will be enabled instead of edit and delete buttons.</h3>
+							<h3>4. Click on 'Edit Gallery' button to edit the gallery. This displays the Gallery details and 'Add Tiles button'</h3>
+							<img src="game_designer_tutorial/editgallery.png" alt="Create Gallery" style="max-width:100%;max-height:100%;">
+							<h3>5. Click on 'Save' button after making changes to the gallery details.</h3>
+							<h3>6. Galleries contain tiles which are image files (Refer to 'How to Create Image Files' below). To create tiles in the gallery, click on 'Add Tiles' button to upload the image files. Uploading multiple image files is possible.</h3>
+							<h3>7. To delete a tile from the gallery, click on the tile to be deleted to enable 'Delete Tile' button. Click on the button to delete the tile from the gallery.</h3>
+							<h3>8. 'Undo Tile Deletion' button appears immediately after deleting a tile. Click on it to restore the tile. This button disappears if any other action is performed.</h3>
+							<h3>9. To delete a gallery, select the gallery from the dropdwown menu and click on 'Delete Gallery'.</h3>
+							<h3>10. 'Undo Gallery Deletion' button appears after deleting the gallery. Click on it to restore the gallery. This button disappears if any other action is performed.</h3>
+
+							<h2>How to Create Image Files</h2>
+							<h3>Create a Microsoft Powerpoint presentation with desired data. If the data is text, then create text with very large font.
+							While saving the presentation, choose the option to save it as image files. This will create a folder with all the slides of the presentation as image files. These image files can be uploaded via the uploader using 'Add Tiles' button</h3>
+						</div>
+						<div data-role="collapsible">
+							<h3>How to Manage Connections</h3>
+							<h3>1. Click on 'Show Connections' button to view existing connections.</h3>
+							<img src="game_designer_tutorial/showconnections.png" alt="Show Connections" style="max-width:100%;max-height:100%;">
+							<h3>2. Click on 'Add Connections' button to upload connections (only image files are allowed).</h3>
+							<h3>3. To delete a connection, click on the connection to enable 'Delete connection' button. Click on the button to delete the connection.</h3>
+							<img src="game_designer_tutorial/deleteconnections.png" alt="Show Connections" style="max-width:100%;max-height:100%;">
+							<h3>4. 'Undo Connection Deletion' button appears after deleting the connection. Click on it to restore the connection.</h3>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+
 		<div id="editgalleries" data-role="page" class="ui-helper-clearfix bodywrapper">
 			<!-- Header Filled by createUIElements.js -->
 			<div data-role="content">
 				<div class="ui-content">
-				<h2 style="color:#333399;">Create Gallery</h2>
+					<h2 style="color:#333399;">Create Gallery</h2>
 					<div id="galleryInputFields">
 						<!-- Input Fields Filled by createUIElements.js -->
 					</div>
@@ -535,17 +600,17 @@
 											<td id="editheaderslot3td"><h4 id="editheader-slot3" class="ui-widget-header">Slot 4</h4></td>
 										</tr>
 										<tr id=editGameSlots>
-										<!-- Slots and buttons Filled by createUIElements.js -->
+											<!-- Slots and buttons Filled by createUIElements.js -->
 										</tr>
 									</table>
 								</span>
 							</div>
 						</fieldset>
 						<div id="editLevelInfo">
-						<!-- Links and buttons Filled by createUIElements.js -->
+							<!-- Links and buttons Filled by createUIElements.js -->
 						</div>
 						<div id="editLevelMessage"></div>
-											
+
 						<h2 id="changeConnectionHeader">Change Connection</h2>
 
 						<fieldset id="changeconnection1-fieldset" class="ui-grid-solo sideByside">
@@ -555,7 +620,7 @@
 							<!-- Gallery and button Filled by createUIElements.js -->
 						</fieldset>
 						<fieldset id="changeconnection3-fieldset" class="hideElement ui-grid-solo sideByside">
-						<!-- Gallery and button Filled by createUIElements.js -->
+							<!-- Gallery and button Filled by createUIElements.js -->
 						</fieldset>
 						<div id="changeConnectionMessage"></div>
 					</div>
@@ -588,9 +653,9 @@
 		<div id="experiencerules" data-role="page" class="ui-helper-clearfix bodywrapper">
 			<div data-role="content">
 				<div class="ui-content">
-				<h2 style="color: #308f44">Create Experience Badge</h2>
-				<div id="experienceBadgeBlock">
-					
+					<h2 style="color: #308f44">Create Experience Badge</h2>
+					<div id="experienceBadgeBlock">
+
 					</div>
 					<fieldset id="AddExperienceBadgeBlock" data-role="fieldcontain">
 						
@@ -604,20 +669,20 @@
 						</div>
 						<div>
 							<fieldset id="badgeEditDelete" data-role="fieldcontain" class="ui-block-b">
-							
+
 							</fieldset>
 						</div>
 					</fieldset>
 					<h2 style="color: #308f44">Edit Experience Badge</h2>
 					<div id="editExperienceBadgeBlock">
-					
+
 					</div>
 					<div id="experience-badge-saved-message"></div>
 					<h2 style="color: #308f44">Experience Calculation Rules</h2>
 					<div id="experienceRulesFormula"></div>
 					<div id="save-experience-rules-message"></div>	
 					<div id=experienceRules>
-					
+
 					</div>	
 					
 				</div>
@@ -630,13 +695,13 @@
 				<div class="ui-content">
 					<h2 style="color: #c37719">Edit Existing Highscore Versions</h2>
 					<fieldset id="editHighscoreBlock" class="ui-grid-b sideByside">
-					
+
 					</fieldset>	
 					<div id="highscore-desc-message"></div>
 					<div id="save-highscore-rules-message"></div>
 					<h2 style="color: #c37719">Highscore Calculation Rules</h2>
 					<div id="highscoreCalBlock">
-					
+
 					</div>
 					
 				</div>
@@ -647,9 +712,9 @@
 		<div id="badgerules" data-role="page" class="ui-helper-clearfix bodywrapper">
 			<div data-role="content">
 				<div class="ui-content">
-				<h2 style="color: #069090">Create Badge</h2>
-				<div id="BadgeDetailsBlock">
-					
+					<h2 style="color: #069090">Create Badge</h2>
+					<div id="BadgeDetailsBlock">
+
 					</div>
 					<fieldset class="ui-grid-c sideByside">
 						<div class="ui-block-a">
@@ -685,7 +750,7 @@
 						</div>
 						<div>
 							<fieldset id="editDeleteGameBadgeBlock" data-role="fieldcontain" class="ui-block-b">
-							
+
 							</fieldset>
 						</div>
 					</fieldset>
@@ -693,7 +758,7 @@
 					<div id="game-badge-saved-message"></div>
 					<h2 style="color: #069090">Edit Badge Details</h2>
 					<div id="EditBadgeDetailsBlock">
-					
+
 					</div>
 					<fieldset class="ui-grid-c sideByside">
 						<div class="ui-block-a">
@@ -728,23 +793,23 @@
 			<div data-role="content">
 				<div class="ui-content">
 					<div id="SelectGameRulesBlock">
-					
+
 					</div>
 					<div id="rule_gameDescriptionText"></div>
 					<div id="editgamerulessection" class="hideElement">
-					<div id="EditGameRulesBlock">
-					
-					</div>
-					<h2 style="color: #5f0e88;">Select Game Completion Badge</h2>
-					<fieldset class="ui-grid-solo sideByside">
-						<div  id="gameBadgeSelectBlock" class="ui-block-a">
+						<div id="EditGameRulesBlock">
+
 						</div>
-						
-					</fieldset>
-					<fieldset id="saveGameRules" data-role="fieldcontain" class="ui-block-b">
-						
-					</fieldset>	
-					<div id="game-assessment-saved-message"></div>
+						<h2 style="color: #5f0e88;">Select Game Completion Badge</h2>
+						<fieldset class="ui-grid-solo sideByside">
+							<div  id="gameBadgeSelectBlock" class="ui-block-a">
+							</div>
+
+						</fieldset>
+						<fieldset id="saveGameRules" data-role="fieldcontain" class="ui-block-b">
+
+						</fieldset>	
+						<div id="game-assessment-saved-message"></div>
 					</div>
 				</div>
 			</div>
@@ -779,7 +844,7 @@
 	      	'</li>');
 	      $('.menulist').prepend(profile);
 
-	     var gamedesignerview =	$('<li>' +
+	      var gamedesignerview =	$('<li>' +
 	      	'<a href="#gameDesignerView" id="gamedesignerlink">' +
 	      	'<h3 style="color:#0456a2;">Design Games</h3>' +
 	      	'<p style="color:#0456a2;">Create or Edit games!</p>' +
@@ -787,7 +852,7 @@
 	      	'</li>');
 	      $('.menulist').append(gamedesignerview);
 
-	     var assessmentsystemview =	$('<li>' +
+	      var assessmentsystemview =	$('<li>' +
 	      	'<a href="#assessmentSystemView" id="assessmentsystemlink">' +
 	      	'<h3 style="color:#0456a2;">Assessment System</h3>' +
 	      	'<p style="color:#0456a2;">Create or Edit Assessment rules!</p>' +
@@ -796,15 +861,15 @@
 	      $('.menulist').append(assessmentsystemview);
 
 	      if ( $('.menulist').hasClass('ui-listview')) {
-				$('.menulist').listview('refresh');
-			} 
-			else {
-				$('.menulist').trigger('create');
-			}
+	      	$('.menulist').listview('refresh');
+	      } 
+	      else {
+	      	$('.menulist').trigger('create');
+	      }
 	     // $('.menulist').listview('refresh');
-	      $('#profilelink').click(function() { loadDataFromDatabase() });
-	      startTracking();
-	  } else {
+	     $('#profilelink').click(function() { loadDataFromDatabase() });
+	     startTracking();
+	 } else {
 	      // if sign in was not successful, log the cause of the error on the console
 	      console.log(result);
 	      // TODO MARKO

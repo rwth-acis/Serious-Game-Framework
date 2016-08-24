@@ -137,7 +137,7 @@ $(document).ready(function() {
 	}
 
 	function createButton(divName, elementName, elementText, textColor, appendFactor, elementAppend){
-		var $inner1 = $("<div/>", { id:divName}),
+		var $inner1 = $("<div/>", { id:divName, style:"display:inline;"}),
 		$inner2 = $("<button/>", {id:elementName, "data-inline":"true", text:elementText});
 
 		if(appendFactor){
@@ -204,8 +204,8 @@ $(document).ready(function() {
 	}
 
 	function createEditDelete(editDivName, delDivName, editElementName, deleteElementName, editElementText, deleteElementText,textColor, appendFactor, elementAppend){
-		var $inner1 = $("<div/>", {class:"ui-block-b"}),
-		$inner2 = $("<fieldset/>", {"data-role":"fieldcontain", class:"ui-block-b"});
+		var $inner1 = $("<div/>", {class:"ui-block-b", style:"display:inline;width:50%"}),
+		$inner2 = $("<fieldset/>", {"data-role":"fieldcontain", class:"ui-block-b", style:"display:inline;width:50%"});
 
 		createButton(editDivName,editElementName,editElementText,textColor, false,$inner2);
 		createButton(delDivName,deleteElementName,deleteElementText,textColor, true,$inner2);
@@ -219,8 +219,8 @@ $(document).ready(function() {
 	}
 
 	function createEditDeleteShow(editDivName, delDivName, showDivName, editElementName, deleteElementName, showElementName, editElementText, deleteElementText,textColor, appendFactor, elementAppend){
-		var $inner1 = $("<div/>", {class:"ui-block-b"}),
-		$inner2 = $("<fieldset/>", {"data-role":"fieldcontain", class:"ui-block-b"});
+		var $inner1 = $("<div/>", {class:"ui-block-b", style:"display:inline;width:50%"}),
+		$inner2 = $("<fieldset/>", {"data-role":"fieldcontain", class:"ui-block-b", style:"display:inline;width:50%"});
 
 		createButton(editDivName,editElementName,editElementText,textColor, false,$inner2);
 		createButton(delDivName,deleteElementName,deleteElementText,textColor, true,$inner2);
@@ -257,6 +257,7 @@ $(document).ready(function() {
 		createHeader("Game Description", false, "#gameDescriptionPage");
 		createHeader("Profile", false, "#profile");
 		createHeader("Game Designer View", false, "#gameDesignerView");
+		createHeader("Game Designer Tutorial", false, "#gameDesignerTutorial");
 		createHeader("Manage Galleries", false, "#editgalleries");
 		createHeader("Manage Connections", false, "#connections");
 		createHeader("Manage Games", false, "#games");
