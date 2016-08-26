@@ -363,7 +363,7 @@ function rand(min, max) {
 						document.getElementById("uploadExperienceBadge").FileList = {};
 						getExperienceBadges();
 						$('#create-experience-badge-message').text("");
-						var createBadgeMessage = $('<h2 style="color:#025814;">New Badge added successfully!</h2>');
+						var createBadgeMessage = $('<h2 style="color:#025814;">New Trophy added successfully!</h2>');
 						$('#create-experience-badge-message').append(createBadgeMessage);
 						$('#experience-badge-saved-message').text("");
 						$('#uploadExperienceBadge').prop('disabled',true);
@@ -413,7 +413,7 @@ function rand(min, max) {
 						EXPERIENCE_BADGES[BADGE_INDEX]["badgeFeedbackMessage"] = badgeFeedbackMessage ;
 						EXPERIENCE_BADGES[BADGE_INDEX]["score"] = score;
 						$('#experience-badge-saved-message').text("");
-						var saveBadgeMessage = $('<h2 style="color:#025814;">Badge Details saved successfully!</h2>');
+						var saveBadgeMessage = $('<h2 style="color:#025814;">Trophy Details saved successfully!</h2>');
 						$('#experience-badge-saved-message').append(saveBadgeMessage);
 						$('#create-experience-badge-message').text("");
 
@@ -461,7 +461,7 @@ function rand(min, max) {
 						success: function(data){
 							getExperienceRules();
 							$('#save-experience-rules-message').text("");
-							var saveRulesMessage = $('<h2 style="color:#025814;">Experience Rules saved successfully!</h2>');
+							var saveRulesMessage = $('<h2 style="color:#025814;">Experience Rule saved successfully!</h2>');
 							$('#save-experience-rules-message').append(saveRulesMessage);
 
 						}
@@ -540,7 +540,7 @@ function rand(min, max) {
 					$('#experience-badge-delete-button').find('*').prop('disabled',true);
 					$('#experience-badge-delete-button').find('*').addClass('ui-disabled');
 					$('#experience-badge-saved-message').text("");
-					var connectionSavedMessage = $('<h2 style="color:#025814;">Badge deleted successfully!</h2>');
+					var connectionSavedMessage = $('<h2 style="color:#025814;">Trophy deleted successfully!</h2>');
 					$('#experience-badge-saved-message').append(connectionSavedMessage);
 
 				}
@@ -571,7 +571,7 @@ function rand(min, max) {
 				//	addExperienceBadge(LAST_DELETED_EXPERIENCE_BADGE_SRC);
 				getExperienceBadges();
 				$('#experience-badge-saved-message').text("");
-				var badgeSavedMessage = $('<h2 style="color:#025814;">Badge restored successfully!</h2>');
+				var badgeSavedMessage = $('<h2 style="color:#025814;">Trophy restored successfully!</h2>');
 				$('#experience-badge-saved-message').append(badgeSavedMessage);
 
 			}

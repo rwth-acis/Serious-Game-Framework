@@ -476,6 +476,42 @@
 							<h3>4. 'Undo Connection Deletion' button appears after deleting the connection. Click on it to restore the connection.</h3>
 						</div>
 
+						<div data-role="collapsible">
+							<h3>How to Create Games</h3>
+							<h2>Game Designer Details</h2>
+							<h3>1. Give your details : Name, Institution and Email in the 'Game Designer Details' section. These details will be shown on the 'Game Description' page which is shown when the user clicks on the game to play.</h3>
+							<img src="game_designer_tutorial/gamedesignerdetails.png" alt="Game Designer View" style="max-width:100%;max-height:100%;">
+							<h2>Game Details</h2>
+							<img src="game_designer_tutorial/gamedetails.png" alt="Game Details" style="max-width:100%;max-height:100%;">
+							<h3>1. To create a game, giving game name, choosing the number of galleries and selecting the galleries that are going to be in the game are mandatory to enable the 'Create' button.</h3>
+							<h3>2.  Depending on the number of galleries selected (maximum of 4 galleries), dropdowns containing list of all galleries will be displayed. Also, you can select the connections between these galleries from 'Select Connection x' (x = 1 or 2 or 3). The following figure shows how the galleries selected would be positioned in the game view and how the connections selected would connect the tiles from these galleries. In the figure, c1 corresponds to connection1, c2 to connection2 and c3 to connection3.</h3>
+							<img src="game_designer_tutorial/galleriesconcept.png" alt="Galleries Concept" style="max-width:100%;max-height:100%;">
+							<h3>3. Additional details like selecting game category will place the game in that category. If the new game doesn't fit into any category in the dropdown list, make sure to select '--Select Category or Create New Category--' in 'Select Game Category' dropdown, and you can create a new category by entering the name in 'Create New Category' field. If no category is selected or created then the game will be placed in 'Other' by default.</h3>
+							<h3>4. 'Description of the game' shows below the game name in the games list and 'Detail Description of the game' is shown on the Game Description page as shown in the figure below.</h3>
+							<img src="game_designer_tutorial/descriptionconcept.png" alt="Description Concept" style="max-width:100%;max-height:100%;">
+							<h3>5. Click on 'Create' button to create the game.</h3>
+						</div>
+						<div data-role="collapsible">
+							<h3>How to Edit Games</h3>
+							<h3>1. Select a game from 'Select Game' dropdown list to enable 'Edit Game' and 'Delete Game' buttons.</h3>
+							<h3>2. Click on 'Delete Game' button to delete the game. 'Undo Game Deletion' button appears after game deletion. Click on it to restore the deleted game.</h3>
+							<h3>3. Click on 'Edit Game' button to edit the details of the game, add,edit and delete levels of the game and change connections.</h3>
+							<h3>4. Edit 'Game Designer Details' and Game Details if needed and click on 'Save' button to save the changes.</h3>
+							<h2>Add Levels</h2>
+							<h3>1. A level is a set of correct matching tiles from the galleries. In the following figure, the four tiles form a level. Also, each level has an eLearning link and more Information link associated with it which helps the player learn more about the subject.</h3>
+							<img src="game_designer_tutorial/level.png" alt="Level" style="max-width:100%;max-height:100%;">
+							<h3>2. In the 'Add Levels' section as shown in the figure below, select the set of tiles that form a level to enable the 'Add Level' button. Provide eLearning link which provides information about the subject briefly and more information link which provides in depth information about the subject. Click on 'Add Level' button to create the level.</h3>
+							<img src="game_designer_tutorial/addlevels.png" alt="Add Levels" style="max-width:100%;max-height:100%;">
+							<h2>Edit Levels</h2>
+							<h3>1. In th 'Edit Levels' section, choose a level using 'Previous' and 'Next' buttons.</h3>
+							<h3>2. Click on 'Delete Level' button to delete the chosen level. 'Undo Level Deletion' button appears after level deletion. Click on it to restore the deleted level.</h3>
+							<h3>3. Edit eLearning link and more Information link and click on 'Save' button below to save the changes.</h3>
+							<img src="game_designer_tutorial/editlevels.png" alt="Edit Levels" style="max-width:100%;max-height:100%;">
+							<h2>Change Connection</h2>
+							<h3>To change connections, select a connection and click on 'Set Connection x'(where x = 1 or 2 or 3) to save the new connection.</h3>
+							<img src="game_designer_tutorial/setconnection.png" alt="Set Connection" style="max-width:100%;max-height:100%;">
+						</div>
+
 					</div>
 
 				</div>
@@ -611,7 +647,7 @@
 						</div>
 						<div id="editLevelMessage"></div>
 
-						<h2 id="changeConnectionHeader">Change Connection</h2>
+						<h2 style="color:brown;" id="changeConnectionHeader">Change Connection</h2>
 
 						<fieldset id="changeconnection1-fieldset" class="ui-grid-solo sideByside">
 							<!-- Gallery and button Filled by createUIElements.js -->
@@ -634,11 +670,112 @@
 		<div id="assessmentSystemView" data-role="page" class="ui-helper-clearfix bodywrapper">
 			<div data-role="content">
 				<ul data-role="listview" data-inset="true">
+				<li style="background: #5f98c5;"><a href="#assessmentSystemTutorial " id="assessmentsystemtutoriallink"><h3 style="color: white;text-shadow: none;">Assessment System Tutorial</h3><p style="color: white;text-shadow: none;">Tutorial.</p></a></li>
 					<li><a href="#assessmentrules " id="assessmentruleslink"><h3 style="color: #0e8866;">Manage Assessment Rules</h3><p style="color: #0e8866;">Create or Edit Assessment Rules.</p></a></li>
 					<li><a href="#gamesrules" id="gamesruleslink"><h3 style="color: #5f0e88;">Game Assessment Rules</h3><p style="color: #5f0e88;">Set Assessment Rules to Games.</p></a></li>
 				</ul>
 			</div>
 		</div>
+
+		<div id="assessmentSystemTutorial" data-role="page" class="ui-helper-clearfix bodywrapper">
+			<!-- Header Filled by createUIElements.js -->
+			<div data-role="content">
+				<div class="ui-content">
+
+					<div data-role="collapsible-set" data-theme="b" data-content-theme="b"  data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d">
+
+						<div data-role="collapsible" data-collapsed="false">
+							<h3>Assessment System Overview</h3>
+							<img src="assessment_system_tutorial/assessment_system_overview.png" alt="Concept Map" style="max-width:100%;max-height:100%;">
+						</div>
+						<div data-role="collapsible">
+							<h3>Assessment System Concept</h3>
+							<h2>Assessment System View:</h2>
+							<div style="display: inline;">
+							<img src="assessment_system_tutorial/assessment_system_view.png" alt="Assessment System View" style="max-width:100%;max-height:100%;">
+							<img src="assessment_system_tutorial/manageAssessmentRules.png" alt="Manage Games View" style="max-width:100%;max-height:100%;">
+							</div>
+							<h3>There are three main customizable components of Assessment System namely Experience, Highscore and Badges.</h3>
+							<div style="display: inline;">
+							<img src="assessment_system_tutorial/experience.png" alt="Experience" style="max-width:100%;max-height:100%;">
+							<img src="assessment_system_tutorial/highscores.png" alt="Highscore" style="max-width:100%;max-height:100%;">
+							<img src="assessment_system_tutorial/badges.png" alt="Badges" style="max-width:100%;max-height:100%;">
+							</div>
+							<h2>Experience</h2>
+							<h3>1. Experience score is calculated over all games and it depends on the Highscore summary of all games, number of badges acquired, number of times user is logged in etc. Default Experience Calculation Rule is set and any Game Designer can change it.</h3>
+							<img src="assessment_system_tutorial/exprule.png" alt="Experience Rule" style="max-width:100%;max-height:100%;">
+							<h3>2. A trophy can be given and level can be determined when Experience score reaches certain points.</h3>
+							<img src="assessment_system_tutorial/exptrophy.png" alt="Experience Trophy" style="max-width:100%;max-height:100%;">
+							<h3>3. Refer to 'How to Manage Experience Rules' for more details.</h3>
+							<h2>Highscore</h2>
+							<h3>1. Highscore is calculated by summing up Highscores acquired in each game. Highscore depends on the weights for correct answer, wrong answer and actions like using 'Show me' button etc.</h3>
+							<img src="assessment_system_tutorial/highscorerules.png" alt="Highscore Rule" style="max-width:100%;max-height:100%;">
+							<h3>2. Since each game has a different difficulty level, each game can have different Highscore calculation rule. When a new game is created via 'Game Designer View' default Highscore calculation rule version 1 is set. This can be changed in 'Game Assessment Rules' view.</h3>
+							<img src="assessment_system_tutorial/gamehighscore.png" alt="Game Highscore" style="max-width:100%;max-height:100%;">
+							<h3>3. Refer to 'How to Manage Highscore Rules' for more details.</h3>
+							<h2>Badges</h2>
+							<h3>1. There are two types of Badges namely Game Completion Badges and Game Statistics Badges.</h3>
+							<img src="assessment_system_tutorial/diffbadges.png" alt="Different Badges" style="max-width:100%;max-height:100%;">
+							<h3>2. To acquire a Badge, a Badge Requirement Criteria must be satisfied.</h3>
+							<img src="assessment_system_tutorial/badgerequirement.png" alt="Badge Requirement" style="max-width:100%;max-height:100%;">
+							<h3>3. A Game Completion Badge can be allotted to a game in 'Game Assessment View'. This badge will be allotted when the player attempts all the levels in a game.</h3>
+							<img src="assessment_system_tutorial/setgamebadge.png" alt="Badge Requirement" style="max-width:100%;max-height:100%;">
+							<h3>4. Refer to 'How to Manage Badge Rules' for more details.</h3>
+						</div>
+						<div data-role="collapsible">
+							<h3>How to Manage Experience Rules</h3>
+							<h2>Create Experience Trophy</h2>
+							<h3>1. Check the existing Trophies by clicking on 'Show Existing Trophies' button.</h3>
+							<h3>2. Give Trophy Level name and Required Points to enable 'Add Experience Trophy' button.</h3>
+							<h3>3. Click on 'Add Experience Trophy' button to upload the trophy image.</h3>
+							<h3>4. In the following figure, a trophy is created for Level 3, when the user acquires 250 Experience points. </h3>
+							<img src="assessment_system_tutorial/exptrophy.png" alt="Experience Trophy" style="max-width:100%;max-height:100%;">
+							<h2>Edit Experience Trophy</h2>
+							<h3>1. Select a trophy from the trophies gallery to enable 'Edit Trophy' and 'Delete Trophy' buttons.</h3>
+							<h3>2. Click on 'Edit Trophy' to edit the trophy details. Click on 'Save' button to save the changes.</h3>
+							<h3>3. Click on 'Delete Trophy' to delete the trophy. 'Undo Trophy Deletion' button appears after deleting the trophy. Click on it to restore the trophy.</h3>
+							<img src="assessment_system_tutorial/savetrophy.png" alt="Save Trophy" style="max-width:100%;max-height:100%;">
+							<h2>Set Experience Rule</h2>
+							<h3>1. Experience Calculation formula shows how Experience score is calculated. The weight of each factor is customizable in the fields below the formula.</h3>
+							<h3>2. Edit Experience Rule and click on 'Save Rule' button to save the changes.</h3>
+							<img src="assessment_system_tutorial/exprulesave.png" alt="Save Rule" style="max-width:100%;max-height:100%;">
+						</div>
+						<div data-role="collapsible">
+							<h3>How to Manage Highscore Rules</h3>
+							<h3>1. Create a new highscore version by giving the details in 'Highscore Calculation Rules' section and click on 'Create New Version' to create the version. The new version created will be added to the 'Select Highscore Version to Edit' dropdown.</h3>
+							<img src="assessment_system_tutorial/createhighscore.png" alt="Create Version" style="max-width:100%;max-height:100%;">
+							<h3>2. Select Highscore version from the 'Select Highscore Version to Edit' dropdown to enable 'Edit Highscore Version' and 'Delete Highscore Version' buttons. These buttons wil be enabled only if you have created the selected highscore version. Otherwise, 'Show' button is enabled.</h3>
+							<img src="assessment_system_tutorial/selecthighscore.png" alt="Select Version" style="max-width:100%;max-height:100%;">
+							<h3>3. Click on 'Edit Highscore Version' button to edit the highscore version. Click on 'Save' button to save the changes.</h3>
+							<img src="assessment_system_tutorial/savehighscore.png" alt="Save Version" style="max-width:100%;max-height:100%;">
+							<h3>4. Click on 'Delete Highscore Version' to delete the highscore version. 'Undo Version Deletion' button appears after deleting the version. Click on it to restore the version.</h3>
+							<h3>5. Click on 'Reset' button to reset the view. This clears all the fields and resets the dropdown menu.</h3>
+						</div>
+						<div data-role="collapsible">
+							<h3>How to Manage Badge Rules</h3>
+							<h2>Create Badge</h2>
+							<h3>1. Give Badge Name and select Badge Requirement to enable to the 'Add Badge' button.</h3>
+							<h3>2. Some of the Badge types need numerical Requirement value to enable 'Add Badge' button. When the Badge Requirement is selected from the dropdown, if the text field next to it is enabled, then it implies that the Badge type requires a numerical Badge Requirement Value.</h3>
+							<img src="assessment_system_tutorial/badgereq.png" alt="Badge Requirement" style="max-width:100%;max-height:100%;">
+							<h3>3. Click on 'Add Badge' button to upload the badge.</h3>
+							<h3>4. Click on 'Show Existing Badges' to view existing badges.</h3>
+							<h3>5. Select a badge by clicking on it in the badges gallery to enable 'Edit Badge' and 'Delete Badge' buttons.</h3>
+							<img src="assessment_system_tutorial/editbadge.png" alt="Badge Requirement" style="max-width:100%;max-height:100%;">
+							<h3>6. Click on 'Edit Badge' to edit the badge details. Click on 'Save' button to save the changes.</h3>
+							<h3>7. Click on 'Delete Badge' to delete the badge. 'Undo Badge Deletion' button appears after deleting the badge. Click on it to restore the badge.</h3>
+						</div>
+						<div data-role="collapsible">
+							<h3>How to Set Game Assessment Rules</h3>
+							<h3>1. Select a game from the 'Select Game' dropdown menu to enable the 'Edit' button. Only those games that you have created will appear in the dropdown.</h3>
+							<h3>2. By default, a game has Highscore Version 1. Select the Highscore version from the dropdown to change it.</h3>
+							<h3>3. Select a Game Completion Badge for the game. This badge will be allotted when the player attempts all the levels in a game.</h3>
+							<h3>4. Click on 'Save' button to save the changes.</h3>
+							<img src="assessment_system_tutorial/setgamebadge.png" alt="Badge Requirement" style="max-width:100%;max-height:100%;">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>			
 
 		<div id="assessmentrules" data-role="page" class="ui-helper-clearfix bodywrapper">
 			<div data-role="content">
@@ -653,7 +790,7 @@
 		<div id="experiencerules" data-role="page" class="ui-helper-clearfix bodywrapper">
 			<div data-role="content">
 				<div class="ui-content">
-					<h2 style="color: #308f44">Create Experience Badge</h2>
+					<h2 style="color: #308f44">Create Experience Trophy</h2>
 					<div id="experienceBadgeBlock">
 
 					</div>
@@ -673,12 +810,12 @@
 							</fieldset>
 						</div>
 					</fieldset>
-					<h2 style="color: #308f44">Edit Experience Badge</h2>
+					<h2 style="color: #308f44">Edit Experience Trophy</h2>
 					<div id="editExperienceBadgeBlock">
 
 					</div>
 					<div id="experience-badge-saved-message"></div>
-					<h2 style="color: #308f44">Experience Calculation Rules</h2>
+					<h2 style="color: #308f44">Experience Calculation Rule</h2>
 					<div id="experienceRulesFormula"></div>
 					<div id="save-experience-rules-message"></div>	
 					<div id=experienceRules>
@@ -695,6 +832,9 @@
 				<div class="ui-content">
 					<h2 style="color: #c37719">Edit Existing Highscore Versions</h2>
 					<fieldset id="editHighscoreBlock" class="ui-grid-b sideByside">
+
+					</fieldset>	
+					<fieldset id="resetHighscoreBlock" class="ui-grid-b sideByside">
 
 					</fieldset>	
 					<div id="highscore-desc-message"></div>

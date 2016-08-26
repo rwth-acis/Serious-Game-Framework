@@ -218,6 +218,22 @@ $(document).ready(function() {
 
 	}
 
+	function EditGamecreateEditDeleteUndo(editDivName, delDivName, editElementName, deleteElementName, editElementText, deleteElementText,textColor, appendFactor, elementAppend){
+		var $inner1 = $("<div/>", {class:"ui-block-b", style:"display:inline;width:50%"}),
+		$inner2 = $("<fieldset/>", {"data-role":"fieldcontain", class:"ui-block-b", style:"display:inline;width:50%"});
+
+		createButton(editDivName,editElementName,editElementText,textColor, false,$inner2);
+		createButton(delDivName,deleteElementName,deleteElementText,textColor, true,$inner2);
+		createButton("game-undo-delete-button","button-undo-delete-game", "Undo Game Deletion",textColor, true, $inner2);
+	
+		if(appendFactor){
+			$inner1.append($inner2).appendTo(elementAppend);
+		}else{
+			$inner1.append($inner2).prependTo(elementAppend);
+		}
+
+	}
+
 	function createEditDeleteShow(editDivName, delDivName, showDivName, editElementName, deleteElementName, showElementName, editElementText, deleteElementText,textColor, appendFactor, elementAppend){
 		var $inner1 = $("<div/>", {class:"ui-block-b", style:"display:inline;width:50%"}),
 		$inner2 = $("<fieldset/>", {"data-role":"fieldcontain", class:"ui-block-b", style:"display:inline;width:50%"});
@@ -264,6 +280,7 @@ $(document).ready(function() {
 		createHeader("Create Games", false, "#creategames");
 		createHeader("Edit Games", false, "#editgames");
 		createHeader("Assessment System View", false, "#assessmentSystemView");
+		createHeader("Assessment System Tutorial", false, "#assessmentSystemTutorial");
 		createHeader("Manage Assessment Rules", false, "#assessmentrules");
 		createHeader("Manage Experience Rules", false, "#experiencerules");
 		createHeader("Manage Highscore Rules", false, "#highscorerules");
@@ -448,9 +465,8 @@ $(document).ready(function() {
 
 		var color = "brown";
 		createSelect("selectgame", "Select Game:", "false", color, false, "#gameSelectEditDelete");
-		createEditDelete("edit-game-button","delete-button-game", "button-edit-game", "button-delete-game", "Edit Game", "Delete Game",color, true, "#gameSelectEditDelete");
-		createButton("game-undo-delete-button","button-undo-delete-game", "Undo Game Deletion",color, true, "#gameSelectEditDelete");
-
+		EditGamecreateEditDeleteUndo("edit-game-button","delete-button-game", "button-edit-game", "button-delete-game", "Edit Game", "Delete Game",color, true, "#gameSelectEditDelete");
+		
 		createTextInput("edit-game-designer-name","Name:","","false",color,false, "#editGameDesignerDetails");
 		createTextInput("edit-game-designer-institution","Institution:","","false",color,true, "#editGameDesignerDetails");
 		createTextInput("edit-game-designer-email","EMail:","","false",color,true,"#editGameDesignerDetails");
@@ -562,21 +578,21 @@ $(document).ready(function() {
 
 	function createExperienceRulesUI(){
 		var color = "#308f44";
-		createTextInput("experience-badge-name","Experience Badge Name:","Ex. Level 3","true",color,false,"#experienceBadgeBlock");
+		createTextInput("experience-badge-name","Experience Trophy Level:","Ex. Level 3","true",color,false,"#experienceBadgeBlock");
 		createTextInput("experience-badge-desc","Experience Level Description:","Ex. Advanced level","false",color,true,"#experienceBadgeBlock");
 		createTextInput("experience-badge-feedback","Feedback Message:","Ex. You are a professional now!","false",color,true,"#experienceBadgeBlock");
 		createTextInput("experience-badge-points","Required Points:","Ex. 400","true",color,true,"#experienceBadgeBlock");
-		createSingleUploadButton("uploadExperienceBadge","Add Experience Badge",color,false,"#AddExperienceBadgeBlock");
-		createButton("showexperiencebadges","show-experience-badges","Show Existing Badges",color,true,"#AddExperienceBadgeBlock");
+		createSingleUploadButton("uploadExperienceBadge","Add Experience Trophy",color,false,"#AddExperienceBadgeBlock");
+		createButton("showexperiencebadges","show-experience-badges","Show Existing Trophies",color,true,"#AddExperienceBadgeBlock");
 		createHorizontalGalleryUI("experienceBadgeGallery", false, "#badgeGallery");
 		createMouseEventsGallery("experienceBadgeGallery");
-		createButton("edit-experience-badge-button","button-edit-experience-badge","Edit Badge",color,false,"#badgeEditDelete");
-		createButton("experience-badge-delete-button","button-delete-experience-badge","Delete Badge",color,true,"#badgeEditDelete");
-		createButton("show-experience-badge-button","button-show-experience-badge","Show Details",color,false,"#badgeEditDelete");
-		createButton("experience-badge-undo-delete-button","button-undo-delete-experience-badge","Undo Badge Deletion",color,true,"#badgeEditDelete");
+		createButton("edit-experience-badge-button","button-edit-experience-badge","Edit Trophy",color,false,"#badgeEditDelete");
+		createButton("experience-badge-delete-button","button-delete-experience-badge","Delete Trophy",color,true,"#badgeEditDelete");
+		//createButton("show-experience-badge-button","button-show-experience-badge","Show Details",color,false,"#badgeEditDelete");
+		createButton("experience-badge-undo-delete-button","button-undo-delete-experience-badge","Undo Trophy Deletion",color,true,"#badgeEditDelete");
 
 
-		createTextInput("edit-experience-badge-name","Experience Badge Name:","","true",color,false,"#editExperienceBadgeBlock");
+		createTextInput("edit-experience-badge-name","Experience Trophy Level:","","true",color,false,"#editExperienceBadgeBlock");
 		createTextInput("edit-experience-badge-desc","Experience Level Description:","","false",color,true,"#editExperienceBadgeBlock");
 		createTextInput("edit-experience-badge-feedback","Feedback Message:","","false",color,true,"#editExperienceBadgeBlock");
 		createTextInput("edit-experience-badge-points","Required Points:","","true",color,true,"#editExperienceBadgeBlock");
@@ -585,11 +601,11 @@ $(document).ready(function() {
 		createTextInput("experience-highscore","Highscore factor: ","Ex. 1","false",color,false,"#experienceRules");
 		createTextInput("experience-elearning","eLearning clicks factor  :","Ex. 3","false",color,true,"#experienceRules");
 		createTextInput("experience-moreInfo","More Information clicks factor :","Ex. 3","false",color,true,"#experienceRules");
-		createTextInput("experience-badges","Badges factor :","Ex. 10","false",color,true,"#experienceRules");
+		createTextInput("experience-badges","Badge factor :","Ex. 10","false",color,true,"#experienceRules");
 		createTextInput("experience-gamesDesigned","Games Designed factor:","Ex. 100","false",color,true,"#experienceRules");
 		createTextInput("experience-login","Login factor:","Ex. 0.5","false",color,true,"#experienceRules");	
 		var $inner1 = $("<fieldset/>", {"data-role":"fieldcontain", class:"ui-block-b"});
-		createButton("experience-save-rules","button-save-experience-rules", "Save Rules",color, true, $inner1);
+		createButton("experience-save-rules","button-save-experience-rules", "Save Rule",color, true, $inner1);
 		$inner1.appendTo("#experienceRules");	
 
 	}
@@ -599,7 +615,7 @@ $(document).ready(function() {
 		createSelect("select-highscore", "Select Highscore Version to Edit: ", "false",color,false, "#editHighscoreBlock");
 		createEditDeleteShow("edit-highscore-button","delete-button-highscore","show-highscore-button", "button-edit-highscore", "button-delete-highscore","button-show-highscore", "Edit Highscore Version", "Delete Highscore Version",color, true, "#editHighscoreBlock");
 		createButton("highscore-undo-delete-button","button-undo-delete-highscore","Undo Version Deletion",color,true,"#editHighscoreBlock");
-		createButton("highscore-reset-button","button-reset-highscore","Reset",color,true,"#editHighscoreBlock");
+		createButton("highscore-reset-button","button-reset-highscore","Reset",color,true,"#resetHighscoreBlock");
 		createTextInput("highscore-correct","Points for correct answer :","Ex. 5","true",color,false,"#highscoreCalBlock");
 		createTextInput("highscore-wrong","Points for wrong answer :","Ex. -2","true",color,true,"#highscoreCalBlock");
 		createTextInput("highscore-show","Points for clicking 'Show me' button :","Ex. 0","true",color,true,"#highscoreCalBlock");
