@@ -39,7 +39,18 @@ function rand(min, max) {
 
 		$('#'+galleryTileId).on('click', 'li', function() { // id of clicked li by directly accessing DOMElement property
 			$('#undo-delete-connection-button').fadeOut();
+			var check = false;
 			if($(this).attr('email') == oidc_userinfo.email){
+				check = true;
+			}
+			if(GAME_DESIGNERS != undefined && GAME_DESIGNERS.length != 0){
+				$.each(GAME_DESIGNERS, function(index, value) {
+					if(value.admin == "true" && value.oidcEmail == oidc_userinfo.email){
+						check = true;
+					}
+				});
+			}
+			if(check){
 				$('#connection-saved-message').text("");
 
 				if($(this).hasClass("active")){

@@ -505,7 +505,7 @@ $(document).ready(function() {
 		
 		var $inner1 = $("<div/>", {"data-role":"header", "data-theme":"b"}),
 		$inner2a = $("<div>", {"data-inline":"true"}),
-		$inner3a = $("<a/>", {href:"https://goo.gl/forms/CqFAHaOIkC1GPHwi2", target:"_blank", class:"ui-btn-right", "data-inline":"true", "data-role":"button", text:"Feedback"}),
+		$inner3a = $("<a/>", {href:"https://goo.gl/FKJDbF", target:"_blank", class:"ui-btn-right", "data-inline":"true", "data-role":"button", text:"Feedback"}),
 		$inner3b = $("<a/>", {href:"#", "data-icon":"arrow-l", class:"ui-btn-left", "data-inline":"true", "data-role":"button", "data-iconpos":"notext", "data-rel":"back", text:"Home"}),
 		$inner2b = $("<h2/>", {text:headerName});
 

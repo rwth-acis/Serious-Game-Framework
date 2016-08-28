@@ -121,7 +121,7 @@ function rand(min, max) {
 					$('#selectconnection2-fieldset').removeClass('hideElement');
 					getConnections(connectionGallery2);
 					$('#selectconnection3-fieldset').addClass('hideElement');
-				
+					
 				}
 				if(galleryId > 3){
 					$('#selectgallery4fieldset').removeClass('hideElement');
@@ -158,12 +158,12 @@ function rand(min, max) {
 				$('#delete-button-game').find('*').prop('disabled',true);
 				$('#delete-button-game').find('*').addClass('ui-disabled');
 			//	description = $('option:selected', this).attr('description');
-				resetEditGameView();
-			}
-			
-			$('#editgamesection').addClass('hideElement');
+			resetEditGameView();
+		}
+		
+		$('#editgamesection').addClass('hideElement');
 
-		});
+	});
 
 		$('#selectgallery1').change(function(){
 			enableCreateGameButton();
@@ -190,7 +190,7 @@ function rand(min, max) {
 				$('#game-new-category').parent().parent().find('*').removeClass('ui-state-disabled');
 				$("#game-new-category").parent().parent().find('*').css( "background-color", "" );
 			}
-					
+			
 		});
 
 		$('#editGameCategory').change(function(){
@@ -208,9 +208,9 @@ function rand(min, max) {
 			
 		});
 		$(document).on('keypress', function() {
-   			$('#edit-game-details-message').text("");
-   			$('#level-undo-delete-button').fadeOut();
-   			$('#game-undo-delete-button').fadeOut();
+			$('#edit-game-details-message').text("");
+			$('#level-undo-delete-button').fadeOut();
+			$('#game-undo-delete-button').fadeOut();
 		});
 		
 		$('#create-game-button').click(function() {
@@ -451,7 +451,7 @@ function rand(min, max) {
 			}
 			var gameId = $('select[name=selectgame]').val();
 			getGameLevels(gameId);
-					
+			
 		});
 
 		
@@ -596,10 +596,10 @@ function rand(min, max) {
 					$('#game-description-message').text("");
 					var gameDescMessage = "";
 					if(type == "delete"){
-					$('#game-undo-delete-button').fadeIn();
-					
-					 gameDescMessage = $('<h2 style="color:#630303;">Game "'+gameName+'" deleted successfully!</h2>');
-					
+						$('#game-undo-delete-button').fadeIn();
+						
+						gameDescMessage = $('<h2 style="color:#630303;">Game "'+gameName+'" deleted successfully!</h2>');
+						
 					}else{
 						gameDescMessage = $('<h2 style="color:#630303;">Game "'+gameName+'" restored successfully!</h2>');
 					}
@@ -698,14 +698,14 @@ function rand(min, max) {
 		}
 
 		function setButtonColor(divName){
-		if (divName.find('*').hasClass('ui-btn-inner')) {
-			divName.find('*').css("color",color);
-		} 
-		else {
-			divName.trigger('create');
-			divName.find('*').css("color",color);
+			if (divName.find('*').hasClass('ui-btn-inner')) {
+				divName.find('*').css("color",color);
+			} 
+			else {
+				divName.trigger('create');
+				divName.find('*').css("color",color);
+			}
 		}
-	}
 
 		function enableCreateGameButton(){
 			var galleryCountVal = $('select[name=gallerycount]').val();
@@ -821,9 +821,18 @@ function rand(min, max) {
 			$('#selectgame').append('<option value="'+ 0 +'" description="Select a game from the dropdown and click on \'Edit Game\' to edit the game or \'Delete Game\' to delete the game">--Select Game--</option>');
 			//jsondata = JSON.parse(data);
 			jsondata = data;
+			var checkPermission = false;
+			
+			if(GAME_DESIGNERS != undefined && GAME_DESIGNERS.length != 0){
+				$.each(GAME_DESIGNERS, function(index, value) {
+					if(value.admin == "true" && value.oidcEmail == oidc_userinfo.email){
+						checkPermission = true;
+					}
+				});
+			}
 			if(jsondata != null && jsondata != undefined && jsondata.length != 0){
 				$.each(jsondata, function(index, value) {
-					if(value.gameName != "Tutorial" && value.oidcEmail == oidc_userinfo.email){
+					if(value.gameName != "Tutorial" && (value.oidcEmail == oidc_userinfo.email || checkPermission)){
 						$('#selectgame').append('<option value="'+ value.gameId +'" gameIndex="'+index+'" description="'+value.gameDescription+'" gameGallery1="'+value.gallery1Id+'" gameGallery2="'+value.gallery2Id+'" gameGallery3="'+value.gallery3Id+'" gameGallery4="'+value.gallery4Id+'" gameConnection1="'+value.connection1Id+'" gameConnection2="'+value.connection2Id+'" gameConnection3="'+value.connection3Id+'">' + value.gameName + '</option>');
 					}
 				});
@@ -1083,7 +1092,7 @@ function rand(min, max) {
 					contentType: false,
 					success: function(data){
 						refreshGamesListAfterEditing("delete",gameName);
-					
+						
 					}
 				});
 			}

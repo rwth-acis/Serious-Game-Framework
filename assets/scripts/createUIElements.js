@@ -4,7 +4,7 @@ $(document).ready(function() {
 		
 		var $inner1 = $("<div/>", {"data-role":"header", "data-theme":"b"}),
 		$inner2a = $("<div>", {"data-inline":"true"}),
-		$inner3a = $("<a/>", {href:"https://goo.gl/forms/CqFAHaOIkC1GPHwi2", target:"_blank", class:"ui-btn-right", "data-inline":"true", "data-role":"button", text:"Feedback"}),
+		$inner3a = $("<a/>", {href:"https://goo.gl/FKJDbF", target:"_blank", class:"ui-btn-right", "data-inline":"true", "data-role":"button", text:"Feedback"}),
 		$inner3b = $("<a/>", {href:"#", "data-icon":"arrow-l", class:"ui-btn-left", "data-inline":"true", "data-role":"button", "data-iconpos":"notext", "data-rel":"back", text:"Home"}),
 		$inner2b = $("<h2/>", {text:headerName});
 
@@ -286,6 +286,7 @@ $(document).ready(function() {
 		createHeader("Manage Highscore Rules", false, "#highscorerules");
 		createHeader("Manage Badge Rules", false, "#badgerules");
 		createHeader("Manage Game Assessment Rules", false, "#gamesrules");
+		createHeader("Admin View", false, "#adminView");
 
 	}
 
@@ -671,6 +672,13 @@ $(document).ready(function() {
 
 	}
 
+	function createAdminViewUI(){
+		var color = "#5f0e88";
+		createTextInput("add-designer-admin-email","Email:","Ex. john.doe@rwth-aachen.de","true",color,false,"#adminDetails");
+		createButton("add-designer-email","button-add-designer-email","Add",color,true,"#adminDetails");
+
+	}
+
 	createHeaders();
 	createGameBoard();
 	createGalleriesUI();
@@ -681,5 +689,6 @@ $(document).ready(function() {
 	createHighscoreRulesUI();
 	createBadgeRulesUI();
 	createGameRulesUI();
+	createAdminViewUI();
 
 });

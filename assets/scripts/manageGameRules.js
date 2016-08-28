@@ -148,8 +148,18 @@ $(document).ready(function() {
 			//jsondata = JSON.parse(data);
 			jsondata = GAME_RULES_DATA;
 			if(jsondata != null && jsondata != undefined && jsondata.length != 0){
+				var checkPermission = false;
+				
+				if(GAME_DESIGNERS != undefined && GAME_DESIGNERS.length != 0){
+					$.each(GAME_DESIGNERS, function(index, value) {
+						if(value.admin == "true" && value.oidcEmail == oidc_userinfo.email){
+							checkPermission = true;
+						}
+					});
+				}
+				var myselect1 = $('select#select-game-assessment');
 				$.each(jsondata, function(index, value) {
-					if(value.oidcEmail == oidc_userinfo.email){
+					if(value.oidcEmail == oidc_userinfo.email || checkPermission){
 						$('#select-game-assessment').append('<option value="'+ value.gameId +'" gameIndex="'+index+'" description="'+value.gameDescription+'">' + value.gameName + '</option>');
 					}
 				});
@@ -162,7 +172,6 @@ $(document).ready(function() {
 			$('#edit-game-rules-button').find('*').addClass('ui-disabled');
 
 			setButtonColor($("#select-game-assessment").parent());
-			var myselect1 = $('select#select-game-assessment');
 			myselect1[0].selectedIndex = 0;
 			myselect1.selectmenu("refresh");
 

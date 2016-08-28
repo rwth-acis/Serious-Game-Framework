@@ -48,7 +48,18 @@ function rand(min, max) {
 				$('#show-highscore-button').find('*').addClass('ui-disabled');
 			}else{
 				var email = $('option:selected', $('#select-highscore')).attr('email');
-				if(email != oidc_userinfo.email){
+				var checkPermission = false;
+				if(email == oidc_userinfo.email){
+					checkPermission = true;
+				}
+				if(GAME_DESIGNERS != undefined && GAME_DESIGNERS.length != 0){
+					$.each(GAME_DESIGNERS, function(index, value) {
+						if((value.admin == "true")&& value.oidcEmail == oidc_userinfo.email){
+							checkPermission = true;
+						}
+					});
+				}
+				if(!checkPermission){
 					check = false;
 					$('#show-highscore-button').find('*').prop('disabled',false);
 					$('#show-highscore-button').find('*').removeClass('ui-disabled');
@@ -333,6 +344,8 @@ function rand(min, max) {
 			}
 			var highscoreVersion = $('#select-highscore :selected').text();
 
+			if(highscoreVersion != 1){
+
 			LAST_DELETED_VERSION = highscoreVersion;
 
 			formdata.append("highscoreId",highscoreVersion);
@@ -354,6 +367,11 @@ function rand(min, max) {
 					}
 				});
 			}
+		}else{
+			$('#save-highscore-rules-message').text("");
+			var highscoreDeleteMessage = $('<h2 style="color:#794b06;">Highscore version "'+highscoreVersion+'" cannot be deleted. It can only be edited.</h2>');
+			$('#save-highscore-rules-message').append(highscoreDeleteMessage);
+		}
 		}
 
 		function undoDeleteHighscoreVersion(){

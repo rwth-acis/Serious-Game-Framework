@@ -71,10 +71,21 @@ function rand(min, max) {
 			if(galleryId == 0){
 				check = false;
 				$('#show-gallery-button').find('*').prop('disabled',true);
-					$('#show-gallery-button').find('*').addClass('ui-disabled');
+				$('#show-gallery-button').find('*').addClass('ui-disabled');
 			}else{
 				var email = $('option:selected', $('#select-gallery')).attr('email');
-				if(email != oidc_userinfo.email){
+				var checkPermission = false;
+				if(email == oidc_userinfo.email){
+					checkPermission = true;
+				}
+				if(GAME_DESIGNERS != undefined && GAME_DESIGNERS.length != 0){
+					$.each(GAME_DESIGNERS, function(index, value) {
+						if(value.admin == "true" && value.oidcEmail == oidc_userinfo.email){
+							checkPermission = true;
+						}
+					});
+				}
+				if(!checkPermission){
 					check = false;
 					$('#show-gallery-button').find('*').prop('disabled',false);
 					$('#show-gallery-button').find('*').removeClass('ui-disabled');
@@ -99,7 +110,7 @@ function rand(min, max) {
 
 				$('#delete-button-gallery').find('*').prop('disabled',true);
 				$('#delete-button-gallery').find('*').addClass('ui-disabled');
-			
+
 			}
 		});
 
@@ -200,7 +211,18 @@ function rand(min, max) {
 	$('#edit'+galleryElementName).on('click', 'li', function() { // id of clicked li by directly accessing DOMElement property
 
 		var email = $('option:selected', $('#select-gallery')).attr('email');
+		var checkPermission = false;
 		if(email == oidc_userinfo.email){
+			checkPermission = true;
+		}
+		if(GAME_DESIGNERS != undefined && GAME_DESIGNERS.length != 0){
+			$.each(GAME_DESIGNERS, function(index, value) {
+				if(value.admin == "true" && value.oidcEmail == oidc_userinfo.email){
+					checkPermission = true;
+				}
+			});
+		}
+		if(checkPermission){
 			$('#create-gallery-message').text("");
 			$('#gallery-saved-message').text("");
 			$('#undo-delete-gallery-button').fadeOut();
@@ -555,28 +577,28 @@ function rand(min, max) {
 			}
 		}
 		if(check && file){
-		formdata.append("galleryId",galleryId);
+			formdata.append("galleryId",galleryId);
 
-		if(formdata){
-			$.ajax({
-				url: "lib/database/uploadTiles.php",
-				type: "POST",
-				data: formdata,
-				processData: false,
-				contentType: false,
-				success: function(data){
-					document.getElementById("uploadTiles").FileList = {};
-					addTiles(data);
-					$('#gallery-saved-message').text("");
-					var gallerySavedMessage = $('<h2 style="color:'+color+';">Changes to the gallery "'+galleryName+'" are saved successfully!</h2>');
-					$('#gallery-saved-message').append(gallerySavedMessage);
-					
-				}
-			});
-		}
-	}else{
-				document.getElementById("uploadTiles").FileList = {};
+			if(formdata){
+				$.ajax({
+					url: "lib/database/uploadTiles.php",
+					type: "POST",
+					data: formdata,
+					processData: false,
+					contentType: false,
+					success: function(data){
+						document.getElementById("uploadTiles").FileList = {};
+						addTiles(data);
+						$('#gallery-saved-message').text("");
+						var gallerySavedMessage = $('<h2 style="color:'+color+';">Changes to the gallery "'+galleryName+'" are saved successfully!</h2>');
+						$('#gallery-saved-message').append(gallerySavedMessage);
+
+					}
+				});
 			}
+		}else{
+			document.getElementById("uploadTiles").FileList = {};
+		}
 	}
 
 	function createGallery(galleryName,galleryDescription){

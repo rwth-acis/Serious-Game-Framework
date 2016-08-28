@@ -93,7 +93,18 @@ function rand(min, max) {
 
 			} else {
 				$(this).addClass("active");
+				var checkPermission = false;
 				if($(this).attr('email') == oidc_userinfo.email){
+					checkPermission = true;
+				}
+				if(GAME_DESIGNERS != undefined && GAME_DESIGNERS.length != 0){
+					$.each(GAME_DESIGNERS, function(index, value) {
+						if((value.admin == "true" || value.admin == "part" )&& value.oidcEmail == oidc_userinfo.email){
+							checkPermission = true;
+						}
+					});
+				}
+				if(checkPermission){
 					$('#edit-experience-badge-button').find('*').prop('disabled',false);
 					$('#edit-experience-badge-button').find('*').removeClass('ui-disabled');
 					$('#edit-experience-badge-button').css('opacity','1');

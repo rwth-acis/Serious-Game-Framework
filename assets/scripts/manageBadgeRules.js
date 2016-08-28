@@ -32,7 +32,7 @@ function rand(min, max) {
 		var LAST_DELETED_GAME_BADGE_SRC = "";
 		var BADGE_INDEX = "";
 
-			
+		
 		$('#badgeruleslink').click(function() { 
 			reloadDataFromDatabase();
 		});
@@ -47,15 +47,15 @@ function rand(min, max) {
 			var badgeRequirementId = $('select[name=select-badge-requirement]').val();
 			if(badgeRequirementId == 0 || badgeRequirementId == 1 || badgeRequirementId == 6 || badgeRequirementId == 7){
 				$('#game-badge-points')[0].value = "";
-			$("#game-badge-points").attr('disabled','disabled');
-			$("#game-badge-points").parent().css( "background-color", "#e7e7e7" );
+				$("#game-badge-points").attr('disabled','disabled');
+				$("#game-badge-points").parent().css( "background-color", "#e7e7e7" );
 			}else{
 				$('#game-badge-points').parent().parent().find('*').removeAttr('disabled');
-			$('#game-badge-points').parent().parent().find('*').removeClass('ui-disabled');
-			$('#game-badge-points').parent().parent().find('*').removeClass('ui-state-disabled');
-			$("#game-badge-points").parent().parent().find('*').css( "background-color", "" );
+				$('#game-badge-points').parent().parent().find('*').removeClass('ui-disabled');
+				$('#game-badge-points').parent().parent().find('*').removeClass('ui-state-disabled');
+				$("#game-badge-points").parent().parent().find('*').css( "background-color", "" );
 			}
-				enableGameBadgeCreation();
+			enableGameBadgeCreation();
 
 		});	
 
@@ -64,15 +64,15 @@ function rand(min, max) {
 			var badgeRequirementId = $('select[name=edit-select-badge-requirement]').val();
 			if(badgeRequirementId == 0 || badgeRequirementId == 1 || badgeRequirementId == 6 || badgeRequirementId == 7){
 				$('#edit-game-badge-points')[0].value = "";
-			$("#edit-game-badge-points").attr('disabled','disabled');
-			$("#edit-game-badge-points").parent().css( "background-color", "#e7e7e7" );
+				$("#edit-game-badge-points").attr('disabled','disabled');
+				$("#edit-game-badge-points").parent().css( "background-color", "#e7e7e7" );
 			}else{
 				$('#edit-game-badge-points').parent().parent().find('*').removeAttr('disabled');
-			$('#edit-game-badge-points').parent().parent().find('*').removeClass('ui-disabled');
-			$('#edit-game-badge-points').parent().parent().find('*').removeClass('ui-state-disabled');
-			$("#edit-game-badge-points").parent().parent().find('*').css( "background-color", "" );
+				$('#edit-game-badge-points').parent().parent().find('*').removeClass('ui-disabled');
+				$('#edit-game-badge-points').parent().parent().find('*').removeClass('ui-state-disabled');
+				$("#edit-game-badge-points").parent().parent().find('*').css( "background-color", "" );
 			}
-				enableGameBadgeCreation();
+			enableGameBadgeCreation();
 
 		});
 
@@ -97,7 +97,18 @@ function rand(min, max) {
 		$('#edit'+galleryElementName).on('click', 'li', function() {
 			$('#game-badge-undo-delete-button').fadeOut();
 			resetGameBadgeEditView();
+			var checkPermission = false;
 			if($(this).attr('email') == oidc_userinfo.email){
+				checkPermission = true;
+			}
+			if(GAME_DESIGNERS != undefined && GAME_DESIGNERS.length != 0){
+				$.each(GAME_DESIGNERS, function(index, value) {
+					if((value.admin == "true" || value.admin == "part") && value.oidcEmail == oidc_userinfo.email){
+						checkPermission = true;
+					}
+				});
+			}
+			if(checkPermission){
 				BADGE_INDEX = $(this).attr('badgeIndex');
 				$('#game-badge-saved-message').text("");
 
@@ -142,12 +153,12 @@ function rand(min, max) {
 			var myselect = $("select#edit-select-badge-requirement");
 			myselect[0].selectedIndex = GAME_BADGES[BADGE_INDEX]["badgeRequirementId"];
 			myselect.selectmenu("refresh");
-	
+			
 		});
 
 		$('#game-badge-save-button').click(function(){
 			$('#game-badge-undo-delete-button').fadeOut();
-		
+			
 			$('#game-badge-saved-message').text("");
 
 			var filename = $('#edit'+galleryElementName).find(".active").find(".imgfocus")[0].alt;
@@ -216,7 +227,7 @@ function rand(min, max) {
 			$('#edit-game-badge-name')[0].value = "";
 			$("#edit-game-badge-name").attr('disabled','disabled');
 			$("#edit-game-badge-name").parent().css( "background-color", "#e7e7e7" );
-		
+			
 			$('#edit-game-badge-desc')[0].value = "";
 			$("#edit-game-badge-desc").attr('disabled','disabled');
 			$("#edit-game-badge-desc").parent().css( "background-color", "#e7e7e7" );
@@ -234,7 +245,7 @@ function rand(min, max) {
 			$('#edit-game-badge-points')[0].value = "";
 			$("#edit-game-badge-points").attr('disabled','disabled');
 			$("#edit-game-badge-points").parent().css( "background-color", "#e7e7e7" );
-		
+			
 			$('#game-badge-save-button').find('*').prop('disabled',true);
 			$('#game-badge-save-button').find('*').addClass('ui-disabled');
 		}
@@ -244,7 +255,7 @@ function rand(min, max) {
 			$('#edit-game-badge-name').parent().parent().find('*').removeClass('ui-disabled');
 			$('#edit-game-badge-name').parent().parent().find('*').removeClass('ui-state-disabled');
 			$("#edit-game-badge-name").parent().parent().find('*').css( "background-color", "" );
-		
+			
 			$('#edit-game-badge-desc').parent().parent().find('*').removeAttr('disabled');
 			$('#edit-game-badge-desc').parent().parent().find('*').removeClass('ui-disabled');
 			$('#edit-game-badge-desc').parent().parent().find('*').removeClass('ui-state-disabled');
@@ -315,10 +326,10 @@ function rand(min, max) {
 
 			if($.trim($('#edit-game-badge-name')[0].value)!= "" && check){
 				$('#game-badge-save-button').find('*').prop('disabled',false);
-			$('#game-badge-save-button').find('*').removeClass('ui-disabled');
+				$('#game-badge-save-button').find('*').removeClass('ui-disabled');
 			} else{
-			$('#game-badge-save-button').find('*').prop('disabled',true);
-			$('#game-badge-save-button').find('*').addClass('ui-disabled');
+				$('#game-badge-save-button').find('*').prop('disabled',true);
+				$('#game-badge-save-button').find('*').addClass('ui-disabled');
 			}
 		}
 
@@ -363,7 +374,7 @@ function rand(min, max) {
 			var check = true;
 			for (; i < len; i++) {
 				file = filedata.files[i];
-								
+				
 				if(!file.type.match(/image.*/)){
 					check = false;
 					alert(file.fileName +' is not a valid image!');
@@ -375,48 +386,48 @@ function rand(min, max) {
 				}
 			}
 			if(check && file){
-			formdata.append("badgeName",badgeName);
-			formdata.append("badgeDescription",badgeDescription);
-			formdata.append("badgeFeedbackMessage",badgeFeedbackMessage);
-			formdata.append("badgeRequirementId",badgeRequirementId);
-			formdata.append("requirementValue",requirementValue);
-			formdata.append("oidcEmail",oidc_userinfo.email);
+				formdata.append("badgeName",badgeName);
+				formdata.append("badgeDescription",badgeDescription);
+				formdata.append("badgeFeedbackMessage",badgeFeedbackMessage);
+				formdata.append("badgeRequirementId",badgeRequirementId);
+				formdata.append("requirementValue",requirementValue);
+				formdata.append("oidcEmail",oidc_userinfo.email);
 
-			if(formdata){
-				$.ajax({
-					url: "lib/database/uploadGameBadge.php",
-					type: "POST",
-					data: formdata,
-					processData: false,
-					contentType: false,
-					success: function(data){
-					document.getElementById("uploadGameBadge").FileList = {};
-					getGameBadges();
-					$('#game-badge-saved-message').text("");
-					var createBadgeMessage = $('<h2 style="color:#036363;">New Badge added successfully!</h2>');
-					$('#game-badge-saved-message').append(createBadgeMessage);
-					
-					$('#uploadGameBadge').prop('disabled',true);
-					$('.fileinput-button').css('opacity','0.3');
-					$('#game-badge-name')[0].value = "";
-					$('#game-badge-desc')[0].value = "";
-					$('#game-badge-feedback')[0].value = "";
-					$('#game-badge-points')[0].value = "";
-					setButtonColor($("#select-badge-requirement").parent());
-					var myselect = $("select#select-badge-requirement");
-					myselect[0].selectedIndex = 0;
-					myselect.selectmenu("refresh");
+				if(formdata){
+					$.ajax({
+						url: "lib/database/uploadGameBadge.php",
+						type: "POST",
+						data: formdata,
+						processData: false,
+						contentType: false,
+						success: function(data){
+							document.getElementById("uploadGameBadge").FileList = {};
+							getGameBadges();
+							$('#game-badge-saved-message').text("");
+							var createBadgeMessage = $('<h2 style="color:#036363;">New Badge added successfully!</h2>');
+							$('#game-badge-saved-message').append(createBadgeMessage);
+							
+							$('#uploadGameBadge').prop('disabled',true);
+							$('.fileinput-button').css('opacity','0.3');
+							$('#game-badge-name')[0].value = "";
+							$('#game-badge-desc')[0].value = "";
+							$('#game-badge-feedback')[0].value = "";
+							$('#game-badge-points')[0].value = "";
+							setButtonColor($("#select-badge-requirement").parent());
+							var myselect = $("select#select-badge-requirement");
+							myselect[0].selectedIndex = 0;
+							myselect.selectmenu("refresh");
 
+						}
+					});
 				}
-			});
-			}
 			}else{
 				document.getElementById("uploadGameBadge").FileList = {};
 			}
 		}
 
 		function saveGameBadge(badgeSrc){
-				
+			
 			var badgeName = $.trim($('#edit-game-badge-name')[0].value);
 			var badgeDescription = $.trim($('#edit-game-badge-desc')[0].value);
 			var badgeFeedbackMessage = $.trim($('#edit-game-badge-feedback')[0].value);
@@ -447,18 +458,18 @@ function rand(min, max) {
 					processData: false,
 					contentType: false,
 					success: function(data){
-					
-					GAME_BADGES[BADGE_INDEX]["badgeName"] = badgeName;
-					GAME_BADGES[BADGE_INDEX]["badgeDescription"] = badgeDescription;
-					GAME_BADGES[BADGE_INDEX]["badgeFeedbackMessage"] = badgeFeedbackMessage ;
-					GAME_BADGES[BADGE_INDEX]["badgeRequirementId"] = badgeRequirementId;
-					GAME_BADGES[BADGE_INDEX]["requirementValue"] = requirementValue;
-					$('#game-badge-saved-message').text("");
-					var saveBadgeMessage = $('<h2 style="color:#036363;">Badge Details saved successfully!</h2>');
-					$('#game-badge-saved-message').append(saveBadgeMessage);
-				
-				}
-			});
+						
+						GAME_BADGES[BADGE_INDEX]["badgeName"] = badgeName;
+						GAME_BADGES[BADGE_INDEX]["badgeDescription"] = badgeDescription;
+						GAME_BADGES[BADGE_INDEX]["badgeFeedbackMessage"] = badgeFeedbackMessage ;
+						GAME_BADGES[BADGE_INDEX]["badgeRequirementId"] = badgeRequirementId;
+						GAME_BADGES[BADGE_INDEX]["requirementValue"] = requirementValue;
+						$('#game-badge-saved-message').text("");
+						var saveBadgeMessage = $('<h2 style="color:#036363;">Badge Details saved successfully!</h2>');
+						$('#game-badge-saved-message').append(saveBadgeMessage);
+						
+					}
+				});
 			}
 			
 		}
@@ -526,14 +537,14 @@ function rand(min, max) {
 					//alert('success');
 					$('#game-badge-undo-delete-button').fadeOut();
 					
-				
-				getGameBadges();
-				$('#game-badge-saved-message').text("");
-				var badgeSavedMessage = $('<h2 style="color:#036363;">Badge restored successfully!</h2>');
-				$('#game-badge-saved-message').append(badgeSavedMessage);
+					
+					getGameBadges();
+					$('#game-badge-saved-message').text("");
+					var badgeSavedMessage = $('<h2 style="color:#036363;">Badge restored successfully!</h2>');
+					$('#game-badge-saved-message').append(badgeSavedMessage);
 
-			}
-		});
+				}
+			});
 			}
 		}
 

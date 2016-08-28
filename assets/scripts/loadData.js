@@ -1,5 +1,5 @@
 var GLEANER_URL = "http://localhost:3000/";
-var oidc_userinfo = {name: "Marko Kajzer", preferred_username: "marko.kajzer", email: "marko.kajzer@hotmail.de"};
+var oidc_userinfo = {name: "Marko Kajzer", preferred_username: "marko.kajzer", email: "sindhu.aitharaju@rwth-aachen.de"};
 
 var GAMESDATA;
 var GALLERYNAMES;
@@ -11,13 +11,11 @@ var EXPERIENCE_RULES;
 var TILES_CONNECTIONS_PATH = "tiles_connections/";
 var EXPERIENCE_BADGES_PATH = "experience_badges/";
 var GAME_BADGES_PATH = "game_badges/";
+var GAME_DESIGNERS;
 //var GAMELEVELS;
 $(document).ready(function() {
-
-
-
 	
-		$.ajax({
+	$.ajax({
 		url: "lib/database/db_create.php",
 		type: "GET",
 		contentType: false,
@@ -26,7 +24,7 @@ $(document).ready(function() {
 				}
 			});
 
-		$.ajax({
+	$.ajax({
 		url: "lib/database/create_default_highscore.php",
 		type: "GET",
 		contentType: false,
@@ -35,22 +33,31 @@ $(document).ready(function() {
 				}
 			});
 
-	function deleteOldData(){
 	$.ajax({
-		url: "lib/database/deleteOldData.php",
+		url: "lib/database/get_game_designers.php",
 		type: "GET",
 		contentType: false,
 		success: function(data){
-			getGamesList();	
-			getGalleriesList();
-			getHighscoreVersions();
-			getGameBadges();
-			getGameRules();
-			getExperienceRules();
-			getExperienceBadges();
+			GAME_DESIGNERS = JSON.parse(data);
 		}
 	});
-}
+
+	function deleteOldData(){
+		$.ajax({
+			url: "lib/database/deleteOldData.php",
+			type: "GET",
+			contentType: false,
+			success: function(data){
+				getGamesList();	
+				getGalleriesList();
+				getHighscoreVersions();
+				getGameBadges();
+				getGameRules();
+				getExperienceRules();
+				getExperienceBadges();
+			}
+		});
+	}
 	function getGamesList(){
 		$.ajax({
 			url: "lib/database/get_games.php",

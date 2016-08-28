@@ -247,5 +247,14 @@ $query="CREATE TABLE IF NOT EXISTS game_rules(
 	) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=0";
 $result = $conn->query($query);
 
+$query="CREATE TABLE IF NOT EXISTS game_designers(
+		id int(11) NOT NULL AUTO_INCREMENT,
+		oidcEmail varchar(255) COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+		gameId int(11) NULL,
+		admin varchar(25) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'false',
+		PRIMARY KEY (id)
+	) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=0";
+$result = $conn->query($query);
+
 $conn->close();
 ?>

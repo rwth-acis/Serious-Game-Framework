@@ -106,6 +106,7 @@
 		<script type="text/javascript" src="assets/scripts/manageHighscoreRules.js"></script>
 		<script type="text/javascript" src="assets/scripts/manageBadgeRules.js"></script>
 		<script type="text/javascript" src="assets/scripts/manageGameRules.js"></script>
+		<script type="text/javascript" src="assets/scripts/manageAdminView.js"></script>
 		<script type="text/javascript" src="assets/scripts/serious-game-framework-new.js"></script>
 
 		<!-- Configuration for mobile devices -->
@@ -124,7 +125,7 @@
 			<div data-role="header" data-theme="b">
 				<h1>Serious Game Framework</h1>
 				<div data-inline="true" class="ui-btn-right">
-					<a href="https://goo.gl/forms/CqFAHaOIkC1GPHwi2" target="_blank" data-role="button" data-inline="true" data-rel="dialog">Feedback</a>
+					<a href="https://goo.gl/FKJDbF" target="_blank" data-role="button" data-inline="true" data-rel="dialog">Feedback</a>
 					<a href="#options" data-icon="gear" data-role="button" class="options-button" data-inline="true" data-rel="dialog">Options</a>
 				</div>
 				<span data-role="button" data-inline="true" data-corners="true" class="ui-btn-left">
@@ -182,7 +183,7 @@
 				<h2 style="display: inline;padding-left: 10%;padding-right: 10%;" class="score"></h2>
 			</div>
 			<div data-inline="true" class="ui-btn-right">
-				<a href="https://goo.gl/forms/CqFAHaOIkC1GPHwi2" target="_blank" data-role="button" data-inline="true" data-rel="dialog">Feedback</a>
+				<a href="https://goo.gl/FKJDbF" target="_blank" data-role="button" data-inline="true" data-rel="dialog">Feedback</a>
 				<a href="#options" data-icon="gear" id="game-header-options" data-role="button" class="options-button" data-inline="true" data-rel="dialog">Options</a>
 			</div>
 		</div>
@@ -214,7 +215,6 @@
 
 		</div>
 	</div>
-
 	<div id="options" data-role="page" class="ui-helper-clearfix bodywrapper" data-theme="c" data-overlay-theme="c">
 		<div data-role="header" data-theme="c">
 			<h1>Options</h1>
@@ -430,6 +430,13 @@
 						<div data-role="collapsible" data-collapsed="false">
 							<h3>Game Designer Overview</h3>
 							<img src="game_designer_tutorial/game_designer_overview.png" alt="Concept Map" style="max-width:100%;max-height:100%;">
+							<h2>Tips to create a new game</h2>
+							<h3>1. Before creating a game, create a table with 6 columns namely: Name of gallery 1, Name of gallery 2, Name of gallery 3, Name of gallery 4, eLearning Link and More Information Link.</h3>
+							<h3>2. Fill in the rows where each row is a level (correct match of gallery 1, gallery 2, gallery 3 and gallery 4, eLearning Link and More Information link for that level). Lets call the elements of the galleries as Tiles.</h3>
+							<img src="game_designer_tutorial/exceltable.png" alt="Table of columns" style="max-width:100%;max-height:100%;">
+							<h3>3. Create powerpoint presentation where 1 slide contains 1 Tile. Use bigger font.</h3>
+							<h3>4. Save this presentation as .gif or .jpg or .png format where each slide will be saved as an image file.</h3>
+							<h3>5. These can be used to create galleries in 'Manage Galleries' section and the level information in the table can be used to create levels in 'Edit Games' section.</h3>
 						</div>
 						<div data-role="collapsible">
 							<h3>Steps to Create a Game</h3>
@@ -443,7 +450,7 @@
 							<h3>Step 2: Galleries can be created in 'Manage Galleries' view. Check 'How to Manage Galleries' section for details.</h3>
 							<h3>Step 3: Connections can be created in 'Manage Connections' view. Check 'How to Manage Connections' section for details.</h3>
 							<h3>Step 4: After creating the game components, a new game can be created in 'Create Games' in 'Manage Games' view.</h3>
-							<h3>Step 5: In 'Create Games' view, select the desired galleries and connections. Check 'How to Create Games' section for details.</h3>
+							<h3>Step 5: In 'Create Games' view, select the desired galleries and connections and create a game. This creates an empty game and now this game is ready to be edited in 'Edit Games' view where levels can be added. Check 'How to Create Games' section for details.</h3>
 							<h3>Step 6: In 'Edit Games' view, create levels of the game. Check 'How to Edit Games' section for details.</h3>
 						</div>
 						<div data-role="collapsible">
@@ -463,7 +470,7 @@
 							<h3>10. 'Undo Gallery Deletion' button appears after deleting the gallery. Click on it to restore the gallery. This button disappears if any other action is performed.</h3>
 
 							<h2>How to Create Image Files</h2>
-							<h3>Create a Microsoft Powerpoint presentation with desired data. If the data is text, then create text with very large font.
+							<h3>Create a Powerpoint presentation with desired data. If the data is text, then create text with very large font.
 							While saving the presentation, choose the option to save it as image files. This will create a folder with all the slides of the presentation as image files. These image files can be uploaded via the uploader using 'Add Tiles' button</h3>
 						</div>
 						<div data-role="collapsible">
@@ -484,7 +491,7 @@
 							<h2>Game Details</h2>
 							<img src="game_designer_tutorial/gamedetails.png" alt="Game Details" style="max-width:100%;max-height:100%;">
 							<h3>1. To create a game, giving game name, choosing the number of galleries and selecting the galleries that are going to be in the game are mandatory to enable the 'Create' button.</h3>
-							<h3>2.  Depending on the number of galleries selected (maximum of 4 galleries), dropdowns containing list of all galleries will be displayed. Also, you can select the connections between these galleries from 'Select Connection x' (x = 1 or 2 or 3). The following figure shows how the galleries selected would be positioned in the game view and how the connections selected would connect the tiles from these galleries. In the figure, c1 corresponds to connection1, c2 to connection2 and c3 to connection3.</h3>
+							<h3>2.  Depending on the number of galleries selected (maximum of 4 galleries), dropdowns containing list of all galleries will be displayed. Also, you can select the connections between these galleries from 'Select Connection x' (x = 1 or 2 or 3). The following figure shows how the galleries selected would be positioned in the game view and how the connections selected would connect the tiles from these galleries. In the figure, c1 corresponds to connection1 which connects gallery 1 and 2, c2 to connection2 which connects gllery 2 and 3 and c3 to connection3 which connects gallery 3 and 4.</h3>
 							<img src="game_designer_tutorial/galleriesconcept.png" alt="Galleries Concept" style="max-width:100%;max-height:100%;">
 							<h3>3. Additional details like selecting game category will place the game in that category. If the new game doesn't fit into any category in the dropdown list, make sure to select '--Select Category or Create New Category--' in 'Select Game Category' dropdown, and you can create a new category by entering the name in 'Create New Category' field. If no category is selected or created then the game will be placed in 'Other' by default.</h3>
 							<h3>4. 'Description of the game' shows below the game name in the games list and 'Detail Description of the game' is shown on the Game Description page as shown in the figure below.</h3>
@@ -687,6 +694,11 @@
 						<div data-role="collapsible" data-collapsed="false">
 							<h3>Assessment System Overview</h3>
 							<img src="assessment_system_tutorial/assessment_system_overview.png" alt="Concept Map" style="max-width:100%;max-height:100%;">
+							<h2>Default settings for Assessment System</h2>
+							<h3>Default values are set for Experience Calculation rule, Experience Levels and Trophies, Badges and Highscore Calculation rules for each game (these are created when a new game is created). All of these are customizable by the game designer.</h3>
+							 <h3>When you create a new game, only 'Game Completion Badge' is required to be created. For this, please refer to 'How to Manage Badge Rules' and 'How to Set Game Assessment Rules' sections. </h3>
+							<img src="assessment_system_tutorial/exprule.png" alt="Experience Rule" style="max-width:100%;max-height:100%;">
+							<img src="assessment_system_tutorial/highscorerules.png" alt="Highscore Rule" style="max-width:100%;max-height:100%;">
 						</div>
 						<div data-role="collapsible">
 							<h3>Assessment System Concept</h3>
@@ -954,6 +966,16 @@
 				</div>
 			</div>
 		</div>
+
+
+		<div id="adminView" data-role="page" class="ui-helper-clearfix bodywrapper">
+			<div data-role="content">
+				<div class="ui-content">
+					<div id="adminDetails"></div>
+					<div id="email-added-msg"></div>
+				</div>
+			</div>
+		</div>
 		<!-- The blueimp Gallery widget -->
 <!-- <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls" data-filter=":even">
     <div class="slides"></div>
@@ -999,6 +1021,19 @@
 	      	'</a>' +
 	      	'</li>');
 	      $('.menulist').append(assessmentsystemview);
+
+	      if(oidc_userinfo.email == 'a.herrler@maastrichtuniversity.nl' || oidc_userinfo.email == 'sindhu.aitharaju@rwth-aachen.de'){
+
+	      var adminview =	$('<li>' +
+	      	'<a href="#adminView" id="adminlink">' +
+	      	'<h3 style="color:#0456a2;">Admin</h3>' +
+	      	'<p style="color:#0456a2;">Add permissions to users</p>' +
+	      	'</a>' +
+	      	'</li>');
+	      $('.menulist').append(adminview);
+
+	      $('#adminlink').click(function() { resetAdminView() });
+	  	}
 
 	      if ( $('.menulist').hasClass('ui-listview')) {
 	      	$('.menulist').listview('refresh');
