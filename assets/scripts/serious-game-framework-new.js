@@ -153,7 +153,7 @@ $(document).ready(function() {
 		$(document).on('click', '.gamelink', function () {
 			var gameID = $(this).attr('game-id');
 			var gameIndex = $(this).attr('gameIndex');
-
+			$('#feedbackmessage').text("");
 			if(gameIndex != undefined){
 				GAMEID = parseInt(gameID);
 				GAMEINDEX = parseInt(gameIndex);
@@ -179,6 +179,7 @@ $(document).ready(function() {
 		$(document).on('click', '.playGameLink', function () {
 			
 		// Send trace for starting a game
+		$('#feedbackmessage').text("");
 		gleaner_tracker.trackTrace(oidc_userinfo, "game_start",
 			{gameID: GAMEID, configure : "new"});
 	});
@@ -196,16 +197,19 @@ $(document).ready(function() {
 		});*/
 
 		$('.options-button').click(function(){
+			$('#feedbackmessage').text("");
 			selectCurrentOptions();
 		});
 
 		$('#elearning').click(function() {
+			$('#feedbackmessage').text("");
 			elearning++;
 		// Send trace for clicking an eLearning link
 		gleaner_tracker.trackTrace(oidc_userinfo, "elearning",
 			{gameID: GAMEID, levelID: CURRENTLEVEL, configure : "new"});
 	});
 		$('#moreInformation').click(function() {
+			$('#feedbackmessage').text("");
 			moreInformation++;
 		// Send trace for clicking an eLearning link
 		gleaner_tracker.trackTrace(oidc_userinfo, "moreInformation",
@@ -261,7 +265,7 @@ $(document).ready(function() {
 	});
 
 	$('#wrapper-showme').click(function() {
-		
+		$('#feedbackmessage').text("");
 		if(!SHOWME){
 		// Send trace for using the show_me button
 		gleaner_tracker.trackTrace(oidc_userinfo, "level_completion",
@@ -274,7 +278,7 @@ $(document).ready(function() {
 });
 
 	$('#wrapper-tryagain').click(function() {
-		
+		$('#feedbackmessage').text("");
 		if(!TRYAGAIN){
 		// Send trace for using the show_me button
 		gleaner_tracker.trackTrace(oidc_userinfo, "level_completion",
@@ -289,7 +293,7 @@ $(document).ready(function() {
 
 	$('#wrapper-hint').click(function() {
 		hint();
-
+		$('#feedbackmessage').text("");
 		// Send trace for using the show_me button
 		gleaner_tracker.trackTrace(oidc_userinfo, "level_completion",
 			{gameID: GAMEID, levelID: CURRENTLEVEL, result: "hint", configure : "new"});
@@ -303,6 +307,7 @@ $(document).ready(function() {
 		//	reverseLevel();
 		//}
 		startTutorial();
+		$('#feedbackmessage').text("");
 	});
 
 	$('#button-down-gallery0').bind('mousedown mouseup touchstart touchend', function(event){
@@ -368,8 +373,8 @@ $(document).ready(function() {
 			$('#ulwrap-gallery3').stop();
 		}
 	});
-	
-	
+
+
 	$('#optionsform').submit( function(e){
 		e.preventDefault();
 		var choice = $(this).serializeArray();
@@ -836,6 +841,7 @@ function loadGame(gameIndex, gameID) {
 	  */
 	  function movePieceToSlot( piece, slotID, galleryID ) {
 		//alert(slotID + " - " + galleryID);
+		$('#feedbackmessage').text("");
 		var slot = $('#slot' + slotID);
 		var gallery = $('#gallery' + galleryID);
 		var list = $( "li", slot );
@@ -1360,6 +1366,7 @@ function loadGame(gameIndex, gameID) {
 					} else {
 						$('#wrapper-next').fadeIn();
 						$('#wrapper-next').click(function() {
+							$('#feedbackmessage').text("");
 							nextLevel();
 						});
 					}
@@ -1516,13 +1523,14 @@ function loadGame(gameIndex, gameID) {
 							// here all levels have been completed -> award badge of this game
 							var game_name = GAMESDATA[GAMEINDEX].gameName.toLowerCase();
 							// console.log(game_name);
-							this.badge_asserter.assertBadgeConfigured(game_name, oidc_userinfo, GAME_BADGES[GAME_BADGES_INDEX].badgeName, GAME_BADGES[GAME_BADGES_INDEX].badgeSrc);
+							this.badge_asserter.assertBadgeConfigured(game_name, oidc_userinfo, GAME_BADGES[GAME_BADGES_INDEX].badgeName, GAME_BADGES[GAME_BADGES_INDEX].badgeSrc,GAME_BADGES[GAME_BADGES_INDEX].badgeFeedbackMessage);
 						}
 						else
 						{
 							if (correct) {
 								$('#wrapper-next').fadeIn();
 								$('#wrapper-next').click(function() {
+									$('#feedbackmessage').text("");
 									nextLevel();
 								});
 							}
@@ -1573,6 +1581,7 @@ function loadGame(gameIndex, gameID) {
 		if (!correct) {
 			$('#wrapper-next').fadeIn();
 			$('#wrapper-next').click(function() {
+				$('#feedbackmessage').text("");
 				nextLevel();
 			});
 		}
@@ -1640,6 +1649,7 @@ function loadGame(gameIndex, gameID) {
 			if (NEXTLEVELS.length) {
 				$('#wrapper-next').fadeIn();
 				$('#wrapper-next').click(function() {
+					$('#feedbackmessage').text("");
 					nextLevel();
 				});
 			}
@@ -1756,6 +1766,7 @@ function hint(){
 			if (NEXTLEVELS.length) {
 				$('#wrapper-next').fadeIn();
 				$('#wrapper-next').click(function() {
+					$('#feedbackmessage').text("");
 					nextLevel();
 				});
 			}
@@ -1848,20 +1859,20 @@ showProfile = function() {
 		"gamesdata": GAMESDATA
 	};
 	$.ajax({
-      type: "POST",
-      url: gleaner_url + "collect/gamesdesign", 
-      dataType: "json",
-      headers: {
-		detailsjson : JSON.stringify(detailsjson)
-      },
-      success: function() {
-       queryProfile();
-      },
-      error: function() {
+		type: "POST",
+		url: gleaner_url + "collect/gamesdesign", 
+		dataType: "json",
+		headers: {
+			detailsjson : JSON.stringify(detailsjson)
+		},
+		success: function() {
+			queryProfile();
+		},
+		error: function() {
         console.log("Adding game designer data failed!"); //Neverthless query profile
         queryProfile();
-      }
-    });
+    }
+});
 	
 	getAllGamesHighscore();
 
@@ -1994,9 +2005,10 @@ insertExperience = function(userHighscore) {
 	    	});
 	    	$('.progress-label').text(result.level_progress + "%");
 
-	    	$('#total-exp').text(result.total_experience);
-	    	$('#level-exp').text(result.level_experience);
-	    	$('#exp-to-next').text(result.to_next_level);
+	    	$('#total-exp').text("Total experience: " + result.total_experience);
+	    	$('#level-exp').text("Level experience: "+result.level_experience);
+	    	$('#exp-to-next').text("Experience to next level: "+result.to_next_level);
+	    	$('#exp-feedback-message').text(EXPERIENCE_BADGES[result.index].badgeFeedbackMessage);
 	    },
 	    error: function() {
 	    	console.log("Can't get experience. Server down?");

@@ -144,6 +144,7 @@ body { list-style: none; }
 
 /* #wrappergameboard {position: absolute; top: 110px; left: 140px; bottom:110px; right:140px; text-align: center; vertical-align: middle;} */
 #wrappergameboard { position: absolute; top: 35%; left: 15%; bottom:25%; right:15%; }
+#feedbackmessage { position: absolute; top: 70%; left: 15%; bottom:25%; right:15%; }
 #gameboard { padding: 1em; float:left; margin-right: 2em; margin-bottom: 2em }
 
 #slots { width: 100%; height: 130px; z-index: 500 }
