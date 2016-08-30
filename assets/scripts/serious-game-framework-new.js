@@ -1882,9 +1882,9 @@ function queryProfile(){
     		insertGameDesignerStatistics(result.designed);
     	}
 
-    	if(result.admin === true) {
-    		insertAdminStatistics();
-    	}
+    	/*if(result.admin === true) {
+    		//insertAdminStatistics();
+    	}*/
     },
     error: function() {
     	console.log("Can't get badges. Server down?");
@@ -2063,8 +2063,8 @@ insertGameDesignerStatistics = function(designed_games) {
     }
 });*/
 }
-
-insertAdminStatistics = function() {
+//Not using admin statistics for now
+/*insertAdminStatistics = function() {
 	$('div.stats#admin').show();
 	// Insert SelectOptions for each game besides Tutorial
 	if(GAMESDATA != undefined && GAMESDATA.length != 0){
@@ -2095,4 +2095,4 @@ insertAdminStatistics = function() {
     	console.log("Can't get traces. Server down?");
     }
 });
-}
+}*/
