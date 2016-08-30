@@ -1858,7 +1858,8 @@ showProfile = function() {
        queryProfile();
       },
       error: function() {
-        console.log("Something went terribly wrong!");
+        console.log("Adding game designer data failed!"); //Neverthless query profile
+        queryProfile();
       }
     });
 	
