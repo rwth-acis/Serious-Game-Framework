@@ -1,5 +1,5 @@
-var GLEANER_URL = "http://localhost:3000/";
-var oidc_userinfo = {name: "Marko Kajzer", preferred_username: "marko.kajzer", email: "sindhu.aitharaju@rwth-aachen.de"};
+var GLEANER_URL = "http://gaudi.informatik.rwth-aachen.de:3000/";
+//var oidc_userinfo = {name: "Marko Kajzer", preferred_username: "marko.kajzer", email: "marko.kajzer@hotmail.de"};
 
 var GAMESDATA;
 var GALLERYNAMES;

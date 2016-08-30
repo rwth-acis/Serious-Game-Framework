@@ -68,7 +68,7 @@ var gleaner_tracker = new GleanerTracker();
 var chart_creator = new ChartCreator();
 
 // When DOM is loaded do the following
-function getGameLevelsForStats(gameId,act_type, prefix,gameIndex){
+function getGameLevelsForStats(gameId, gameName, act_type, prefix){
 	formdata = false;
 	if (window.FormData) {
 		formdata = new FormData();
@@ -83,7 +83,7 @@ function getGameLevelsForStats(gameId,act_type, prefix,gameIndex){
 		contentType: false,
 		success: function(data){
 			GAMELEVELSSTATS = JSON.parse(data);
-			chart_creator.changeChart(gameId, act_type, prefix, gameIndex);
+			chart_creator.changeChartNew(gameId, gameName, act_type, prefix);
 		}
 	});
 }
@@ -215,41 +215,49 @@ $(document).ready(function() {
 	// Functions for Player Statistics
 	$('#stats-game-select').change(function(element) {
 		var act_type = $('#chart-1')[0].checked ? "pie" : "bar";
-		var game_index = $('option:selected', $('#stats-game-select')).attr('gameIndex');
+		var gameName = $('#stats-game-select :selected').text();
 		var game_id = $("#stats-game-select option:selected").val();
-		getGameLevelsForStats(game_id,act_type,"player-",game_index);
+		getGameLevelsForStats(game_id, gameName, act_type,"player-");
 	});
 	$('#chart-1').click(function() {
-		var game_index = $('option:selected', $('#stats-game-select')).attr('gameIndex');
-		chart_creator.changeChart($("#stats-game-select option:selected").val(), $('#chart-1').val(),"player-", game_index);
+		var gameName = $('#stats-game-select :selected').text();
+		chart_creator.changeChartNew($("#stats-game-select option:selected").val(), gameName, $('#chart-1').val(),"player-");
 	});
 	$('#chart-2').click(function() {
-		var game_index = $('option:selected', $('#stats-game-select')).attr('gameIndex');
-		chart_creator.changeChart($("#stats-game-select option:selected").val(), $('#chart-2').val(),"player-", game_index);
+		var gameName = $('#stats-game-select :selected').text();
+		chart_creator.changeChartNew($("#stats-game-select option:selected").val(), gameName, $('#chart-2').val(),"player-");
 	});
 
 	// Functions for Designer Statistics
 	$('#designer-stats-game-select').change(function(element) {
 		var act_type = $('#designer-chart-1')[0].checked ? "pie" : "bar";
-		chart_creator.changeChart($("#designer-stats-game-select option:selected").val(), act_type, 'designer-');
+		var gameName = $('#designer-stats-game-select :selected').text();
+		var game_id = $("#designer-stats-game-select option:selected").val();
+		getGameLevelsForStats(game_id, gameName, act_type, 'designer-');
 	});
 	$('#designer-chart-1').click(function() {
-		chart_creator.changeChart($("#designer-stats-game-select option:selected").val(), $('#designer-chart-1').val(), 'designer-');
+		var gameName = $('#designer-stats-game-select :selected').text();
+		chart_creator.changeChartNew($("#designer-stats-game-select option:selected").val(), gameName, $('#designer-chart-1').val(), 'designer-');
 	});
 	$('#designer-chart-2').click(function() {
-		chart_creator.changeChart($("#designer-stats-game-select option:selected").val(), $('#designer-chart-2').val(), 'designer-');
+		var gameName = $('#designer-stats-game-select :selected').text();
+		chart_creator.changeChartNew($("#designer-stats-game-select option:selected").val(), gameName, $('#designer-chart-2').val(), 'designer-');
 	});
 
 	// Functions for Admin Statistics
 	$('#admin-stats-game-select').change(function(element) {
 		var act_type = $('#admin-chart-1')[0].checked ? "pie" : "bar";
-		chart_creator.changeChart($("#admin-stats-game-select option:selected").val(), act_type, 'admin-');
+		var gameName = $('#admin-stats-game-select :selected').text();
+		var game_id = $("#admin-stats-game-select option:selected").val();
+		getGameLevelsForStats(game_id, gameName, act_type, 'admin-');
 	});
 	$('#admin-chart-1').click(function() {
-		chart_creator.changeChart($("#admin-stats-game-select option:selected").val(), $('#admin-chart-1').val(), 'admin-');
+		var gameName = $('#admin-stats-game-select :selected').text();
+		chart_creator.changeChartNew($("#admin-stats-game-select option:selected").val(), gameName, $('#admin-chart-1').val(), 'admin-');
 	});
 	$('#admin-chart-2').click(function() {
-		chart_creator.changeChart($("#admin-stats-game-select option:selected").val(), $('#admin-chart-2').val(), 'admin-');
+		var gameName = $('#admin-stats-game-select :selected').text();
+		chart_creator.changeChartNew($("#admin-stats-game-select option:selected").val(), gameName, $('#admin-chart-2').val(), 'admin-');
 	});
 
 	$('#wrapper-showme').click(function() {
@@ -262,8 +270,8 @@ $(document).ready(function() {
 		CURRENT_HIGHSCORE = CURRENT_HIGHSCORE - SHOWME_FACTOR;
 		$('.score').empty().append(" Highscore: "+ parseFloat(CURRENT_HIGHSCORE).toFixed(2));
 	}
-		showMe();
-	});
+	showMe();
+});
 
 	$('#wrapper-tryagain').click(function() {
 		
@@ -275,9 +283,9 @@ $(document).ready(function() {
 		CURRENT_HIGHSCORE = parseFloat(CURRENT_HIGHSCORE).toFixed(2);
 		CURRENT_HIGHSCORE = CURRENT_HIGHSCORE - TRYAGAIN_FACTOR;
 		$('.score').empty().append(" Highscore: "+ parseFloat(CURRENT_HIGHSCORE).toFixed(2));
-		}
-		tryAgain();
-	});
+	}
+	tryAgain();
+});
 
 	$('#wrapper-hint').click(function() {
 		hint();
@@ -427,7 +435,7 @@ $(document).ready(function() {
 							}
 						}
 					}
-				
+
 			// Show the tutorial, if the game is marked as tutorial
 			if (TUTORIAL) {
 				$('#levelcontrol').fadeIn();
@@ -576,7 +584,7 @@ function loadGame(gameIndex, gameID) {
 		$('#moreInformation').fadeOut();
 		$('#leveldone').fadeOut();
 		$('#levelcontrol').fadeOut();
-						
+
 		$('.gametitle').empty().append(GAMESDATA[gameIndex].gameName);
 		$('.score').empty().append(" Highscore: "+ CURRENT_HIGHSCORE);
 			// set the gallery and slot titles if available
@@ -1428,13 +1436,13 @@ function loadGame(gameIndex, gameID) {
 							if(!TUTORIAL) {
 								$('#wrapper-tryagain').fadeIn();
 								if(!TRYAGAIN){
-								wrong++;
-								gleaner_tracker.trackTrace(oidc_userinfo, "level_completion",
-									{gameID: GAMEID, levelID: CURRENTLEVEL, result: "wrong", configure : "new"});
-								CURRENT_HIGHSCORE = parseFloat(CURRENT_HIGHSCORE).toFixed(2);
-								CURRENT_HIGHSCORE = CURRENT_HIGHSCORE - WRONG_FACTOR;
-								$('.score').empty().append(" Highscore: "+ parseFloat(CURRENT_HIGHSCORE).toFixed(2));
-							}
+									wrong++;
+									gleaner_tracker.trackTrace(oidc_userinfo, "level_completion",
+										{gameID: GAMEID, levelID: CURRENTLEVEL, result: "wrong", configure : "new"});
+									CURRENT_HIGHSCORE = parseFloat(CURRENT_HIGHSCORE).toFixed(2);
+									CURRENT_HIGHSCORE = CURRENT_HIGHSCORE - WRONG_FACTOR;
+									$('.score').empty().append(" Highscore: "+ parseFloat(CURRENT_HIGHSCORE).toFixed(2));
+								}
 							}
 						} else {
 							logLevel(l, "correct");
@@ -1835,8 +1843,31 @@ showProfile = function() {
 	$('div#user_email').text(oidc_userinfo.email);
 	$('div#user_phone').text(oidc_userinfo.phone_number);
 
-	// Query profile
+	// add games designed if not exists
+	var detailsjson = {
+		"gamesdata": GAMESDATA
+	};
+	$.ajax({
+      type: "POST",
+      url: gleaner_url + "collect/gamesdesign", 
+      dataType: "json",
+      headers: {
+		detailsjson : JSON.stringify(detailsjson)
+      },
+      success: function() {
+       queryProfile();
+      },
+      error: function() {
+        console.log("Something went terribly wrong!");
+      }
+    });
+	
+	getAllGamesHighscore();
 
+	insertPlayerStatistics();
+}
+function queryProfile(){
+	//Query Profile
 	$.ajax({
 		url: gleaner_url + "collect/profiles",
 		dataType: "json",
@@ -1860,12 +1891,7 @@ showProfile = function() {
     }
 });
 
-
-	getAllGamesHighscore();
-
-	insertPlayerStatistics();
 }
-
 function getAllGamesHighscore(){
 	formdata = false;
 	if (window.FormData) {
@@ -1979,8 +2005,6 @@ insertExperience = function(userHighscore) {
 	insertPlayerStatistics = function() {
 	// Insert SelectOptions for each game besides Tutorial
 	var myselect = $("select#stats-game-select");
-	
-
 	if(GAMESDATA != undefined && GAMESDATA.length != 0){
 		//$('#stats-game-select').append('<option value="'+ -1 +'">--Select Game--</option>');
 		$.each(GAMESDATA, function(i, game) {
@@ -1992,32 +2016,11 @@ insertExperience = function(userHighscore) {
 			}
 		});
 	}
-	// TODO MARKO Remove this testgame, which is for showcasing only
-	//$('#stats-game-select').append('<option value="2">Test Game 2</option>');
 
-	// Query statistics for Hormones game
-	//var game = GAMEID;
 	myselect.selectmenu("refresh");
 	var game_id = $('select[name=stats-game-select]').val();
-	var game_index = $('option:selected', $('#stats-game-select')).attr('gameIndex');
-	getGameLevelsForStats(game_id,"pie", "player-",game_index);
-
-/*	var collectGameTracesurl = "collect/traces/"+game_id;
-	$.ajax({
-	  url: gleaner_url + collectGameTracesurl, // TODO MARKO add real url
-	  dataType: "json",
-	  headers: {
-	  	'Email': oidc_userinfo.email
-	  },
-	  success: function(result) {
-    	// If everything went ok, draw the chart
-    	chart_creator.drawChart(result,game_index);
-    },
-    error: function(err) {
-    	console.log(err);
-    	console.log("Can't get traces. Server down?");
-    }
-});*/
+	var gameName = $('#stats-game-select :selected').text();
+	getGameLevelsForStats(game_id, gameName, "pie", "player-");
 }
 
 insertGameDesignerStatistics = function(designed_games) {
@@ -2030,17 +2033,20 @@ insertGameDesignerStatistics = function(designed_games) {
 	}
 
 	// Insert SelectOptions for each game the user has designed
+	var myselect = $("select#designer-stats-game-select");
 	if(designed_games != null){
 		$.each(designed_games, function(i, game) {
-			$('#designer-stats-game-select').append('<option value="'+ (i + 1) +'">' + GAMESDATA[game].name + '</option>');
+			myselect[0].selectedIndex = i;
+			$('#designer-stats-game-select').append('<option value="'+ game.gameId +'">' + game.gameName + '</option>');
 		});
 	}
 
-	// TODO MARKO Remove this testgame, which is for showcasing only
-	$('#designer-stats-game-select').append('<option value="2">Test Game 2</option>');
-	$('#designer-stats-game-select').selectmenu('refresh');
+	myselect.selectmenu('refresh');
+	var game_id = $('select[name=designer-stats-game-select]').val();
+	var gameName = $('#designer-stats-game-select :selected').text();
+	getGameLevelsForStats(game_id, gameName, "pie", "designer-");
 
-	// Query statistics for first game of this user
+/*	// Query statistics for first game of this user
 	$.ajax({
 	  url: gleaner_url + "collect/traces/" + designed_games[0] + "?type=designer", // TODO MARKO add real url
 	  dataType: "json",
@@ -2055,7 +2061,7 @@ insertGameDesignerStatistics = function(designed_games) {
     	console.log(err);
     	console.log("Can't get traces. Server down?");
     }
-});
+});*/
 }
 
 insertAdminStatistics = function() {
