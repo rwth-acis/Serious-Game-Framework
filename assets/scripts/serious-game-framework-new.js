@@ -758,7 +758,7 @@ function loadGame(gameIndex, gameID) {
 	  					$('img[piece-id="' + p + '"]', '#gallery' + i + ' ul').attr('piece-count',pieceCounter[distinct]);
 
 	  				} else {
-	  					var image = $('<li class="ui-widget-content ui-corner-tr piece" draggable="true"><img src="' + TILES_CONNECTIONS_PATH + p + '" alt="' +  p + '" width="94" height="68" id="piece-id-'+i+'" piece-id="' + p + '" piece-count="1"/></li>');
+	  					var image = $('<li class="ui-widget-content ui-corner-tr piece" draggable="true"><img src="' + TILES_CONNECTIONS_PATH + p + '" alt="' +  p + '" width="115" height="115" id="piece-id-'+i+'" piece-id="' + p + '" piece-count="1"/></li>');
 	  					rand(0,1) ? $('#gallery' + i + ' ul').prepend(image) : $('#gallery' + i + ' ul').append(image);
 	  					pieceCounter[distinct] = 1;
 	  				}
