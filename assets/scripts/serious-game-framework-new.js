@@ -471,18 +471,23 @@ $(document).ready(function() {
 		}
 		//alert("height: " + myHeight);
 		var galHeight = myHeight*0.6;
-		var wrapperHeight = galHeight+110;
+		var wrapperHeight = galHeight+120;
 		$('#gallery0wrapper').height(myHeight);
 		$('#gallery0').height(wrapperHeight);
-		$('#gallery0 ul').height(galHeight);
+		$('#gallery0 ul').height(galHeight+30);
 		
 		$('#gallery2wrapper').height(myHeight);
 		$('#gallery2').height(wrapperHeight);
-		$('#gallery2 ul').height(galHeight);
+		$('#gallery2 ul').height(galHeight+30);
 		
 		var galWidth = myWidth-280;
-		$('#ulwrap-gallery1').width(galWidth-75);
-		$('#ulwrap-gallery3').width(galWidth-75);
+		$('#ulwrap-gallery1').width(galWidth-105);
+		$('#ulwrap-gallery3').width(galWidth-105);
+		$('#button-up-gallery0').find('div').css('margin-left','40px');
+		$('#button-down-gallery0 div').css('margin-left','40px');
+		$('#button-up-gallery2 div').css('margin-left','40px');
+		$('#button-down-gallery2 div').css('margin-left','40px');
+
 	}
 
 	
