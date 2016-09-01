@@ -16,10 +16,23 @@ $(document).ready(function() {
 
 	}
 
-	function createSlot(divId, slotId, appendFactor, elementAppend){
+	function createGameSlot(divId, slotId, appendFactor, elementAppend){
 		var $inner1 = $("<td/>"),
 		$inner2 = $("<div/>" , {id:divId, class:"wrapperslot"}),
 		$inner3 = $("<ul/>" , {id:slotId, class:"slot ui-widget-content ui-state-default"});
+
+		if(appendFactor){
+			$inner1.append($inner2.append($inner3)).appendTo(elementAppend);
+		}else{
+			$inner1.append($inner2.append($inner3)).prependTo(elementAppend);
+		}
+
+	}
+
+	function createSlot(divId, slotId, appendFactor, elementAppend){
+		var $inner1 = $("<td/>"),
+		$inner2 = $("<div/>" , {id:divId, class:"wrapperslot"}),
+		$inner3 = $("<ul/>" , {id:slotId, class:"slotS ui-widget-content ui-state-default"});
 
 		if(appendFactor){
 			$inner1.append($inner2.append($inner3)).appendTo(elementAppend);
@@ -76,7 +89,7 @@ $(document).ready(function() {
 	function createHorizontalGalleryUI(elementName, appendFactor, elementAppend){
 
 		var $inner1 = $("<div/>", { id: elementName+"wrapper", class:"horizontalgallerywrapper" }),
-		$inner2 = $("<div/>", { id: elementName, class: "gallery ui-helper-reset ui-helper-clearfix"}),
+		$inner2 = $("<div/>", { id: elementName, class: "galleryS ui-helper-reset ui-helper-clearfix"}),
 		$inner3a = $("<h4/>", { id: "header-"+elementName, class: "ui-widget-header"}),
 		$inner3b = $("<span/>", { id:"button-left-"+elementName, class:"button-left"}),
 		$inner3b4 = $("<button/>", { "data-icon":"arrow-l", "data-iconshadow":"false", "data-inline":"false", "data-mini":"false", "data-iconpos":"notext", class:"ui-icon-alt", text:"&nbsp;"}),
@@ -96,7 +109,7 @@ $(document).ready(function() {
 	function createGameViewHorizontalGalleryUI(elementName, appendFactor, elementAppend){
 
 		var $inner1 = $("<div/>", { id: elementName+"wrapper", class:"horizontalgallerywrapper" }),
-		$inner2 = $("<div/>", { id: elementName, class: "gallery1 ui-helper-reset ui-helper-clearfix"}),
+		$inner2 = $("<div/>", { id: elementName, class: "gallery ui-helper-reset ui-helper-clearfix"}),
 		$inner3a = $("<h4/>", { id: "header-"+elementName, class: "ui-widget-header"}),
 		$inner3b = $("<span/>", { id:"button-left-"+elementName, class:"button-left"}),
 		$inner3b4 = $("<button/>", { "data-icon":"arrow-l", "data-iconshadow":"false", "data-inline":"false", "data-mini":"false", "data-iconpos":"notext", class:"ui-icon-alt", text:"&nbsp;"}),
@@ -116,7 +129,7 @@ $(document).ready(function() {
 	function createVerticalGalleryUI(elementName, appendFactor, elementAppend){
 
 		var $inner1 = $("<div/>", { id: elementName+"wrapper"}),
-		$inner2 = $("<div/>", { id: elementName, class: "gallery1 ui-helper-reset ui-helper-clearfix"}),
+		$inner2 = $("<div/>", { id: elementName, class: "gallery ui-helper-reset ui-helper-clearfix"}),
 		$inner3a = $("<h4/>", { id: "header-"+elementName, class: "ui-widget-header", text:"1"}),
 		$inner3b = $("<span/>", { id:"button-up-"+elementName, class:"button-up"}),
 		$inner3b4 = $("<button/>", { "data-icon":"arrow-u", "data-iconshadow":"false", "data-inline":"false", "data-mini":"false", "data-iconpos":"notext", class:"ui-icon-alt", text:"&nbsp;"}),
@@ -311,13 +324,13 @@ $(document).ready(function() {
 	}
 
 	function createGameBoard(){
-		createSlot("wrapperslot0", "slot0", false , "#gameSlots");
+		createGameSlot("wrapperslot0", "slot0", false , "#gameSlots");
 		createConnection("connection0", true, "#gameSlots");
-		createSlot("wrapperslot1", "slot1", true , "#gameSlots");
+		createGameSlot("wrapperslot1", "slot1", true , "#gameSlots");
 		createConnection("connection1", true, "#gameSlots");
-		createSlot("wrapperslot2", "slot2", true , "#gameSlots");
+		createGameSlot("wrapperslot2", "slot2", true , "#gameSlots");
 		createConnection("connection2", true, "#gameSlots");
-		createSlot("wrapperslot3", "slot3", true , "#gameSlots");
+		createGameSlot("wrapperslot3", "slot3", true , "#gameSlots");
 
 		createGameBoardButton("wrapper-level-tutorial","button-level-tutorial","b","Show Tutorial", false, "#levelcontrol");
 		var $inner1 = $("<span/>", {id:"wrapper-back-main"}),

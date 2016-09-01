@@ -33,16 +33,16 @@ body { list-style: none; }
 .gallery { background-color:#dddddd; }
 .gallery.custom-state-active { background: #eee; }
 .gallery ul { list-style: none; padding:0; margin:0; }
-.gallery li { float:left; width: 94px; height:68px; padding: 0px; text-align: center; vertical-align: middle; }
+.gallery li { float:left; width: 115px; height:115px; padding: 0px; text-align: center; vertical-align: middle; }
 .gallery li img { width: 100%; cursor: move; padding:0; margin:0; }
 .gallery h4 { margin:0 0 2px 0; text-align:center; }
 
-.gallery1 { background-color:#dddddd; }
-.gallery1.custom-state-active { background: #eee; }
-.gallery1 ul { list-style: none; padding:0; margin:0; }
-.gallery1 li { float:left; width: 115px; height:115px; padding: 0px; text-align: center; vertical-align: middle; }
-.gallery1 li img { width: 100%; cursor: move; padding:0; margin:0; }
-.gallery1 h4 { margin:0 0 2px 0; text-align:center; }
+.galleryS { background-color:#dddddd; }
+.galleryS.custom-state-active { background: #eee; }
+.galleryS ul { list-style: none; padding:0; margin:0; }
+.galleryS li { float:left; width: 94px; height:68px; padding: 0px; text-align: center; vertical-align: middle; }
+.galleryS li img { width: 100%; cursor: move; padding:0; margin:0; }
+.galleryS h4 { margin:0 0 2px 0; text-align:center; }
 
 /* #gallery0 { position: absolute; left: 10px; top: 50%; bottom:50%; width: 120px; height: 750px; z-index: 1004 } */
 #gallery0 { position: absolute; top: 15%; width: 120px; z-index: 1004; }
@@ -158,8 +158,10 @@ body { list-style: none; }
 .slots { z-index: 500; padding:0; margin:0 }
 .wrapperslot { padding: 0em }
 .slotheader h4 { line-height: 16px; margin: 0; text-align:center; }
-.slot { list-style: none; width: 98px; height: 82px; padding: 0.4em; margin:0; text-align: center; vertical-align: center; }
+.slot { list-style: none; width: 119px; height: 119px; padding: 0.4em; margin:0; text-align: center; vertical-align: center; }
 .slot li {padding:0; margin:0;}
+.slotS { list-style: none; width: 98px; height: 82px; padding: 0.4em; margin:0; text-align: center; vertical-align: center; }
+.slotS li {padding:0; margin:0;}
 
 
 .connection { list-style: none; width: 32px; height: 32px; padding: 0; margin:0; text-align: center; vertical-align: center; }
