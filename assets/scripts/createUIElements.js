@@ -93,10 +93,30 @@ $(document).ready(function() {
 
 	}
 
+	function createGameViewHorizontalGalleryUI(elementName, appendFactor, elementAppend){
+
+		var $inner1 = $("<div/>", { id: elementName+"wrapper", class:"horizontalgallerywrapper" }),
+		$inner2 = $("<div/>", { id: elementName, class: "gallery1 ui-helper-reset ui-helper-clearfix"}),
+		$inner3a = $("<h4/>", { id: "header-"+elementName, class: "ui-widget-header"}),
+		$inner3b = $("<span/>", { id:"button-left-"+elementName, class:"button-left"}),
+		$inner3b4 = $("<button/>", { "data-icon":"arrow-l", "data-iconshadow":"false", "data-inline":"false", "data-mini":"false", "data-iconpos":"notext", class:"ui-icon-alt", text:"&nbsp;"}),
+		$inner3c = $("<span/>", { id:"ulwrap-"+elementName}),
+		$inner3c4 = $("<ul/>", { id:"edit"+elementName}),
+		$inner3d = $("<span/>", { id:"button-right-"+elementName, class:"button-right"}),
+		$inner3d4 = $("<button/>", { "data-icon":"arrow-r", "data-iconshadow":"false", "data-inline":"false", "data-mini":"false", "data-iconpos":"notext", class:"ui-icon-alt", text: "&nbsp;"});
+
+		if(appendFactor){
+			$inner1.append($inner2.append($inner3a, $inner3b.append($inner3b4), $inner3c.append($inner3c4), $inner3d.append($inner3d4))).appendTo(elementAppend);
+		}else{
+			$inner1.append($inner2.append($inner3a, $inner3b.append($inner3b4), $inner3c.append($inner3c4), $inner3d.append($inner3d4))).prependTo(elementAppend);
+		}
+
+	}
+
 	function createVerticalGalleryUI(elementName, appendFactor, elementAppend){
 
 		var $inner1 = $("<div/>", { id: elementName+"wrapper"}),
-		$inner2 = $("<div/>", { id: elementName, class: "gallery ui-helper-reset ui-helper-clearfix"}),
+		$inner2 = $("<div/>", { id: elementName, class: "gallery1 ui-helper-reset ui-helper-clearfix"}),
 		$inner3a = $("<h4/>", { id: "header-"+elementName, class: "ui-widget-header", text:"1"}),
 		$inner3b = $("<span/>", { id:"button-up-"+elementName, class:"button-up"}),
 		$inner3b4 = $("<button/>", { "data-icon":"arrow-u", "data-iconshadow":"false", "data-inline":"false", "data-mini":"false", "data-iconpos":"notext", class:"ui-icon-alt", text:"&nbsp;"}),
@@ -317,10 +337,10 @@ $(document).ready(function() {
 		createParagraphElement("leveldone",true,"#levelcontrol");
 
 		createVerticalGalleryUI("gallery0", false, "#gameBoardGalleries");
-		createHorizontalGalleryUI("gallery1", true, "#gameBoardGalleries");
+		createGameViewHorizontalGalleryUI("gallery1", true, "#gameBoardGalleries");
 		$("#gallery1wrapper").removeClass("horizontalgallerywrapper");
 		createVerticalGalleryUI("gallery2", true, "#gameBoardGalleries");
-		createHorizontalGalleryUI("gallery3", true, "#gameBoardGalleries");
+		createGameViewHorizontalGalleryUI("gallery3", true, "#gameBoardGalleries");
 		$("#gallery3wrapper").removeClass("horizontalgallerywrapper");
 
 	}
