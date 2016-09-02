@@ -52,13 +52,13 @@ body { list-style: none; }
 /*#gallery2 { position: absolute; right: 10px; top: 15%; bottom:10%; width: 120px; z-index: 1003; overflow: auto } */
 /* #gallery0 { display: table-cell; vertical-align: middle; width: 120px; overflow:auto; }
 #gallery2 { width: 120px; height:410px; overflow:auto; } */
-#gallery1 { height: 135px; margin:0 160px 0 160px; z-index: 1002 }
+#gallery1 { height: 120px; margin:0 160px 0 160px; z-index: 1002 }
 #ulwrap-gallery1 { overflow:hidden; width: 500px; float: left; }
-#gallery1 ul { height: 110px; width: 500px; float: left; overflow:visible }
+#gallery1 ul { height: 92px; width: 500px; float: left; overflow:visible }
 /* #gallery3 { height: 110px; margin:0 140px 0 140px; overflow:auto; z-index: 1001 } */
-#gallery3 { height: 135px; margin:0 160px 0 160px; z-index: 1002 }
+#gallery3 { height: 120px; margin:0 160px 0 160px; z-index: 1002 }
 #ulwrap-gallery3 { overflow:hidden; width: 500px; float: left; }
-#gallery3 ul { height: 110px; width: 500px; float: left; overflow:visible }
+#gallery3 ul { height: 92px; width: 500px; float: left; overflow:visible }
 
 #manageGallery { height: 110px; margin:0 0px 0 0px; z-index: 1002 }
 #ulwrap-manageGallery { overflow:hidden; width: 500px; float: left; }

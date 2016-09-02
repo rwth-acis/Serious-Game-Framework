@@ -771,8 +771,8 @@ function loadGame(gameIndex, gameID) {
 	  }
 
 	  function setGalleryWidth() {
-	  	GALLERY3ul.width((102 * GALLERY3ul.children().length));
-	  	GALLERY1ul.width((102 * GALLERY1ul.children().length));
+	  	GALLERY3ul.width((140 * GALLERY3ul.children().length));
+	  	GALLERY1ul.width((140 * GALLERY1ul.children().length));
 	  }
 
 	/**
