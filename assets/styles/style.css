@@ -33,7 +33,7 @@ body { list-style: none; }
 .gallery { background-color:#dddddd; }
 .gallery.custom-state-active { background: #eee; }
 .gallery ul { list-style: none; padding:0; margin:0; }
-.gallery li { float:left; width: 115px; height:115px; padding: 0px; text-align: center; vertical-align: middle; }
+.gallery li { float:left; width: 115px; height:86px; padding: 0px; text-align: center; vertical-align: middle; }
 .gallery li img { width: 100%; cursor: move; padding:0; margin:0; }
 .gallery h4 { margin:0 0 2px 0; text-align:center; }
 
@@ -158,7 +158,7 @@ body { list-style: none; }
 .slots { z-index: 500; padding:0; margin:0 }
 .wrapperslot { padding: 0em }
 .slotheader h4 { line-height: 16px; margin: 0; text-align:center; }
-.slot { list-style: none; width: 119px; height: 119px; padding: 0.4em; margin:0; text-align: center; vertical-align: center; }
+.slot { list-style: none; width: 119px; height: 95px; padding: 0.4em; margin:0; text-align: center; vertical-align: center; }
 .slot li {padding:0; margin:0;}
 .slotS { list-style: none; width: 98px; height: 82px; padding: 0.4em; margin:0; text-align: center; vertical-align: center; }
 .slotS li {padding:0; margin:0;}
