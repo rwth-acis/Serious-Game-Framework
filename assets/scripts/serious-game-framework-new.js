@@ -1227,7 +1227,7 @@ function loadGame(gameIndex, gameID) {
 					var slotID;
 					var pieceID;
 					do {
-						slotID = rand(0,3);
+						slotID = rand(0,(NUMBER_OF_GALLERIES - 1));
 						var k = slotID + 1;
 						var id= "gallery"+k+"src";
 						pieceID = GAMELEVELS[CURRENTLEVEL][id];
