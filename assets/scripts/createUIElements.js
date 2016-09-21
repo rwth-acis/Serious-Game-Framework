@@ -419,7 +419,7 @@ $(document).ready(function() {
 		$inner1 = $("<fieldset/>", {class:"ui-grid-b sideByside"});
 		createSelect("gameCategory", "Select Game Category:","false",color, false, $inner1);
 		$inner1.appendTo("#gamedetails");
-		createTextInput("game-new-category","Create New Category:","Ex. Biology","false",color,true, "#gamedetails");
+		createTextInput("game-new-category","Create New Category (one word):","Ex. Biology","false",color,true, "#gamedetails");
 		createTextInput("game-desc","Description of the game:","Ex. Hormones and their effects on organs","false",color,true, "#gamedetails");
 		createTextArea("game-desc-text","Detail Description of the game:",color,true, "#gamedetails");
 

@@ -1273,6 +1273,7 @@ function rand(min, max) {
 					success: function(data){
 						refreshGamesAndGalleries();
 						resetGameCreationView();
+						$('#create-game-message').text("");
 						var createGameMessage = $('<h2 style="color:#630303;">Game with name "'+gameName+'" is created successfully! Go to \'Edit Games\' menu to add levels to the game.</h2>');
 						$('#create-game-message').append(createGameMessage);
 						
