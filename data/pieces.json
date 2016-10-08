@@ -1,8 +1,5 @@
 var PIECESDATA = {
-	"1": {"description": "saturation", "src": "hormones-4-01.png"},
-	"2": {"description": "adipocyte", "src": "hormones-1-12.png"},
-	"3": {"description": "leptin", "src": "hormones-2-21.png"},
-	"4": {"description": "brain", "src": "hormones-3-18.png"},
+
 	"10": {"description": "vollmilchschokolade", "src": "sugar-1-01.png"},
 	"11": {"description": "brokkoli", "src": "sugar-1-02.png"},
 	"12": {"description": "cola", "src": "sugar-1-03.png"},

@@ -164,6 +164,11 @@ try{
 * @param signin boolean true for "Sign in" state, false else 
 **/
 function renderButton(signin){
+	if ($(".oidc-signin").attr("data-alwayshidden") == "true") {
+		$(".oidc-signin").hide();
+		return;
+	}
+	
 	$(".oidc-signin").unbind( "click" );
 	$(".oidc-signin").addClass("btn").addClass("btn-" + oidc_size);
 	var size = 32;

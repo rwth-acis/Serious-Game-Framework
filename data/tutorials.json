@@ -1,6 +1,6 @@
 var TUTORIALSDATA = {
 	"1": {
-		"game": 0,
+		"game": 1000,
 		"difficulty": 3,
 		"tutorials": {
 			"1": {
@@ -10,11 +10,11 @@ var TUTORIALSDATA = {
 			},
 			"2": {
 				"identifier": "#gallery0",
-				"text": "Das Spiel besteht aus Bildern, welche in 2-4 Gallerien angeordnet sind.",
+				"text": "Das Spiel besteht aus Bildern, welche in 2-3 Gallerien angeordnet sind.",
 				"position": "right"
 			},
 			"3": {
-				"identifier": "img[piece-id=2]",
+				"identifier": "img[piece-id=70]",
 				"text": "Wähle zuerst eine Kachel aus einer dieser Gallerien.",
 				"position": "right"
 			},
@@ -23,54 +23,50 @@ var TUTORIALSDATA = {
 				"text": "Ziehe die Kachel in den vorgesehenen Slot per Drag and Drop.",
 				"position": "bottom"
 			},
+			
 			"5": {
-				"identifier": "img[piece-id=3]",
-				"text": "Danach wähle eine Zweite Kachel.",
-				"position": "top"
+				"identifier": "img[piece-id=81]",
+				"text": "Danach wähle eine zweite Kachel.",
+				"position": "left"
 			},
 			"6": {
-				"identifier": "#slot1",
+				"identifier": "#slot2",
 				"text": "Ziehe auch diese Kachel in den vorgesehenen Slot.",
 				"position": "bottom"
 			},
 			"7": {
-				"identifier": "img[piece-id=4]",
-				"text": "Mache das selbe mit der 3. Kachel.",
-				"position": "left"
-			},
-			"8": {
-				"identifier": "img[piece-id=1]",
-				"text": "Und zuletzt auch mit der 4. Kachel.",
+				"identifier": "img[piece-id=91]",
+				"text": "Wähle nun eine passende Kachel aus der letzten Gallerie.",
 				"position": "bottom"
 			},
-			"9": {
+			"8": {
 				"identifier": "#button-showme",
-				"text": "Klicke den 'Aufdecken' Button, wenn du die richtige Lösung nicht weißt, um diese aufzudecken.",
+				"text": "Klicke den 'Aufdecken' Button, falls du die richtige Lösung nicht weißt.",
 				"position": "right"
 			},
-			"10": {
+			"9": {
 				"identifier": "#elearning",
 				"text": "Nach jedem Level taucht ein e-Learning Link auf, wo weiter informationen über das Thema nachgelesen werden können.",
 				"position": "right"
 			},
-			"11": {
+			"10": {
 				"identifier": "#game-header-home",
 				"text": "Klicke hier um zurück zum Hauptmenü zu kommen.",
 				"position": "right"
 			},
-			"12": {
+			"11": {
 				"identifier": ".gametitle",
 				"text": "Hier siehst du den Namen des Spiels, welches du gerade spielst.",
 				"position": "bottom"
 			},
-			"13": {
+			"12": {
 				"identifier": "#game-header-options",
 				"text": "Klicke hier um die Schwierigkeit des Spiels zu ändern.",
 				"position": "left"
 			},
-			"14": {
+			"13": {
 				"identifier": "#gameboard",
-				"text": "Das Spiel kann auch offline gespielt werden. Die Spieldaten werden automatisch synchronisiert, wenn du wieder online kommst(Das kann ein paar sekunden dauern und wird auch im Hintergrund ausgeführt). Erstelle eine Verknüfung auf deinem Tablet und benutze das Spiel wie eine normale App. Jetzt fang an und genieße das Spiel!",
+				"text": "Das Spiel kann auch offline gespielt werden. Die Spieldaten werden automatisch synchronisiert, wenn du wieder online kommst (Das kann ein paar Sekunden dauern und wird im Hintergrund ausgeführt). Erstelle eine Verknüpfung auf deinem Tablet und benutze das Spiel wie eine normale App. Jetzt fang an und genieße das Spiel!",
 				"position": "bottom"
 			}
 		}

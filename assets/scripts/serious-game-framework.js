@@ -31,8 +31,8 @@ var SELECTEDITEMS = [];
 var GAMESTATE = "leveldone";
 
 // TODO MARKO add real oidc_userinfo
-var oidc_userinfo = {name: "Marko Kajzer", preferred_username: "marko.kajzer", email: "marko.kajzer@hotmail.de"};
-var gleaner_url = "http://localhost:3000/"; // TODO ADD REAL LOCATION HERE
+//var oidc_userinfo = {name: "Marko Kajzer", preferred_username: "marko.kajzer", email: "marko.kajzer@hotmail.de"};
+var gleaner_url = "http://gaudi.informatik.rwth-aachen.de:3000/"; // TODO ADD REAL LOCATION HERE
 
 var correct = 0;
 var wrong = 0;
@@ -496,7 +496,14 @@ $(document).ready(function() {
 
 							var image1 = $('<li class="ui-widget-content ui-corner-tr piece" draggable="true"><img src="' + UPLOADPATH + PIECESDATA[p].src + '" alt="' + PIECESDATA[p].description + '" width="94" height="68" id="piece-id-'+p+'" piece-id="' + p + '" piece-count="1" /></li>');
 
-							rand(0,1) ? $('#gallery' + j + ' ul').prepend(image1) : $('#gallery' + j + ' ul').append(image1);
+							
+							if(gameID==1001 && j == 3){
+								$('#gallery' + j + ' ul').append(image1);
+							}else if(gameID==1002 && j==3){
+								$('#gallery' + j + ' ul').append(image1);
+							}else{
+								rand(0,1) ? $('#gallery' + j + ' ul').prepend(image1) : $('#gallery' + j + ' ul').append(image1);
+							}
 							pieceCounter[p] = 1;
 						}
 					}
@@ -646,7 +653,7 @@ $(document).ready(function() {
 		deleteFromSelectedItems(piece, slotID);
 		
 		piece.fadeOut(function() {
-			piece.appendTo( $("ul", gallery) ).fadeIn();
+			piece.prependTo( $("ul", gallery) ).fadeIn();
 			verifyLevel();
 		});
 	}
@@ -666,7 +673,7 @@ $(document).ready(function() {
 		}
 		
 		piece.fadeOut(function() {
-			piece.appendTo( $("ul", gallery) ).fadeIn();
+			piece.prependTo( $("ul", gallery) ).fadeIn();
 		});
 	}
 	
@@ -954,7 +961,10 @@ $(document).ready(function() {
 						var pieceID;
 						do {
 							slotID = rand(0,3);
-							if(GAMEID == 2){
+							if(GAMEID == 1001){
+								slotID = 0;
+							}
+							if(GAMEID == 1002){
 								slotID = 3;
 							}
 							pieceID = LEVELDATA[CURRENTLEVEL].pieces[slotID];
@@ -1068,10 +1078,10 @@ $(document).ready(function() {
 					$('#elearningmaster').empty();
 					$('#elearningmaster').fadeIn();
 					if (LEVELDATA[l].elearningbachelor) {
-							if(GAMEID==1){
+							if(GAMEID==1001){
 									$('#elearningbachelor').append('<a href="' + LEVELDATA[l].elearningbachelor + '" target="_blank">E-Learning Link</a>');
 							}
-							else if(GAMEID==2){
+							else if(GAMEID==1002){
 								$('#elearningbachelor').append('<a href="' + LEVELDATA[l].elearningbachelor + '" target="_blank">Link Mahlzeit</a>');
 							}
 							else{
@@ -1080,10 +1090,10 @@ $(document).ready(function() {
 						}
 						
 						if (LEVELDATA[l].elearningmaster) {
-							if(GAMEID==1){
+							if(GAMEID==1001){
 									$('#elearningmaster').append('<a href="' + LEVELDATA[l].elearningmaster + '" target="_blank">Weitere Informationen</a>');
 							}
-							else if(GAMEID==2){
+							else if(GAMEID==1002){
 								$('#elearningmaster').append('<a href="' + LEVELDATA[l].elearningmaster + '" target="_blank">Link Getränk</a>');
 							}
 							else{
@@ -1155,12 +1165,12 @@ $(document).ready(function() {
 					
 					if (levelStructure) {
 						
-						console.log(PIECESDATA[p[0]].description);
+						//console.log(PIECESDATA[p[0]].description);
 						console.log(PIECESDATA[p[1]]);
 						console.log(PIECESDATA[p[2]]);
 						console.log(PIECESDATA[p[3]]);
 						
-						if(GAMEID == 2){
+						if(GAMEID == 1002){
 							$('#inforow').show();
 							$('#info0').text(PIECESDATA[p[0]].kohlenhydrate);
 							$('#info2').text(PIECESDATA[p[2]].kohlenhydrate);
@@ -1184,10 +1194,10 @@ $(document).ready(function() {
 						$('#elearningmaster').empty();
 						$('#elearningmaster').fadeIn();
 						if (LEVELDATA[l].elearningbachelor) {
-							if(GAMEID==1){
+							if(GAMEID==1001){
 									$('#elearningbachelor').append('<a href="' + LEVELDATA[l].elearningbachelor + '" target="_blank">E-Learning Link</a>');
 							}
-							else if(GAMEID==2){
+							else if(GAMEID==1002){
 								$('#elearningbachelor').append('<a href="' + LEVELDATA[l].elearningbachelor + '" target="_blank">Link Mahlzeit</a>');
 							}
 							else{
@@ -1196,10 +1206,10 @@ $(document).ready(function() {
 						}
 						
 						if (LEVELDATA[l].elearningmaster) {
-							if(GAMEID==1){
+							if(GAMEID==1001){
 									$('#elearningmaster').append('<a href="' + LEVELDATA[l].elearningmaster + '" target="_blank">Weitere Informationen</a>');
 							}
-							else if(GAMEID==2){
+							else if(GAMEID==1002){
 								$('#elearningmaster').append('<a href="' + LEVELDATA[l].elearningmaster + '" target="_blank">Link Getränk</a>');
 							}
 							else{
@@ -1350,7 +1360,7 @@ $(document).ready(function() {
 			//alert("level > -1");
 			SHOWME = true;
 			
-			if(GAMEID == 2){
+			if(GAMEID == 1002){
 							$('#inforow').show();
 							$('#info0').text(PIECESDATA[LEVELDATA[l].pieces[0]].kohlenhydrate);
 							$('#info2').text(PIECESDATA[LEVELDATA[l].pieces[2]].kohlenhydrate);
