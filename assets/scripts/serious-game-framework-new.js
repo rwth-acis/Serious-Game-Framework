@@ -68,6 +68,7 @@ var gleaner_tracker = new GleanerTracker();
 var chart_creator = new ChartCreator();
 
 // When DOM is loaded do the following
+//create statistics chart
 function getGameLevelsForStats(gameId, gameName, act_type, prefix){
 	formdata = false;
 	if (window.FormData) {
@@ -133,7 +134,7 @@ $(document).ready(function() {
 		$('#playgameslink').click(function() { 
 			$('.gameslist').empty();
 			$("[id^='category-']").remove();
-
+			//Load all games data from mysql database by calling the loadData script. After loading, call fillGamesList() in the callback
 			var url = "assets/scripts/loadData.js";
 			$.getScript( url, function() {
 				if(GAMESDATA != undefined && GAMESDATA.length != 0){
@@ -150,7 +151,7 @@ $(document).ready(function() {
 
 		});
 
-		$(document).on('click', '.gamelink', function () {
+		$(document).on('click', '.gamelink', function () {//gamelink class is assigned to each game in the games list. When a game is clicked, it takes gameId and gameIndex and loads the game based on these two attributes.
 			var gameID = $(this).attr('game-id');
 			var gameIndex = $(this).attr('gameIndex');
 			$('#feedbackmessage').text("");
@@ -387,7 +388,7 @@ $(document).ready(function() {
 		return false;
 	});
 	
-	function getGameLevels(gameId,gameIndex){
+	function getGameLevels(gameId,gameIndex){// get levels of the game, load galleries and get highscore version details depending on the gameId.
 		formdata = false;
 		if (window.FormData) {
 			formdata = new FormData();
@@ -454,7 +455,7 @@ $(document).ready(function() {
 	}
 
 
-	function setGalleryHeight() {
+	function setGalleryHeight() { //Adjust galleries height
 		var myWidth = 0, myHeight = 0;
 		if( typeof( window.innerWidth ) == 'number' ) {
 			//Non-IE
@@ -504,7 +505,7 @@ $(document).ready(function() {
 			}
 		}
 	}
-	function addToCategory(gameCategory, index, data, exists){
+	function addToCategory(gameCategory, index, data, exists){//Add games to categories
 		var game = $('<li><a href="#gameDescriptionPage" id="game-id-'+ data.gameId + '" game-id="' + data.gameId + '" gameIndex="' + index +'" class="gamelink"><h3 style="color:#0456a2;">' + data.gameName + '</h3><p style="color:#0456a2;">' + data.gameDescription + '</p></a></li>');
 		
 		if(exists == "false"){
@@ -519,7 +520,7 @@ $(document).ready(function() {
 			$('#game-'+gameCategory).append(game);
 		}
 	}
-	function createHeader(headerName, appendFactor, elementAppend){
+	function createHeader(headerName, appendFactor, elementAppend){//Function to create header UI element
 		
 		var $inner1 = $("<div/>", {"data-role":"header", "data-theme":"b"}),
 		$inner2a = $("<div>", {"data-inline":"true"}),
@@ -738,10 +739,7 @@ function loadGame(gameIndex, gameID) {
 		}
 	}
 
-	/**
-	  * Fills the four galleries with data
-	  * @param gameID The ID of the current game.
-	  */
+	//Load all galleries using game levels data.
 	  function loadGaleries( gameLevels ) {
 	  	if(gameLevels != null){
 	  		var pieceCounter = new Array();
@@ -1268,7 +1266,7 @@ function loadGame(gameIndex, gameID) {
 				$('#connection' + i).empty();
 			}
 		}
-
+		//Show connections in between the slots
 		function setConnections() {
 			var number_of_connections = NUMBER_OF_GALLERIES - 1;
 			if (CURRENTLEVEL > -1) {
@@ -1661,7 +1659,7 @@ function loadGame(gameIndex, gameID) {
 		}
 	}
 	
-	function tryAgain() {
+	function tryAgain() {//moves wrongly placed tiles back to the galleries
 		$('#wrapper-tryagain').fadeOut();
 		$('#level-verification-wrong').hide();
 		$('#wrapper-hint').fadeIn();
@@ -1709,7 +1707,7 @@ function loadGame(gameIndex, gameID) {
 
 }
 
-function hint(){
+function hint(){//show 1 correct tile at a time when hint button is clicked
 
 	var l = CURRENTLEVEL;
 
@@ -1929,7 +1927,7 @@ function getAllGamesHighscore(){
 			});
 }
 
-insertBadges = function(profile) {
+insertBadges = function(profile) { //Show badges in profile page
 	for(var i = 0; i < profile.earnedBadges.length; i++) {
 		var badge = $('<span class="badge-img">' +
 			'<img id="badgeImage'+i+'" class="badge-img" onerror="removeImage(this);" src="game_badges/' + profile.earnedBadges[i].path + '">' +
