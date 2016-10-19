@@ -31,11 +31,11 @@ $(document).ready(function() {
 		POPULATEGALLERYul = $("ul", POPULATEGALLERY);
 
 
-		$('#gamesruleslink').click(function() { 
+		$('#gamesruleslink').click(function() { //load all the data from database before loading this view
 			reloadDataFromDatabase();
 		});
 
-		$('#select-game-assessment').change(function(){
+		$('#select-game-assessment').change(function(){ //depending on the value of dropdown, show the description and enable/disable edit button
 			$('#rule_gameDescriptionText').text("");
 			$('#game-assessment-saved-message').text("");
 			
@@ -61,7 +61,7 @@ $(document).ready(function() {
 
 		});
 
-		$('#select-highscore-assessment').change(function(){
+		$('#select-highscore-assessment').change(function(){ //validate the field and enable/disable the save button
 			$('#game-badge-saved-message').text("");
 			var highscoreId = $('select[name=select-highscore-assessment]').val();
 			if(highscoreId == -1){
@@ -86,7 +86,7 @@ $(document).ready(function() {
 			
 		});
 
-		$('#button-edit-game-rules').click(function() {
+		$('#button-edit-game-rules').click(function() {// show the highscores dropdown and the badges
 
 			$('#editgamerulessection').removeClass('hideElement');
 			var gameIndex = $('option:selected', $('#select-game-assessment')).attr('gameIndex');
@@ -103,7 +103,7 @@ $(document).ready(function() {
 			saveGameRules();
 		});	
 
-		function resetGameRulesView(){
+		function resetGameRulesView(){ //reset this view
 
 			$('#edit-game-rules-button').find('*').prop('disabled',true);
 			$('#edit-game-rules-button').find('*').addClass('ui-disabled');
@@ -118,7 +118,7 @@ $(document).ready(function() {
 			setButtonColor($('#game-save-rules'));
 		}
 
-		function setButtonColor(divName){
+		function setButtonColor(divName){ //set colour to all the buttons in this view
 			if (divName.find('*').hasClass('ui-btn-inner')) {
 				divName.find('*').css("color",color);
 			} 
@@ -128,7 +128,7 @@ $(document).ready(function() {
 			}
 		}
 
-		function getGameRules(){
+		function getGameRules(){ // get the game rules data from database
 			$.ajax({
 			url: "lib/database/get_game_rules.php",
 			type: "GET",
@@ -141,7 +141,7 @@ $(document).ready(function() {
 			});
 		}
 
-		function populateGames(){
+		function populateGames(){ //check for admin rights and populate the dropdown list 
 
 			$('#select-game-assessment').children().remove();
 			$('#select-game-assessment').append('<option value="'+ 0 +'" description="Select a game from the dropdown and click on \'Edit\' to edit the game assessment">--Select Game--</option>');
@@ -177,7 +177,7 @@ $(document).ready(function() {
 
 		}
 
-		function populateHighScoreVersions(gameIndex){
+		function populateHighScoreVersions(gameIndex){ //populate high score versions in the dropdown
 			$('#select-highscore-assessment').children().remove();
 			$('#select-highscore-assessment').append('<option value="'+ -1 +'">--Select Highscore Version--</option>');
 			jsondata = HIGHSCORE_VERSIONS;
@@ -195,7 +195,7 @@ $(document).ready(function() {
 			
 		}
 
-		function getGameSpecificBadges(element,activeli){
+		function getGameSpecificBadges(element,activeli){ //get game badges from database
 
 			formdata = false;
 			if (window.FormData) {
@@ -216,7 +216,7 @@ $(document).ready(function() {
 			}
 		}
 
-			function populateGameSpecificBadges(element, activeli, filesdata){
+			function populateGameSpecificBadges(element, activeli, filesdata){ //show the badges
 			$('#'+element + ' ul').children().remove();
 			files = JSON.parse(filesdata);
 			length = files.length;
@@ -234,7 +234,7 @@ $(document).ready(function() {
 			}
 		}
 
-		function saveGameRules(){
+		function saveGameRules(){ // save the game assessment rules to database
 			var gameIndex = $('option:selected', $('#select-game-assessment')).attr('gameIndex');
 			var gameId = GAME_RULES_DATA[gameIndex]["gameId"];
 			var highscoreId = $('select[name=select-highscore-assessment]').val();
@@ -272,7 +272,7 @@ $(document).ready(function() {
 			}
 		}
 
-		function reloadDataFromDatabase(){
+		function reloadDataFromDatabase(){ //load all the data from database and reset this view. This function is called when th euser clicks to open this view
 			var url = "assets/scripts/loadData.js";
 			$.getScript( url, function() {
 				resetGameRulesView();
