@@ -1,5 +1,5 @@
 $(document).ready(function() {
-
+	//function to create UI header element
 	function createHeader(headerName, appendFactor, elementAppend){
 		
 		var $inner1 = $("<div/>", {"data-role":"header", "data-theme":"b"}),
@@ -15,7 +15,7 @@ $(document).ready(function() {
 		}
 
 	}
-
+	//function to create UI game slot element
 	function createGameSlot(divId, slotId, appendFactor, elementAppend){
 		var $inner1 = $("<td/>"),
 		$inner2 = $("<div/>" , {id:divId, class:"wrapperslot"}),
@@ -28,7 +28,7 @@ $(document).ready(function() {
 		}
 
 	}
-
+	//function to create UI slot element
 	function createSlot(divId, slotId, appendFactor, elementAppend){
 		var $inner1 = $("<td/>"),
 		$inner2 = $("<div/>" , {id:divId, class:"wrapperslot"}),
@@ -41,7 +41,7 @@ $(document).ready(function() {
 		}
 
 	}
-
+	//function to create UI connection element
 	function createConnection(divId, appendFactor, elementAppend){
 		var $inner1 = $("<td/>"),
 		$inner2 = $("<div/>", {id:divId, class:"connection"});
@@ -53,7 +53,7 @@ $(document).ready(function() {
 		}
 
 	}
-
+	//function to create game board buttons with themes
 	function createGameBoardButton(spanId, buttonId, dataTheme, elementText, appendFactor, elementAppend){
 		var $inner1 = $("<span/>", {id:spanId}),
 		$inner2 = $("<button/>", {id:buttonId, "data-theme":dataTheme, "data-mini":"false", text:elementText});
@@ -64,7 +64,7 @@ $(document).ready(function() {
 			$inner1.append($inner2).prependTo(elementAppend);
 		}
 	}
-
+	//function to create UI header element
 	function createLevelVerificationElement(headerId, elementText, appendFactor, elementAppend){
 		var $inner1 = $("<h3/>", {id:headerId, class:"level-verification", text:elementText});
 
@@ -74,7 +74,7 @@ $(document).ready(function() {
 			$inner1.prependTo(elementAppend);
 		}
 	}
-
+	//function to create UI paragraph element
 	function createParagraphElement(elementId, appendFactor, elementAppend){
 		var $inner1 = $("<p/>", {id:elementId});
 
@@ -85,7 +85,7 @@ $(document).ready(function() {
 		}
 	}
 
-
+	//function to create horizontal gallery
 	function createHorizontalGalleryUI(elementName, appendFactor, elementAppend){
 
 		var $inner1 = $("<div/>", { id: elementName+"wrapper", class:"horizontalgallerywrapper" }),
@@ -105,7 +105,7 @@ $(document).ready(function() {
 		}
 
 	}
-
+	//function to create vertical gallery in game view
 	function createGameViewHorizontalGalleryUI(elementName, appendFactor, elementAppend){
 
 		var $inner1 = $("<div/>", { id: elementName+"wrapper", class:"horizontalgallerywrapper" }),
@@ -125,7 +125,7 @@ $(document).ready(function() {
 		}
 
 	}
-
+	//function to create vertical gallery
 	function createVerticalGalleryUI(elementName, appendFactor, elementAppend){
 
 		var $inner1 = $("<div/>", { id: elementName+"wrapper"}),
@@ -144,7 +144,7 @@ $(document).ready(function() {
 		}
 
 	}	
-
+	//function to create upload multiple files button
 	function createMultipleUploadButton(elementName,elementText, textColor, appendFactor, elementAppend){
 		var $inner1 = $("<span/>", {class:"fileinput-button", "data-role":"button", "data-icon":"plus"}),
 		$inner2a = $("<span/>", {style:"color:"+textColor+";",text:elementText}),
@@ -156,7 +156,7 @@ $(document).ready(function() {
 			$inner1.append($inner2a,$inner2b).prependTo(elementAppend);
 		}
 	}
-
+	//function to create single file upload button
 	function createSingleUploadButton(elementName,elementText, textColor, appendFactor, elementAppend){
 		var $inner1 = $("<span/>", {class:"fileinput-button", "data-role":"button", "data-icon":"plus"}),
 		$inner2a = $("<span/>", {style:"color:"+textColor+";",text:elementText}),
@@ -168,7 +168,7 @@ $(document).ready(function() {
 			$inner1.append($inner2a,$inner2b).prependTo(elementAppend);
 		}
 	}
-
+	//function to create UI button element
 	function createButton(divName, elementName, elementText, textColor, appendFactor, elementAppend){
 		var $inner1 = $("<div/>", { id:divName, style:"display:inline;"}),
 		$inner2 = $("<button/>", {id:elementName, "data-inline":"true", text:elementText});
@@ -180,7 +180,7 @@ $(document).ready(function() {
 		}
 
 	}
-
+	//function to create UI text element
 	function createTextInput(elementId, elementText, placeHolderText, Required, textColor, appendFactor, elementAppend){
 		var $inner1 = $("<fieldset/>", {class:"ui-grid-b sideByside"}),
 		$inner2 = $("<div/>", {class:"ui-block-a"}),
@@ -200,7 +200,7 @@ $(document).ready(function() {
 		}
 
 	}
-
+	//function to create UI text area element
 	function createTextArea(elementId, elementText, textColor, appendFactor, elementAppend){
 		var $inner1 = $("<fieldset/>", {class:"ui-grid-b sideByside"}),
 		$inner2 = $("<div/>", {class:"ui-block-a"}),
@@ -215,7 +215,7 @@ $(document).ready(function() {
 		}
 
 	}
-
+	//function to create UI dropdown element
 	function createSelect(elementId, elementText, Required, textColor, appendFactor, elementAppend){
 		var $inner1 = $("<div/>", {class:"ui-block-a"}),
 		$inner2 = $("<fieldset/>", {"data-role":"fieldcontain"}),
@@ -235,7 +235,7 @@ $(document).ready(function() {
 		}
 
 	}
-
+	//function to create UI edit and delete buttons
 	function createEditDelete(editDivName, delDivName, editElementName, deleteElementName, editElementText, deleteElementText,textColor, appendFactor, elementAppend){
 		var $inner1 = $("<div/>", {class:"ui-block-b", style:"display:inline;width:50%"}),
 		$inner2 = $("<fieldset/>", {"data-role":"fieldcontain", class:"ui-block-b", style:"display:inline;width:50%"});
@@ -250,7 +250,7 @@ $(document).ready(function() {
 		}
 
 	}
-
+	//function to create UI edit,delete and undo delete buttons
 	function EditGamecreateEditDeleteUndo(editDivName, delDivName, editElementName, deleteElementName, editElementText, deleteElementText,textColor, appendFactor, elementAppend){
 		var $inner1 = $("<div/>", {class:"ui-block-b", style:"display:inline;width:50%"}),
 		$inner2 = $("<fieldset/>", {"data-role":"fieldcontain", class:"ui-block-b", style:"display:inline;width:50%"});
@@ -266,7 +266,7 @@ $(document).ready(function() {
 		}
 
 	}
-
+	//function to create UI edit,delete and show buttons
 	function createEditDeleteShow(editDivName, delDivName, showDivName, editElementName, deleteElementName, showElementName, editElementText, deleteElementText,textColor, appendFactor, elementAppend){
 		var $inner1 = $("<div/>", {class:"ui-block-b", style:"display:inline;width:50%"}),
 		$inner2 = $("<fieldset/>", {"data-role":"fieldcontain", class:"ui-block-b", style:"display:inline;width:50%"});
@@ -282,7 +282,7 @@ $(document).ready(function() {
 		}
 
 	}
-
+	//function to create mouse events of the gallery
 	function createMouseEventsGallery(galleryElementName){
 		$('#button-right-'+galleryElementName).bind('mousedown mouseup touchstart touchend', function(event){
 			if ((event.type == 'mousedown') || (event.type == 'touchstart')){
@@ -300,7 +300,7 @@ $(document).ready(function() {
 			}
 		});
 	}
-
+	//create headers on all pages
 	function createHeaders(){
 		createHeader("Game Categories", false, "#playgames");
 		createHeader("Game Description", false, "#gameDescriptionPage");
@@ -322,7 +322,7 @@ $(document).ready(function() {
 		createHeader("Admin View", false, "#adminView");
 
 	}
-
+	//create game board
 	function createGameBoard(){
 		createGameSlot("wrapperslot0", "slot0", false , "#gameSlots");
 		createConnection("connection0", true, "#gameSlots");
@@ -711,7 +711,7 @@ $(document).ready(function() {
 		createButton("add-designer-email","button-add-designer-email","Add",color,true,"#adminDetails");
 
 	}
-
+	//call all the functions once the document loads
 	createHeaders();
 	createGameBoard();
 	createGalleriesUI();
