@@ -33,7 +33,7 @@ function rand(min, max) {
 		var CONNECTIONS = $("#"+galleryElement),
 		CONNECTIONSul = $("ul", CONNECTIONS);
 		
-		$('#editconnectionslink').click(function() { 
+		$('#editconnectionslink').click(function() { //load all the data from database before loading this view
 			reloadDataFromDatabase();
 		});
 
@@ -43,7 +43,7 @@ function rand(min, max) {
 			if($(this).attr('email') == oidc_userinfo.email){
 				check = true;
 			}
-			if(GAME_DESIGNERS != undefined && GAME_DESIGNERS.length != 0){
+			if(GAME_DESIGNERS != undefined && GAME_DESIGNERS.length != 0){ //check admin rights and enable/diable delete connection button
 				$.each(GAME_DESIGNERS, function(index, value) {
 					if(value.admin == "true" && value.oidcEmail == oidc_userinfo.email){
 						check = true;
@@ -96,7 +96,7 @@ function rand(min, max) {
 		});
 
 
-		function resetEditConnectionsView(){
+		function resetEditConnectionsView(){ //reset this view
 			$('#'+galleryElement + ' ul').children().remove();
 			$('#'+deleteButtonDiv).find('*').prop('disabled',true);
 			$('#'+deleteButtonDiv).find('*').addClass('ui-disabled');
@@ -108,7 +108,7 @@ function rand(min, max) {
 			setButtonColor($('#undo-delete-connection-button'));
 		}
 
-		function setButtonColor(divName){
+		function setButtonColor(divName){ //set colour to all the buttons in this view
 			if (divName.find('*').hasClass('ui-btn-inner')) {
 				divName.find('*').css("color",color);
 			} 
@@ -118,7 +118,7 @@ function rand(min, max) {
 			}
 		}
 
-		function getConnections(element){
+		function getConnections(element){ // get connections data from database
 
 			formdata = false;
 			if (window.FormData) {
@@ -139,7 +139,7 @@ function rand(min, max) {
 			}
 		}
 
-		function deleteConnection(connectionSrc){
+		function deleteConnection(connectionSrc){ //delete connection from database
 			formdata = false;
 			if (window.FormData) {
 				formdata = new FormData();
@@ -169,7 +169,7 @@ function rand(min, max) {
 			}
 		}
 
-			function undoDeleteConnection(){
+			function undoDeleteConnection(){ // undo deletion of connection
 			formdata = false;
 			if (window.FormData) {
 				formdata = new FormData();
@@ -199,7 +199,7 @@ function rand(min, max) {
 			}
 		}
 
-		function uploadConnections(){
+		function uploadConnections(){ //upload connection image to the folder and image src to the database
 			var filedata = document.getElementById("uploadConnections");
 			formdata = false;
 			if (window.FormData) {
@@ -241,7 +241,7 @@ function rand(min, max) {
 			}
 		}
 
-		function addConnections(filesdata){
+		function addConnections(filesdata){ //show added connection
 			if(typeof filesdata == 'object'){
 				files = filesdata;
 			}else{
@@ -257,7 +257,7 @@ function rand(min, max) {
 
 		}
 
-		function populateConnections(element, filesdata){
+		function populateConnections(element, filesdata){ //show all the existing connections
 			$('#'+element + ' ul').children().remove();
 			files = JSON.parse(filesdata);
 			length = files.length;
@@ -270,7 +270,7 @@ function rand(min, max) {
 			}
 		}
 
-		function reloadDataFromDatabase(){
+		function reloadDataFromDatabase(){ //load all the data from database and reset this view. This function is called when the user clicks to open this view
 			var url = "assets/scripts/loadData.js";
 			$.getScript( url, function() {
 				resetEditConnectionsView();
