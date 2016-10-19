@@ -33,11 +33,11 @@ function rand(min, max) {
 		var LAST_DELETED_TILE_SRC = "";
 
 		
-		$('#editgallerieslink').click(function() { 
+		$('#editgallerieslink').click(function() {  //load all the data from database before loading this view
 			resetGalleryView();
 		});
 
-		$('#select-gallery').change(function(){
+		$('#select-gallery').change(function(){ // depending on the selection of the gallery and admin rights, enable appropriate buttons
 			$('#create-gallery-message').text("");
 			$('#gallery-description-message').text("");
 			$('#gallery-saved-message').text("");
@@ -114,7 +114,7 @@ function rand(min, max) {
 			}
 		});
 
-		$('#button-edit-gallery').click(function() {
+		$('#button-edit-gallery').click(function() { // populate gallery details and tiles and enable save button
 			$('#'+galleryElementName+'wrapper').find('*').prop('disabled',false);
 			$('#'+galleryElementName+'wrapper').find('*').removeClass('ui-disabled');
 			$('#uploadTiles').prop('disabled',false);
@@ -135,7 +135,7 @@ function rand(min, max) {
 			
 		});
 
-		$('#button-show-gallery').click(function() {
+		$('#button-show-gallery').click(function() { //populate gallery details but disable save button
 
 			$('#'+galleryElementName+'wrapper').find('*').prop('disabled',false);
 			$('#'+galleryElementName+'wrapper').find('*').removeClass('ui-disabled');
@@ -195,7 +195,7 @@ function rand(min, max) {
 			reloadDataFromDatabase();
 		});
 
-		$('#gallery-name').on('change keyup paste',function() { 
+		$('#gallery-name').on('change keyup paste',function() { //validate the field and enable or disable create button accordingly
 			$('#create-gallery-message').text("");
 			$('#gallery-saved-message').text("");
 			var val = $.trim(this.value);
@@ -215,7 +215,7 @@ function rand(min, max) {
 		if(email == oidc_userinfo.email){
 			checkPermission = true;
 		}
-		if(GAME_DESIGNERS != undefined && GAME_DESIGNERS.length != 0){
+		if(GAME_DESIGNERS != undefined && GAME_DESIGNERS.length != 0){//check the admin rights and enable save button accordingly. populate gallery details.
 			$.each(GAME_DESIGNERS, function(index, value) {
 				if(value.admin == "true" && value.oidcEmail == oidc_userinfo.email){
 					checkPermission = true;
@@ -272,7 +272,7 @@ function rand(min, max) {
 		$('#create-gallery-message').text("");
 	});
 
-	function getGalleriesList(){
+	function getGalleriesList(){ //get gallery names from database
 		$.ajax({
 			url: "lib/database/get_galleries.php",
 			type: "GET",
@@ -286,7 +286,7 @@ function rand(min, max) {
 			});
 	}
 
-	function resetGalleryView(){
+	function resetGalleryView(){ //reset the view
 		$('#select-gallery').children().remove();
 		$('#'+galleryElementName + ' ul').children().remove();
 		$('#'+galleryElementName+'wrapper').find('*').prop('disabled',true);
@@ -335,7 +335,7 @@ function rand(min, max) {
 
 	}
 
-	function setButtonColor(divName){
+	function setButtonColor(divName){ //set colour to all the buttons in this view
 		if (divName.find('*').hasClass('ui-btn-inner')) {
 			divName.find('*').css("color",color);
 		} 
@@ -363,7 +363,7 @@ function rand(min, max) {
 		getGalleriesList();
 	}*/
 
-	function createGalleryList(data){
+	function createGalleryList(data){ // populate galleries list 
 		$('#select-gallery').children().remove();
 		$('#select-gallery').append('<option value="'+ 0 +'" description="Select a gallery from the dropdown and click on \'Edit Gallery\' to edit the gallery tiles">--Select Gallery--</option>');
 		jsondata = data;
@@ -391,7 +391,7 @@ function rand(min, max) {
 		
 	}
 
-	function getGalleryDetails(galleryName,galleryDescription){
+	function getGalleryDetails(galleryName,galleryDescription){ // populate gallery details
 
 		$('#edit-gallery-name').parent().parent().find('*').removeAttr('disabled');
 		$('#edit-gallery-name').parent().parent().find('*').removeClass('ui-disabled');
@@ -410,7 +410,7 @@ function rand(min, max) {
 	}
 
 
-	function getGalleryTiles(galleryId,galleryElement){
+	function getGalleryTiles(galleryId,galleryElement){ //get gallery tiles data from database
 
 
 		formdata = false;
@@ -433,7 +433,7 @@ function rand(min, max) {
 	}
 
 
-	function deleteTile(tileSrc){
+	function deleteTile(tileSrc){ //delete tile from database
 		formdata = false;
 		if (window.FormData) {
 			formdata = new FormData();
@@ -465,7 +465,7 @@ function rand(min, max) {
 
 	}
 
-	function undoDeleteTile(){
+	function undoDeleteTile(){ // undo tile deletion
 		formdata = false;
 		if (window.FormData) {
 			formdata = new FormData();
@@ -498,7 +498,7 @@ function rand(min, max) {
 
 	}
 
-	function deleteGallery(){
+	function deleteGallery(){ // delete gallery from database
 		formdata = false;
 		if (window.FormData) {
 			formdata = new FormData();
@@ -528,7 +528,7 @@ function rand(min, max) {
 		}
 	}
 
-	function undoDeleteGallery(){
+	function undoDeleteGallery(){ // undo gallery deletion
 		formdata = false;
 		if (window.FormData) {
 			formdata = new FormData();
@@ -555,7 +555,7 @@ function rand(min, max) {
 		}
 	}
 
-	function uploadFile(){
+	function uploadFile(){ //upload tile image to a folder and image src to database
 		var filedata = document.getElementById("uploadTiles");
 		var galleryId = $('select[name=select-gallery]').val();
 		var galleryName = $('#select-gallery :selected').text();
@@ -601,7 +601,7 @@ function rand(min, max) {
 		}
 	}
 
-	function createGallery(galleryName,galleryDescription){
+	function createGallery(galleryName,galleryDescription){// create new gallery
 
 		var duplicate = "false";
 
@@ -624,7 +624,7 @@ function rand(min, max) {
 
 	}
 
-	function saveGallery(galleryName,galleryDescription,galleryId){
+	function saveGallery(galleryName,galleryDescription,galleryId){ //save gallery details to database
 
 		formdata = false;
 		if (window.FormData) {
@@ -651,7 +651,7 @@ function rand(min, max) {
 
 	}
 
-	function createGalleryConfirm(galleryName,galleryDescription){
+	function createGalleryConfirm(galleryName,galleryDescription){ //add new gallery to database
 		formdata = false;
 		if (window.FormData) {
 			formdata = new FormData();
@@ -677,7 +677,7 @@ function rand(min, max) {
 
 	}
 
-	function addTiles(filesdata){
+	function addTiles(filesdata){// show gallery tiles
 		files = JSON.parse(filesdata);
 		if(files != null){
 			$.each(files, function(index, value) {
@@ -689,7 +689,7 @@ function rand(min, max) {
 
 	}
 
-	function populateGallery(element, filesdata){
+	function populateGallery(element, filesdata){ //show galleries
 		$('#'+element + ' ul').children().remove();
 		files = JSON.parse(filesdata);
 		if(files != null){
@@ -702,7 +702,7 @@ function rand(min, max) {
 		}
 	}
 
-	function refreshGamesAndGalleries(){
+	function refreshGamesAndGalleries(){ 
 		var url = "assets/scripts/loadData.js";
 		$.getScript( url, function() {
 			resetGalleryView();
