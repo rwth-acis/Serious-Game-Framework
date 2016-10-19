@@ -10,6 +10,15 @@ table {
 
 body { list-style: none; }
 
+.voilet{
+  background: #c1acca; 
+}
+
+.green{
+  color: #b5c588; 
+}
+
+
 /* #gallery0wrapper { position:absolute; left:8px; top:0px; bottom:0; heigth: 100%; background-color:#ffffff; display: table; } */
 /* #gallery0wrapper { position: absolute; left: 10px; top: 15%; bottom:10%; width: 120px; } */
 #gallery0wrapper { position: absolute; left: 10px; top: 0px; bottom: 0px; vertical-align: middle; display: table-cell; }
@@ -17,12 +26,23 @@ body { list-style: none; }
 #gallery2wrapper { position:absolute; right:130px; top:0px; bottom:0; vertical-align: middle; display: table-cell; }
 #gallery1wrapper { position:absolute; width:100%; left:0; bottom:8px; right:0; }
 
+/*#populateconnectionswrapper { position:relative; width:100%; left:0; top:0; right:0; }*/
+
+.horizontalgallerywrapper { position:relative; width:100%; left:0; top:0; right:0; }
+
 .gallery { background-color:#dddddd; }
 .gallery.custom-state-active { background: #eee; }
 .gallery ul { list-style: none; padding:0; margin:0; }
-.gallery li { float:left; width: 94px; height:68px; padding: 0px; text-align: center; vertical-align: middle; }
+.gallery li { float:left; width: 115px; height:86px; padding: 0px; text-align: center; vertical-align: middle; }
 .gallery li img { width: 100%; cursor: move; padding:0; margin:0; }
 .gallery h4 { margin:0 0 2px 0; text-align:center; }
+
+.galleryS { background-color:#dddddd; }
+.galleryS.custom-state-active { background: #eee; }
+.galleryS ul { list-style: none; padding:0; margin:0; }
+.galleryS li { float:left; width: 94px; height:68px; padding: 0px; text-align: center; vertical-align: middle; }
+.galleryS li img { width: 100%; cursor: move; padding:0; margin:0; }
+.galleryS h4 { margin:0 0 2px 0; text-align:center; }
 
 /* #gallery0 { position: absolute; left: 10px; top: 50%; bottom:50%; width: 120px; height: 750px; z-index: 1004 } */
 #gallery0 { position: absolute; top: 15%; width: 120px; z-index: 1004; }
@@ -32,32 +52,116 @@ body { list-style: none; }
 /*#gallery2 { position: absolute; right: 10px; top: 15%; bottom:10%; width: 120px; z-index: 1003; overflow: auto } */
 /* #gallery0 { display: table-cell; vertical-align: middle; width: 120px; overflow:auto; }
 #gallery2 { width: 120px; height:410px; overflow:auto; } */
-#gallery1 { height: 110px; margin:0 140px 0 140px; z-index: 1002 }
+#gallery1 { height: 120px; margin:0 160px 0 160px; z-index: 1002 }
 #ulwrap-gallery1 { overflow:hidden; width: 500px; float: left; }
-#gallery1 ul { height: 70px; width: 500px; float: left; overflow:visible }
+#gallery1 ul { height: 92px; width: 500px; float: left; overflow:visible }
 /* #gallery3 { height: 110px; margin:0 140px 0 140px; overflow:auto; z-index: 1001 } */
-#gallery3 { height: 110px; margin:0 140px 0 140px; z-index: 1002 }
+#gallery3 { height: 120px; margin:0 160px 0 160px; z-index: 1002 }
 #ulwrap-gallery3 { overflow:hidden; width: 500px; float: left; }
-#gallery3 ul { height: 70px; width: 500px; float: left; overflow:visible }
+#gallery3 ul { height: 92px; width: 500px; float: left; overflow:visible }
 
-.button-left { float: left; }
-.button-right { float: left; }
+#manageGallery { height: 110px; margin:0 0px 0 0px; z-index: 1002 }
+#ulwrap-manageGallery { overflow:hidden; width: 500px; float: left; }
+#manageGallery ul { height: 100px; width: 500px; float: left; overflow:visible; }
+
+#connectionsManage { height: 110px; margin:0 0px 0 0px; z-index: 1002 }
+#ulwrap-connectionsManage { overflow:hidden; width: 500px; float: left; }
+#connectionsManage ul { height: 100px; width: 500px; float: left; overflow:visible; }
+
+
+#selectConnections1 { height: 110px; margin:0 0px 0 0px; z-index: 1002 }
+#ulwrap-selectConnections1 { overflow:hidden; width: 500px; float: left; }
+#selectConnections1 ul { height: 100px; width: 500px; float: left; overflow:visible; }
+
+
+#selectConnections2 { height: 110px; margin:0 0px 0 0px; z-index: 1002 }
+#ulwrap-selectConnections2 { overflow:hidden; width: 500px; float: left; }
+#selectConnections2 ul { height: 100px; width: 500px; float: left; overflow:visible; }
+
+
+#selectConnections3 { height: 110px; margin:0 0px 0 0px; z-index: 1002 }
+#ulwrap-selectConnections3 { overflow:hidden; width: 500px; float: left; }
+#selectConnections3 ul { height: 100px; width: 500px; float: left; overflow:visible; }
+
+
+#selectGalleryTile1 { height: 110px; margin:0 0px 0 0px; z-index: 1002 }
+#ulwrap-selectGalleryTile1 { overflow:hidden; width: 500px; float: left; }
+#selectGalleryTile1 ul { height: 100px; width: 500px; float: left; overflow:visible; }
+
+#selectGalleryTile2 { height: 110px; margin:0 0px 0 0px; z-index: 1002 }
+#ulwrap-selectGalleryTile2 { overflow:hidden; width: 500px; float: left; }
+#selectGalleryTile2 ul { height: 100px; width: 500px; float: left; overflow:visible; }
+
+#selectGalleryTile3 { height: 110px; margin:0 0px 0 0px; z-index: 1002 }
+#ulwrap-selectGalleryTile3 { overflow:hidden; width: 500px; float: left; }
+#selectGalleryTile3 ul { height: 100px; width: 500px; float: left; overflow:visible; }
+
+#selectGalleryTile4 { height: 110px; margin:0 0px 0 0px; z-index: 1002 }
+#ulwrap-selectGalleryTile4 { overflow:hidden; width: 500px; float: left; }
+#selectGalleryTile4 ul { height: 100px; width: 500px; float: left; overflow:visible; }
+
+#setConnection1 { height: 110px; margin:0 0px 0 0px; z-index: 1002 }
+#ulwrap-setConnection1 { overflow:hidden; width: 500px; float: left; }
+#setConnection1 ul { height: 100px; width: 500px; float: left; overflow:visible; }
+
+#setConnection2 { height: 110px; margin:0 0px 0 0px; z-index: 1002 }
+#ulwrap-setConnection2 { overflow:hidden; width: 500px; float: left; }
+#setConnection2 ul { height: 100px; width: 500px; float: left; overflow:visible; }
+
+#setConnection3 { height: 110px; margin:0 0px 0 0px; z-index: 1002 }
+#ulwrap-setConnection3 { overflow:hidden; width: 500px; float: left; }
+#setConnection3 ul { height: 100px; width: 500px; float: left; overflow:visible; }
+
+#experienceBadgeGallery { height: 110px; margin:0 0px 0 0px; z-index: 1002 }
+#ulwrap-experienceBadgeGallery { overflow:hidden; width: 500px; float: left; }
+#experienceBadgeGallery ul { height: 100px; width: 500px; float: left; overflow:visible; }
+
+#gameBadgeGallery { height: 110px; margin:0 0px 0 0px; z-index: 1002 }
+#ulwrap-gameBadgeGallery { overflow:hidden; width: 500px; float: left; }
+#gameBadgeGallery ul { height: 100px; width: 500px; float: left; overflow:visible; }
+
+
+#gameCompletionBadgeGallery { height: 110px; margin:0 0px 0 0px; z-index: 1002 }
+#ulwrap-gameCompletionBadgeGallery { overflow:hidden; width: 500px; float: left; }
+#gameCompletionBadgeGallery ul { height: 100px; width: 500px; float: left; overflow:visible; }
+
+.button-left { float: left; margin-top: 30px;}
+.button-right { float: right; margin-top: 30px;}
 
 #gallery0 li { margin: 2px 0px 2px 0px; }
 #gallery2 li { margin: 2px 0px 2px 0px; }
 #gallery1 li { margin: 0px 2px 0px 2px; }
 #gallery3 li { margin: 0px 2px 0px 2px; }
+#manageGallery li { margin: 0px 2px 0px 2px; }
+#connectionsManage li { margin: 0px 2px 0px 2px; }
+#populatebadges li { margin: 0px 2px 0px 2px; }
+#selectConnections1 li { margin: 0px 2px 0px 2px; }
+#selectConnections2 li { margin: 0px 2px 0px 2px; }
+#selectConnections3 li { margin: 0px 2px 0px 2px; }
+#selectGalleryTile1 li { margin: 0px 2px 0px 2px; }
+#selectGalleryTile2 li { margin: 0px 2px 0px 2px; }
+#selectGalleryTile3 li { margin: 0px 2px 0px 2px; }
+#selectGalleryTile4 li { margin: 0px 2px 0px 2px; }
+#setConnection1 li { margin: 0px 2px 0px 2px; }
+#setConnection2 li { margin: 0px 2px 0px 2px; }
+#setConnection3 li { margin: 0px 2px 0px 2px; }
+#experienceBadgeGallery li { margin: 0px 2px 0px 2px; }
+#gameBadgeGallery li { margin: 0px 2px 0px 2px; }
+#gameCompletionBadgeGallery li { margin: 0px 2px 0px 2px; }
 
 /* #wrappergameboard {position: absolute; top: 110px; left: 140px; bottom:110px; right:140px; text-align: center; vertical-align: middle;} */
 #wrappergameboard { position: absolute; top: 35%; left: 15%; bottom:25%; right:15%; }
+#feedbackmessage { position: absolute; top: 70%; left: 15%; bottom:25%; right:15%; }
 #gameboard { padding: 1em; float:left; margin-right: 2em; margin-bottom: 2em }
 
 #slots { width: 100%; height: 130px; z-index: 500 }
 .slots { z-index: 500; padding:0; margin:0 }
 .wrapperslot { padding: 0em }
 .slotheader h4 { line-height: 16px; margin: 0; text-align:center; }
-.slot { list-style: none; width: 98px; height: 82px; padding: 0.4em; margin:0; text-align: center; vertical-align: center; }
+.slot { list-style: none; width: 119px; height: 95px; padding: 0.4em; margin:0; text-align: center; vertical-align: center; }
 .slot li {padding:0; margin:0;}
+.slotS { list-style: none; width: 98px; height: 82px; padding: 0.4em; margin:0; text-align: center; vertical-align: center; }
+.slotS li {padding:0; margin:0;}
 
 
 .connection { list-style: none; width: 32px; height: 32px; padding: 0; margin:0; text-align: center; vertical-align: center; }
@@ -94,4 +198,36 @@ position: absolute;
 left: 50%;
 top: 2px;
 font-weight: bold;
+}
+
+.sideByside .ui-block-a {
+  padding-right: 6px;
+}
+.sideByside .ui-block-b {
+  padding-left: 6px;
+}
+
+.active {
+  border: solid 3px orange;
+}
+
+.hideElement{
+  display : none;
+}
+
+.fileinput-button {
+  position: relative;
+  overflow: hidden;
+  float: left;
+  margin-right: 4px;
+}
+
+.fileinput-button input {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  opacity: 0;
+  font-size: 23px;
+  cursor: pointer;
 }

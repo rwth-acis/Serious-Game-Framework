@@ -4,14 +4,14 @@
 	<meta charset="utf-8">
 	<title>Serious Game Framework</title>
 
-  <!-- include jQuery and jQuery UI -->
+	<!-- include jQuery and jQuery UI -->
 	<script src="assets/scripts/jquery-1.10.2.min.js"></script>
 
-  <script>
-    $(document).bind('mobileinit',function() {
-      $.mobile.pushStateEnabled = false;
-    });
-  </script>
+	<script>
+		$(document).bind('mobileinit',function() {
+			$.mobile.pushStateEnabled = false;
+		});
+	</script>
 
 	<!-- <script src="js/jquery-2.0.2.min.js"></script> -->
 	<!-- <script src="jqueryui/ui/jquery.ui.position.min.js"></script> -->
@@ -26,7 +26,7 @@
 
 	<!-- Styles for intro,js Site Tour -->
 	<!-- <link href="styles/bootstrap.min.css" rel="stylesheet"> -->
-    <!-- <link href="styles/intro.css" rel="stylesheet"> -->
+	<!-- <link href="styles/intro.css" rel="stylesheet"> -->
 	<link href="assets/styles/introjs.min.css" rel="stylesheet">
 	<!-- <link href="styles/bootstrap-responsive.min.css" rel="stylesheet"> -->
 
@@ -83,398 +83,905 @@
 	<script>
 			// Insert Statistics and Charts
 			// Load the Visualization API and the piechart package.
-		  google.load('visualization', '1.0', {'packages':['corechart']});
+			google.load('visualization', '1.0', {'packages':['corechart']});
 		  // Set a callback to run when the Google Visualization API is loaded.
 		  // google.setOnLoadCallback(drawChart);
-	</script>
+		</script>
 
-	<script src="data/games.json"></script>
-	<script src="data/connections.json"></script>
-	<script src="data/levels.json"></script>
-	<script src="data/pieces.json"></script>
-	<script src="data/tutorials.json"></script>
+		<!-- <script src="data/games.json"></script>-->
+		<!-- <script src="data/connections.json"></script>
+		<script src="data/levels.json"></script>
+		<script src="data/pieces.json"></script>-->
+		<script src="data/tutorials.json"></script>  
 
-	<!-- include own JavaScript library -->
-	<script type="text/javascript" src="assets/scripts/serious-game-framework.js"></script>
+		<!-- include own JavaScript library -->
+		<script type="text/javascript" src="assets/scripts/loadData.js"></script>
+		<script type="text/javascript" src="assets/scripts/createUIElements.js"></script>
+		<script type="text/javascript" src="assets/scripts/setGalleryHeightWidth.js"></script>
+		<script type="text/javascript" src="assets/scripts/managegalleries.js"></script>
+		<script type="text/javascript" src="assets/scripts/managebadges.js"></script>
+		<script type="text/javascript" src="assets/scripts/manageconnections.js"></script>
+		<script type="text/javascript" src="assets/scripts/managegames.js"></script>
+		<script type="text/javascript" src="assets/scripts/manageexperiencerules.js"></script>
+		<script type="text/javascript" src="assets/scripts/manageHighscoreRules.js"></script>
+		<script type="text/javascript" src="assets/scripts/manageBadgeRules.js"></script>
+		<script type="text/javascript" src="assets/scripts/manageGameRules.js"></script>
+		<script type="text/javascript" src="assets/scripts/manageAdminView.js"></script>
+		<script type="text/javascript" src="assets/scripts/serious-game-framework-new.js"></script>
 
-	<!-- Configuration for mobile devices -->
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-	<meta name="apple-mobile-web-app-capable" content="yes" />
-	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
-	<link rel="apple-touch-icon-precomposed"  href="assets/images/icon-ipad.png" sizes="72x72" />
-	<link rel="apple-touch-icon-precomposed"  href="assets/images/icon-iphone.png" sizes="144x144" />
-	<link rel="apple-touch-icon-precomposed"  href="assets/images/icon-iphone.png" sizes="114x114" />
-	<link rel="apple-touch-icon-precomposed"  href="assets/images/icon-iphone.png" />
-	<link rel="apple-touch-startup-image" href="assets/images/splash-iphone.png" />
-	<link rel="icon" href="assets/images/favicon.png" type="image/png">
-</head>
-<body>
-
-<div id="home" data-role="page" class="ui-helper-clearfix bodywrapper">
-	<div data-role="header" data-theme="b">
-		<h1>Serious Game Framework</h1>
-		<a href="#options" data-icon="gear" class="ui-btn-right options-button" data-rel="dialog">Options</a>
-		<span data-role="button" data-inline="true" data-corners="true" class="ui-btn-left">
-			<span class="oidc-signin"
-			    data-callback="signinCallback"
-			    data-name="Learning Layers"
-			    data-logo="http://learning-layers.eu/wp-content/themes/learninglayers/images/logo.png"
-			    data-server="https://api.learning-layers.eu/o/oauth2"
-			    data-clientid="5af6f4dc-a102-4811-ab00-b1eb4114c908"
-			    data-scope="openid email profile phone"
-			    data-size="sm">
-			</span>
-		</span>
-	</div>
-	<div data-role="content">
-		<ul data-role="listview" data-inset="true" class="gameslist">
-			<!-- filled dynamically -->
-			<!-- <li><a href="#game" class="gamelink" game-id="0"><h3>Test</h3><p>Test.</p></a></li> -->
-		</ul>
-	</div>
-</div>
-
-<div id="game" data-role="page" class="ui-helper-clearfix bodywrapper">
-	<div id="game-header" data-role="header" data-theme="b">
-		<a href="#" data-icon="arrow-l" id="game-header-home" class="ui-btn-left" data-iconpos="notext"  data-rel="back">Home</a>
-		<h1 class="gametitle"></h1>
-		<a href="#options" data-icon="gear" id="game-header-options" class="ui-btn-right options-button" data-rel="dialog">Options</a>
-	</div>
-	<div data-role="content">
-		<div id="wrappergameboard">
-			<span id="gameboard" class="gameboard ui-widget-content">
-				<table class="slots ui-helper-reset">
-					<tr class="slotheader">
-						<td><h4 id="header-slot0" class="ui-widget-header">Slot 1</h4></td>
-						<td> </td>
-						<td><h4 id="header-slot1" class="ui-widget-header">Slot 2</h4></td>
-						<td> </td>
-						<td><h4 id="header-slot2" class="ui-widget-header">Slot 3</h4></td>
-						<td> </td>
-						<td><h4 id="header-slot3" class="ui-widget-header">Slot 4</h4></td>
-					</tr>
-					<tr>
-						<td>
-							<div id="wrapperslot0" class="wrapperslot">
-								<ul id="slot0" class="slot ui-widget-content ui-state-default">
-									<!-- Filled dynamically -->
-								</ul>
-							</div>
-						</td>
-						<td>
-							<div id="connection0" class="connection">
-								<!-- Filled dynamically -->
-							</div>
-						</td>
-						<td>
-							<div id="wrapperslot1" class="wrapperslot">
-								<ul id="slot1" class="slot ui-widget-content ui-state-default">
-									<!-- Filled dynamically -->
-								</ul>
-							</div>
-						</td>
-						<td>
-							<div id="connection1" class="connection">
-								<!-- Filled dynamically -->
-							</div>
-						</td>
-						<td>
-							<div id="wrapperslot2" class="wrapperslot">
-								<ul id="slot2" class="slot ui-widget-content ui-state-default">
-									<!-- Filled dynamically -->
-								</ul>
-							</div>
-						</td>
-						<td>
-							<div id="connection2" class="connection">
-								<!-- Filled dynamically -->
-							</div>
-						</td>
-						<td>
-							<div id="wrapperslot3" class="wrapperslot">
-								<ul id="slot3" class="slot ui-widget-content ui-state-default">
-									<!-- Filled dynamically -->
-								</ul>
-							</div>
-						</td>
-					</tr>
-				</table>
-			</span>
-			<span id="levelcontrol" class="ui-widget-content">
-				<span id="wrapper-level-tutorial">
-					<button id="button-level-tutorial" data-theme="b" data-mini="false">Show Tutorial</button>
-				</span>
-				<span id="wrapper-back-main">
-					<a href="#" data-role="button" data-rel="back" data-mini="false">Back to Main Menu</a>
-				</span>
-				<span id="wrapper-showme">
-					<button id="button-showme" data-theme="c" data-mini="false">Show me</button>
-				</span>
-				<span id="wrapper-next">
-					<button id="button-next" data-theme="e" data-mini="false">Next</button>
-				</span>
-				<h3 id="level-verification-correct" class="level-verification">Correct Answer!</h3>
-				<h3 id="level-verification-wrong" class="level-verification">Wrong Answer</h3>
-				<h3 id="level-verification-revealed" class="level-verification">Solution revealed</h3>
-				<p id="elearning">
-					<!-- Here the E-learning link -->
-				</p>
-				<p id="leveldone">
-				</p>
-			</span>
-		</div>
-
-		<div id="gallery0wrapper">
-			<div id="gallery0" class="gallery ui-helper-reset ui-helper-clearfix">
-				<h4 id="header-gallery0" class="ui-widget-header">1</h4>
-				<span id="button-up-gallery0" class="button-up"><button data-icon="arrow-u" data-iconshadow="false" data-inline="false" data-mini="false" data-iconpos="notext" class="ui-icon-alt">&nbsp;</button></span>
-				<ul>
-					<!-- Filled dynamically -->
-				</ul>
-				<span id="button-down-gallery0" class="button-down"><button data-icon="arrow-d" data-iconshadow="false" data-inline="false" data-mini="false" data-iconpos="notext" class="ui-icon-alt">&nbsp;</button></span>
-			</div>
-		</div>
-
-		<div id="gallery1wrapper">
-			<div id="gallery1" class="gallery ui-helper-reset ui-helper-clearfix">
-				<h4 id="header-gallery1" class="ui-widget-header">2</h4>
-				<span id="button-left-gallery1" class="button-left"><button data-icon="arrow-l" data-iconshadow="false" data-inline="true" data-mini="false" data-iconpos="notext" class="ui-icon-alt">&nbsp;</button></span>
-				<span id="ulwrap-gallery1">
-					<ul>
-						<!-- Filled dynamically -->
-					</ul>
-				</span>
-				<span id="button-right-gallery1" class="button-right"><button data-icon="arrow-r" data-iconshadow="false" data-inline="true" data-mini="false" data-iconpos="notext" class="ui-icon-alt">&nbsp;</button></span>
-			</div>
-		</div>
-
-		<div id="gallery2wrapper">
-			<div id="gallery2" class="gallery ui-helper-reset ui-helper-clearfix">
-				<h4 id="header-gallery2" class="ui-widget-header">3</h4>
-				<span id="button-up-gallery2" class="button-up"><button data-icon="arrow-u" data-iconshadow="false" data-inline="false" data-mini="false" data-iconpos="notext" class="ui-icon-alt">&nbsp;</button></span>
-				<ul>
-					<!-- Filled dynamically -->
-				</ul>
-				<span id="button-down-gallery2" class="button-down"><button data-icon="arrow-d" data-iconshadow="false" data-inline="false" data-mini="false" data-iconpos="notext" class="ui-icon-alt">&nbsp;</button></span>
-			</div>
-		</div>
-
-		<div id="gallery3wrapper">
-			<div id="gallery3" class="gallery ui-helper-reset ui-helper-clearfix">
-				<h4 id="header-gallery3" class="ui-widget-header">4</h4>
-				<span id="button-left-gallery3" class="button-left"><button data-icon="arrow-l" data-iconshadow="false" data-inline="true" data-mini="false" data-iconpos="notext" class="ui-icon-alt">&nbsp;</button></span>
-				<span id="ulwrap-gallery3">
-					<ul>
-						<!-- Filled dynamically -->
-					</ul>
-				</span>
-				<span id="button-right-gallery3" class="button-right"><button data-icon="arrow-r" data-iconshadow="false" data-inline="true" data-mini="false" data-iconpos="notext" class="ui-icon-alt">&nbsp;</button></span>
-			</div>
-		</div>
-	</div>
-</div>
-
-<div id="options" data-role="page" class="ui-helper-clearfix bodywrapper" data-theme="c" data-overlay-theme="c">
-	<div data-role="header" data-theme="c">
-		<h1>Options</h1>
-	</div>
-	<div data-role="content">
-		<form id="optionsform">
-			<div data-role="fieldcontain">
-				<fieldset data-role="controlgroup">
-					<legend>Difficulty:</legend>
-
-					<input type="radio" name="difficulty" id="difficulty-choice1" value="1" disabled="disabled" />
-					<label for="difficulty-choice1">Easy</label>
-
-					<input type="radio" name="difficulty" id="difficulty-choice2" value="2" disabled="disabled" />
-					<label for="difficulty-choice2">Medium</label>
-
-					<input type="radio" name="difficulty" id="difficulty-choice3" value="3" />
-					<label for="difficulty-choice3">Free game</label>
-
-					<input type="radio" name="difficulty" id="difficulty-choice4" value="4" />
-					<label for="difficulty-choice4">Difficult</label>
-					<p>New difficulty level will take effect at the next set.<p>
-				</fieldset>
-			</div>
-			<input type="submit" value="OK" data-role="button" data-icon="check" />
-		</form>
-	</div>
-</div>
-
-<!-- Profile Page -->
-<div id="profile" data-role="page" class="ui-helper-clearfix bodywrapper">
-	<div id="header" data-role="header" data-theme="b">
-		<a href="#" data-icon="arrow-l" id="game-header-home" class="ui-btn-left" data-iconpos="notext"  data-rel="back">Home</a>
-		<h1>Profile</h1>
-	</div>
-	<div data-role="content">
-		<div id="user-info" class="ui-widget-content">
-			<div id="user_img">
-				<img src="https://api.learning-layers.eu/profile.png">
-			</div>
-			<div id="profile_tags">
-				<div>Username: </div>
-				<div>Name: </div>
-				<div>Email: </div>
-				<!--<div>Phone number: </div>-->
-			</div>
-			<div id="profile_info">
-				<div id="user_name"></div>
-				<div id="user_real_name"></div>
-				<div id="user_email"></div>
-				<!--<div id="user_phone"></div>-->
-			</div>
-		</div>
-
-		<div id="experience" class="ui-widget-content">
-			<div id="experience-header">Experience</div>
-
-			<img id="experience-badge" />
-
-			<div id="experience-data">
-				<div id="level-name">
+		<!-- Configuration for mobile devices -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<link rel="apple-touch-icon-precomposed"  href="assets/images/icon-ipad.png" sizes="72x72" />
+		<link rel="apple-touch-icon-precomposed"  href="assets/images/icon-iphone.png" sizes="144x144" />
+		<link rel="apple-touch-icon-precomposed"  href="assets/images/icon-iphone.png" sizes="114x114" />
+		<link rel="apple-touch-icon-precomposed"  href="assets/images/icon-iphone.png" />
+		<link rel="apple-touch-startup-image" href="assets/images/splash-iphone.png" />
+		<link rel="icon" href="assets/images/favicon.png" type="image/png">
+	</head>
+	<body>
+		<div id="home" data-role="page" class="ui-helper-clearfix bodywrapper">
+			<div data-role="header" data-theme="b">
+				<h1>Serious Game Framework</h1>
+				<div data-inline="true" class="ui-btn-right">
+					<a href="https://goo.gl/FKJDbF" target="_blank" data-role="button" data-inline="true" data-rel="dialog">Feedback</a>
+					<a href="#options" data-icon="gear" data-role="button" class="options-button" data-inline="true" data-rel="dialog">Options</a>
 				</div>
+				<span data-role="button" data-inline="true" data-corners="true" class="ui-btn-left">
+					<span class="oidc-signin"
+					data-callback="signinCallback"
+					data-name="Learning Layers"
+					data-logo="http://learning-layers.eu/wp-content/themes/learninglayers/images/logo.png"
+					data-server="https://api.learning-layers.eu/o/oauth2"
+					data-clientid="5af6f4dc-a102-4811-ab00-b1eb4114c908"
+					data-scope="openid email profile phone"
+					data-size="sm">
+				</span>
+			</span>
+		</div>
+		<div data-role="content">
+			<ul data-role="listview" data-inset="true" class="menulist">
+				<li><a href="#playgames" id="playgameslink"><h3 style="color:#0456a2;">Play Games</h3><p style="color:#0456a2;">Tutorial and Games</p></a></li>
+				<!-- filled dynamically -->
+				<!-- <li><a href="#game" class="gamelink" game-id="0"><h3>Test</h3><p>Test.</p></a></li> -->
+			</ul>
+		</div>
+	</div>
 
-				<div id="progressbar">
-					<div class="progress-label">
+	<div id="playgames" data-role="page" class="ui-helper-clearfix bodywrapper">
+		
+		<div data-role="content">
+			<ul id="gameslistId" data-role="listview" data-inset="true" class="gameslist">
+
+			</ul>
+		</div>
+	</div>
+
+	<div id="gameDescriptionPage" data-role="page" class="ui-helper-clearfix bodywrapper">
+		<div data-role="content">
+			<div data-theme="c" data-form="ui-body-c" class="ui-body ui-body-c ui-corner-all" style="width:50%;text-align: center; margin: auto;">
+				<h2 style="text-align: center;">Game Description</h2>
+				<div id="descriptionTextDiv" class="description">
+					
+				</div> 
+			</div>
+			<br>
+			<div data-theme="c" data-form="ui-body-c" class="ui-body ui-body-c ui-corner-all" style="width: 17%;text-align: center;margin: auto;">
+				<div class="linktogame">
+					<a href="#game" class="playGameLink">Play Game</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="game" data-role="page" class="ui-helper-clearfix bodywrapper">
+		<div id="game-header" data-role="header" data-theme="b">
+			<a href="#" data-icon="arrow-l" id="game-header-home" class="ui-btn-left" data-iconpos="notext"  data-rel="back">Home</a>
+			<div style="margin-left:50%;margin-bottom: 10px;margin-top:10px;">
+				<h2 style="display: inline;padding-right: 20%;" class="gametitle"></h2>
+				<h2 style="display: inline;padding-left: 10%;padding-right: 10%;" class="score"></h2>
+			</div>
+			<div data-inline="true" class="ui-btn-right">
+				<a href="https://goo.gl/FKJDbF" target="_blank" data-role="button" data-inline="true" data-rel="dialog">Feedback</a>
+				<a href="#options" data-icon="gear" id="game-header-options" data-role="button" class="options-button" data-inline="true" data-rel="dialog">Options</a>
+			</div>
+		</div>
+		<div data-role="content">
+			<div id="wrappergameboard">
+				<span id="gameboard" class="gameboard ui-widget-content">
+					<table class="slots ui-helper-reset">
+						<tr class="slotheader">
+							<td><h4 id="header-slot0" class="ui-widget-header">Slot 1</h4></td>
+							<td> </td>
+							<td><h4 id="header-slot1" class="ui-widget-header">Slot 2</h4></td>
+							<td> </td>
+							<td id="headerslot2td"><h4 id="header-slot2" class="ui-widget-header">Slot 3</h4></td>
+							<td> </td>
+							<td id="headerslot3td"><h4 id="header-slot3" class="ui-widget-header">Slot 4</h4></td>
+						</tr>
+						<tr id="gameSlots">
+							<!-- Slots and Connections filled by createUIElements.js -->
+						</tr>
+					</table>
+				</span>
+				<span id="levelcontrol" class="ui-widget-content">
+					<!-- Buttons and Links filled by createUIElements.js -->
+				</span>	
+			</div>
+			<div id="feedbackmessage"></div>
+			<div id=gameBoardGalleries>
+				<!-- Galleries filled by createUIElements.js -->
+			</div>
+
+		</div>
+	</div>
+	<div id="options" data-role="page" class="ui-helper-clearfix bodywrapper" data-theme="c" data-overlay-theme="c">
+		<div data-role="header" data-theme="c">
+			<h1>Options</h1>
+		</div>
+		<div data-role="content">
+			<form id="optionsform">
+				<div data-role="fieldcontain">
+					<fieldset data-role="controlgroup">
+						<legend>Difficulty:</legend>
+						<input type="radio" name="difficulty" id="difficulty-choice1" value="1" disabled="disabled" />
+						<label for="difficulty-choice1">Easy</label>
+
+						<input type="radio" name="difficulty" id="difficulty-choice2" value="2" disabled="disabled" />
+						<label for="difficulty-choice2">Medium</label>
+
+						<input type="radio" name="difficulty" id="difficulty-choice3" value="3" />
+						<label for="difficulty-choice3">Free game</label>
+
+						<input type="radio" name="difficulty" id="difficulty-choice4" value="4" />
+						<label for="difficulty-choice4">Difficult</label>
+						<p>New difficulty level will take effect at the next set.<p>
+						</fieldset>
+					</div>
+					<input type="submit" value="OK" data-role="button" data-icon="check" />
+				</form>
+			</div>
+		</div>
+
+		<!-- Profile Page -->
+		<div id="profile" data-role="page" class="ui-helper-clearfix bodywrapper">
+			<div data-role="content">
+				<div id="user-info" class="ui-widget-content">
+					<div id="user_img">
+						<img src="https://api.learning-layers.eu/profile.png">
+					</div>
+					<div id="profile_tags">
+						<div>Username: </div>
+						<div>Name: </div>
+						<div>Email: </div>
+						<!--<div>Phone number: </div>-->
+					</div>
+					<div id="profile_info">
+						<div id="user_name"></div>
+						<div id="user_real_name"></div>
+						<div id="user_email"></div>
+						<!--<div id="user_phone"></div>-->
 					</div>
 				</div>
 
-				<div id="experience-tags">
-					<div>Total experience: </div>
-					<div>Level experience: </div>
-					<div>Experience to next level: </div>
+				<div id="experience" class="ui-widget-content">
+					<div id="experience-header">Experience</div>
+
+					<img id="experience-badge" />
+
+					<div id="experience-data">
+						<div id="level-name">
+						</div>
+
+						<div id="progressbar">
+							<div class="progress-label">
+							</div>
+						</div>
+
+						<!-- <div id="experience-tags">
+							<div>Total experience: </div>
+							<div>Level experience: </div>
+							<div>Experience to next level: </div>
+							<div></div>
+						</div> -->
+
+						<div id="experience-info">
+							<div id="total-exp"></div>
+							<div id="level-exp"></div>
+							<div id="exp-to-next"></div>
+						</div>
+						<div id="exp-feedback-message" style="color: #216eca"></div>
+					</div>
 				</div>
 
-				<div id="experience-info">
-					<div id="total-exp"></div>
-					<div id="level-exp"></div>
-					<div id="exp-to-next"></div>
+				<div id="earned-badges" class="ui-widget-content">
+					<div id="badges-header">Badges</div>
+
+					<div id="badges-container">
+					</div>
+				</div>
+
+				<div id="high-score" class="ui-widget-content">
+					<div id="score-header">High Scores</div>
+
+					<table data-role="table" id="high-score-table" data-mode="columntoggle" class="ui-responsive table-stripe">
+						<thead>
+							<tr class="ui-bar-d">
+								<th>Rank</th>
+								<th>User</th>
+								<th>High Score</th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+				</div>
+
+				<!-- Stats for Players -->
+				<div class="ui-widget-content stats" id="player">
+					<div class="stats-header">Statistics</div>
+
+					<div data-role="fieldcontain">
+						<label for="stats-game-select" class="select">Choose Game: </label>
+						<select name="stats-game-select" id="stats-game-select"></select>
+					</div>
+
+					<div id="player-worst-levels">
+						<div class="worst-header">Worst Levels</div>
+					</div>
+
+					<div data-role="fieldcontain" id="player-choose-chart">
+						<fieldset data-role="controlgroup" data-type="horizontal" data-role="fieldcontain">
+							<legend>Choose a chart:</legend>
+							<input type="radio" name="chart-choice" id="chart-1" value="pie" checked="checked" />
+							<label for="chart-1">Pie</label>
+
+							<input type="radio" name="chart-choice" id="chart-2" value="bar" />
+							<label for="chart-2">Bar</label>
+						</fieldset>
+					</div>
+
+					<div id="player-chart-container">
+					</div>
+
+					<div id="player-no-records">
+						No records have been found! You might want to play this game for a while.
+					</div>
+				</div>
+				<!-- END Stats for Players END -->
+
+				<!-- Stats for Game Designers -->
+				<div class="ui-widget-content stats" id="game-designer">
+					<div class="stats-header">Statistics of games created by you</div>
+
+					<div data-role="fieldcontain">
+						<label for="designer-stats-game-select" class="select">Choose Game: </label>
+						<select name="designer-stats-game-select" id="designer-stats-game-select"></select>
+					</div>
+
+					<div id="designer-worst-levels">
+						<div class="worst-header">Tricky Levels</div>
+					</div>
+
+					<div data-role="fieldcontain" id="designer-choose-chart">
+						<fieldset data-role="controlgroup" data-type="horizontal" data-role="fieldcontain">
+							<legend>Choose a chart:</legend>
+							<input type="radio" name="designer-chart-choice" id="designer-chart-1" value="pie" checked="checked" />
+							<label for="designer-chart-1">Pie</label>
+
+							<input type="radio" name="designer-chart-choice" id="designer-chart-2" value="bar" />
+							<label for="designer-chart-2">Bar</label>
+						</fieldset>
+					</div>
+
+					<div id="designer-chart-container">
+					</div>
+
+					<div id="designer-no-records">
+						No records found! Your students might want to play some games.
+					</div>
+				</div>
+				<!-- END Stats for Game Designers END -->
+
+				<!-- Stats for Admins -->
+				<div class="ui-widget-content stats" id="admin">
+					<div class="stats-header">Admin Statistics</div>
+
+					<div data-role="fieldcontain">
+						<label for="admin-stats-game-select" class="select">Choose Game: </label>
+						<select name="admin-stats-game-select" id="admin-stats-game-select"></select>
+					</div>
+
+					<div data-role="fieldcontain">
+						<fieldset data-role="controlgroup" data-type="horizontal" data-role="fieldcontain">
+							<legend>Choose a chart:</legend>
+							<input type="radio" name="admin-chart-choice" id="admin-chart-1" value="pie" checked="checked" />
+							<label for="admin-chart-1">Pie</label>
+
+							<input type="radio" name="admin-chart-choice" id="admin-chart-2" value="bar" />
+							<label for="admin-chart-2">Bar</label>
+						</fieldset>
+					</div>
+
+					<div id="admin-chart-container">
+					</div>
+				</div>
+				<!-- END Stats for Admins END -->
+			</div>
+		</div>
+
+		<div id="gameDesignerView" data-role="page" class="ui-helper-clearfix bodywrapper">
+			<div data-role="content">
+				<ul data-role="listview" data-inset="true">
+					<li style="background: #5f98c5;"><a href="#gameDesignerTutorial" id="gameDesignerTutoriallink"><h3 style="color: white;text-shadow: none;">Game Designer Tutorial</h3><p style="color: white;text-shadow: none;">Tutorial.</p></a></li>
+					<li><a href="#editgalleries" id="editgallerieslink"><h3 style="color: #333399;">Manage Galleries</h3><p style="color: #333399;">Create new Pieces or galleries and delete existing ones.</p></a></li>
+					<li><a href="#connections" id="editconnectionslink"><h3 style="color: #9b319b;">Manage Connections</h3><p style="color: #9b319b;">Create new Connections and delete existing ones.</p></a></li>
+					<li><a href="#games"><h3 style="color: #990033;">Manage Games</h3><p style="color: #990033;">Create new games or edit existing ones.</p></a></li>
+					<!-- <li><a href="#badges" id="editbadgeslink"><h3>Manage Badges</h3><p>Create new Badges and delete existing ones.</p></a></li> -->
+				</ul>
+			</div>
+		</div>
+
+		<div id="gameDesignerTutorial" data-role="page" class="ui-helper-clearfix bodywrapper">
+			<!-- Header Filled by createUIElements.js -->
+			<div data-role="content">
+				<div class="ui-content">
+
+					<div data-role="collapsible-set" data-theme="b" data-content-theme="b"  data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d">
+
+						<div data-role="collapsible" data-collapsed="false">
+							<h3>Game Designer Overview</h3>
+							<img src="game_designer_tutorial/game_designer_overview.png" alt="Concept Map" style="max-width:100%;max-height:100%;">
+							<h2>Tips to create a new game</h2>
+							<h3>1. Before creating a game, create a table with 6 columns namely: Name of gallery 1, Name of gallery 2, Name of gallery 3, Name of gallery 4, eLearning Link and More Information Link.</h3>
+							<h3>2. Fill in the rows where each row is a level (correct match of gallery 1, gallery 2, gallery 3 and gallery 4, eLearning Link and More Information link for that level). Lets call the elements of the galleries as Tiles.</h3>
+							<img src="game_designer_tutorial/exceltable.png" alt="Table of columns" style="max-width:100%;max-height:100%;">
+							<h3>3. Create powerpoint presentation where 1 slide contains 1 Tile. Use bigger font.</h3>
+							<h3>4. Save this presentation as .gif or .jpg or .png format where each slide will be saved as an image file.</h3>
+							<h3>5. These can be used to create galleries in 'Manage Galleries' section and the level information in the table can be used to create levels in 'Edit Games' section.</h3>
+							<h2>Game Designer Statistics</h2>
+							<h3>Game Designers can check the statistics of the games created by them in 'Profile' in home page. In 'Profile' view, in 'Statistics of games created by you' section, choose a game from the dropdown menu and it gives the most incorrectly answered levels by all players (Worst Levels) in that game and also the overall percentage of correct and wrong answers given by all players (Pie/Bar chart) in the game.</h3>
+						</div>
+						<div data-role="collapsible">
+							<h3>Steps to Create a Game</h3>
+							<h2>Game Designer View:</h2>
+							<div style="display: inline;">
+							<img src="game_designer_tutorial/game_designer_view.png" alt="Game Designer View" style="max-width:100%;max-height:100%;">
+							<img src="game_designer_tutorial/managegames.png" alt="Manage Games View" style="max-width:100%;max-height:100%;">
+							</div>
+							<h2>Steps to Create a Game:</h2>
+							<h3>Step 1: To create a game, we need the game components - Galleries and Connections.</h3>
+							<h3>Step 2: Galleries can be created in 'Manage Galleries' view. Check 'How to Manage Galleries' section for details.</h3>
+							<h3>Step 3: Connections can be created in 'Manage Connections' view. Check 'How to Manage Connections' section for details.</h3>
+							<h3>Step 4: After creating the game components, a new game can be created in 'Create Games' in 'Manage Games' view.</h3>
+							<h3>Step 5: In 'Create Games' view, select the desired galleries and connections and create a game. This creates an empty game and now this game is ready to be edited in 'Edit Games' view where levels can be added. Check 'How to Create Games' section for details.</h3>
+							<h3>Step 6: In 'Edit Games' view, create levels of the game. Check 'How to Edit Games' section for details.</h3>
+						</div>
+						<div data-role="collapsible">
+							<h3>How to Manage Galleries</h3>
+							<h3>1. Create a new gallery by giving gallery name (non empty) and description of the gallery. Gallery name is required to enable the 'Create' button</h3>
+							<img src="game_designer_tutorial/creategallery.png" alt="Create Gallery" style="max-width:100%;max-height:100%;">
+							
+							<h3>2. Click on the 'Create' button to create the gallery. This gallery will be added to the list of galleries in the 'Select Gallery to Edit' dropdown.</h3>
+							<h3>3. Select the gallery from the dropdown to enable 'Edit Gallery' and 'Delete Gallery' buttons. If you want to view other galleries created by other users, select the gallery and 'Show' button will be enabled instead of edit and delete buttons.</h3>
+							<h3>4. Click on 'Edit Gallery' button to edit the gallery. This displays the Gallery details and 'Add Tiles button'</h3>
+							<img src="game_designer_tutorial/editgallery.png" alt="Create Gallery" style="max-width:100%;max-height:100%;">
+							<h3>5. Click on 'Save' button after making changes to the gallery details.</h3>
+							<h3>6. Galleries contain tiles which are image files (Refer to 'How to Create Image Files' below). To create tiles in the gallery, click on 'Add Tiles' button to upload the image files. Uploading multiple image files is possible.</h3>
+							<h3>7. To delete a tile from the gallery, click on the tile to be deleted to enable 'Delete Tile' button. Click on the button to delete the tile from the gallery.</h3>
+							<h3>8. 'Undo Tile Deletion' button appears immediately after deleting a tile. Click on it to restore the tile. This button disappears if any other action is performed.</h3>
+							<h3>9. To delete a gallery, select the gallery from the dropdwown menu and click on 'Delete Gallery'.</h3>
+							<h3>10. 'Undo Gallery Deletion' button appears after deleting the gallery. Click on it to restore the gallery. This button disappears if any other action is performed.</h3>
+
+							<h2>How to Create Image Files</h2>
+							<h3>Create a Powerpoint presentation with desired data. If the data is text, then create text with very large font.
+							While saving the presentation, choose the option to save it as image files. This will create a folder with all the slides of the presentation as image files. These image files can be uploaded via the uploader using 'Add Tiles' button</h3>
+						</div>
+						<div data-role="collapsible">
+							<h3>How to Manage Connections</h3>
+							<h3>1. Click on 'Show Connections' button to view existing connections.</h3>
+							<img src="game_designer_tutorial/showconnections.png" alt="Show Connections" style="max-width:100%;max-height:100%;">
+							<h3>2. Click on 'Add Connections' button to upload connections (only image files are allowed).</h3>
+							<h3>3. To delete a connection, click on the connection to enable 'Delete connection' button. Click on the button to delete the connection.</h3>
+							<img src="game_designer_tutorial/deleteconnections.png" alt="Show Connections" style="max-width:100%;max-height:100%;">
+							<h3>4. 'Undo Connection Deletion' button appears after deleting the connection. Click on it to restore the connection.</h3>
+						</div>
+
+						<div data-role="collapsible">
+							<h3>How to Create Games</h3>
+							<h2>Game Designer Details</h2>
+							<h3>1. Give your details : Name, Institution and Email in the 'Game Designer Details' section. These details will be shown on the 'Game Description' page which is shown when the user clicks on the game to play.</h3>
+							<img src="game_designer_tutorial/gamedesignerdetails.png" alt="Game Designer View" style="max-width:100%;max-height:100%;">
+							<h2>Game Details</h2>
+							<img src="game_designer_tutorial/gamedetails.png" alt="Game Details" style="max-width:100%;max-height:100%;">
+							<h3>1. To create a game, giving game name, choosing the number of galleries and selecting the galleries that are going to be in the game are mandatory to enable the 'Create' button.</h3>
+							<h3>2.  Depending on the number of galleries selected (maximum of 4 galleries), dropdowns containing list of all galleries will be displayed. Also, you can select the connections between these galleries from 'Select Connection x' (x = 1 or 2 or 3). The following figure shows how the galleries selected would be positioned in the game view and how the connections selected would connect the tiles from these galleries. In the figure, c1 corresponds to connection1 which connects gallery 1 and 2, c2 to connection2 which connects gllery 2 and 3 and c3 to connection3 which connects gallery 3 and 4.</h3>
+							<img src="game_designer_tutorial/galleriesconcept.png" alt="Galleries Concept" style="max-width:100%;max-height:100%;">
+							<h3>3. Additional details like selecting game category will place the game in that category. If the new game doesn't fit into any category in the dropdown list, make sure to select '--Select Category or Create New Category--' in 'Select Game Category' dropdown, and you can create a new category by entering the name in 'Create New Category' field. If no category is selected or created then the game will be placed in 'Other' by default.</h3>
+							<h3>4. 'Description of the game' shows below the game name in the games list and 'Detail Description of the game' is shown on the Game Description page as shown in the figure below.</h3>
+							<img src="game_designer_tutorial/descriptionconcept.png" alt="Description Concept" style="max-width:100%;max-height:100%;">
+							<h3>5. Click on 'Create' button to create the game. This creates a basic game structure which does not contain any levels. To add levels in the game go to 'Edit Games' view. Please refer to 'How To Edit Games' section for more details.</h3>
+						</div>
+						<div data-role="collapsible">
+							<h3>How to Edit Games</h3>
+							<h3>1. Select a game from 'Select Game' dropdown list to enable 'Edit Game' and 'Delete Game' buttons.</h3>
+							<h3>2. Click on 'Delete Game' button to delete the game. 'Undo Game Deletion' button appears after game deletion. Click on it to restore the deleted game.</h3>
+							<h3>3. Click on 'Edit Game' button to edit the details of the game, add,edit and delete levels of the game and change connections.</h3>
+							<h3>4. Edit 'Game Designer Details' and Game Details if needed and click on 'Save' button to save the changes.</h3>
+							<h2>Add Levels</h2>
+							<h3>1. A level is a set of correct matching tiles from the galleries. In the following figure, the four tiles form a level. Also, each level has an eLearning link and more Information link associated with it which helps the player learn more about the subject.</h3>
+							<img src="game_designer_tutorial/level.png" alt="Level" style="max-width:100%;max-height:100%;">
+							<h3>2. In the 'Add Levels' section as shown in the figure below, select the set of tiles that form a level to enable the 'Add Level' button. Provide eLearning link which provides information about the subject briefly and more information link which provides in depth information about the subject. Click on 'Add Level' button to create the level.</h3>
+							<img src="game_designer_tutorial/addlevels.png" alt="Add Levels" style="max-width:100%;max-height:100%;">
+							<h2>Edit Levels</h2>
+							<h3>1. In th 'Edit Levels' section, choose a level using 'Previous' and 'Next' buttons.</h3>
+							<h3>2. Click on 'Delete Level' button to delete the chosen level. 'Undo Level Deletion' button appears after level deletion. Click on it to restore the deleted level.</h3>
+							<h3>3. Edit eLearning link and more Information link and click on 'Save' button below to save the changes.</h3>
+							<img src="game_designer_tutorial/editlevels.png" alt="Edit Levels" style="max-width:100%;max-height:100%;">
+							<h2>Change Connection</h2>
+							<h3>To change connections, select a connection and click on 'Set Connection x'(where x = 1 or 2 or 3) to save the new connection.</h3>
+							<img src="game_designer_tutorial/setconnection.png" alt="Set Connection" style="max-width:100%;max-height:100%;">
+						</div>
+
+					</div>
+
 				</div>
 			</div>
 		</div>
 
-		<div id="earned-badges" class="ui-widget-content">
-			<div id="badges-header">Badges</div>
 
-			<div id="badges-container">
+		<div id="editgalleries" data-role="page" class="ui-helper-clearfix bodywrapper">
+			<!-- Header Filled by createUIElements.js -->
+			<div data-role="content">
+				<div class="ui-content">
+					<h2 style="color:#333399;">Create Gallery</h2>
+					<div id="galleryInputFields">
+						<!-- Input Fields Filled by createUIElements.js -->
+					</div>
+					<div id="create-gallery-message"></div>
+					<h2 style="color:#333399;">Edit Gallery</h2>
+					<fieldset id="galleriesSelectEditDelete" class="ui-grid-b sideByside">
+						<!-- Select, Edit and Delete Fields Filled by createUIElements.js -->
+					</fieldset>
+					<div id="gallery-saved-message"></div>
+					<div id="gallery-description-message"></div>
+
+					<div id="gallery-description">
+						
+					</div>
+					<fieldset id="galleriesfieldset" class="ui-grid-solo sideByside">
+						<div id="manageGalleriesblocka" class="ui-block-a">
+							<!-- Gallery Filled by createUIElements.js -->
+						</div>
+						<div  class="ui-block-b">
+							<fieldset id="manageGalleriesblockb" data-role="fieldcontain" class="ui-block-b">
+								<!-- Delete and Upload Buttons Filled by createUIElements.js -->
+							</fieldset>
+						</div>
+					</fieldset>
+					
+				</div>
 			</div>
 		</div>
 
-		<div id="high-score" class="ui-widget-content">
-			<div id="score-header">High Scores</div>
 
-			<table data-role="table" id="high-score-table" data-mode="columntoggle" class="ui-responsive table-stripe">
-				<thead>
-					<tr class="ui-bar-d">
-						<th>Rank</th>
-						<th>User</th>
-						<th>High Score</th>
-					</tr>
-				</thead>
-				<tbody>
-				</tbody>
-			</table>
-		</div>
-
-		<!-- Stats for Players -->
-		<div class="ui-widget-content stats" id="player">
-			<div class="stats-header">Statistics</div>
-
-			<div data-role="fieldcontain">
-				<label for="stats-game-select" class="select">Choose Game: </label>
-				<select name="stats-game-select" id="stats-game-select"></select>
-			</div>
-
-			<div id="player-worst-levels">
-				<div class="worst-header">Worst Levels</div>
-			</div>
-
-			<div data-role="fieldcontain" id="player-choose-chart">
-		    <fieldset data-role="controlgroup" data-type="horizontal" data-role="fieldcontain">
-		    	<legend>Choose a chart:</legend>
-	       	<input type="radio" name="chart-choice" id="chart-1" value="pie" checked="checked" />
-	       	<label for="chart-1">Pie</label>
-
-	       	<input type="radio" name="chart-choice" id="chart-2" value="bar" />
-	       	<label for="chart-2">Bar</label>
-		    </fieldset>
-	    </div>
-
-			<div id="player-chart-container">
-			</div>
-
-			<div id="player-no-records">
-				No records have been found! You might want to play this game for a while.
+		<div id="connections" data-role="page" class="ui-helper-clearfix bodywrapper">
+			<div data-role="content">
+				<div id="connectionsBlockMain" class="ui-content">
+					<fieldset class="ui-grid-solo sideByside">
+						<div  id="connectionsblocka" class="ui-block-a">
+							<!-- Gallery Filled by createUIElements.js -->
+						</div>
+						<div  class="ui-block-b">
+							<fieldset id="connectionsblockb" data-role="fieldcontain" class="ui-block-b">
+								<!-- Buttons Filled by createUIElements.js -->
+							</fieldset>
+						</div>
+					</fieldset>
+					<div id="connection-saved-message"></div>
+				</div>
 			</div>
 		</div>
-		<!-- END Stats for Players END -->
 
-		<!-- Stats for Game Designers -->
-		<div class="ui-widget-content stats" id="game-designer">
-			<div class="stats-header">Statistics of games created by you</div>
-
-			<div data-role="fieldcontain">
-				<label for="designer-stats-game-select" class="select">Choose Game: </label>
-				<select name="designer-stats-game-select" id="designer-stats-game-select"></select>
-			</div>
-
-			<div id="designer-worst-levels">
-				<div class="worst-header">Worst Levels</div>
-			</div>
-
-			<div data-role="fieldcontain" id="designer-choose-chart">
-		    <fieldset data-role="controlgroup" data-type="horizontal" data-role="fieldcontain">
-		    	<legend>Choose a chart:</legend>
-	       	<input type="radio" name="designer-chart-choice" id="designer-chart-1" value="pie" checked="checked" />
-	       	<label for="designer-chart-1">Pie</label>
-
-	       	<input type="radio" name="designer-chart-choice" id="designer-chart-2" value="bar" />
-	       	<label for="designer-chart-2">Bar</label>
-		    </fieldset>
-	    </div>
-
-			<div id="designer-chart-container">
-			</div>
-
-			<div id="designer-no-records">
-				No records found! Your students might want to play some games.
+		<div id="games" data-role="page" class="ui-helper-clearfix bodywrapper">
+			<div data-role="content">
+				<ul data-role="listview" data-inset="true">
+					<li><a href="#creategames" id="creategameslink"><h3 style="color: brown;">Create Games</h3><p style="color: brown;">Create new games</p></a></li>
+					<li><a href="#editgames" id="editgameslink"><h3 style="color: brown;">Edit Games</h3><p style="color: brown;">Edit existing games.</p></a></li>
+				</ul>
 			</div>
 		</div>
-		<!-- END Stats for Game Designers END -->
-
-		<!-- Stats for Admins -->
-		<div class="ui-widget-content stats" id="admin">
-			<div class="stats-header">Admin Statistics</div>
-
-			<div data-role="fieldcontain">
-				<label for="admin-stats-game-select" class="select">Choose Game: </label>
-				<select name="admin-stats-game-select" id="admin-stats-game-select"></select>
-			</div>
-
-			<div data-role="fieldcontain">
-		    <fieldset data-role="controlgroup" data-type="horizontal" data-role="fieldcontain">
-		    	<legend>Choose a chart:</legend>
-	       	<input type="radio" name="admin-chart-choice" id="admin-chart-1" value="pie" checked="checked" />
-	       	<label for="admin-chart-1">Pie</label>
-
-	       	<input type="radio" name="admin-chart-choice" id="admin-chart-2" value="bar" />
-	       	<label for="admin-chart-2">Bar</label>
-		    </fieldset>
-	    </div>
-
-			<div id="admin-chart-container">
+		<div id="creategames" data-role="page" class="ui-helper-clearfix bodywrapper">
+			<div data-role="content">
+				<div class="ui-content">
+					<h2 style="color:brown;">Game Designer Details</h2>
+					<div id="gamedesignerdetails">
+						<!-- Input Fields Filled by createUIElements.js -->
+					</div>
+					<h2 style="color: brown;">Game Details</h2>
+					<div id="gamedetails">
+						<!-- Input Fields, Galleries and buttons Filled by createUIElements.js -->
+					</div>
+					<div id="create-game-message"></div>
+				</div>
 			</div>
 		</div>
-		<!-- END Stats for Admins END -->
-	</div>
-</div>
 
-<audio id="achievement_sound" src="data/badges/sound.wav" preload="auto"></audio>
+		<div id="editgames" data-role="page" class="ui-helper-clearfix bodywrapper">
+			<div data-role="content">
+				<div class="ui-content">
+					<fieldset id="gameSelectEditDelete" class="ui-grid-b sideByside">
+						<!-- Select, Edit and Delete buttons Filled by createUIElements.js -->
+					</fieldset>
+					<div id="game-description-message"></div>
+					<div id="editgamesection" class="hideElement">
+						<h2 style="color:brown;" id="editGameDesignerDetailsHeader">Edit Game Designer Details</h2>
+						<div id="editGameDesignerDetails">
+							<!-- Game details Filled by createUIElements.js -->
+						</div>
+						
+						<h2 style="color:brown;" id="editGameDetailsHeader">Edit Game Details</h2>
+						<div id="editGameDetails">
+							<!-- Game details Filled by createUIElements.js -->
+						</div>
+						<div id="edit-game-details-message"></div>
 
-<!-- The blueimp Gallery widget -->
+						<h2 style="color:brown;" id="addLevelsHeader">Add Levels</h2>
+						<div id="gameEditGalleries">
+							<!-- Galleries and buttons Filled by createUIElements.js -->
+						</div>
+						<div id="add-level-message"></div>
+
+						<h2 style="color:brown;" id="deleteLevelsHeader">Edit Levels</h2>
+						<fieldset id="editlevels-fieldset" class="ui-grid-b sideByside">
+							<div  class="ui-block-a">
+								<span id="editgameboard" levelNo="0" class="gameboard ui-widget-content">
+									<table class="slots ui-helper-reset">
+										<tr class="slotheader">
+											<td><h4 id="editheader-slot0" class="ui-widget-header">Slot 1</h4></td>
+											<td> </td>
+											<td><h4 id="editheader-slot1" class="ui-widget-header">Slot 2</h4></td>
+											<td> </td>
+											<td id="editheaderslot2td"><h4 id="editheader-slot2" class="ui-widget-header">Slot 3</h4></td>
+											
+											<td id="editheaderslot3td"><h4 id="editheader-slot3" class="ui-widget-header">Slot 4</h4></td>
+										</tr>
+										<tr id=editGameSlots>
+											<!-- Slots and buttons Filled by createUIElements.js -->
+										</tr>
+									</table>
+								</span>
+							</div>
+						</fieldset>
+						<div id="editLevelInfo">
+							<!-- Links and buttons Filled by createUIElements.js -->
+						</div>
+						<div id="editLevelMessage"></div>
+
+						<h2 style="color:brown;" id="changeConnectionHeader">Change Connection</h2>
+
+						<fieldset id="changeconnection1-fieldset" class="ui-grid-solo sideByside">
+							<!-- Gallery and button Filled by createUIElements.js -->
+						</fieldset>
+						<fieldset id="changeconnection2-fieldset" class="hideElement ui-grid-solo sideByside">
+							<!-- Gallery and button Filled by createUIElements.js -->
+						</fieldset>
+						<fieldset id="changeconnection3-fieldset" class="hideElement ui-grid-solo sideByside">
+							<!-- Gallery and button Filled by createUIElements.js -->
+						</fieldset>
+						<div id="changeConnectionMessage"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<audio id="achievement_sound" src="data/badges/sound.wav" preload="auto"></audio>
+
+
+
+		<div id="assessmentSystemView" data-role="page" class="ui-helper-clearfix bodywrapper">
+			<div data-role="content">
+				<ul data-role="listview" data-inset="true">
+				<li style="background: #5f98c5;"><a href="#assessmentSystemTutorial " id="assessmentsystemtutoriallink"><h3 style="color: white;text-shadow: none;">Assessment System Tutorial</h3><p style="color: white;text-shadow: none;">Tutorial.</p></a></li>
+					<li><a href="#assessmentrules " id="assessmentruleslink"><h3 style="color: #0e8866;">Manage Assessment Rules</h3><p style="color: #0e8866;">Create or Edit Assessment Rules.</p></a></li>
+					<li><a href="#gamesrules" id="gamesruleslink"><h3 style="color: #5f0e88;">Game Assessment Rules</h3><p style="color: #5f0e88;">Set Assessment Rules to Games.</p></a></li>
+				</ul>
+			</div>
+		</div>
+
+		<div id="assessmentSystemTutorial" data-role="page" class="ui-helper-clearfix bodywrapper">
+			<!-- Header Filled by createUIElements.js -->
+			<div data-role="content">
+				<div class="ui-content">
+
+					<div data-role="collapsible-set" data-theme="b" data-content-theme="b"  data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d">
+
+						<div data-role="collapsible" data-collapsed="false">
+							<h3>Assessment System Overview</h3>
+							<img src="assessment_system_tutorial/assessment_system_overview.png" alt="Concept Map" style="max-width:100%;max-height:100%;">
+							<h2>Default settings for Assessment System</h2>
+							<h3>Default values are set for Experience Calculation rule, Experience Levels and Trophies, Badges and Highscore Calculation rules for each game (these are created when a new game is created). All of these are customizable by the game designer.</h3>
+							 <h3>When you create a new game, only 'Game Completion Badge' is required to be created. For this, please refer to 'How to Manage Badge Rules' and 'How to Set Game Assessment Rules' sections. </h3>
+							<img src="assessment_system_tutorial/exprule.png" alt="Experience Rule" style="max-width:100%;max-height:100%;">
+							<img src="assessment_system_tutorial/highscorerules.png" alt="Highscore Rule" style="max-width:100%;max-height:100%;">
+						</div>
+						<div data-role="collapsible">
+							<h3>Assessment System Concept</h3>
+							<h2>Assessment System View:</h2>
+							<div style="display: inline;">
+							<img src="assessment_system_tutorial/assessment_system_view.png" alt="Assessment System View" style="max-width:100%;max-height:100%;">
+							<img src="assessment_system_tutorial/manageAssessmentRules.png" alt="Manage Games View" style="max-width:100%;max-height:100%;">
+							</div>
+							<h3>There are three main customizable components of Assessment System namely Experience, Highscore and Badges.</h3>
+							<div style="display: inline;">
+							<img src="assessment_system_tutorial/experience.png" alt="Experience" style="max-width:100%;max-height:100%;">
+							<img src="assessment_system_tutorial/highscores.png" alt="Highscore" style="max-width:100%;max-height:100%;">
+							<img src="assessment_system_tutorial/badges.png" alt="Badges" style="max-width:100%;max-height:100%;">
+							</div>
+							<h2>Experience</h2>
+							<h3>1. Experience score is calculated over all games and it depends on the Highscore summary of all games, number of badges acquired, number of times user is logged in etc. Default Experience Calculation Rule is set and any Game Designer can change it.</h3>
+							<img src="assessment_system_tutorial/exprule.png" alt="Experience Rule" style="max-width:100%;max-height:100%;">
+							<h3>2. A trophy can be given and level can be determined when Experience score reaches certain points.</h3>
+							<img src="assessment_system_tutorial/exptrophy.png" alt="Experience Trophy" style="max-width:100%;max-height:100%;">
+							<h3>3. Refer to 'How to Manage Experience Rules' for more details.</h3>
+							<h2>Highscore</h2>
+							<h3>1. Highscore is calculated by summing up Highscores acquired in each game. Highscore depends on the weights for correct answer, wrong answer and actions like using 'Show me' button etc.</h3>
+							<img src="assessment_system_tutorial/highscorerules.png" alt="Highscore Rule" style="max-width:100%;max-height:100%;">
+							<h3>2. Since each game has a different difficulty level, each game can have different Highscore calculation rule. When a new game is created via 'Game Designer View' default Highscore calculation rule version 1 is set. This can be changed in 'Game Assessment Rules' view.</h3>
+							<img src="assessment_system_tutorial/gamehighscore.png" alt="Game Highscore" style="max-width:100%;max-height:100%;">
+							<h3>3. Refer to 'How to Manage Highscore Rules' for more details.</h3>
+							<h2>Badges</h2>
+							<h3>1. There are two types of Badges namely Game Completion Badges and Game Statistics Badges.</h3>
+							<img src="assessment_system_tutorial/diffbadges.png" alt="Different Badges" style="max-width:100%;max-height:100%;">
+							<h3>2. To acquire a Badge, a Badge Requirement Criteria must be satisfied.</h3>
+							<img src="assessment_system_tutorial/badgerequirement.png" alt="Badge Requirement" style="max-width:100%;max-height:100%;">
+							<h3>3. A Game Completion Badge can be allotted to a game in 'Game Assessment View'. This badge will be allotted when the player attempts all the levels in a game.</h3>
+							<img src="assessment_system_tutorial/setgamebadge.png" alt="Badge Requirement" style="max-width:100%;max-height:100%;">
+							<h3>4. Refer to 'How to Manage Badge Rules' for more details.</h3>
+						</div>
+						<div data-role="collapsible">
+							<h3>How to Manage Experience Rules</h3>
+							<h2>Create Experience Trophy</h2>
+							<h3>1. Check the existing Trophies by clicking on 'Show Existing Trophies' button.</h3>
+							<h3>2. Give Trophy Level name and Required Points to enable 'Add Experience Trophy' button.</h3>
+							<h3>3. Click on 'Add Experience Trophy' button to upload the trophy image.</h3>
+							<h3>4. In the following figure, a trophy is created for Level 3, when the user acquires 250 Experience points. </h3>
+							<img src="assessment_system_tutorial/exptrophy.png" alt="Experience Trophy" style="max-width:100%;max-height:100%;">
+							<h2>Edit Experience Trophy</h2>
+							<h3>1. Select a trophy from the trophies gallery to enable 'Edit Trophy' and 'Delete Trophy' buttons.</h3>
+							<h3>2. Click on 'Edit Trophy' to edit the trophy details. Click on 'Save' button to save the changes.</h3>
+							<h3>3. Click on 'Delete Trophy' to delete the trophy. 'Undo Trophy Deletion' button appears after deleting the trophy. Click on it to restore the trophy.</h3>
+							<img src="assessment_system_tutorial/savetrophy.png" alt="Save Trophy" style="max-width:100%;max-height:100%;">
+							<h2>Set Experience Rule</h2>
+							<h3>1. Experience Calculation formula shows how Experience score is calculated. The weight of each factor is customizable in the fields below the formula.</h3>
+							<h3>2. Edit Experience Rule and click on 'Save Rule' button to save the changes.</h3>
+							<img src="assessment_system_tutorial/exprulesave.png" alt="Save Rule" style="max-width:100%;max-height:100%;">
+						</div>
+						<div data-role="collapsible">
+							<h3>How to Manage Highscore Rules</h3>
+							<h3>1. Create a new highscore version by giving the details in 'Highscore Calculation Rules' section and click on 'Create New Version' to create the version. The new version created will be added to the 'Select Highscore Version to Edit' dropdown.</h3>
+							<img src="assessment_system_tutorial/createhighscore.png" alt="Create Version" style="max-width:100%;max-height:100%;">
+							<h3>2. Select Highscore version from the 'Select Highscore Version to Edit' dropdown to enable 'Edit Highscore Version' and 'Delete Highscore Version' buttons. These buttons wil be enabled only if you have created the selected highscore version. Otherwise, 'Show' button is enabled.</h3>
+							<img src="assessment_system_tutorial/selecthighscore.png" alt="Select Version" style="max-width:100%;max-height:100%;">
+							<h3>3. Click on 'Edit Highscore Version' button to edit the highscore version. Click on 'Save' button to save the changes.</h3>
+							<img src="assessment_system_tutorial/savehighscore.png" alt="Save Version" style="max-width:100%;max-height:100%;">
+							<h3>4. Click on 'Delete Highscore Version' to delete the highscore version. 'Undo Version Deletion' button appears after deleting the version. Click on it to restore the version.</h3>
+							<h3>5. Click on 'Reset' button to reset the view. This clears all the fields and resets the dropdown menu.</h3>
+						</div>
+						<div data-role="collapsible">
+							<h3>How to Manage Badge Rules</h3>
+							<h2>Create Badge</h2>
+							<h3>1. Give Badge Name and select Badge Requirement to enable to the 'Add Badge' button.</h3>
+							<h3>2. Some of the Badge types need numerical Requirement value to enable 'Add Badge' button. When the Badge Requirement is selected from the dropdown, if the text field next to it is enabled, then it implies that the Badge type requires a numerical Badge Requirement Value.</h3>
+							<img src="assessment_system_tutorial/badgereq.png" alt="Badge Requirement" style="max-width:100%;max-height:100%;">
+							<h3>3. Click on 'Add Badge' button to upload the badge.</h3>
+							<h3>4. Click on 'Show Existing Badges' to view existing badges.</h3>
+							<h3>5. Select a badge by clicking on it in the badges gallery to enable 'Edit Badge' and 'Delete Badge' buttons.</h3>
+							<img src="assessment_system_tutorial/editbadge.png" alt="Badge Requirement" style="max-width:100%;max-height:100%;">
+							<h3>6. Click on 'Edit Badge' to edit the badge details. Click on 'Save' button to save the changes.</h3>
+							<h3>7. Click on 'Delete Badge' to delete the badge. 'Undo Badge Deletion' button appears after deleting the badge. Click on it to restore the badge.</h3>
+						</div>
+						<div data-role="collapsible">
+							<h3>How to Set Game Assessment Rules</h3>
+							<h3>1. Select a game from the 'Select Game' dropdown menu to enable the 'Edit' button. Only those games that you have created will appear in the dropdown.</h3>
+							<h3>2. By default, a game has Highscore Version 1. Select the Highscore version from the dropdown to change it.</h3>
+							<h3>3. Select a Game Completion Badge for the game. This badge will be allotted when the player attempts all the levels in a game.</h3>
+							<h3>4. Click on 'Save' button to save the changes.</h3>
+							<img src="assessment_system_tutorial/setgamebadge.png" alt="Badge Requirement" style="max-width:100%;max-height:100%;">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>			
+
+		<div id="assessmentrules" data-role="page" class="ui-helper-clearfix bodywrapper">
+			<div data-role="content">
+				<ul data-role="listview" data-inset="true">
+					<li><a href="#experiencerules " id="experienceruleslink"><h3 style="color: #308f44">Manage Experience Rules</h3><p style="color: #308f44">Edit Experience Rules.</p></a></li>
+					<li><a href="#highscorerules" id="highscoreruleslink"><h3 style="color: #c37719">Manage Highscore Rules</h3><p style="color: #c37719">Create or Edit Highscore rules.</p></a></li>
+					<li><a href="#badgerules" id="badgeruleslink"><h3 style="color: #069090">Manage Badge Rules</h3><p style="color: #069090">Create or Edit Badge Rules.</p></a></li>
+				</ul>
+			</div>
+		</div>
+
+		<div id="experiencerules" data-role="page" class="ui-helper-clearfix bodywrapper">
+			<div data-role="content">
+				<div class="ui-content">
+					<h2 style="color: #308f44">Create Experience Trophy</h2>
+					<div id="experienceBadgeBlock">
+
+					</div>
+					<fieldset id="AddExperienceBadgeBlock" data-role="fieldcontain">
+						
+					</fieldset>
+					
+					<div id="create-experience-badge-message"></div>
+
+					<fieldset class="ui-grid-solo sideByside">
+						<div  id="badgeGallery" class="ui-block-a">
+							
+						</div>
+						<div>
+							<fieldset id="badgeEditDelete" data-role="fieldcontain" class="ui-block-b">
+
+							</fieldset>
+						</div>
+					</fieldset>
+					<h2 style="color: #308f44">Edit Experience Trophy</h2>
+					<div id="editExperienceBadgeBlock">
+
+					</div>
+					<div id="experience-badge-saved-message"></div>
+					<h2 style="color: #308f44">Experience Calculation Rule</h2>
+					<div id="experienceRulesFormula"></div>
+					<div id="save-experience-rules-message"></div>	
+					<div id=experienceRules>
+
+					</div>	
+					
+				</div>
+			</div>
+		</div>
+
+
+		<div id="highscorerules" data-role="page" class="ui-helper-clearfix bodywrapper">
+			<div data-role="content">
+				<div class="ui-content">
+					<h2 style="color: #c37719">Edit Existing Highscore Versions</h2>
+					<fieldset id="editHighscoreBlock" class="ui-grid-b sideByside">
+
+					</fieldset>	
+					<fieldset id="resetHighscoreBlock" class="ui-grid-b sideByside">
+
+					</fieldset>	
+					<div id="highscore-desc-message"></div>
+					<div id="save-highscore-rules-message"></div>
+					<h2 style="color: #c37719">Highscore Calculation Rules</h2>
+					<div id="highscoreCalBlock">
+
+					</div>
+					
+				</div>
+			</div>
+		</div>
+
+
+		<div id="badgerules" data-role="page" class="ui-helper-clearfix bodywrapper">
+			<div data-role="content">
+				<div class="ui-content">
+					<h2 style="color: #069090">Create Badge</h2>
+					<div id="BadgeDetailsBlock">
+
+					</div>
+					<fieldset class="ui-grid-c sideByside">
+						<div class="ui-block-a">
+							<fieldset data-role="fieldcontain">
+								<label for="select-badge-requirement" class="select"> <p style="color: #069090">Select Badge Requirement: <span id="required1">*</span></p></label>
+								<select name="select-badge-requirement" id="select-badge-requirement">
+									<option value='0' selected=true>--Select Criteria--</option>
+									<option value='1'>Game Completion Badge</option>
+									<option value='2'>No. of Correct Levels</option>
+									<option value='3'>No. of times 'eLearning' link is used</option>
+									<option value='4'>No. of times 'More Information' link is used</option>
+									<option value='5'>No. of times 'Try Again' is used</option>
+									<option value='6'>Poor Performance</option>
+									<option value='7'>Tutorial Badge</option>
+								</select>
+							</fieldset>
+						</div>
+						<div  class="ui-block-b">
+							<fieldset data-role="fieldcontain">
+								<input name="game-badge-points" id="game-badge-points" value="" type="text">
+							</fieldset>
+						</div>
+
+					</fieldset>	
+					<div id="game-badge-error-message"></div>
+					<fieldset id="uploadBadgeBlock" data-role="fieldcontain">
+						
+					</fieldset>
+					
+					<fieldset class="ui-grid-solo sideByside">
+						<div  id="gameBadgeGalBlock" class="ui-block-a">
+							
+						</div>
+						<div>
+							<fieldset id="editDeleteGameBadgeBlock" data-role="fieldcontain" class="ui-block-b">
+
+							</fieldset>
+						</div>
+					</fieldset>
+
+					<div id="game-badge-saved-message"></div>
+					<h2 style="color: #069090">Edit Badge Details</h2>
+					<div id="EditBadgeDetailsBlock">
+
+					</div>
+					<fieldset class="ui-grid-c sideByside">
+						<div class="ui-block-a">
+							<fieldset data-role="fieldcontain">
+								<label for="edit-select-badge-requirement" class="select"> <p style="color: #069090">Select Badge Requirement: <span id="required2">*</span></p></label>
+								<select name="edit-select-badge-requirement" id="edit-select-badge-requirement">
+									<option value='0' selected=true>--Select Criteria--</option>
+									<option value='1'>Game Completion Badge</option>
+									<option value='2'>No. of Correct Levels</option>
+									<option value='3'>No. of times 'eLearning' link is used</option>
+									<option value='4'>No. of times 'More Information' link is used</option>
+									<option value='5'>No. of times 'Try Again' is used</option>
+									<option value='6'>Poor Performance</option>
+									<option value='7'>Tutorial Badge</option>
+								</select>
+							</fieldset>
+						</div>
+						<div  class="ui-block-b">
+							<fieldset data-role="fieldcontain">
+								<input name="edit-game-badge-points" id="edit-game-badge-points" value="" type="text">
+							</fieldset>
+						</div>
+
+					</fieldset>	
+					<div id="gameBadgeSaveButtonDiv"></div>
+				</div>
+			</div>
+		</div>
+
+
+		<div id="gamesrules" data-role="page" class="ui-helper-clearfix bodywrapper">
+			<div data-role="content">
+				<div class="ui-content">
+					<div id="SelectGameRulesBlock">
+
+					</div>
+					<div id="rule_gameDescriptionText"></div>
+					<div id="editgamerulessection" class="hideElement">
+						<div id="EditGameRulesBlock">
+
+						</div>
+						<h2 style="color: #5f0e88;">Select Game Completion Badge</h2>
+						<fieldset class="ui-grid-solo sideByside">
+							<div  id="gameBadgeSelectBlock" class="ui-block-a">
+							</div>
+
+						</fieldset>
+						<fieldset id="saveGameRules" data-role="fieldcontain" class="ui-block-b">
+
+						</fieldset>	
+						<div id="game-assessment-saved-message"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<div id="adminView" data-role="page" class="ui-helper-clearfix bodywrapper">
+			<div data-role="content">
+				<div class="ui-content">
+					<div id="adminDetails"></div>
+					<div id="email-added-msg"></div>
+				</div>
+			</div>
+		</div>
+		<!-- The blueimp Gallery widget -->
 <!-- <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls" data-filter=":even">
     <div class="slides"></div>
     <h3 class="title"></h3>
@@ -489,42 +996,85 @@
 <script>
 	window.scrollTo(0,1);
 </script>
-	<!-- OpenID Connect Button Callback -->
-	<script type="text/javascript">
-		function signinCallback(result) {
+<!-- OpenID Connect Button Callback -->
+<script type="text/javascript">
+	function signinCallback(result) {
 			// TODO MARKO result === "success"
-	    if(true) {
+			if(oidc_userinfo != undefined) {
 	      // after successful sign in, display a welcome string for the user
 	      console.log("Hello, " + oidc_userinfo.name + "!");
-        var profile =	$('<li>' +
-        									'<a href="#profile" id="profilelink">' +
-  														'<h3>Profile</h3>' +
-  														'<p>Check your stats and badges!</p>' +
-  												'</a>' +
-  											'</li>');
-        $('.gameslist').prepend(profile);
-        $('.gameslist').listview('refresh');
-        $('#profilelink').click(function() { showProfile() });
-        startTracking();
-	    } else {
+	      var profile =	$('<li>' +
+	      	'<a href="#profile" id="profilelink">' +
+	      	'<h3 style="color:#0456a2;">Profile</h3>' +
+	      	'<p style="color:#0456a2;">Check your stats and badges!</p>' +
+	      	'</a>' +
+	      	'</li>');
+	      $('.menulist').prepend(profile);
+
+	      var gamedesignerview =	$('<li>' +
+	      	'<a href="#gameDesignerView" id="gamedesignerlink">' +
+	      	'<h3 style="color:#0456a2;">Design Games</h3>' +
+	      	'<p style="color:#0456a2;">Create or Edit games!</p>' +
+	      	'</a>' +
+	      	'</li>');
+	      $('.menulist').append(gamedesignerview);
+
+	      var assessmentsystemview =	$('<li>' +
+	      	'<a href="#assessmentSystemView" id="assessmentsystemlink">' +
+	      	'<h3 style="color:#0456a2;">Assessment System</h3>' +
+	      	'<p style="color:#0456a2;">Create or Edit Assessment rules!</p>' +
+	      	'</a>' +
+	      	'</li>');
+	      $('.menulist').append(assessmentsystemview);
+
+	      if(oidc_userinfo.email == 'a.herrler@maastrichtuniversity.nl' || oidc_userinfo.email == 'sindhu.aitharaju@rwth-aachen.de'){
+
+	      var adminview =	$('<li>' +
+	      	'<a href="#adminView" id="adminlink">' +
+	      	'<h3 style="color:#0456a2;">Admin</h3>' +
+	      	'<p style="color:#0456a2;">Add permissions to users</p>' +
+	      	'</a>' +
+	      	'</li>');
+	      $('.menulist').append(adminview);
+
+	      $('#adminlink').click(function() { resetAdminView() });
+	  	}
+
+	      if ( $('.menulist').hasClass('ui-listview')) {
+	      	$('.menulist').listview('refresh');
+	      } 
+	      else {
+	      	$('.menulist').trigger('create');
+	      }
+	     // $('.menulist').listview('refresh');
+	     $('#profilelink').click(function() { loadDataFromDatabase() });
+	     startTracking();
+	 } else {
 	      // if sign in was not successful, log the cause of the error on the console
 	      console.log(result);
 	      // TODO MARKO
 				// alert('Please log in with the button on the top left, so we can track your progress!');
-	    }
+			}
+		}
+
+		function loadDataFromDatabase(){
+			var url = "assets/scripts/loadData.js";
+			$.getScript( url, function() {
+				showProfile();
+			});
 		}
 	</script>
 
 	<!-- OpenID Connect Insertion -->
 	<script type="text/javascript">
-	  (function() {
-	    var po = document.createElement('script');
-	    po.type = 'text/javascript';
-	    po.async = true;
-	    po.src = 'assets/scripts/oidc/oidc-button.js';
-	    var s = document.getElementsByTagName('script')[0];
-	    s.parentNode.insertBefore(po, s);
-	  })();
+		(function() {
+			var po = document.createElement('script');
+			po.type = 'text/javascript';
+			po.async = true;
+			po.src = 'assets/scripts/oidc/oidc-button.js';
+			var s = document.getElementsByTagName('script')[0];
+			s.parentNode.insertBefore(po, s);
+		})();
 	</script>
 </body>
 </html>

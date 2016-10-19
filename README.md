@@ -4,7 +4,7 @@ Serious Game Framework
 A framework targeted at university professors and other educators to create simple Serious
 Games and let them be played by their students and pupils.
 
-A running instance of the application can be found under [here](http://monet.informatik.rwth-aachen.de/Serious-Game-Framework/).
+A running instance of the application can be found under [here](http://gaudi.informatik.rwth-aachen.de/Serious-Game-Framework/).
 
 ## Table of Contents
 - [Features](#features)

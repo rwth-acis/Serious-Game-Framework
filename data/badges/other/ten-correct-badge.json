@@ -1,7 +1,7 @@
 {
   "name": "Correctemundo",
   "description": "For answering ten levels correctly.",
-  "image": "http://monet.informatik.rwth-aachen.de/Serious-Game-Framework/data/badges/other/ten-correct-badge.png",
-  "criteria": "http://monet.informatik.rwth-aachen.de/Serious-Game-Framework/",
-  "issuer": "http://monet.informatik.rwth-aachen.de/Serious-Game-Framework/data/badges/organization.json"
+  "image": "http://gaudi.informatik.rwth-aachen.de/Serious-Game-Framework/data/badges/other/ten-correct-badge.png",
+  "criteria": "http://gaudi.informatik.rwth-aachen.de/Serious-Game-Framework/",
+  "issuer": "http://gaudi.informatik.rwth-aachen.de/Serious-Game-Framework/data/badges/organization.json"
 }

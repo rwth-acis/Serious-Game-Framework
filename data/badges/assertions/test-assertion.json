@@ -5,10 +5,10 @@
     "identity": "marko.kajzer@hotmail.de",
     "hashed": false
   },
-  "badge": "http://monet.informatik.rwth-aachen.de/Serious-Game-Framework/data/badges/tutorial/tutorial-badge.json",
+  "badge": "http://gaudi.informatik.rwth-aachen.de/Serious-Game-Framework/data/badges/tutorial/tutorial-badge.json",
   "verify": {
     "type": "hosted",
-    "url": "http://monet.informatik.rwth-aachen.de/Serious-Game-Framework/data/badges/assertions/test-assertion.json"
+    "url": "http://gaudi.informatik.rwth-aachen.de/Serious-Game-Framework/data/badges/assertions/test-assertion.json"
   },
   "issuedOn": "2015-02-25T14:36:21.659Z"
 }
