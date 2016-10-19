@@ -34,7 +34,7 @@ function rand(min, max) {
 
 		getExperienceRules();
 		
-		$('#experienceruleslink').click(function() { 
+		$('#experienceruleslink').click(function() { //load all the data from database before loading this view
 			reloadDataFromDatabase();
 		});
 
@@ -72,7 +72,7 @@ function rand(min, max) {
 			
 		});
 
-		$('#edit'+galleryElementName).on('click', 'li', function() {
+		$('#edit'+galleryElementName).on('click', 'li', function() { //Check whether the user has admin rights and enable the buttons accordingly
 			$('#experience-badge-undo-delete-button').fadeOut();
 			resetEditView();
 			
@@ -126,7 +126,7 @@ function rand(min, max) {
 			$(this).siblings().removeClass("active");
 			
 		});
-		$('#button-delete-experience-badge').click(function(){
+		$('#button-delete-experience-badge').click(function(){ 
 			$('#experience-badge-undo-delete-button').fadeOut();
 			$('#create-experience-badge-message').text("");
 			$('#experience-badge-saved-message').text("");
@@ -135,7 +135,7 @@ function rand(min, max) {
 
 		});
 
-		$('#button-edit-experience-badge').click(function(){
+		$('#button-edit-experience-badge').click(function(){ //populate all the badge details and enable save button
 			$('#experience-badge-undo-delete-button').fadeOut();
 			$('#create-experience-badge-message').text("");
 			$('#experience-badge-saved-message').text("");
@@ -151,7 +151,7 @@ function rand(min, max) {
 
 		});
 
-		$('#button-show-experience-badge').click(function(){
+		$('#button-show-experience-badge').click(function(){ //populate all the badge details and disable save button 
 			$('#experience-badge-undo-delete-button').fadeOut();
 			$('#create-experience-badge-message').text("");
 			$('#experience-badge-saved-message').text("");
@@ -206,7 +206,7 @@ function rand(min, max) {
 		});
 
 		
-		function resetExperienceRulesView(){
+		function resetExperienceRulesView(){ //reset the view
 			$('#'+galleryElementName + ' ul').children().remove();
 			$('#edit-experience-badge-button').find('*').prop('disabled',true);
 			$('#edit-experience-badge-button').find('*').addClass('ui-disabled');
@@ -236,7 +236,7 @@ function rand(min, max) {
 
 		}
 
-		function resetEditView(){
+		function resetEditView(){ //reset edit view
 			$('#edit-experience-badge-name')[0].value = "";
 			$("#edit-experience-badge-name").attr('disabled','disabled');
 			$("#edit-experience-badge-name").parent().css( "background-color", "#e7e7e7" );
@@ -257,7 +257,7 @@ function rand(min, max) {
 			$('#experience-badge-save-button').find('*').addClass('ui-disabled');
 		}
 
-		function activateEditView(boolean){
+		function activateEditView(boolean){ //enable all the fields
 			$('#edit-experience-badge-name').parent().parent().find('*').removeAttr('disabled');
 			$('#edit-experience-badge-name').parent().parent().find('*').removeClass('ui-disabled');
 			$('#edit-experience-badge-name').parent().parent().find('*').removeClass('ui-state-disabled');
@@ -281,7 +281,7 @@ function rand(min, max) {
 			
 		}
 
-		function setButtonColor(divName){
+		function setButtonColor(divName){ //set colour to all the buttons in this view
 			if (divName.find('*').hasClass('ui-btn-inner')) {
 				divName.find('*').css("color",color);
 			} 
@@ -291,7 +291,7 @@ function rand(min, max) {
 			}
 		}
 
-		function enableBadgeCreation(){
+		function enableBadgeCreation(){ //validate the fields and enable/disable upload button accordingly
 
 			if($.trim($('#experience-badge-name')[0].value)!= "" && $.isNumeric($.trim($('#experience-badge-points')[0].value))){
 				$('#uploadExperienceBadge').prop('disabled',false);
@@ -302,7 +302,7 @@ function rand(min, max) {
 			}
 		}
 
-		function enableSaveButton(boolean){
+		function enableSaveButton(boolean){ //validate the fields and enable/disable save button accordingly
 			if($.trim($('#edit-experience-badge-name')[0].value)!= "" && $.isNumeric($.trim($('#edit-experience-badge-points')[0].value)) && boolean){
 				$('#experience-badge-save-button').find('*').prop('disabled',false);
 				$('#experience-badge-save-button').find('*').removeClass('ui-disabled');
@@ -312,7 +312,7 @@ function rand(min, max) {
 			}
 		}
 
-		function getExperienceBadges(){
+		function getExperienceBadges(){ // get experience badges data from database
 
 			formdata = false;
 			if (window.FormData) {
@@ -333,7 +333,7 @@ function rand(min, max) {
 			}
 		}
 
-		function uploadExperienceBadge(){
+		function uploadExperienceBadge(){ //upload badge imag eto folder and image src to database
 			var filedata = document.getElementById("uploadExperienceBadge");
 			var badgeName = $.trim($('#experience-badge-name')[0].value);
 			var badgeDescription = $.trim($('#experience-badge-desc')[0].value);
@@ -392,7 +392,7 @@ function rand(min, max) {
 			}
 		}
 
-		function saveExperienceBadge(badgeSrc){
+		function saveExperienceBadge(badgeSrc){ //update badge details to the database
 
 			var badgeName = $.trim($('#edit-experience-badge-name')[0].value);
 			var badgeDescription = $.trim($('#edit-experience-badge-desc')[0].value);
@@ -434,7 +434,7 @@ function rand(min, max) {
 			
 		}
 
-		function saveExperienceRules(){
+		function saveExperienceRules(){ // update experience rule data to database
 
 			var highscore = $.trim($('#experience-highscore')[0].value);
 			var elearning = $.trim($('#experience-elearning')[0].value);
@@ -482,7 +482,7 @@ function rand(min, max) {
 			}
 		}
 
-		function getExperienceRules(){
+		function getExperienceRules(){ //get experience rule data from database
 			formdata = false;
 			if (window.FormData) {
 				formdata = new FormData();
@@ -516,7 +516,7 @@ function rand(min, max) {
 			}
 		}
 
-		function addExperienceBadge(value){
+		function addExperienceBadge(value){ //show added experience badge
 
 			var length = EXPERIENCE_BADGES.length - 1;
 			var image1 = $('<li email="' +  oidc_userinfo.email + '" class="ui-widget-content ui-corner-tr piece"><a href="#"><img src="' + EXPERIENCE_BADGES_PATH + value + '" alt="' +  value + '" width="94" height="68" badgeIndex="'+length+'" id="piece-id-'+index+'" piece-id="' + index + '" piece-count="1" class="imgfocus"/></a></li>');
@@ -526,7 +526,7 @@ function rand(min, max) {
 
 		}
 
-		function deleteExperienceBadge(badgeSrc){
+		function deleteExperienceBadge(badgeSrc){ //delete experience badge from database
 			formdata = false;
 			if (window.FormData) {
 				formdata = new FormData();
@@ -561,7 +561,7 @@ function rand(min, max) {
 
 		
 		
-		function undoDeleteExperienceBadge(){
+		function undoDeleteExperienceBadge(){ //undo badge deletion 
 			formdata = false;
 			if (window.FormData) {
 				formdata = new FormData();
@@ -590,7 +590,7 @@ function rand(min, max) {
 			}
 		}
 
-		function populateBadges(filesdata){
+		function populateBadges(filesdata){ //show badges
 			$('#'+galleryElementName + ' ul').children().remove();
 			files = JSON.parse(filesdata);
 			if(files != null){
@@ -603,7 +603,7 @@ function rand(min, max) {
 			}
 		}
 
-		function reloadDataFromDatabase(){
+		function reloadDataFromDatabase(){ //load all the data from database and reset this view. This function is called when the user clicks to open this view
 			var url = "assets/scripts/loadData.js";
 			$.getScript( url, function() {
 				resetExperienceRulesView();
