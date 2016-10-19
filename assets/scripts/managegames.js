@@ -77,18 +77,18 @@ function rand(min, max) {
 		});
 
 		
-		$('#creategameslink').click(function() { 
+		$('#creategameslink').click(function() { //load all the data from database before loading this view
 			$('#game-designer-name')[0].value = "";
 			$('#game-designer-institution')[0].value = "";
 			$('#game-designer-email')[0].value = "";
 			reloadDataFromDatabase1();
 		});
 
-		$('#editgameslink').click(function() { 
+		$('#editgameslink').click(function() { //load all the data from database before loading this view
 			reloadDataFromDatabase2();
 		});
 
-		$('#gallerycount').change(function(){
+		$('#gallerycount').change(function(){ //depending on the gallery count, populate galleries and connections
 			$('#create-game-message').text("");
 			var galleryId = $('select[name=gallerycount]').val();
 			if(galleryId < 2){
@@ -135,7 +135,7 @@ function rand(min, max) {
 			enableCreateGameButton();
 		});
 
-		$('#selectgame').change(function(){
+		$('#selectgame').change(function(){ //depending on the value of dropdown, show the description and enable/disable edit button
 			$('#game-description-message').text("");
 			$('#edit-game-details-message').text("");
 			$('#game-undo-delete-button').fadeOut();
@@ -178,7 +178,7 @@ function rand(min, max) {
 			enableCreateGameButton();
 		});
 
-		$('#gameCategory').change(function(){
+		$('#gameCategory').change(function(){ //enable or disable category text field depending on the selection
 
 			if($('select[name=gameCategory]').val() != "0"){
 				$('#game-new-category')[0].value = "";
@@ -193,7 +193,7 @@ function rand(min, max) {
 			
 		});
 
-		$('#editGameCategory').change(function(){
+		$('#editGameCategory').change(function(){ //enable or disable category text field depending on the selection
 			$('#edit-game-details-message').text("");
 
 			if($('select[name=editGameCategory]').val() != "0"){
@@ -377,7 +377,7 @@ function rand(min, max) {
 			changeConnection3();
 		});
 
-		$('#button-edit-game').click(function() {
+		$('#button-edit-game').click(function() { //populate all the game details and show add level,edit level and set connection sections 
 			$('#add-level-message').text("");
 			$('#editLevelMessage').text("");
 			$('#editgameboard').attr("levelNo",0);
@@ -465,7 +465,7 @@ function rand(min, max) {
 			changeLevels("previous");
 		});
 
-		function getGameDetails(gameIndex){
+		function getGameDetails(gameIndex){ //populate game details in the fields
 			$('#edit-game-designer-name')[0].value = GAMESDATA[gameIndex].gameDesignerName;
 			$('#edit-game-designer-institution')[0].value = GAMESDATA[gameIndex].gameDesignerInstitution;
 			$('#edit-game-designer-email')[0].value = GAMESDATA[gameIndex].gameDesignerEmail;
@@ -475,7 +475,7 @@ function rand(min, max) {
 			$('#edit-game-desc-text')[0].value = GAMESDATA[gameIndex].gameDescriptionText;
 		}
 
-		function changeLevels(direction){
+		function changeLevels(direction){ // change levels in the edit levels view by the press of previous and next buttons
 			$('#editLevelMessage').text("");
 			var level = $('#editgameboard').attr("levelNo");
 			var levelNo = parseInt(level);
@@ -504,7 +504,7 @@ function rand(min, max) {
 			GetLevel(levelNo);
 		}
 
-		$('#button-delete-game').click(function(){
+		$('#button-delete-game').click(function(){ 
 			var gameId = $('select[name=selectgame]').val();
 			var gameName = $('#selectgame :selected').text();
 			LAST_DELETED_GAME_ID = gameId;
@@ -537,7 +537,7 @@ function rand(min, max) {
 		});
 
 
-		function getGameLevels(gameId){
+		function getGameLevels(gameId){ //get game level details from database
 			formdata = false;
 			if (window.FormData) {
 				formdata = new FormData();
@@ -558,7 +558,7 @@ function rand(min, max) {
 			});
 		}
 
-		function getGalleriesList2(element){
+		function getGalleriesList2(element){ //get gallery names from database
 			$.ajax({
 				url: "lib/database/get_galleries.php",
 				type: "GET",
@@ -573,7 +573,7 @@ function rand(min, max) {
 			});
 		}
 
-		function getGameGalleriesList(){
+		function getGameGalleriesList(){ //get game gallery details from database
 			$.ajax({
 				url: "lib/database/get_galleries.php",
 				type: "GET",
@@ -584,7 +584,7 @@ function rand(min, max) {
 			});
 		}
 
-		function refreshGamesListAfterEditing(type,gameName){
+		function refreshGamesListAfterEditing(type,gameName){//get game details from database
 			$.ajax({
 				url: "lib/database/get_games.php",
 				type: "GET",
@@ -608,7 +608,7 @@ function rand(min, max) {
 			});
 		}
 
-		function getCategoriesList(elementName){
+		function getCategoriesList(elementName){//get categories data from database
 			$.ajax({
 				url: "lib/database/get_categories.php",
 				type: "GET",
@@ -624,7 +624,7 @@ function rand(min, max) {
 		}
 
 		
-		function resetGameCreationView(){
+		function resetGameCreationView(){ //reset the game creation view
 			$('#game-name')[0].value = "";
 			$('#game-desc')[0].value = "";
 			$('#game-desc-text')[0].value = "";
@@ -669,7 +669,7 @@ function rand(min, max) {
 			
 		}
 
-		function resetEditGameView(){
+		function resetEditGameView(){ //reset the edit games view
 			$('#editgamesection').addClass('hideElement');
 			$('#selectgame').children().remove();
 			var addLevelMessage = $('<h2 style="color:'+color+';">Select tile from each gallery and enter eLearning link to enable \'Add Level\' button</h2>');
@@ -697,7 +697,7 @@ function rand(min, max) {
 			$('#game-undo-delete-button').fadeOut();
 		}
 
-		function setButtonColor(divName){
+		function setButtonColor(divName){ //set colour to all the buttons in this view
 			if (divName.find('*').hasClass('ui-btn-inner')) {
 				divName.find('*').css("color",color);
 			} 
@@ -707,7 +707,7 @@ function rand(min, max) {
 			}
 		}
 
-		function enableCreateGameButton(){
+		function enableCreateGameButton(){ //validate the selection of galleries,connections and game details and enable the create button
 			var galleryCountVal = $('select[name=gallerycount]').val();
 			var gallery1Val = $('select[name=selectgallery1]').val();
 			var gallery2Val = $('select[name=selectgallery2]').val();
@@ -758,7 +758,7 @@ function rand(min, max) {
 				$('#create-game-button').find('*').addClass('ui-disabled');
 			}
 		}
-		function enableCreateLevelButton(){
+		function enableCreateLevelButton(){ //validate selection of tiles and enable add level button
 			$('#add-level-message').text("");
 			var addLevelMessage = $('<h2 style="color:'+color+';">Select tile from each gallery and enter eLearning link to enable \'Add Level\' button. Click on the \'Add Level\' button to add the level to the game</h2>');
 			$('#add-level-message').append(addLevelMessage);
@@ -799,7 +799,7 @@ function rand(min, max) {
 		}
 
 		
-		function createGalleryList2(element, data){
+		function createGalleryList2(element, data){ //show galleries in the dropdown
 			$('#'+element).children().remove();
 			$('#'+element).append('<option value="'+ 0 +'" description="Select a gallery from the dropdown and click on \'Edit Gallery\' to edit the gallery tiles">--Select Gallery--</option>');
 			jsondata = JSON.parse(data);
@@ -816,7 +816,7 @@ function rand(min, max) {
 			setButtonColor($("#"+element).parent());
 		}
 
-		function createGamesList(data){
+		function createGamesList(data){ //show games list in the dropdown
 			$('#selectgame').children().remove();
 			$('#selectgame').append('<option value="'+ 0 +'" description="Select a game from the dropdown and click on \'Edit Game\' to edit the game or \'Delete Game\' to delete the game">--Select Game--</option>');
 			//jsondata = JSON.parse(data);
@@ -853,7 +853,7 @@ function rand(min, max) {
 			
 		}
 
-		function createCategoriesList(elementName, data){
+		function createCategoriesList(elementName, data){ //show categories in the dropdown
 			$('#'+elementName).children().remove();
 			$('#'+elementName).append('<option value="'+ 0 +'">--Select Category or Create New Below--</option>');
 			jsondata = JSON.parse(data);
@@ -871,7 +871,7 @@ function rand(min, max) {
 			
 		}
 
-		function getGalleryTiles(galleryId,galleryElement){
+		function getGalleryTiles(galleryId,galleryElement){ //get gallery tiles data from database
 
 			
 			formdata = false;
@@ -893,7 +893,7 @@ function rand(min, max) {
 			}
 		}
 
-		function changeConnection1(){
+		function changeConnection1(){ // update changed connection to the database
 
 			formdata = false;
 			if (window.FormData) {
@@ -921,7 +921,7 @@ function rand(min, max) {
 		}
 
 
-		function changeConnection2(){
+		function changeConnection2(){ // update changed connection to the database
 
 			formdata = false;
 			if (window.FormData) {
@@ -949,7 +949,7 @@ function rand(min, max) {
 		}
 
 
-		function changeConnection3(){
+		function changeConnection3(){ // update changed connection to the database
 
 			formdata = false;
 			if (window.FormData) {
@@ -976,7 +976,7 @@ function rand(min, max) {
 			}
 		}
 
-		function getConnections(element){
+		function getConnections(element){ //get connections data from database
 
 			formdata = false;
 			if (window.FormData) {
@@ -997,7 +997,7 @@ function rand(min, max) {
 			}
 		}
 
-		function getGameConnections(element,activeli){
+		function getGameConnections(element,activeli){ //get game connection details
 
 			formdata = false;
 			if (window.FormData) {
@@ -1018,7 +1018,7 @@ function rand(min, max) {
 			}
 		}
 
-		function deleteLevel(levelNo){
+		function deleteLevel(levelNo){ // delete level from database
 			formdata = false;
 			if (window.FormData) {
 				formdata = new FormData();
@@ -1047,7 +1047,7 @@ function rand(min, max) {
 
 		}
 
-		function undoDeleteLevel(levelNo){
+		function undoDeleteLevel(levelNo){ //undo level deletion
 			formdata = false;
 			if (window.FormData) {
 				formdata = new FormData();
@@ -1075,7 +1075,7 @@ function rand(min, max) {
 		}
 
 
-		function deleteGame(gameId,gameName){
+		function deleteGame(gameId,gameName){ // delete game from database
 			formdata = false;
 			if (window.FormData) {
 				formdata = new FormData();
@@ -1099,7 +1099,7 @@ function rand(min, max) {
 
 		}
 
-		function undoDeleteGame(gameId,gameName){
+		function undoDeleteGame(gameId,gameName){ // undo game deletion
 			formdata = false;
 			if (window.FormData) {
 				formdata = new FormData();
@@ -1122,7 +1122,7 @@ function rand(min, max) {
 
 		}
 
-		function saveLevel(levelNo){
+		function saveLevel(levelNo){ //save level details in the database
 			formdata = false;
 			if (window.FormData) {
 				formdata = new FormData();
@@ -1149,7 +1149,7 @@ function rand(min, max) {
 
 		}
 
-		function updateGameDetails(){
+		function updateGameDetails(){ //update game details to the database
 			formdata = false;
 			if (window.FormData) {
 				formdata = new FormData();
@@ -1207,7 +1207,7 @@ function rand(min, max) {
 		}
 
 		
-		function createGame(){
+		function createGame(){ //create game and save it to the database
 			var gameName = $.trim($('#game-name')[0].value);
 			var gameDescription = $.trim($('#game-desc')[0].value);
 			var gameDescriptionText = $.trim($('#game-desc-text')[0].value);
@@ -1305,8 +1305,8 @@ function rand(min, max) {
 		}
 
 
-
-		function createLevel(){
+	
+		function createLevel(){ //create new level and save it to the database
 			
 			var eLearningLink = $.trim($('#newELearningLink')[0].value);
 			var moreInformation = $.trim($('#newMoreInformationLink')[0].value);
@@ -1368,7 +1368,7 @@ function rand(min, max) {
 		}
 
 		
-		function populateGallery(element, filesdata){
+		function populateGallery(element, filesdata){ // show galleries in the dropdown
 			$('#'+element + ' ul').children().remove();
 			files = JSON.parse(filesdata);
 			if(files != null){
@@ -1381,7 +1381,7 @@ function rand(min, max) {
 			}
 		}
 
-		function GetLevel(index){
+		function GetLevel(index){ //show level data in the edit level view
 
 			if(GAMELEVELS.hasOwnProperty(index)){
 				for(var i=0;i<NUMBER_OF_GALLERIES;i++){
@@ -1407,7 +1407,7 @@ function rand(min, max) {
 			$('#moreInformationLink')[0].value = "";
 		}
 		
-		function populateConnections(element, filesdata){
+		function populateConnections(element, filesdata){ //show connections
 			$('#'+element + ' ul').children().remove();
 			files = JSON.parse(filesdata);
 			length = files.length;
@@ -1420,7 +1420,7 @@ function rand(min, max) {
 			}
 		}
 
-		function populateGameConnections(element, activeli, filesdata){
+		function populateGameConnections(element, activeli, filesdata){ //highlight game connections
 			$('#'+element + ' ul').children().remove();
 			files = JSON.parse(filesdata);
 			length = files.length;
