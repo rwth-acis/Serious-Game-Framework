@@ -1,6 +1,6 @@
 var GLEANER_URL = "http://gaudi.informatik.rwth-aachen.de:3000/";
-//var oidc_userinfo = {name: "Marko Kajzer", preferred_username: "marko.kajzer", email: "marko.kajzer@hotmail.de"};
-
+//var oidc_userinfo = {name: "Marko Kajzer", preferred_username: "marko.kajzer", email: "marko.kajzer@hotmail.de"}; //uncomment this and use it during development phase in your system. Because the login to the framework redirects it to a particular link, you can use this dummy login when working in your local server.
+//These are the global variables to store data retrieved from the database.
 var GAMESDATA;
 var GALLERYNAMES;
 var HIGHSCORE_VERSIONS;
@@ -14,7 +14,7 @@ var GAME_BADGES_PATH = "game_badges/";
 var GAME_DESIGNERS;
 //var GAMELEVELS;
 $(document).ready(function() {
-	
+	//call all these scripts and get the data and store them in the global variables.
 	$.ajax({
 		url: "lib/database/db_create.php",
 		type: "GET",
@@ -23,7 +23,7 @@ $(document).ready(function() {
 					//alert(data);
 				}
 			});
-
+	
 	$.ajax({
 		url: "lib/database/create_default_highscore.php",
 		type: "GET",
@@ -41,7 +41,7 @@ $(document).ready(function() {
 			GAME_DESIGNERS = JSON.parse(data);
 		}
 	});
-
+	//call this function to delete all the data which is deleted using the UI.
 	function deleteOldData(){
 		$.ajax({
 			url: "lib/database/deleteOldData.php",
