@@ -20,11 +20,11 @@ function rand(min, max) {
 		$('.select').find('option').css("height","20px");
 
 		
-		$('#highscoreruleslink').click(function() { 
+		$('#highscoreruleslink').click(function() { //load all the data from database before loading this view
 			reloadDataFromDatabase();
 		});
 
-		$('#select-highscore').change(function(){
+		$('#select-highscore').change(function(){ //Depending on the selection, check edit permission and activate suitable buttons
 			
 			$('#save-highscore-rules-message').text("");
 			$('#highscore-desc-message').text("");
@@ -87,7 +87,7 @@ function rand(min, max) {
 			}
 		});
 
-		$('#button-edit-highscore').click(function() {
+		$('#button-edit-highscore').click(function() { // enable save button and get the highscore version details of the selected version
 			
 			$('#save-highscore-rules-message').text("");
 			
@@ -104,7 +104,7 @@ function rand(min, max) {
 			
 		});
 
-		$('#button-show-highscore').click(function() {
+		$('#button-show-highscore').click(function() { //Disable the save button and get the highscore version details of the selected highscore version
 			
 			$('#save-highscore-rules-message').text("");
 			
@@ -121,7 +121,7 @@ function rand(min, max) {
 			
 		});
 
-		$('#button-reset-highscore').click(function() {
+		$('#button-reset-highscore').click(function() { //reset this view
 			resetHighscoreRulesView();
 		});	
 
@@ -143,7 +143,7 @@ function rand(min, max) {
 
 
 
-		function resetHighscoreRulesView(){
+		function resetHighscoreRulesView(){ //reset this view
 			$('#select-highscore').children().remove();
 			getHighscoreVersionsList();
 			
@@ -182,7 +182,7 @@ function rand(min, max) {
 			setButtonColor($('#show-highscore-button'));
 		}
 
-		function setButtonColor(divName){
+		function setButtonColor(divName){ //set colour to all the buttons in this view
 			if (divName.find('*').hasClass('ui-btn-inner')) {
 				divName.find('*').css("color",color);
 			} 
@@ -192,7 +192,7 @@ function rand(min, max) {
 			}
 		}
 
-		function getHighscoreVersionsList(){
+		function getHighscoreVersionsList(){ //get the highscore version data from database
 			$.ajax({
 				url: "lib/database/get_highscore_versions.php",
 				type: "GET",
@@ -206,7 +206,7 @@ function rand(min, max) {
 			});
 		}
 
-		function createHighscoreVersionsList(){
+		function createHighscoreVersionsList(){ // populate highscore versions in the dropdown
 			$('#select-highscore').children().remove();
 			$('#select-highscore').append('<option value="'+ -1 +'" description="Select a highscore version from the dropdown and click on \'Edit Highscore Version\' to edit the details">--Select Highscore Version--</option>');
 			jsondata = HIGHSCORE_VERSIONS;
@@ -231,7 +231,7 @@ function rand(min, max) {
 			$('#delete-button-highscore').find('*').addClass('ui-disabled');
 		}
 
-		function getHighscoreVersionDetails(highscoreIndex){
+		function getHighscoreVersionDetails(highscoreIndex){ // show the high score version details in the fields
 
 			$('#highscore-correct')[0].value = HIGHSCORE_VERSIONS[highscoreIndex]["correct"];
 			$('#highscore-wrong')[0].value = HIGHSCORE_VERSIONS[highscoreIndex]["wrong"];
@@ -242,7 +242,7 @@ function rand(min, max) {
 			
 		}
 
-		function saveHighscoreRules(){
+		function saveHighscoreRules(){ //save the highscore rules data to the database
 
 			var correct = $.trim($('#highscore-correct')[0].value);
 			var wrong = $.trim($('#highscore-wrong')[0].value);
@@ -291,7 +291,7 @@ function rand(min, max) {
 		}
 
 
-		function createHighscoreRules(){
+		function createHighscoreRules(){ //add new highscore version data to the database and show success message with the new version number
 
 			var correct = $.trim($('#highscore-correct')[0].value);
 			var wrong = $.trim($('#highscore-wrong')[0].value);
@@ -337,7 +337,7 @@ function rand(min, max) {
 
 		}
 
-		function deleteHighscoreVersion(){
+		function deleteHighscoreVersion(){ //delete highscore version from the database
 			formdata = false;
 			if (window.FormData) {
 				formdata = new FormData();
@@ -374,7 +374,7 @@ function rand(min, max) {
 		}
 		}
 
-		function undoDeleteHighscoreVersion(){
+		function undoDeleteHighscoreVersion(){ //undo deletion of highscore version
 			formdata = false;
 			if (window.FormData) {
 				formdata = new FormData();
@@ -401,7 +401,7 @@ function rand(min, max) {
 			}
 		}
 
-		function reloadDataFromDatabase(){
+		function reloadDataFromDatabase(){ //load all the data from database and reset this view. This function is called when the user clicks to open this view
 			var url = "assets/scripts/loadData.js";
 			$.getScript( url, function() {
 				resetHighscoreRulesView();
