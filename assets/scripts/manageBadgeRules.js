@@ -25,7 +25,7 @@ function rand(min, max) {
 
 		var galleryElementName = "gameBadgeGallery";
 		var color = "#069090";
-
+		//gallery element
 		var POPULATEGALLERY = $("#"+galleryElementName),
 		POPULATEGALLERYul = $("ul", POPULATEGALLERY);
 
@@ -34,15 +34,15 @@ function rand(min, max) {
 
 		
 		$('#badgeruleslink').click(function() { 
-			reloadDataFromDatabase();
+			reloadDataFromDatabase(); //make sure that the data is loaded from database before opening this view.
 		});
 
 		$('#game-badge-name').on('change keyup paste',function() { 
 			$('#game-badge-saved-message').text("");
-			enableGameBadgeCreation();
+			enableGameBadgeCreation(); //check validity of the fields before enabling the add badge button
 		});
 
-		$('#select-badge-requirement').change(function(){
+		$('#select-badge-requirement').change(function(){  //depending on the badge requirement id, disable or enable the text field next to it. 
 			$('#game-badge-saved-message').text("");
 			var badgeRequirementId = $('select[name=select-badge-requirement]').val();
 			if(badgeRequirementId == 0 || badgeRequirementId == 1 || badgeRequirementId == 6 || badgeRequirementId == 7){
@@ -59,7 +59,7 @@ function rand(min, max) {
 
 		});	
 
-		$('#edit-select-badge-requirement').change(function(){
+		$('#edit-select-badge-requirement').change(function(){ //depending on the badge requirement id, disable or enable the text field next to it.
 			$('#game-badge-saved-message').text("");
 			var badgeRequirementId = $('select[name=edit-select-badge-requirement]').val();
 			if(badgeRequirementId == 0 || badgeRequirementId == 1 || badgeRequirementId == 6 || badgeRequirementId == 7){
@@ -76,7 +76,7 @@ function rand(min, max) {
 
 		});
 
-		$('#game-badge-points').on('change keyup paste',function() { 
+		$('#game-badge-points').on('change keyup paste',function() { //check validity of the fields before enabling the add badge button
 			$('#game-badge-saved-message').text("");
 			$('#game-badge-error-message').text("");
 			if(!$.isNumeric($.trim($('#game-badge-points')[0].value))){
@@ -87,14 +87,14 @@ function rand(min, max) {
 			
 		});
 		
-		$('#edit-game-badge-name').on('change keyup paste',function() { 
+		$('#edit-game-badge-name').on('change keyup paste',function() { //check validity of the fields before enabling the save button
 			$('#game-badge-saved-message').text("");
 			enableGameBadgeSaveButton();
 		});
 
 
 		
-		$('#edit'+galleryElementName).on('click', 'li', function() {
+		$('#edit'+galleryElementName).on('click', 'li', function() { //when the user clicks on the badge, check whether they have admin rights and then enable the edit, delete buttons.
 			$('#game-badge-undo-delete-button').fadeOut();
 			resetGameBadgeEditView();
 			var checkPermission = false;
@@ -130,7 +130,7 @@ function rand(min, max) {
 				$(this).siblings().removeClass("active");
 			}
 		});
-		$('#button-delete-game-badge').click(function(){
+		$('#button-delete-game-badge').click(function(){ //delete badge
 			$('#game-badge-undo-delete-button').fadeOut();
 			$('#game-badge-saved-message').text("");
 			var filename = $('#edit'+galleryElementName).find(".active").find(".imgfocus")[0].alt;
@@ -138,7 +138,7 @@ function rand(min, max) {
 
 		});
 
-		$('#button-edit-game-badge').click(function(){
+		$('#button-edit-game-badge').click(function(){ //populate all the badge details in the edit view
 			$('#game-badge-undo-delete-button').fadeOut();
 			
 			$('#game-badge-saved-message').text("");
@@ -156,7 +156,7 @@ function rand(min, max) {
 			
 		});
 
-		$('#game-badge-save-button').click(function(){
+		$('#game-badge-save-button').click(function(){ //save the details
 			$('#game-badge-undo-delete-button').fadeOut();
 			
 			$('#game-badge-saved-message').text("");
@@ -166,7 +166,7 @@ function rand(min, max) {
 
 		});
 
-		$('#button-undo-delete-game-badge').click(function(){
+		$('#button-undo-delete-game-badge').click(function(){ //undo badge deletion
 			$('#badge-badge-undo-delete-button').fadeOut();
 			
 			$('#game-badge-saved-message').text("");
@@ -175,21 +175,21 @@ function rand(min, max) {
 
 		
 		$('input[id=uploadGameBadge]').on('change', uploadGameBadge);
-		$('input[id=uploadGameBadge]').click(function(){
+		$('input[id=uploadGameBadge]').click(function(){ //upload button action
 			$('#game-badge-undo-delete-button').fadeOut();
 			
 			$('#game-badge-saved-message').text("");
 		});
 
 
-		$('#show-game-badges').click(function(){
+		$('#show-game-badges').click(function(){ //show all the badges
 			$('#game-badge-undo-delete-button').fadeOut();
 			$('#'+galleryElementName + ' ul').children().remove();
 			getGameBadges();
 		});
 
 		
-		function resetGameBadgeRulesView(){
+		function resetGameBadgeRulesView(){ //reset the view
 			$('#'+galleryElementName + ' ul').children().remove();
 			$('#edit-game-badge-button').find('*').prop('disabled',true);
 			$('#edit-game-badge-button').find('*').addClass('ui-disabled');
@@ -223,7 +223,7 @@ function rand(min, max) {
 
 		}
 
-		function resetGameBadgeEditView(){
+		function resetGameBadgeEditView(){ //reset the edit badge view
 			$('#edit-game-badge-name')[0].value = "";
 			$("#edit-game-badge-name").attr('disabled','disabled');
 			$("#edit-game-badge-name").parent().css( "background-color", "#e7e7e7" );
@@ -250,7 +250,7 @@ function rand(min, max) {
 			$('#game-badge-save-button').find('*').addClass('ui-disabled');
 		}
 
-		function activateGameBadgeEditView(){
+		function activateGameBadgeEditView(){ //enable all the fields in edit badge view
 			$('#edit-game-badge-name').parent().parent().find('*').removeAttr('disabled');
 			$('#edit-game-badge-name').parent().parent().find('*').removeClass('ui-disabled');
 			$('#edit-game-badge-name').parent().parent().find('*').removeClass('ui-state-disabled');
@@ -276,7 +276,7 @@ function rand(min, max) {
 			
 		}
 
-		function setButtonColor(divName){
+		function setButtonColor(divName){ //set colour to all the buttons in the view
 			if (divName.find('*').hasClass('ui-btn-inner')) {
 				divName.find('*').css("color",color);
 			} 
@@ -286,7 +286,7 @@ function rand(min, max) {
 			}
 		}
 
-		function enableGameBadgeCreation(){
+		function enableGameBadgeCreation(){ //validate the fields and enable the add badge button
 
 			var check = false;
 
@@ -309,7 +309,7 @@ function rand(min, max) {
 			}
 		}
 
-		function enableGameBadgeSaveButton(){
+		function enableGameBadgeSaveButton(){//validate fields and enable the save button
 
 
 			var check = false;
@@ -333,7 +333,7 @@ function rand(min, max) {
 			}
 		}
 
-		function getGameBadges(){
+		function getGameBadges(){//get game badges from database
 
 			formdata = false;
 			if (window.FormData) {
@@ -354,7 +354,7 @@ function rand(min, max) {
 			}
 		}
 
-		function uploadGameBadge(){
+		function uploadGameBadge(){//save the badge in folder and badge src in database
 			var filedata = document.getElementById("uploadGameBadge");
 			var badgeName = $.trim($('#game-badge-name')[0].value);
 			var badgeDescription = $.trim($('#game-badge-desc')[0].value);
@@ -426,7 +426,7 @@ function rand(min, max) {
 			}
 		}
 
-		function saveGameBadge(badgeSrc){
+		function saveGameBadge(badgeSrc){ //save the badge in folder and badge src in database
 			
 			var badgeName = $.trim($('#edit-game-badge-name')[0].value);
 			var badgeDescription = $.trim($('#edit-game-badge-desc')[0].value);
@@ -474,7 +474,7 @@ function rand(min, max) {
 			
 		}
 
-		function addGameBadge(value){
+		function addGameBadge(value){//show the badge added
 
 			var length = GAME_BADGES.length - 1;
 			var image1 = $('<li email="' +  oidc_userinfo.email + '" class="ui-widget-content ui-corner-tr piece"><a href="#"><img src="' + GAME_BADGES_PATH + value + '" alt="' +  value + '" width="94" height="68" badgeIndex="'+length+'" id="piece-id-'+index+'" piece-id="' + index + '" piece-count="1" class="imgfocus"/></a></li>');
@@ -484,7 +484,7 @@ function rand(min, max) {
 
 		}
 
-		function deleteGameBadge(badgeSrc){
+		function deleteGameBadge(badgeSrc){//delete the badge from database.
 			formdata = false;
 			if (window.FormData) {
 				formdata = new FormData();
@@ -519,7 +519,7 @@ function rand(min, max) {
 
 		
 		
-		function undoDeleteGameBadge(){
+		function undoDeleteGameBadge(){//undo badge deletion
 			formdata = false;
 			if (window.FormData) {
 				formdata = new FormData();
@@ -548,7 +548,7 @@ function rand(min, max) {
 			}
 		}
 
-		function populateGameBadges(filesdata){
+		function populateGameBadges(filesdata){ //show all badges
 			$('#'+galleryElementName + ' ul').children().remove();
 			files = JSON.parse(filesdata);
 			if(files != null){
@@ -561,7 +561,7 @@ function rand(min, max) {
 			}
 		}
 
-		function reloadDataFromDatabase(){
+		function reloadDataFromDatabase(){ //load the data from database and then reset the view. This is called when the user clicks to see the this view
 			var url = "assets/scripts/loadData.js";
 			$.getScript( url, function() {
 				resetGameBadgeRulesView();
