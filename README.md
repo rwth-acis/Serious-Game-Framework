@@ -27,12 +27,9 @@ A running instance of the application can be found under [here](http://gaudi.inf
 
 We want to give educators the possibility to create Serious Games including course
 relevant material for their students, to allow for a refreshing, new teaching and learning
-experience in the context of the new medium internet.
+experience in the context of the new medium internet. Also, the assessment system for the games can be customized.
 
-The application consists of three components:
-
-The Serious Game Framework frontend to create and play games, as well as to view your
-own profile as a player, game designer or administrator.
+The Serious Game Framework consists of four components in the frontend: Play games, View profile as a player or game designer, Design Games and Assessment System.
 
 The second component is a heavily modified version of [GLEANER: Game LEarning ANalytics for Educational Research](http://e-ucm.github.io/gleaner/) created by [Ángel Serrano-Laguna](https://github.com/anserran/gleaner-frontend) and maintained by the [e-ucm eLearning group](http://www.e-ucm.es/). GLEANER provides us with an interface to interact with an underlying MongoDB.
 
@@ -51,10 +48,7 @@ tiles are then discarded and the user can continue with the rest of the tiles.
 
 ### Game designers
 
-Even though not feature complete, we plan to give game designers full control over the
-creation of the games in the context of dragging and dropping tiles into predetermined
-slots. We started in the context of Medical Education, however the basic concepts of the
-game could be applied to any topic given the proper tiles and connections.
+The game designers have full control over the creation of the games. They can create and edit game components like galleries, connections and levels in a game. We started in the context of Medical Education, however the basic concepts of the game could be applied to any topic given the proper tiles and connections.
 
 #### Learning analytics
 
@@ -65,9 +59,6 @@ solved exceptionally bad (more than 50% wrong answers with more than one answer 
 the designer will see a notice on the profile of up to the 10 worst levels. The gives the
 educator more information about which topics might not have been conveyed as good and
 require more attention in class.
-
-As the feature of creating games has not been completed as off yet, the corresponding tab
-on the profile page is for demonstration purposes only.
 
 ### Players
 
@@ -97,10 +88,13 @@ answers for this play session.
 
 We have added multiple mechanisms to keep players motivated.
 
+#### Assessment System
+
+Game designers can create new assessment rules using the Assessment System section. They can customize highscore rules, badges rules and experience rule. Except experience rule which applies to all the games, each game can have a separate highscore rule and game badge that is more suitable for the game. We have set some default values for all the rules which can be customized by game designers according to ther requirements.
+
 ##### Highscore
 
-The highscore is determined by the user's correct and wrong answers; a correct answer will
-net the player 5 points whereas a wrong answer will subtract 2 points from the highscore.
+The highscore is determined by the user's correct and wrong answers and the usage of 'Show Me', 'Try Again' and 'Show Hint' buttons; By default, a correct answer will net the player 5 points, a wrong answer will subtract 2 points, click on 'Show Me' button doesn't effect the score, click on 'Try Again' button adds 2 points and click on 'Show Hint' button deducts 0.5 points from the highscore.
 
 In addition, a player will see the next two (at most) players above him to have an
 additional motivation, and the two (at most) players beneath him, to see what other
@@ -114,9 +108,7 @@ guy"_.
 
 Certain actions can award the player with a Badge. At the moment these actions include:
 
-+ A Badge for completing each of the two pre existing games
-    + _Tutorial_
-    + _Hormones_
++ A Badge for completing _Tutorial_ game
 + _Basic Elearner_, for clicking the elearning link three times
 + _Correctemundo_, for answering ten levels correctly
 + _Please Study_, for answering a game with more wrong than correct answers
@@ -126,20 +118,19 @@ accomplishment. In addition, the user has the possibility to add the Badge to hi
 Backpack as we are using the OpenBadges. However, the process of pushing the badge to
 the backpack is only activated once, namely after earning a badge for the first time.
 Nevertheless, badges can be _earned_ multiple times, with the exact number appearing next
-to the badge on the profile.
+to the badge on the profile. Each time a badge is achieved, badge feedback message is shown on the Game View.
 
 ##### Experience
 
 In addition to the badge system, we have added an experience system to the application.
-Through his actions each user can earn experience points. The experience is made up as
+Through his actions each user can earn experience points. By default, the experience is made up as
 follows:
 
 + 150 points per created game
 + 10 points per earned badge
 + Highscore
-    + 5 points per correct answer
-    + -2 points per wrong answer
 + 1 point per elearning link clicked
++ 1 point per more information link clicked
 + 0.5 points per login
 
 With his experience a player can rise in his experience level: Each user starts as a **Total Noob** at level 0, and climbs from **Beginner** over **Experienced Elearner**, **Professional** and **Expert** to **Master**. Each level requires more and more experience points and therefore more and more actions from the user. It starts with 100 points to reach Level 1, and then 150 additional points for the next, then 250, then 500 and finally 1000 points for Level 5 **Master**. Each level is accompanied by an image which gets more and more impressive as the user climbs in level. Additionally an experience bar indicating the users progress can be found on his profile.
@@ -177,6 +168,7 @@ see how the application is used.
     + 1 occurrence in ```chart-creator.js```
     + 1 occurrence in ```gleaner-tracker.js``` (variable ```gleaner_path```)
     + 1 occurrence in ```serious-game-framework.js``` (variable ```gleaner_url```)
++ The current game data and game rules data is in MySQL database and the players statistics are in MongoDB database. To use this data, create dump files of these databases and import them.
 
 ## Tests
 
@@ -192,17 +184,15 @@ For testing purposes we use Selenium and NightwatchJS. To execute the tests you 
 
 ## Development
 
-The main files of this project are the _serious\_game\_framework.js_, which contains the game logic as well as functions to interract with the Gleaner API and build the user profile, and _collector.js_ of the gleaner-frontend module gleaner-data, which contains all functions to calculate the statistics, the highscore and the experience level.
+The main files of this project are the _serious\_game\_framework\_new.js_, which contains the game logic as well as functions to interact with the Gleaner API and build the user profile, and _collector.js_ of the gleaner-frontend module gleaner-data, which contains all functions to calculate the statistics, the highscore and the experience level. The Javascript files in assets/scripts folder contain Game Designer View and Assessmnet System View logic.
 
 ## Planned Features
 
 We are looking to...
 
-+ finish the game designer view to allow educators to create and publish games
 + add an optional division per day for all statistics.
 + add more usage statistics for administrators.
 + add a possibility to re-add badges to the Mozilla Backpack.
-+ add a Feedback form to the application.
 + add more (meaningful) badges.
 
 
@@ -211,12 +201,12 @@ We are looking to...
 Simon Grubert, Serious Game Framework Base  
 [Marko Kajzer](mailto:marko.kajzer@rwth-aachen.de), Learning Analytics and Motivation  
 Marc Treiber, Badge Design and Realization  
-
+[Sindhu Aitharaju](mailto:sindhu.aitharaju@rwth-aachen.de),
 Special thanks to the team behind [GLEANER](http://e-ucm.github.io/gleaner/).
 
 ## License
 
-Copyright (c) 2014 Simon Grubert & Marko Kajzer, Advanced Community Information
+Copyright (c) 2014 Simon Grubert, Marko Kajzer & Sindhu Aitharaju, Advanced Community Information
 Systems (ACIS) Group, Chair of Computer Science 5 (Databases & Information Systems),
 RWTH Aachen University, Germany. All rights reserved.
 
