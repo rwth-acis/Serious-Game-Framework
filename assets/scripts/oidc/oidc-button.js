@@ -51,6 +51,7 @@ var oidc_server; // OpenID Connect Provider URL
 var oidc_name; // OpenID Connect Provider Name
 var oidc_logo; // OpenID Connect Provider Logo URL
 var oidc_clientid; // OpenID Connect Client ID
+var oidc_redirectUri; // OpenID Connect redirect URI
 var oidc_scope; // OpenID Connect Scope
 var oidc_callback; // OpenID Connect Redirect Callback
 var oidc_provider_config; // OpenID Connect Provider Configuration
@@ -84,6 +85,10 @@ try{
 			oidc_clientid = $(".oidc-signin").attr("data-clientid");
 			if(oidc_clientid === undefined || oidc_clientid === ""){
 				throw("Warning: OpenID Connect signin button does not define client ID!");
+			}
+			oidc_redirectUri = $(".oidc-signin").attr("data-redirecturi");
+			if(oidc_redirectUri === undefined || oidc_redirectUri === ""){
+				throw("Warning: OpenID Connect signin button does not define redirect URI!");
 			}
 			oidc_scope = $(".oidc-signin").attr("data-scope");
 			if(oidc_scope === undefined || oidc_scope === ""){
@@ -177,7 +182,21 @@ function renderButton(signin){
 		};
 		$(".oidc-signin").html("<img style='margin-right:5px' src='" + oidc_logo + "' height='" + size + "px'/> Sign in with <i>" + oidc_name + "</i>");
 		$(".oidc-signin").click(function (e){
-			var url = oidc_provider_config.authorization_endpoint + "?response_type=id_token%20token&client_id=" + oidc_clientid + "&scope=" + oidc_scope;
+			// create random nonce
+			// TODO: validate later in the ID token
+			var sRandom = new SecureRandom();
+			var byteArrayToLong = function(/*byte[]*/byteArray) {
+				var value = 0;
+				for ( var i = byteArray.length - 1; i >= 0; i--) {
+					value = (value * 256) + byteArray[i];
+				}
+				return value;
+			};
+			rng_seed_time();
+			var randNonce= new Array(4);
+			sRandom.nextBytes(randNonce);
+			nonce = byteArrayToLong(randNonce).toString(36);
+			var url = oidc_provider_config.authorization_endpoint + "?response_type=id_token%20token&client_id=" + oidc_clientid + "&redirect_uri=" + oidc_redirectUri + "&scope=" + oidc_scope + "&nonce=" + nonce;
 			window.location.href = url;
 		});
 	} else {
@@ -246,19 +265,21 @@ function getUserInfo(cb){
 **/
 function getIdToken() {
 	
-	if(!KJUR.jws) {
-		throw("Cannot parse OpenID Connect ID token! KJUR.jws not available!");
-	} else {
-		var jws = new KJUR.jws.JWS();
+	// if(!KJUR.jws) {
+	// 	throw("Cannot parse OpenID Connect ID token! KJUR.jws not available!");
+	// } else {
+		//var jws = new KJUR.jws.JWS();
 		var result = 0;
 		try {
-			result = jws.parseJWS(window.localStorage["id_token"]);
+			bodyJson = b64toBA(window.localStorage["id_token"][1]).toString();
+			result = JSON.parse(bodyJson);
+			//result = jws.parseJWS(window.localStorage["id_token"]);
 		} catch (ex) {
 			console.log("Warning: " + ex);
 		}
 
-		return jws.parsedJWS;
-	}
+		return result;
+	//}
 }
 
 /**
